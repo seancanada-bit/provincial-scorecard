@@ -111,9 +111,8 @@ body {
   letter-spacing: -0.02em;
   text-decoration: none;
   flex-shrink: 0;
-  display: flex; align-items: center;
 }
-.site-header__wordmark span { color: var(--canada-red); }
+.site-header__brand span { color: var(--canada-red); }
 .site-header__tagline {
   font-size: 13px; color: var(--text-secondary);
   display: none;
