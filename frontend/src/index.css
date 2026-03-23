@@ -1184,23 +1184,30 @@ body {
   flex-shrink: 0;
   min-width: 54px;
   display: flex; flex-direction: column; align-items: center;
-  padding: 9px 6px 8px;
+  padding: 8px 6px 7px;
   border: none; background: none; cursor: pointer;
   border-bottom: 3px solid transparent;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   transition: background 0.15s, border-color 0.15s, min-width 0.2s ease;
-  gap: 1px;
+  gap: 2px; /* icon + score on inactive tab */
 }
 .dp-tab:hover { background: rgba(0,0,0,0.04); }
 .dp-tab--active {
   min-width: 82px;
   background: var(--card-bg);
   border-bottom-color: var(--tab-color);
+  gap: 3px; /* icon + label + score — needs breathing room */
 }
 /* Contextual tab (Buying Power) — dashed border indicates non-composite */
 .dp-tab--context { opacity: 0.75; }
 .dp-tab--context.dp-tab--active { opacity: 1; }
-.dp-tab__icon { font-size: 15px; line-height: 1; }
+.dp-tab__icon {
+  font-size: 15px;
+  line-height: 1;
+  /* Emoji glyphs render taller than font-size; nudge so label
+     doesn't appear to overlap on the active tab */
+  display: block;
+}
 /* Label hidden on inactive tabs, revealed on active */
 .dp-tab__label {
   display: none;
