@@ -29,6 +29,12 @@ const BOUNDS = {
   // Safety — survey-based, not police-reported (avoids reporting-bias)
   victimizationRate:   { best: 55,    worst: 175   }, // GSS per 1,000 (lower = better)
   homicideRate:        { best: 0.3,   worst: 6.5   }, // per 100k (lower = better)
+  // Cost of living / purchasing power (lower cost = better score)
+  rentToIncomePct:     { best: 12,    worst: 30    }, // % of income on rent (lower = better)
+  groceryIndex:        { best: 94,    worst: 116   }, // relative index, 100 = national avg
+  annualEnergyCost:    { best: 1400,  worst: 4200  }, // $ per household/yr (lower = better)
+  autoInsuranceAnnual: { best: 600,   worst: 2100  }, // $ per year (lower = better)
+  childcareMonthly:    { best: 150,   worst: 1500  }, // $ per month (lower = better)
 };
 
 function normalize(value, best, worst) {
@@ -103,7 +109,7 @@ function scoreInfraProjects(projects) {
 }
 
 function scoreProvince(prov) {
-  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety } = prov;
+  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety, costOfLiving } = prov;
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
@@ -188,6 +194,30 @@ function scoreProvince(prov) {
     if (!parts.length) return 50;
     const tw = wts.reduce((a,b)=>a+b,0);
     return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
+  })();
+
+  // ─── PURCHASING POWER INDEX (not in composite — informational) ───────────────
+  // Measures how far take-home pay goes on day-to-day essentials.
+  // Weights: rent-to-income 35%, groceries 25%, energy 20%, auto insurance 15%, childcare 5%
+  let ppiRentScore = null, ppiGroceryScore = null, ppiEnergyScore = null, ppiInsuranceScore = null, ppiChildcareScore = null;
+  if (costOfLiving) {
+    ppiRentScore      = costOfLiving.rent_to_income_pct    != null ? normalizeInverted(costOfLiving.rent_to_income_pct,    BOUNDS.rentToIncomePct.best,     BOUNDS.rentToIncomePct.worst)     : null;
+    ppiGroceryScore   = costOfLiving.grocery_index         != null ? normalizeInverted(costOfLiving.grocery_index,         BOUNDS.groceryIndex.best,         BOUNDS.groceryIndex.worst)        : null;
+    ppiEnergyScore    = costOfLiving.annual_energy_cost    != null ? normalizeInverted(costOfLiving.annual_energy_cost,    BOUNDS.annualEnergyCost.best,     BOUNDS.annualEnergyCost.worst)    : null;
+    ppiInsuranceScore = costOfLiving.auto_insurance_annual != null ? normalizeInverted(costOfLiving.auto_insurance_annual, BOUNDS.autoInsuranceAnnual.best,  BOUNDS.autoInsuranceAnnual.worst) : null;
+  }
+  ppiChildcareScore = taxes?.childcare_monthly_avg != null ? normalizeInverted(taxes.childcare_monthly_avg, BOUNDS.childcareMonthly.best, BOUNDS.childcareMonthly.worst) : null;
+
+  const ppiScore = (() => {
+    const parts = [], wts = [];
+    if (ppiRentScore      != null) { parts.push(ppiRentScore      * 0.35); wts.push(0.35); }
+    if (ppiGroceryScore   != null) { parts.push(ppiGroceryScore   * 0.25); wts.push(0.25); }
+    if (ppiEnergyScore    != null) { parts.push(ppiEnergyScore    * 0.20); wts.push(0.20); }
+    if (ppiInsuranceScore != null) { parts.push(ppiInsuranceScore * 0.15); wts.push(0.15); }
+    if (ppiChildcareScore != null) { parts.push(ppiChildcareScore * 0.05); wts.push(0.05); }
+    if (!parts.length) return null;
+    const tw = wts.reduce((a, b) => a + b, 0);
+    return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
 
   // ─── COMPOSITE (7 categories, safety 10%) ────────────────────────
@@ -325,6 +355,22 @@ function scoreProvince(prov) {
       publicSectorPer1000:        taxes.public_sector_per_1000 ?? null,
       sourceNotes:                taxes.source_notes ?? null,
     } : null,
+    purchasingPower: {
+      score:              ppiScore,
+      grade:              toGrade(ppiScore ?? 50),
+      rentToIncomePct:    costOfLiving?.rent_to_income_pct    ?? null,
+      rentScore:          ppiRentScore,
+      groceryIndex:       costOfLiving?.grocery_index         ?? null,
+      groceryScore:       ppiGroceryScore,
+      annualEnergyCost:   costOfLiving?.annual_energy_cost    ?? null,
+      energyScore:        ppiEnergyScore,
+      autoInsuranceAnnual: costOfLiving?.auto_insurance_annual ?? null,
+      insuranceScore:     ppiInsuranceScore,
+      childcareMonthlyAvg: taxes?.childcare_monthly_avg       ?? null,
+      childcareScore:     ppiChildcareScore,
+      sourceNotes:        costOfLiving?.source_notes          ?? null,
+      dataDate:           costOfLiving?.data_date             ?? null,
+    },
     lastUpdated: {
       healthcare:     meta.last_updated_healthcare ?? null,
       housing:        meta.last_updated_housing ?? null,

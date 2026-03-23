@@ -330,3 +330,40 @@ values
   ('NS', 7.2,   0.6,  1.6,  0.3, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
   ('PE', 9.8,   3.2,  1.1, -0.2, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
   ('NL',10.5,   3.9,  0.8, -0.5, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01');
+
+-- ─── COST OF LIVING / PURCHASING POWER ───────────────────────────────────────
+-- Measures how far take-home pay goes on day-to-day essentials.
+-- Not a government performance score — reflects structural cost environment.
+-- Sources: CMHC Rental Market Survey 2024; Stats Canada median wages 2023;
+--          Stats Canada CPI Table 18-10-0004-01 (food component);
+--          NRCan Electricity Prices report 2024;
+--          Insurance Bureau of Canada 2024 auto insurance report.
+create table if not exists provinces_cost_of_living (
+  id                        serial primary key,
+  province_code             text not null references provinces_meta(province_code),
+  rent_to_income_pct        numeric,  -- avg 2BR annual rent ÷ median household income × 100
+  grocery_index             numeric,  -- relative to national avg = 100 (lower = cheaper)
+  annual_energy_cost        numeric,  -- electricity + heating combined, typical household ($)
+  auto_insurance_annual     numeric,  -- avg annual auto insurance premium ($)
+  -- childcare pulled from provinces_tax.childcare_monthly_avg
+  source_notes              text,
+  data_date                 date
+);
+
+-- ─── SEED: Cost of living data (2024) ─────────────────────────────────────────
+-- rent_to_income: CMHC avg 2BR rent annualised ÷ Stats Can median household income
+-- grocery_index: food CPI relative to national (100 = national avg)
+-- annual_energy: NRCan electricity (7,200 kWh/yr typical) + home heating estimate
+-- auto_insurance: IBC avg annual premium by province
+insert into provinces_cost_of_living (province_code, rent_to_income_pct, grocery_index, annual_energy_cost, auto_insurance_annual, source_notes, data_date)
+values
+  ('BC', 27.5, 102, 2085, 1832, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('AB', 18.9, 101, 2552, 1952, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('SK', 15.3,  99, 2702, 1071, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('MB', 16.9,  98, 2013, 1060, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('ON', 25.1, 100, 2365, 1754, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('QC', 19.5,  98, 1626,  717, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('NB', 18.2, 106, 3143,  847, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('NS', 21.8, 108, 3926,  905, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('PE', 20.3, 110, 3726,  780, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
+  ('NL', 15.4, 112, 2979, 1128, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01');

@@ -20,7 +20,7 @@ function getClient() {
 async function fetchAllSupabaseData() {
   const sb = getClient();
 
-  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters, education, taxes, safety, statscan] = await Promise.all([
+  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters, education, taxes, safety, statscan, costOfLiving] = await Promise.all([
     sb.from('provinces_meta').select('*'),
     sb.from('provinces_healthcare').select('*'),
     sb.from('provinces_housing').select('*'),
@@ -33,6 +33,7 @@ async function fetchAllSupabaseData() {
     sb.from('provinces_tax').select('*'),
     sb.from('provinces_safety').select('*'),
     sb.from('provinces_statscan').select('*'),
+    sb.from('provinces_cost_of_living').select('*'),
   ]);
 
   // Check for errors (education + taxes are optional — log but don't throw)
@@ -46,7 +47,8 @@ async function fetchAllSupabaseData() {
   if (education.error) console.warn('provinces_education not yet populated:', education.error.message);
   if (taxes.error)     console.warn('provinces_tax not yet populated:',     taxes.error.message);
   if (safety.error)    console.warn('provinces_safety not yet populated:',  safety.error.message);
-  if (statscan.error)  console.warn('provinces_statscan not yet populated:', statscan.error.message);
+  if (statscan.error)     console.warn('provinces_statscan not yet populated:', statscan.error.message);
+  if (costOfLiving.error) console.warn('provinces_cost_of_living not yet populated:', costOfLiving.error.message);
 
   // Index by province_code for easy lookup
   const byCode = key => arr => arr.reduce((acc, row) => { acc[row.province_code] = row; return acc; }, {});
@@ -68,7 +70,8 @@ async function fetchAllSupabaseData() {
     education:      education.data ? byCode('province_code')(education.data) : {},
     taxes:          taxes.data     ? byCode('province_code')(taxes.data)     : {},
     safety:         safety.data    ? byCode('province_code')(safety.data)    : {},
-    statscan:       statscan.data  ? byCode('province_code')(statscan.data)  : {},
+    statscan:       statscan.data      ? byCode('province_code')(statscan.data)      : {},
+    costOfLiving:   costOfLiving.data  ? byCode('province_code')(costOfLiving.data)  : {},
   };
 }
 

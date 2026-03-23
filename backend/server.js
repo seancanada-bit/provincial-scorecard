@@ -78,6 +78,7 @@ async function refresh() {
         taxes:          supa.taxes[code]           ?? null,
         safety:         supa.safety[code]          ?? null,
         statscan:       supa.statscan[code]         ?? null,
+        costOfLiving:   supa.costOfLiving[code]     ?? null,
       };
       return scoreProvince(rawProvince);
     });

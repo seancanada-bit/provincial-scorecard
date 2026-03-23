@@ -13,6 +13,7 @@ const TABS = [
   { key: 'economy',        label: 'Economy',    icon: '📈' },
   { key: 'education',      label: 'Education',  icon: '🎓' },
   { key: 'safety',         label: 'Safety',     icon: '🛡️' },
+  { key: 'purchasing',     label: 'Buying Power', icon: '🛒' },
 ];
 
 function MetricRow({ label, score, rawDisplay, compareDisplay }) {
@@ -398,6 +399,46 @@ function SafetyTab({ c }) {
   );
 }
 
+function PurchasingPowerTab({ province }) {
+  const pp = province.purchasingPower;
+  const taxes = province.taxes;
+  if (!pp || pp.score === null) return (
+    <div className="dp-tab-content"><p className="dp-source">Purchasing power data not yet available.</p></div>
+  );
+  return (
+    <div className="dp-tab-content">
+      <KeyStat
+        value={pp.rentToIncomePct != null ? `${pp.rentToIncomePct}%` : '—'}
+        label="of median household income spent on rent — biggest driver of purchasing power"
+        score={pp.score}
+        grade={pp.grade}
+      />
+      <div className="dp-metrics">
+        <MetricRow label="Rent-to-income ratio" score={pp.rentScore}
+          rawDisplay={pp.rentToIncomePct != null ? `${pp.rentToIncomePct}% of household income` : '—'}
+          compareDisplay="Best: ~12% · Worst: ~28% · Lower = more disposable income" />
+        <MetricRow label="Grocery basket cost" score={pp.groceryScore}
+          rawDisplay={pp.groceryIndex != null ? `Index ${pp.groceryIndex} (national avg = 100)` : '—'}
+          compareDisplay="Atlantic provinces pay 6–12% above national avg due to freight" />
+        <MetricRow label="Annual energy costs" score={pp.energyScore}
+          rawDisplay={pp.annualEnergyCost != null ? `$${pp.annualEnergyCost.toLocaleString('en-CA')}/yr` : '—'}
+          compareDisplay="Electricity + heating · QC hydro cheapest · NS/PE oil heat costliest" />
+        <MetricRow label="Auto insurance" score={pp.insuranceScore}
+          rawDisplay={pp.autoInsuranceAnnual != null ? `$${pp.autoInsuranceAnnual.toLocaleString('en-CA')}/yr avg` : '—'}
+          compareDisplay="QC public system ~$717 · AB private market ~$1,952" />
+        <MetricRow label="Regulated childcare" score={pp.childcareScore}
+          rawDisplay={pp.childcareMonthlyAvg != null ? `$${pp.childcareMonthlyAvg.toLocaleString('en-CA')}/mo` : '—'}
+          compareDisplay="QC $196/mo · ON $1,456/mo — largest gap of any cost category" />
+      </div>
+      <p className="dp-source" style={{ marginTop: 8 }}>
+        Purchasing power reflects structural cost environment, not government performance — some factors
+        (freight costs, climate, insurance regulation model) are outside provincial control.
+      </p>
+      {pp.sourceNotes && <p className="dp-source">Sources: {pp.sourceNotes}</p>}
+    </div>
+  );
+}
+
 export default function ProvinceDetailPanel({ province, onMethodology, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? 'healthcare');
   const [showValueTip, setShowValueTip] = useState(false);
@@ -512,6 +553,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         {activeTab === 'economy'        && <EconomyTab c={c} />}
         {activeTab === 'education'      && <EducationTab c={c} />}
         {activeTab === 'safety'         && <SafetyTab c={c} />}
+        {activeTab === 'purchasing'     && <PurchasingPowerTab province={province} />}
       </div>
 
       {/* Composite + methodology */}
