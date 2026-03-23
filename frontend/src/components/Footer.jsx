@@ -2,7 +2,7 @@ export default function Footer({ onMethodology }) {
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="site-footer__inner">
-        <span>© {new Date().getFullYear()} Provincial Scorecard. Free, nonpartisan, independent.</span>
+        <span>© {new Date().getFullYear()} Bang for Your Duck. Free, nonpartisan, independent.</span>
         <nav className="site-footer__links" aria-label="Footer navigation">
           <button
             onClick={onMethodology}

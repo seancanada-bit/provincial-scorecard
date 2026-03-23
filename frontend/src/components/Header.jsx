@@ -6,10 +6,10 @@ export default function Header({ lastUpdated }) {
   return (
     <header className="site-header" role="banner">
       <div className="site-header__inner">
-        <a href="/" className="site-header__wordmark" aria-label="Provincial Scorecard home">
-          Provincial<span>Scorecard</span>
+        <a href="/" className="site-header__wordmark" aria-label="Bang for Your Duck home">
+          Bang for Your <span>Duck</span>
         </a>
-        <p className="site-header__tagline">Grading provincial government delivery</p>
+        <p className="site-header__tagline">Which province gives you the most for your loonie?</p>
         {formatted && (
           <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
             Updated {formatted}
