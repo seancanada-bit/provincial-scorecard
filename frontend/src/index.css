@@ -101,8 +101,9 @@ body {
 }
 .site-header__inner {
   max-width: 1140px; margin: 0 auto;
-  display: flex; align-items: center; gap: var(--space-md);
+  display: flex; align-items: flex-end; gap: var(--space-md);
   height: 64px;                              /* ③ taller for bigger wordmark */
+  padding-bottom: 10px;
 }
 .site-header__wordmark {
   font-family: var(--font-serif);

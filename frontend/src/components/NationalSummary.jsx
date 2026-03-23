@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { gradeFill, toGrade } from '../utils/grading.js';
+import { gradeFill } from '../utils/grading.js';
 
 function buildHeadline(national, provinces) {
-  if (!national || !provinces) return '';
-  const grade = toGrade(national.avgComposite);
+  if (!national || !provinces) return null;
   const failing = provinces.filter(p => p.composite < 57).length;
   const aGrade  = provinces.filter(p => p.composite >= 80).length;
   if (failing > 0 && aGrade > 0)
-    return `Canadian provinces average ${national.avgComposite}/100 overall — ${aGrade} earning a B or better, ${failing} falling below a passing grade.`;
+    return <>{`Canadian provinces average ${national.avgComposite}/100 overall —`}<br/>{`${aGrade} earning a B or better, ${failing} falling below a passing grade.`}</>;
   if (failing > 0)
-    return `Canadian provinces average ${national.avgComposite}/100 — with ${failing} province${failing > 1 ? 's' : ''} failing to deliver adequately for residents.`;
-  return `Canadian provinces average ${national.avgComposite}/100 overall — with healthcare the biggest challenge at ${national.avgHealthcare}/100 nationally.`;
+    return <>{`Canadian provinces average ${national.avgComposite}/100 —`}<br/>{`with ${failing} province${failing > 1 ? 's' : ''} failing to deliver adequately for residents.`}</>;
+  return <>{`Canadian provinces average ${national.avgComposite}/100 overall —`}<br/>{`with healthcare the biggest challenge at ${national.avgHealthcare}/100 nationally.`}</>;
 }
 
 export default function NationalSummary({ national, provinces }) {
