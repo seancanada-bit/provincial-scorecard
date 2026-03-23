@@ -525,8 +525,15 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
     return () => document.removeEventListener('mousedown', handler);
   }, [showValueTip]);
 
-  const tabScore = key => c[key]?.score ?? 0;
-  const tabGrade = key => c[key]?.grade ?? '—';
+  // purchasing lives on province.purchasingPower, not in categories
+  const tabScore = key => {
+    if (key === 'purchasing') return province.purchasingPower?.score ?? null;
+    return c[key]?.score ?? null;
+  };
+  const tabGrade = key => {
+    if (key === 'purchasing') return province.purchasingPower?.grade ?? '—';
+    return c[key]?.grade ?? '—';
+  };
 
   return (
     <div className="dp-panel">
@@ -590,23 +597,31 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         </div>
       )}
 
-      {/* Tabs */}
-      <div className="dp-tabs" role="tablist">
+      {/* Tabs — compact strip: inactive shows icon+score, active expands to show label */}
+      <div className="dp-tabs" role="tablist" aria-label="Province detail categories">
         {TABS.map(tab => {
           const score = tabScore(tab.key);
           const grade = tabGrade(tab.key);
+          const isContext = tab.key === 'purchasing'; // not part of composite
+          const isActive  = activeTab === tab.key;
           return (
             <button
               key={tab.key}
               role="tab"
-              aria-selected={activeTab === tab.key}
-              className={`dp-tab${activeTab === tab.key ? ' dp-tab--active' : ''}`}
+              aria-selected={isActive}
+              className={`dp-tab${isActive ? ' dp-tab--active' : ''}${isContext ? ' dp-tab--context' : ''}`}
               onClick={() => setActiveTab(tab.key)}
               style={{ '--tab-color': gradeFill(grade) }}
+              title={tab.label}
             >
               <span className="dp-tab__icon" aria-hidden="true">{tab.icon}</span>
               <span className="dp-tab__label">{tab.label}</span>
-              <span className="dp-tab__score" style={{ color: gradeFill(grade) }}>{score}</span>
+              <span
+                className="dp-tab__score"
+                style={{ color: score != null ? gradeFill(grade) : 'var(--text-muted)' }}
+              >
+                {score != null ? score : '—'}
+              </span>
             </button>
           );
         })}
@@ -630,13 +645,15 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
         {TABS.filter(tab => tab.key !== 'purchasing').map(tab => {
           const WEIGHTS = { healthcare: 17, housing: 14, fiscal: 14, infrastructure: 10, economy: 14, education: 13, safety: 10, mentalhealth: 8 };
+          const score = tabScore(tab.key);
+          const grade = tabGrade(tab.key);
           return (
             <div key={tab.key} className="dp-composite__row">
               <span className="dp-composite__name">{tab.label} <span className="dp-composite__weight">{WEIGHTS[tab.key] != null ? `${WEIGHTS[tab.key]}%` : ''}</span></span>
               <div className="dp-composite__track">
-                <div className="dp-composite__fill" style={{ width: `${tabScore(tab.key)}%`, background: gradeFill(tabGrade(tab.key)) }} />
+                <div className="dp-composite__fill" style={{ width: `${score ?? 0}%`, background: gradeFill(grade) }} />
               </div>
-              <span className="dp-composite__score">{tabScore(tab.key)}</span>
+              <span className="dp-composite__score">{score ?? '—'}</span>
             </div>
           );
         })}
