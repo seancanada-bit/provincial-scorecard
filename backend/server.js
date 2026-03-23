@@ -11,7 +11,6 @@ const path      = require('path');
 const fs        = require('fs');
 
 const { fetchAllSupabaseData }  = require('./supabase');
-const { fetchStatsCanadaData }  = require('./statscanada');
 const { scoreProvince, buildNationalSummary } = require('./scoring');
 
 const app  = express();
@@ -55,14 +54,8 @@ async function refresh() {
   console.log('[refresh] Starting data refresh at', new Date().toISOString());
 
   try {
-    // 1. Fetch from both sources in parallel
-    const [supaData, statscanData] = await Promise.allSettled([
-      fetchAllSupabaseData(),
-      fetchStatsCanadaData(),
-    ]);
-
-    const supa   = supaData.status   === 'fulfilled' ? supaData.value   : null;
-    const sc     = statscanData.status === 'fulfilled' ? statscanData.value : null;
+    // 1. Fetch all data from Supabase
+    const supa = await fetchAllSupabaseData().catch(() => null);
 
     if (!supa) {
       console.warn('[refresh] Supabase fetch failed, using fallback');
@@ -84,7 +77,7 @@ async function refresh() {
         education:      supa.education[code]       ?? null,
         taxes:          supa.taxes[code]           ?? null,
         safety:         supa.safety[code]          ?? null,
-        statscan:       sc?.[code]                 ?? null,
+        statscan:       supa.statscan[code]         ?? null,
       };
       return scoreProvince(rawProvince);
     });

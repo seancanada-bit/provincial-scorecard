@@ -298,3 +298,35 @@ values
   ('NS', 107, 2.21, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
   ('PE',  78, 0.58, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
   ('NL',  91, 1.91, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01');
+
+-- ─── ECONOMY (STATSCAN) ──────────────────────────────────────────────────────
+-- Manually maintained quarterly. Stats Canada WDS v1 API was deprecated 2024.
+-- Sources: Stats Canada LFS Table 14-10-0287-01; GDP Table 36-10-0222-01
+-- unemployment_delta: province rate minus national rate (pp) — negative = better
+-- gdp_growth_delta:   province YoY GDP growth minus national (pp) — positive = better
+create table if not exists provinces_statscan (
+  id                              serial primary key,
+  province_code                   text not null references provinces_meta(province_code),
+  unemployment_rate               numeric,  -- % (latest month, seasonally adjusted)
+  unemployment_delta_from_national numeric, -- pp vs Canada (negative = better than national)
+  gdp_growth_pct                  numeric,  -- YoY % real GDP growth
+  gdp_growth_delta_from_national  numeric,  -- pp vs Canada growth rate
+  source_notes                    text,
+  data_date                       date
+);
+
+-- ─── SEED: Economy data (Q4 2024 / Jan 2025) ─────────────────────────────────
+-- National unemployment Jan 2025: ~6.6%  |  National real GDP growth 2024: ~1.3%
+-- Update via Supabase table editor when Stats Canada releases new LFS/GDP data.
+insert into provinces_statscan (province_code, unemployment_rate, unemployment_delta_from_national, gdp_growth_pct, gdp_growth_delta_from_national, source_notes, data_date)
+values
+  ('BC', 5.5,  -1.1,  2.1,  0.8, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('AB', 7.4,   0.8,  2.8,  1.5, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('SK', 5.4,  -1.2,  1.8,  0.5, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('MB', 5.1,  -1.5,  1.5,  0.2, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('ON', 7.1,   0.5,  1.0, -0.3, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('QC', 5.8,  -0.8,  1.4,  0.1, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('NB', 7.8,   1.2,  1.9,  0.6, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('NS', 7.2,   0.6,  1.6,  0.3, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('PE', 9.8,   3.2,  1.1, -0.2, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01'),
+  ('NL',10.5,   3.9,  0.8, -0.5, 'Stats Can LFS Jan 2025; GDP preliminary 2024', '2025-01-01');

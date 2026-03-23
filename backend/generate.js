@@ -16,7 +16,6 @@ const fs   = require('fs');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const { fetchAllSupabaseData } = require('./supabase');
-const { fetchStatsCanadaData } = require('./statscanada');
 const { scoreProvince, buildNationalSummary } = require('./scoring');
 
 const OUT_PATH = path.join(__dirname, '../frontend/src/data/fallback.json');
@@ -24,20 +23,7 @@ const OUT_PATH = path.join(__dirname, '../frontend/src/data/fallback.json');
 async function generate() {
   console.log('[generate] Fetching data…');
 
-  const [supaResult, statsResult] = await Promise.allSettled([
-    fetchAllSupabaseData(),
-    fetchStatsCanadaData(),
-  ]);
-
-  const supa = supaResult.status  === 'fulfilled' ? supaResult.value  : null;
-  const sc   = statsResult.status === 'fulfilled' ? statsResult.value : null;
-
-  if (!supa) {
-    throw new Error(`Supabase fetch failed: ${supaResult.reason?.message ?? 'unknown error'}`);
-  }
-  if (!sc) {
-    console.warn('[generate] Stats Canada unavailable — economy scores will use cached values');
-  }
+  const supa = await fetchAllSupabaseData();
 
   const scoredProvinces = supa.meta.map(meta => {
     const code = meta.province_code;
@@ -49,8 +35,10 @@ async function generate() {
       polling:        supa.polling[code]         ?? null,
       governance:     supa.governance[code]      ?? null,
       infrastructure: supa.infrastructure[code]  ?? [],
-      statscan:       sc?.[code]                 ?? null,
+      education:      supa.education[code]       ?? null,
+      taxes:          supa.taxes[code]           ?? null,
       safety:         supa.safety[code]          ?? null,
+      statscan:       supa.statscan[code]         ?? null,
     });
   });
 
