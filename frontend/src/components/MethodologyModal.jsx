@@ -14,9 +14,10 @@ const CATEGORIES = [
     key: 'housing', label: 'Housing', weight: 14,
     why: 'Whether you can afford a home or rent is the defining quality-of-life question for many Canadians, and housing supply is primarily a provincial responsibility.',
     metrics: [
-      { name: 'Housing starts per 1k pop. growth', weight: '⅓', direction: 'higher ↑', best: '300', worst: '50',  source: 'CMHC / Stats Can' },
-      { name: 'Home price YoY % change',           weight: '⅓', direction: 'lower ↓',  best: '−2%', worst: '+15%', source: 'CREA MLS HPI' },
-      { name: 'Rent inflation',                     weight: '⅓', direction: 'lower ↓',  best: '0%',  worst: '10%',  source: 'CMHC Rental Market' },
+      { name: 'Housing starts per 1k pop. growth', weight: '30%', direction: 'higher ↑', best: '300',  worst: '50',   source: 'CMHC / Stats Can' },
+      { name: 'Home price YoY % change',           weight: '25%', direction: 'lower ↓',  best: '−2%',  worst: '+15%', source: 'CREA MLS HPI' },
+      { name: 'Rent inflation',                     weight: '25%', direction: 'lower ↓',  best: '0%',   worst: '10%',  source: 'CMHC Rental Market' },
+      { name: 'Core housing need rate',             weight: '20%', direction: 'lower ↓',  best: '8%',   worst: '20%',  source: 'CMHC / Stats Can 2021 Census' },
     ],
   },
   {
@@ -65,13 +66,15 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'mentalhealth', label: 'Mental Health & Addictions', weight: 8,
-    why: 'Drug toxicity deaths, psychiatric bed capacity, mental health budget share, and recovery bed availability together capture how seriously provinces fund and deliver mental health and addictions care.',
+    key: 'mentalhealth', label: 'Mental Health, Addictions & Homelessness', weight: 8,
+    why: 'Six metrics spanning crisis outcomes, system capacity, treatment access, and homelessness infrastructure — measuring what provinces actually control across the full continuum from harm reduction to housing.',
     metrics: [
-      { name: 'Drug toxicity death rate',      weight: '35%', direction: 'lower ↓',  best: '1.0 / 100k',  worst: '45.0 / 100k', source: 'PHAC (2022)' },
-      { name: 'Psychiatric beds per 100k',     weight: '25%', direction: 'higher ↑', best: '60',           worst: '15',          source: 'CIHI (2023)' },
-      { name: 'Mental health budget share',    weight: '25%', direction: 'higher ↑', best: '10% of health', worst: '5%',         source: 'CIHI provincial profiles (2023)' },
-      { name: 'Addiction recovery beds / 100k', weight: '15%', direction: 'higher ↑', best: '50',          worst: '5',           source: 'CIHI (2023)' },
+      { name: 'Drug toxicity death rate',       weight: '28%', direction: 'lower ↓',  best: '1.0 / 100k',  worst: '45.0 / 100k', source: 'PHAC (2022)' },
+      { name: 'Psychiatric beds per 100k',      weight: '18%', direction: 'higher ↑', best: '60',            worst: '15',          source: 'CIHI (2023)' },
+      { name: 'Mental health budget share',     weight: '18%', direction: 'higher ↑', best: '10% of health', worst: '5%',          source: 'CIHI provincial profiles (2023)' },
+      { name: 'Addiction recovery beds / 100k', weight: '14%', direction: 'higher ↑', best: '50',            worst: '5',           source: 'CIHI (2023)' },
+      { name: 'Supportive housing units / 100k', weight: '14%', direction: 'higher ↑', best: '40',           worst: '2',           source: 'CMHC NHS; provincial housing authorities (2023)' },
+      { name: 'OAT access index',               weight: '8%',  direction: 'higher ↑', best: '100',           worst: '30',          source: 'CADTH 2023; provincial prescribing guidelines' },
     ],
   },
 ];

@@ -36,10 +36,14 @@ const BOUNDS = {
   autoInsuranceAnnual: { best: 600,   worst: 2100  }, // $ per year (lower = better)
   childcareMonthly:    { best: 150,   worst: 1500  }, // $ per month (lower = better)
   // Mental health & addictions
-  drugToxicityRate:        { best: 1.0,  worst: 45.0 }, // per 100k (lower = better)
-  psychiatricBedsPer100k:  { best: 60,   worst: 15   }, // (higher = better)
-  mentalHealthBudgetPct:   { best: 10.0, worst: 5.0  }, // % of health budget (higher = better)
-  recoveryBedsPer100k:     { best: 50,   worst: 5    }, // (higher = better)
+  drugToxicityRate:          { best: 1.0,  worst: 45.0 }, // per 100k (lower = better)
+  psychiatricBedsPer100k:    { best: 60,   worst: 15   }, // (higher = better)
+  mentalHealthBudgetPct:     { best: 10.0, worst: 5.0  }, // % of health budget (higher = better)
+  recoveryBedsPer100k:       { best: 50,   worst: 5    }, // (higher = better)
+  supportiveHousingPer100k:  { best: 40,   worst: 2    }, // units per 100k (higher = better)
+  oatAccessIndex:            { best: 100,  worst: 30   }, // 30–100 composite policy index (higher = better)
+  // Housing — core need
+  coreHousingNeedPct:        { best: 8,    worst: 20   }, // % households in core need (lower = better)
 };
 
 function normalize(value, best, worst) {
@@ -122,11 +126,23 @@ function scoreProvince(prov) {
   const erScore        = healthcare ? normalize(healthcare.er_benchmark_met_pct, BOUNDS.erBenchmark.best, BOUNDS.erBenchmark.worst) : null;
   const healthcareScore = Math.round(avg(surgicalScore, primaryCareScore, erScore) ?? 50);
 
-  // ─── HOUSING (20%) ──────────────────────────────────────────────────
-  const startsScore  = housing ? normalize(housing.housing_starts_per_1000_growth, BOUNDS.housingStartsPer1k.best, BOUNDS.housingStartsPer1k.worst) : null;
-  const priceScore   = housing ? normalizeInverted(housing.mls_hpi_yoy_pct, BOUNDS.homePriceYoy.best, BOUNDS.homePriceYoy.worst) : null;
-  const rentScore    = housing ? normalizeInverted(housing.rent_inflation_pct, BOUNDS.rentInflation.best, BOUNDS.rentInflation.worst) : null;
-  const housingScore = Math.round(avg(startsScore, priceScore, rentScore) ?? 50);
+  // ─── HOUSING (14%) ──────────────────────────────────────────────────
+  // Weights: starts 30%, price trend 25%, rent inflation 25%, core housing need 20%
+  const startsScore          = housing ? normalize(housing.housing_starts_per_1000_growth, BOUNDS.housingStartsPer1k.best, BOUNDS.housingStartsPer1k.worst) : null;
+  const priceScore           = housing ? normalizeInverted(housing.mls_hpi_yoy_pct, BOUNDS.homePriceYoy.best, BOUNDS.homePriceYoy.worst) : null;
+  const rentScore            = housing ? normalizeInverted(housing.rent_inflation_pct, BOUNDS.rentInflation.best, BOUNDS.rentInflation.worst) : null;
+  const coreHousingNeedScore = housing?.core_housing_need_pct != null
+    ? normalizeInverted(housing.core_housing_need_pct, BOUNDS.coreHousingNeedPct.best, BOUNDS.coreHousingNeedPct.worst) : null;
+  const housingScore = (() => {
+    const parts = [], wts = [];
+    if (startsScore          != null) { parts.push(startsScore          * 0.30); wts.push(0.30); }
+    if (priceScore           != null) { parts.push(priceScore           * 0.25); wts.push(0.25); }
+    if (rentScore            != null) { parts.push(rentScore            * 0.25); wts.push(0.25); }
+    if (coreHousingNeedScore != null) { parts.push(coreHousingNeedScore * 0.20); wts.push(0.20); }
+    if (!parts.length) return 50;
+    const tw = wts.reduce((a, b) => a + b, 0);
+    return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
+  })();
 
   // ─── FISCAL (20%) ───────────────────────────────────────────────────
   let balanceScore = null, interestScore = null, debtScore = null, trendBonus = 0;
@@ -216,25 +232,33 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
   })();
 
-  // ─── MENTAL HEALTH & ADDICTIONS (8%) ────────────────────────────────────────
-  // Metrics: drug toxicity deaths 35%, psychiatric beds 25%, MH budget % 25%, recovery beds 15%
-  let drugToxicityScore = null, psychiatricBedsScore = null, mhBudgetScore = null, recoveryBedsScore = null;
+  // ─── MENTAL HEALTH, ADDICTIONS & HOMELESSNESS SUPPORTS (8%) ─────────────────
+  // drug toxicity 28% · psych beds 18% · MH budget 18% · recovery beds 14%
+  // supportive housing 14% · OAT access 8%
+  let drugToxicityScore = null, psychiatricBedsScore = null, mhBudgetScore = null,
+      recoveryBedsScore = null, supportiveHousingScore = null, oatAccessScore = null;
   if (mentalHealth) {
-    drugToxicityScore   = mentalHealth.drug_toxicity_rate_per_100k != null
+    drugToxicityScore     = mentalHealth.drug_toxicity_rate_per_100k != null
       ? normalizeInverted(mentalHealth.drug_toxicity_rate_per_100k, BOUNDS.drugToxicityRate.best, BOUNDS.drugToxicityRate.worst) : null;
-    psychiatricBedsScore = mentalHealth.psychiatric_beds_per_100k != null
+    psychiatricBedsScore  = mentalHealth.psychiatric_beds_per_100k != null
       ? normalize(mentalHealth.psychiatric_beds_per_100k, BOUNDS.psychiatricBedsPer100k.best, BOUNDS.psychiatricBedsPer100k.worst) : null;
-    mhBudgetScore       = mentalHealth.mental_health_budget_pct != null
+    mhBudgetScore         = mentalHealth.mental_health_budget_pct != null
       ? normalize(mentalHealth.mental_health_budget_pct, BOUNDS.mentalHealthBudgetPct.best, BOUNDS.mentalHealthBudgetPct.worst) : null;
-    recoveryBedsScore   = mentalHealth.recovery_beds_per_100k != null
+    recoveryBedsScore     = mentalHealth.recovery_beds_per_100k != null
       ? normalize(mentalHealth.recovery_beds_per_100k, BOUNDS.recoveryBedsPer100k.best, BOUNDS.recoveryBedsPer100k.worst) : null;
+    supportiveHousingScore = mentalHealth.supportive_housing_per_100k != null
+      ? normalize(mentalHealth.supportive_housing_per_100k, BOUNDS.supportiveHousingPer100k.best, BOUNDS.supportiveHousingPer100k.worst) : null;
+    oatAccessScore        = mentalHealth.oat_access_index != null
+      ? normalize(mentalHealth.oat_access_index, BOUNDS.oatAccessIndex.best, BOUNDS.oatAccessIndex.worst) : null;
   }
   const mentalHealthScore = (() => {
     const parts = [], wts = [];
-    if (drugToxicityScore    != null) { parts.push(drugToxicityScore    * 0.35); wts.push(0.35); }
-    if (psychiatricBedsScore != null) { parts.push(psychiatricBedsScore * 0.25); wts.push(0.25); }
-    if (mhBudgetScore        != null) { parts.push(mhBudgetScore        * 0.25); wts.push(0.25); }
-    if (recoveryBedsScore    != null) { parts.push(recoveryBedsScore    * 0.15); wts.push(0.15); }
+    if (drugToxicityScore      != null) { parts.push(drugToxicityScore      * 0.28); wts.push(0.28); }
+    if (psychiatricBedsScore   != null) { parts.push(psychiatricBedsScore   * 0.18); wts.push(0.18); }
+    if (mhBudgetScore          != null) { parts.push(mhBudgetScore          * 0.18); wts.push(0.18); }
+    if (recoveryBedsScore      != null) { parts.push(recoveryBedsScore      * 0.14); wts.push(0.14); }
+    if (supportiveHousingScore != null) { parts.push(supportiveHousingScore * 0.14); wts.push(0.14); }
+    if (oatAccessScore         != null) { parts.push(oatAccessScore         * 0.08); wts.push(0.08); }
     if (!parts.length) return 50;
     const tw = wts.reduce((a, b) => a + b, 0);
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
@@ -312,6 +336,8 @@ function scoreProvince(prov) {
         startsScore,
         rentInflationPct:            housing?.rent_inflation_pct ?? null,
         rentScore,
+        coreHousingNeedPct:          housing?.core_housing_need_pct ?? null,
+        coreHousingNeedScore,
         sourceNotes:                 housing?.source_notes ?? null,
         dataDate:                    housing?.data_date ?? null,
       },
@@ -396,14 +422,18 @@ function scoreProvince(prov) {
       mentalhealth: {
         score: mentalHealthScore,
         grade: toGrade(mentalHealthScore),
-        drugToxicityRatePer100k:    mentalHealth?.drug_toxicity_rate_per_100k  ?? null,
+        drugToxicityRatePer100k:    mentalHealth?.drug_toxicity_rate_per_100k   ?? null,
         drugToxicityScore,
-        psychiatricBedsPer100k:     mentalHealth?.psychiatric_beds_per_100k    ?? null,
+        psychiatricBedsPer100k:     mentalHealth?.psychiatric_beds_per_100k     ?? null,
         psychiatricBedsScore,
-        mentalHealthBudgetPct:      mentalHealth?.mental_health_budget_pct     ?? null,
+        mentalHealthBudgetPct:      mentalHealth?.mental_health_budget_pct      ?? null,
         mhBudgetScore,
-        recoveryBedsPer100k:        mentalHealth?.recovery_beds_per_100k       ?? null,
+        recoveryBedsPer100k:        mentalHealth?.recovery_beds_per_100k        ?? null,
         recoveryBedsScore,
+        supportiveHousingPer100k:   mentalHealth?.supportive_housing_per_100k   ?? null,
+        supportiveHousingScore,
+        oatAccessIndex:             mentalHealth?.oat_access_index              ?? null,
+        oatAccessScore,
         sourceNotes:                mentalHealth?.source_notes ?? null,
         dataDate:                   mentalHealth?.data_date    ?? null,
       },

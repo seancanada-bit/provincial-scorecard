@@ -400,3 +400,46 @@ values
   ('NS',  6.8, 42, 8.0, 20, 'Health Canada 2023; CIHI 2022; NS recovery housing 2023',          '2023-01-01'),
   ('PE',  3.2, 28, 6.5, 12, 'Health Canada 2023; CIHI 2022; PEI housing services 2023',         '2023-01-01'),
   ('NL',  7.1, 44, 6.5, 15, 'Health Canada 2023; CIHI 2022; NL housing 2023',                   '2023-01-01');
+
+-- ─── ADD: Supportive housing + OAT access to mental health table ─────────────
+-- supportive_housing_per_100k: provincially-funded supportive housing units per 100k residents
+--   Sources: CMHC NHS; BC Housing inventory 2023; provincial housing authority reports
+--   Note: includes only units with wraparound services (not pure affordable housing)
+-- oat_access_index: composite 30–100 index of opioid agonist therapy accessibility
+--   Factors: prescriber eligibility (GP/NP vs. addiction specialist only),
+--            witnessed ingestion requirements, rural telemedicine availability,
+--            provincial drug plan coverage of methadone/buprenorphine
+--   Sources: CADTH 2023 review; provincial college of physicians prescribing guidelines
+alter table provinces_mental_health
+  add column if not exists supportive_housing_per_100k numeric,
+  add column if not exists oat_access_index            numeric;
+
+update provinces_mental_health set supportive_housing_per_100k = 38, oat_access_index = 90 where province_code = 'BC';
+update provinces_mental_health set supportive_housing_per_100k = 14, oat_access_index = 72 where province_code = 'AB';
+update provinces_mental_health set supportive_housing_per_100k =  9, oat_access_index = 52 where province_code = 'SK';
+update provinces_mental_health set supportive_housing_per_100k = 17, oat_access_index = 65 where province_code = 'MB';
+update provinces_mental_health set supportive_housing_per_100k = 11, oat_access_index = 80 where province_code = 'ON';
+update provinces_mental_health set supportive_housing_per_100k = 24, oat_access_index = 68 where province_code = 'QC';
+update provinces_mental_health set supportive_housing_per_100k =  7, oat_access_index = 48 where province_code = 'NB';
+update provinces_mental_health set supportive_housing_per_100k = 10, oat_access_index = 62 where province_code = 'NS';
+update provinces_mental_health set supportive_housing_per_100k =  5, oat_access_index = 44 where province_code = 'PE';
+update provinces_mental_health set supportive_housing_per_100k =  7, oat_access_index = 55 where province_code = 'NL';
+
+-- ─── ADD: Core housing need to housing table ─────────────────────────────────
+-- core_housing_need_pct: % of households spending 30%+ of pre-tax income on housing
+--   that does not meet adequacy, suitability, or affordability standards (CMHC definition)
+-- Sources: Stats Canada 2021 Census; CMHC Housing Needs Assessment 2022
+-- Lower = better (fewer households in core need)
+alter table provinces_housing
+  add column if not exists core_housing_need_pct numeric;
+
+update provinces_housing set core_housing_need_pct = 16.8 where province_code = 'BC';
+update provinces_housing set core_housing_need_pct = 10.8 where province_code = 'AB';
+update provinces_housing set core_housing_need_pct = 11.5 where province_code = 'SK';
+update provinces_housing set core_housing_need_pct = 14.2 where province_code = 'MB';
+update provinces_housing set core_housing_need_pct = 13.6 where province_code = 'ON';
+update provinces_housing set core_housing_need_pct = 12.4 where province_code = 'QC';
+update provinces_housing set core_housing_need_pct = 10.2 where province_code = 'NB';
+update provinces_housing set core_housing_need_pct = 13.8 where province_code = 'NS';
+update provinces_housing set core_housing_need_pct = 13.1 where province_code = 'PE';
+update provinces_housing set core_housing_need_pct =  9.8 where province_code = 'NL';

@@ -101,7 +101,16 @@ function HousingTab({ c }) {
         <MetricRow label="Rent inflation" score={h.rentScore}
           rawDisplay={h.rentInflationPct != null ? `Rents up ${h.rentInflationPct}% in past year` : '—'}
           compareDisplay="0% = 100 · 10%+ = 0" />
+        <MetricRow label="Core housing need" score={h.coreHousingNeedScore}
+          rawDisplay={h.coreHousingNeedPct != null ? `${h.coreHousingNeedPct}% of households in core need` : '—'}
+          compareDisplay="Households spending 30%+ of income on inadequate housing · NL 9.8% → BC 16.8%" />
       </div>
+      {h.coreHousingNeedPct != null && (
+        <p className="dp-source" style={{ marginTop: 6 }}>
+          Core housing need (CMHC): % of households where housing costs exceed 30% of pre-tax income,
+          or housing is overcrowded or below adequacy standards. Source: 2021 Census / CMHC 2022.
+        </p>
+      )}
       {h.sourceNotes && <p className="dp-source">Source: {h.sourceNotes}</p>}
     </div>
   );
@@ -440,10 +449,18 @@ function MentalHealthTab({ c }) {
         <MetricRow label="Addiction recovery beds" score={mh.recoveryBedsScore}
           rawDisplay={mh.recoveryBedsPer100k != null ? `${mh.recoveryBedsPer100k} beds per 100,000 residents` : '—'}
           compareDisplay="BC: 45 · NB: 15 · Target: 50+" />
+        <MetricRow label="Supportive housing units" score={mh.supportiveHousingScore}
+          rawDisplay={mh.supportiveHousingPer100k != null ? `${mh.supportiveHousingPer100k} units per 100,000 residents` : '—'}
+          compareDisplay="BC: 38 · PE: 5 · Provincially-funded units with wraparound services" />
+        <MetricRow label="OAT access (opioid treatment)" score={mh.oatAccessScore}
+          rawDisplay={mh.oatAccessIndex != null ? `Policy index: ${mh.oatAccessIndex} / 100` : '—'}
+          compareDisplay="BC: 90 (any prescriber, telemedicine) · PE: 44 (specialist-only, rural gaps)" />
       </div>
       <p className="dp-source" style={{ marginTop: 8 }}>
-        Weighted: drug toxicity deaths 35% · psychiatric beds 25% · MH budget share 25% · recovery beds 15%.
-        Data: 2022–2023. Drug toxicity figures from PHAC; beds and budget from CIHI provincial profiles.
+        Weighted: drug toxicity 28% · psychiatric beds 18% · MH budget 18% · recovery beds 14% ·
+        supportive housing 14% · OAT access 8%.
+        Supportive housing: CMHC NHS + provincial inventories 2023. OAT index reflects prescriber rules,
+        witnessed ingestion requirements, and rural access. Drug toxicity: PHAC 2022; beds: CIHI 2023.
       </p>
       {mh.sourceNotes && <p className="dp-source">Source: {mh.sourceNotes}</p>}
     </div>
