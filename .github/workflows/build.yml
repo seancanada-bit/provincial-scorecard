@@ -38,3 +38,14 @@ jobs:
           git add docs/
           git diff --staged --quiet || git commit -m "chore: build frontend [skip ci]"
           git push
+
+      - name: Deploy to CWH via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.seanwood.com
+          username: claudeauto@bangforyourduck.ca
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./frontend/dist/
+          server-dir: /public_html/bangforyourduck.ca/claudeauto/
+          dangerous-clean-slate: true
