@@ -1,14 +1,21 @@
-// Loon silhouette — side profile, low on water, dagger bill pointing left
+// Loon icon — geometric shapes stay crisp at small sizes
+// Head (circle) + dagger bill (polygon) + neck (stroke) + low body (ellipse)
 function LoonIcon() {
   return (
     <svg
-      viewBox="0 0 54 26"
-      width="38" height="18"
-      fill="currentColor"
+      viewBox="0 0 44 22"
+      width="36" height="18"
       aria-hidden="true"
-      style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', flexShrink: 0 }}
+      style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '7px', flexShrink: 0 }}
     >
-      <path d="M2,13 L10,6 C13,4 16,5 17,8 C21,10 30,10 42,12 C47,13 51,15 52,18 C51,21 49,22 46,22 C34,25 14,24 6,21 C3,19 1,16 2,13 Z"/>
+      {/* Body — very low, long */}
+      <ellipse cx="28" cy="17" rx="14" ry="4.5" fill="currentColor"/>
+      {/* Head */}
+      <circle cx="7" cy="9" r="5.5" fill="currentColor"/>
+      {/* Bill — dagger pointing left */}
+      <polygon points="0,10 7,6 7,12" fill="currentColor"/>
+      {/* Neck — thick stroke bridging head and body */}
+      <line x1="11" y1="13" x2="17" y2="15" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/>
     </svg>
   );
 }

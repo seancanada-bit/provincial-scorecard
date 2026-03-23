@@ -11,8 +11,6 @@ export default function Footer({ onMethodology }) {
           >
             Methodology
           </button>
-          <a href="https://github.com/seancanada-bit/provincial-scorecard" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:hello@example.com">Contact</a>
         </nav>
       </div>
     </footer>
