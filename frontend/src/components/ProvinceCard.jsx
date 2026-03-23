@@ -2,8 +2,8 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { PROVINCE_COLORS, PROVINCE_FLAGS, FLAG_POSITIONS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
 import ProvinceDetailPanel from './ProvinceDetailPanel.jsx';
 
-const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education'];
-const CAT_SHORT = { healthcare: 'Health', housing: 'Housing', fiscal: 'Fiscal', infrastructure: 'Infra', economy: 'Economy', education: 'Edu' };
+const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education', 'safety'];
+const CAT_SHORT = { healthcare: 'Health', housing: 'Housing', fiscal: 'Fiscal', infrastructure: 'Infra', economy: 'Economy', education: 'Edu', safety: 'Safety' };
 
 export default function ProvinceCard({
   province, rank, selected, expanded, onSelect, sortKey, animateCount, onMethodology, isMobile,

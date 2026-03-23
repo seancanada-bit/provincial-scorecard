@@ -6,6 +6,7 @@ const TABS = [
   { key: 'infrastructure', label: 'Infra' },
   { key: 'economy',        label: 'Economy' },
   { key: 'education',      label: 'Education' },
+  { key: 'safety',         label: 'Safety' },
   { key: 'value',          label: '$ Value',   title: 'Score ÷ tax burden — who gives you the most for your dollar' },
 ];
 

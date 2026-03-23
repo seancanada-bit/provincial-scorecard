@@ -50,6 +50,7 @@ async function generate() {
       governance:     supa.governance[code]      ?? null,
       infrastructure: supa.infrastructure[code]  ?? [],
       statscan:       sc?.[code]                 ?? null,
+      safety:         supa.safety[code]          ?? null,
     });
   });
 

@@ -12,6 +12,7 @@ const TABS = [
   { key: 'infrastructure', label: 'Infra',      icon: '🏗️' },
   { key: 'economy',        label: 'Economy',    icon: '📈' },
   { key: 'education',      label: 'Education',  icon: '🎓' },
+  { key: 'safety',         label: 'Safety',     icon: '🛡️' },
 ];
 
 function MetricRow({ label, score, rawDisplay, compareDisplay }) {
@@ -368,6 +369,33 @@ function EducationTab({ c }) {
   );
 }
 
+function SafetyTab({ c }) {
+  const s = c.safety;
+  if (!s) return <div className="dp-tab-content"><p className="dp-source">Safety data not yet available.</p></div>;
+  return (
+    <div className="dp-tab-content">
+      <KeyStat
+        value={s.crimeSeverityIndex ?? '—'}
+        label={`Crime Severity Index (national avg 73) · lower = safer`}
+        score={s.score}
+        grade={s.grade}
+      />
+      <div className="dp-metrics">
+        <MetricRow label="Crime Severity Index" score={s.csiScore}
+          rawDisplay={s.crimeSeverityIndex != null ? `${s.crimeSeverityIndex} (Stats Can composite)` : '—'}
+          compareDisplay="National avg: 73 · Best: PE 56" />
+        <MetricRow label="Violent crime rate" score={s.violentScore}
+          rawDisplay={s.violentCrimeRatePer100k != null ? `${s.violentCrimeRatePer100k.toLocaleString('en-CA')} per 100,000 residents` : '—'}
+          compareDisplay="National avg: ~760 · Best: PE 533" />
+        <MetricRow label="Property crime rate" score={s.propertyScore}
+          rawDisplay={s.propertyCrimeRatePer100k != null ? `${s.propertyCrimeRatePer100k.toLocaleString('en-CA')} per 100,000 residents` : '—'}
+          compareDisplay="Includes theft, break & enter · Best: PE 1,712" />
+      </div>
+      {s.sourceNotes && <p className="dp-source">Source: {s.sourceNotes}</p>}
+    </div>
+  );
+}
+
 export default function ProvinceDetailPanel({ province, onMethodology, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? 'healthcare');
   const [showValueTip, setShowValueTip] = useState(false);
@@ -481,13 +509,14 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         {activeTab === 'infrastructure' && <InfraTab c={c} />}
         {activeTab === 'economy'        && <EconomyTab c={c} />}
         {activeTab === 'education'      && <EducationTab c={c} />}
+        {activeTab === 'safety'         && <SafetyTab c={c} />}
       </div>
 
       {/* Composite + methodology */}
       <div className="dp-composite">
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
         {TABS.map(tab => {
-          const WEIGHTS = { healthcare: 22, housing: 17, fiscal: 17, infrastructure: 12, economy: 17, education: 15 };
+          const WEIGHTS = { healthcare: 20, housing: 15, fiscal: 15, infrastructure: 11, economy: 15, education: 14, safety: 10 };
           return (
             <div key={tab.key} className="dp-composite__row">
               <span className="dp-composite__name">{tab.label} <span className="dp-composite__weight">{WEIGHTS[tab.key]}%</span></span>

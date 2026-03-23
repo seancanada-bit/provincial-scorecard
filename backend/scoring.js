@@ -26,6 +26,10 @@ const BOUNDS = {
   studentTeacherRatio: { best: 12,    worst: 21    }, // (lower = better)
   // Tax burden
   taxBurdenIndex:      { best: 65,    worst: 135   }, // 100 = national avg (lower = better)
+  // Safety (lower = better for all three)
+  crimeSeverityIndex:  { best: 45,    worst: 185   }, // Stats Can CSI (lower = better)
+  violentCrimeRate:    { best: 400,   worst: 2000  }, // per 100k (lower = better)
+  propertyCrimeRate:   { best: 1000,  worst: 5500  }, // per 100k (lower = better)
 };
 
 function normalize(value, best, worst) {
@@ -100,7 +104,7 @@ function scoreInfraProjects(projects) {
 }
 
 function scoreProvince(prov) {
-  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes } = prov;
+  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety } = prov;
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
@@ -148,7 +152,24 @@ function scoreProvince(prov) {
   ) : 50;
   const economyScore = Math.round(avg(employmentScore, creditScore, agScore, approvalScore) ?? 50);
 
-  // ─── EDUCATION (15%) ────────────────────────────────────────────────
+  // ─── SAFETY (10%) ───────────────────────────────────────────────────
+  let csiScore = null, violentScore = null, propertyScore = null;
+  if (safety) {
+    csiScore      = safety.crime_severity_index   != null ? normalize(safety.crime_severity_index,   BOUNDS.crimeSeverityIndex.best, BOUNDS.crimeSeverityIndex.worst) : null;
+    violentScore  = safety.violent_crime_rate_per_100k != null ? normalize(safety.violent_crime_rate_per_100k, BOUNDS.violentCrimeRate.best,   BOUNDS.violentCrimeRate.worst)   : null;
+    propertyScore = safety.property_crime_rate_per_100k != null ? normalize(safety.property_crime_rate_per_100k, BOUNDS.propertyCrimeRate.best, BOUNDS.propertyCrimeRate.worst) : null;
+  }
+  const safetyScore = (() => {
+    const parts = []; const wts = [];
+    if (csiScore      != null) { parts.push(csiScore      * 0.40); wts.push(0.40); }
+    if (violentScore  != null) { parts.push(violentScore  * 0.40); wts.push(0.40); }
+    if (propertyScore != null) { parts.push(propertyScore * 0.20); wts.push(0.20); }
+    if (!parts.length) return 50;
+    const tw = wts.reduce((a,b)=>a+b,0);
+    return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
+  })();
+
+  // ─── EDUCATION (14%) ────────────────────────────────────────────────
   let pcapScore = null, tuitionScore = null, strScore = null;
   if (education) {
     const pcapAvg = (education.pcap_math_score != null && education.pcap_reading_score != null)
@@ -170,14 +191,15 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
   })();
 
-  // ─── COMPOSITE (education 15%, others rescaled) ──────────────────
+  // ─── COMPOSITE (7 categories, safety 10%) ────────────────────────
   const composite = Math.round(
-    healthcareScore * 0.22 +
-    housingScore    * 0.17 +
-    fiscalScore     * 0.17 +
-    infrastructureScore * 0.12 +
-    economyScore    * 0.17 +
-    educationScore  * 0.15
+    healthcareScore     * 0.20 +
+    housingScore        * 0.15 +
+    fiscalScore         * 0.15 +
+    infrastructureScore * 0.11 +
+    economyScore        * 0.15 +
+    educationScore      * 0.14 +
+    safetyScore         * 0.10
   );
 
   // ─── VALUE SCORE ────────────────────────────────────────────────────
@@ -283,6 +305,18 @@ function scoreProvince(prov) {
         pcapScore,
         sourceNotes:          education?.source_notes ?? null,
       },
+      safety: {
+        score: safetyScore,
+        grade: toGrade(safetyScore),
+        crimeSeverityIndex:       safety?.crime_severity_index          ?? null,
+        csiScore,
+        violentCrimeRatePer100k:  safety?.violent_crime_rate_per_100k   ?? null,
+        violentScore,
+        propertyCrimeRatePer100k: safety?.property_crime_rate_per_100k  ?? null,
+        propertyScore,
+        sourceNotes:              safety?.source_notes ?? null,
+        dataDate:                 safety?.data_date    ?? null,
+      },
     },
     taxes: taxes ? {
       salesTaxPct:                taxes.sales_tax_pct ?? null,
@@ -329,6 +363,7 @@ function buildNationalSummary(scoredProvinces) {
     avgFiscal:       avg(scoredProvinces.map(p => p.categories.fiscal.score)),
     avgInfrastructure: avg(scoredProvinces.map(p => p.categories.infrastructure.score)),
     avgEconomy:      avg(scoredProvinces.map(p => p.categories.economy.score)),
+    avgSafety:       avg(scoredProvinces.map(p => p.categories.safety.score)),
     topProvince:     sorted[0]?.code,
     bottomProvince:  sorted[sorted.length - 1]?.code,
     nationalAvgHealthcareSurgical: Math.round(

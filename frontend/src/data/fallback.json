@@ -2,7 +2,7 @@
   "lastUpdated": "2026-03-23T12:20:44.086Z",
   "note": "Fallback cache — populated from publicly available data as of March 2026. Update via Supabase table editor.",
   "national": {
-    "avgComposite": 56,
+    "avgComposite": 57,
     "avgHealthcare": 51,
     "avgHousing": 56,
     "avgFiscal": 63,
@@ -12,6 +12,7 @@
     "bottomProvince": "NL",
     "nationalAvgHealthcareSurgical": 27,
     "avgEducation": 50,
+    "avgSafety": 64,
     "avgValue": 58
   },
   "provinces": [
@@ -148,6 +149,18 @@
           "tuitionScore": 58,
           "pcapScore": 65,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 56,
+          "grade": "D",
+          "crimeSeverityIndex": 103.8,
+          "csiScore": 58,
+          "violentCrimeRatePer100k": 1048,
+          "violentScore": 60,
+          "propertyCrimeRatePer100k": 3521,
+          "propertyScore": 44,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -302,6 +315,18 @@
           "tuitionScore": 39,
           "pcapScore": 64,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 59,
+          "grade": "C-",
+          "crimeSeverityIndex": 97.7,
+          "csiScore": 62,
+          "violentCrimeRatePer100k": 1024,
+          "violentScore": 61,
+          "propertyCrimeRatePer100k": 3214,
+          "propertyScore": 51,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -327,8 +352,8 @@
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 61,
-      "grade": "C",
+      "composite": 56,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 62,
@@ -456,6 +481,18 @@
           "tuitionScore": 46,
           "pcapScore": 47,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 12,
+          "grade": "F",
+          "crimeSeverityIndex": 172.9,
+          "csiScore": 9,
+          "violentCrimeRatePer100k": 1851,
+          "violentScore": 9,
+          "propertyCrimeRatePer100k": 4489,
+          "propertyScore": 22,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -475,13 +512,13 @@
         "publicSectorPer1000": 82,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 72
+      "valueScore": 66
     },
     {
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 56,
+      "composite": 53,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -610,6 +647,18 @@
           "tuitionScore": 74,
           "pcapScore": 37,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 32,
+          "grade": "F",
+          "crimeSeverityIndex": 137.2,
+          "csiScore": 34,
+          "violentCrimeRatePer100k": 1548,
+          "violentScore": 28,
+          "propertyCrimeRatePer100k": 3987,
+          "propertyScore": 34,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -629,13 +678,13 @@
         "publicSectorPer1000": 90,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 61
+      "valueScore": 58
     },
     {
       "code": "ON",
       "name": "Ontario",
       "premierName": "Doug Ford",
-      "composite": 46,
+      "composite": 50,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -764,6 +813,18 @@
           "tuitionScore": 13,
           "pcapScore": 58,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 85,
+          "grade": "A",
+          "crimeSeverityIndex": 62.0,
+          "csiScore": 88,
+          "violentCrimeRatePer100k": 620,
+          "violentScore": 86,
+          "propertyCrimeRatePer100k": 1998,
+          "propertyScore": 78,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -783,14 +844,14 @@
         "publicSectorPer1000": 68,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 47
+      "valueScore": 52
     },
     {
       "code": "QC",
       "name": "Quebec",
       "premierName": "François Legault",
-      "composite": 56,
-      "grade": "D",
+      "composite": 59,
+      "grade": "C-",
       "categories": {
         "healthcare": {
           "score": 29,
@@ -918,6 +979,18 @@
           "tuitionScore": 100,
           "pcapScore": 86,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 84,
+          "grade": "A",
+          "crimeSeverityIndex": 63.9,
+          "csiScore": 87,
+          "violentCrimeRatePer100k": 663,
+          "violentScore": 84,
+          "propertyCrimeRatePer100k": 2073,
+          "propertyScore": 76,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -937,7 +1010,7 @@
         "publicSectorPer1000": 88,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 44
+      "valueScore": 46
     },
     {
       "code": "NB",
@@ -1072,6 +1145,18 @@
           "tuitionScore": 39,
           "pcapScore": 40,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 79,
+          "grade": "B+",
+          "crimeSeverityIndex": 70.8,
+          "csiScore": 82,
+          "violentCrimeRatePer100k": 752,
+          "violentScore": 78,
+          "propertyCrimeRatePer100k": 2155,
+          "propertyScore": 74,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -1091,13 +1176,13 @@
         "publicSectorPer1000": 89,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 62
+      "valueScore": 63
     },
     {
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 53,
+      "composite": 55,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -1226,6 +1311,18 @@
           "tuitionScore": 23,
           "pcapScore": 35,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 73,
+          "grade": "B",
+          "crimeSeverityIndex": 79.3,
+          "csiScore": 76,
+          "violentCrimeRatePer100k": 836,
+          "violentScore": 73,
+          "propertyCrimeRatePer100k": 2590,
+          "propertyScore": 65,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -1245,14 +1342,14 @@
         "publicSectorPer1000": 94,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 47
+      "valueScore": 49
     },
     {
       "code": "PE",
       "name": "Prince Edward Island",
       "premierName": "Dennis King",
-      "composite": 68,
-      "grade": "C+",
+      "composite": 70,
+      "grade": "B-",
       "categories": {
         "healthcare": {
           "score": 66,
@@ -1380,6 +1477,18 @@
           "tuitionScore": 40,
           "pcapScore": 27,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 90,
+          "grade": "A",
+          "crimeSeverityIndex": 55.7,
+          "csiScore": 92,
+          "violentCrimeRatePer100k": 533,
+          "violentScore": 92,
+          "propertyCrimeRatePer100k": 1712,
+          "propertyScore": 84,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -1399,13 +1508,13 @@
         "publicSectorPer1000": 98,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 62
+      "valueScore": 64
     },
     {
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 43,
+      "composite": 45,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -1534,6 +1643,18 @@
           "tuitionScore": 88,
           "pcapScore": 23,
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
+        },
+        "safety": {
+          "score": 65,
+          "grade": "C+",
+          "crimeSeverityIndex": 94.7,
+          "csiScore": 65,
+          "violentCrimeRatePer100k": 932,
+          "violentScore": 67,
+          "propertyCrimeRatePer100k": 2679,
+          "propertyScore": 63,
+          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
+          "dataDate": "2024-07-01"
         }
       },
       "lastUpdated": {
@@ -1553,7 +1674,7 @@
         "publicSectorPer1000": 104,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 39
+      "valueScore": 41
     }
   ],
   "supporters": []

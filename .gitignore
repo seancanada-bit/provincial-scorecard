@@ -3,3 +3,5 @@ frontend/dist/
 frontend/.env.local
 backend/.env
 .DS_Store
+*.rtf
+*.RTF
