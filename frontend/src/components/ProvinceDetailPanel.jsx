@@ -12,7 +12,8 @@ const TABS = [
   { key: 'infrastructure', label: 'Infra',      icon: '🏗️' },
   { key: 'economy',        label: 'Economy',    icon: '📈' },
   { key: 'education',      label: 'Education',  icon: '🎓' },
-  { key: 'safety',         label: 'Safety',     icon: '🛡️' },
+  { key: 'safety',         label: 'Safety',       icon: '🛡️' },
+  { key: 'mentalhealth',   label: 'Mental Health', icon: '🧠' },
   { key: 'purchasing',     label: 'Buying Power', icon: '🛒' },
 ];
 
@@ -414,6 +415,41 @@ function SafetyTab({ c }) {
   );
 }
 
+function MentalHealthTab({ c }) {
+  const mh = c.mentalhealth;
+  if (!mh) return <div className="dp-tab-content"><p className="dp-source">Mental health data not yet available.</p></div>;
+  return (
+    <div className="dp-tab-content">
+      <KeyStat
+        value={mh.drugToxicityRatePer100k != null ? mh.drugToxicityRatePer100k.toFixed(1) : '—'}
+        unit=" per 100k"
+        label="apparent opioid & stimulant toxicity death rate — primary crisis indicator"
+        score={mh.score}
+        grade={mh.grade}
+      />
+      <div className="dp-metrics">
+        <MetricRow label="Drug toxicity death rate" score={mh.drugToxicityScore}
+          rawDisplay={mh.drugToxicityRatePer100k != null ? `${mh.drugToxicityRatePer100k.toFixed(1)} per 100,000 residents` : '—'}
+          compareDisplay="BC: 38.0 · QC: 4.1 · Lower = better score" />
+        <MetricRow label="Psychiatric beds" score={mh.psychiatricBedsScore}
+          rawDisplay={mh.psychiatricBedsPer100k != null ? `${mh.psychiatricBedsPer100k} beds per 100,000 residents` : '—'}
+          compareDisplay="QC: 83 · ON: 25 · Target: 60+" />
+        <MetricRow label="Mental health budget share" score={mh.mhBudgetScore}
+          rawDisplay={mh.mentalHealthBudgetPct != null ? `${mh.mentalHealthBudgetPct}% of health budget` : '—'}
+          compareDisplay="QC: 9.0% · PE: 6.5% · Target: 10%+" />
+        <MetricRow label="Addiction recovery beds" score={mh.recoveryBedsScore}
+          rawDisplay={mh.recoveryBedsPer100k != null ? `${mh.recoveryBedsPer100k} beds per 100,000 residents` : '—'}
+          compareDisplay="BC: 45 · NB: 15 · Target: 50+" />
+      </div>
+      <p className="dp-source" style={{ marginTop: 8 }}>
+        Weighted: drug toxicity deaths 35% · psychiatric beds 25% · MH budget share 25% · recovery beds 15%.
+        Data: 2022–2023. Drug toxicity figures from PHAC; beds and budget from CIHI provincial profiles.
+      </p>
+      {mh.sourceNotes && <p className="dp-source">Source: {mh.sourceNotes}</p>}
+    </div>
+  );
+}
+
 function PurchasingPowerTab({ province }) {
   const pp = province.purchasingPower;
   const taxes = province.taxes;
@@ -568,17 +604,18 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         {activeTab === 'economy'        && <EconomyTab c={c} />}
         {activeTab === 'education'      && <EducationTab c={c} />}
         {activeTab === 'safety'         && <SafetyTab c={c} />}
+        {activeTab === 'mentalhealth'   && <MentalHealthTab c={c} />}
         {activeTab === 'purchasing'     && <PurchasingPowerTab province={province} />}
       </div>
 
       {/* Composite + methodology */}
       <div className="dp-composite">
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
-        {TABS.map(tab => {
-          const WEIGHTS = { healthcare: 20, housing: 15, fiscal: 15, infrastructure: 11, economy: 15, education: 14, safety: 10 };
+        {TABS.filter(tab => tab.key !== 'purchasing').map(tab => {
+          const WEIGHTS = { healthcare: 17, housing: 14, fiscal: 14, infrastructure: 10, economy: 14, education: 13, safety: 10, mentalhealth: 8 };
           return (
             <div key={tab.key} className="dp-composite__row">
-              <span className="dp-composite__name">{tab.label} <span className="dp-composite__weight">{WEIGHTS[tab.key]}%</span></span>
+              <span className="dp-composite__name">{tab.label} <span className="dp-composite__weight">{WEIGHTS[tab.key] != null ? `${WEIGHTS[tab.key]}%` : ''}</span></span>
               <div className="dp-composite__track">
                 <div className="dp-composite__fill" style={{ width: `${tabScore(tab.key)}%`, background: gradeFill(tabGrade(tab.key)) }} />
               </div>

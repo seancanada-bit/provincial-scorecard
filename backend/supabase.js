@@ -20,7 +20,7 @@ function getClient() {
 async function fetchAllSupabaseData() {
   const sb = getClient();
 
-  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters, education, taxes, safety, statscan, costOfLiving] = await Promise.all([
+  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters, education, taxes, safety, statscan, costOfLiving, mentalHealth] = await Promise.all([
     sb.from('provinces_meta').select('*'),
     sb.from('provinces_healthcare').select('*'),
     sb.from('provinces_housing').select('*'),
@@ -34,6 +34,7 @@ async function fetchAllSupabaseData() {
     sb.from('provinces_safety').select('*'),
     sb.from('provinces_statscan').select('*'),
     sb.from('provinces_cost_of_living').select('*'),
+    sb.from('provinces_mental_health').select('*'),
   ]);
 
   // Check for errors (education + taxes are optional — log but don't throw)
@@ -48,7 +49,8 @@ async function fetchAllSupabaseData() {
   if (taxes.error)     console.warn('provinces_tax not yet populated:',     taxes.error.message);
   if (safety.error)    console.warn('provinces_safety not yet populated:',  safety.error.message);
   if (statscan.error)     console.warn('provinces_statscan not yet populated:', statscan.error.message);
-  if (costOfLiving.error) console.warn('provinces_cost_of_living not yet populated:', costOfLiving.error.message);
+  if (costOfLiving.error)  console.warn('provinces_cost_of_living not yet populated:', costOfLiving.error.message);
+  if (mentalHealth.error)  console.warn('provinces_mental_health not yet populated:', mentalHealth.error.message);
 
   // Index by province_code for easy lookup
   const byCode = key => arr => arr.reduce((acc, row) => { acc[row.province_code] = row; return acc; }, {});
@@ -72,6 +74,7 @@ async function fetchAllSupabaseData() {
     safety:         safety.data    ? byCode('province_code')(safety.data)    : {},
     statscan:       statscan.data      ? byCode('province_code')(statscan.data)      : {},
     costOfLiving:   costOfLiving.data  ? byCode('province_code')(costOfLiving.data)  : {},
+    mentalHealth:   mentalHealth.data  ? byCode('province_code')(mentalHealth.data)  : {},
   };
 }
 

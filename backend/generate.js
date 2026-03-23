@@ -40,6 +40,7 @@ async function generate() {
       safety:         supa.safety[code]          ?? null,
       statscan:       supa.statscan[code]         ?? null,
       costOfLiving:   supa.costOfLiving[code]     ?? null,
+      mentalHealth:   supa.mentalHealth[code]     ?? null,
     });
   });
 

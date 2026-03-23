@@ -79,6 +79,7 @@ async function refresh() {
         safety:         supa.safety[code]          ?? null,
         statscan:       supa.statscan[code]         ?? null,
         costOfLiving:   supa.costOfLiving[code]     ?? null,
+        mentalHealth:   supa.mentalHealth[code]     ?? null,
       };
       return scoreProvince(rawProvince);
     });

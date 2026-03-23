@@ -367,3 +367,36 @@ values
   ('NS', 21.8, 108, 3926,  905, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
   ('PE', 20.3, 110, 3726,  780, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01'),
   ('NL', 15.4, 112, 2979, 1128, 'CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024', '2024-01-01');
+
+-- ─── MENTAL HEALTH & ADDICTIONS ──────────────────────────────────────────────
+-- Sources: Health Canada Drug and Substance Use report 2023;
+--          CIHI "Hospital Mental Health Services" 2022;
+--          CIHI "National Health Expenditure Trends" 2022;
+--          CMHC / provincial recovery housing inventories 2023.
+-- Note: drug_toxicity_rate reflects entire harm-reduction + treatment system.
+--       psychiatric_beds: ON/BC have deinstitutionalised — community care not captured here.
+--       recovery_beds are estimates from provincial housing authorities.
+create table if not exists provinces_mental_health (
+  id                          serial primary key,
+  province_code               text not null references provinces_meta(province_code),
+  drug_toxicity_rate_per_100k numeric,  -- apparent drug toxicity deaths per 100k (lower = better)
+  psychiatric_beds_per_100k   numeric,  -- hospital psychiatric beds per 100k (higher = better)
+  mental_health_budget_pct    numeric,  -- mental health as % of provincial health budget (higher = better)
+  recovery_beds_per_100k      numeric,  -- recovery/supportive housing beds per 100k (higher = better)
+  source_notes                text,
+  data_date                   date
+);
+
+-- ─── SEED: Mental health data (2022–2023) ────────────────────────────────────
+insert into provinces_mental_health (province_code, drug_toxicity_rate_per_100k, psychiatric_beds_per_100k, mental_health_budget_pct, recovery_beds_per_100k, source_notes, data_date)
+values
+  ('BC', 38.0, 34, 6.5, 45, 'Health Canada 2023; CIHI 2022; BC Housing recovery inventory 2023', '2023-01-01'),
+  ('AB', 21.5, 28, 6.0, 28, 'Health Canada 2023; CIHI 2022; AB Health recovery housing 2023',   '2023-01-01'),
+  ('SK', 15.2, 31, 7.0, 18, 'Health Canada 2023; CIHI 2022; SK Housing 2023',                   '2023-01-01'),
+  ('MB', 11.8, 38, 7.5, 22, 'Health Canada 2023; CIHI 2022; MB Housing 2023',                   '2023-01-01'),
+  ('ON', 11.2, 25, 7.0, 20, 'Health Canada 2023; CIHI 2022; ON community housing 2023',         '2023-01-01'),
+  ('QC',  4.1, 83, 9.0, 35, 'Health Canada 2023; CIHI 2022; QC MSSS housing inventory 2023',    '2023-01-01'),
+  ('NB',  5.6, 30, 7.5, 15, 'Health Canada 2023; CIHI 2022; NB recovery housing 2023',          '2023-01-01'),
+  ('NS',  6.8, 42, 8.0, 20, 'Health Canada 2023; CIHI 2022; NS recovery housing 2023',          '2023-01-01'),
+  ('PE',  3.2, 28, 6.5, 12, 'Health Canada 2023; CIHI 2022; PEI housing services 2023',         '2023-01-01'),
+  ('NL',  7.1, 44, 6.5, 15, 'Health Canada 2023; CIHI 2022; NL housing 2023',                   '2023-01-01');

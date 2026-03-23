@@ -35,6 +35,11 @@ const BOUNDS = {
   annualEnergyCost:    { best: 1400,  worst: 4200  }, // $ per household/yr (lower = better)
   autoInsuranceAnnual: { best: 600,   worst: 2100  }, // $ per year (lower = better)
   childcareMonthly:    { best: 150,   worst: 1500  }, // $ per month (lower = better)
+  // Mental health & addictions
+  drugToxicityRate:        { best: 1.0,  worst: 45.0 }, // per 100k (lower = better)
+  psychiatricBedsPer100k:  { best: 60,   worst: 15   }, // (higher = better)
+  mentalHealthBudgetPct:   { best: 10.0, worst: 5.0  }, // % of health budget (higher = better)
+  recoveryBedsPer100k:     { best: 50,   worst: 5    }, // (higher = better)
 };
 
 function normalize(value, best, worst) {
@@ -109,7 +114,7 @@ function scoreInfraProjects(projects) {
 }
 
 function scoreProvince(prov) {
-  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety, costOfLiving } = prov;
+  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety, costOfLiving, mentalHealth } = prov;
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
@@ -211,6 +216,30 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
   })();
 
+  // ─── MENTAL HEALTH & ADDICTIONS (8%) ────────────────────────────────────────
+  // Metrics: drug toxicity deaths 35%, psychiatric beds 25%, MH budget % 25%, recovery beds 15%
+  let drugToxicityScore = null, psychiatricBedsScore = null, mhBudgetScore = null, recoveryBedsScore = null;
+  if (mentalHealth) {
+    drugToxicityScore   = mentalHealth.drug_toxicity_rate_per_100k != null
+      ? normalizeInverted(mentalHealth.drug_toxicity_rate_per_100k, BOUNDS.drugToxicityRate.best, BOUNDS.drugToxicityRate.worst) : null;
+    psychiatricBedsScore = mentalHealth.psychiatric_beds_per_100k != null
+      ? normalize(mentalHealth.psychiatric_beds_per_100k, BOUNDS.psychiatricBedsPer100k.best, BOUNDS.psychiatricBedsPer100k.worst) : null;
+    mhBudgetScore       = mentalHealth.mental_health_budget_pct != null
+      ? normalize(mentalHealth.mental_health_budget_pct, BOUNDS.mentalHealthBudgetPct.best, BOUNDS.mentalHealthBudgetPct.worst) : null;
+    recoveryBedsScore   = mentalHealth.recovery_beds_per_100k != null
+      ? normalize(mentalHealth.recovery_beds_per_100k, BOUNDS.recoveryBedsPer100k.best, BOUNDS.recoveryBedsPer100k.worst) : null;
+  }
+  const mentalHealthScore = (() => {
+    const parts = [], wts = [];
+    if (drugToxicityScore    != null) { parts.push(drugToxicityScore    * 0.35); wts.push(0.35); }
+    if (psychiatricBedsScore != null) { parts.push(psychiatricBedsScore * 0.25); wts.push(0.25); }
+    if (mhBudgetScore        != null) { parts.push(mhBudgetScore        * 0.25); wts.push(0.25); }
+    if (recoveryBedsScore    != null) { parts.push(recoveryBedsScore    * 0.15); wts.push(0.15); }
+    if (!parts.length) return 50;
+    const tw = wts.reduce((a, b) => a + b, 0);
+    return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
+  })();
+
   // ─── PURCHASING POWER INDEX (not in composite — informational) ───────────────
   // Measures how far take-home pay goes on day-to-day essentials.
   // Weights: rent-to-income 35%, groceries 25%, energy 20%, auto insurance 15%, childcare 5%
@@ -235,15 +264,18 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
 
-  // ─── COMPOSITE (7 categories, safety 10%) ────────────────────────
+  // ─── COMPOSITE (8 categories) ────────────────────────────────────
+  // healthcare 17% + housing 14% + fiscal 14% + infrastructure 10% +
+  // economy 14% + education 13% + safety 10% + mentalHealth 8% = 100%
   const composite = Math.round(
-    healthcareScore     * 0.20 +
-    housingScore        * 0.15 +
-    fiscalScore         * 0.15 +
-    infrastructureScore * 0.11 +
-    economyScore        * 0.15 +
-    educationScore      * 0.14 +
-    safetyScore         * 0.10
+    healthcareScore     * 0.17 +
+    housingScore        * 0.14 +
+    fiscalScore         * 0.14 +
+    infrastructureScore * 0.10 +
+    economyScore        * 0.14 +
+    educationScore      * 0.13 +
+    safetyScore         * 0.10 +
+    mentalHealthScore   * 0.08
   );
 
   // ─── VALUE SCORE ────────────────────────────────────────────────────
@@ -361,6 +393,20 @@ function scoreProvince(prov) {
         sourceNotes:              safety?.source_notes ?? null,
         dataDate:                 safety?.data_date    ?? null,
       },
+      mentalhealth: {
+        score: mentalHealthScore,
+        grade: toGrade(mentalHealthScore),
+        drugToxicityRatePer100k:    mentalHealth?.drug_toxicity_rate_per_100k  ?? null,
+        drugToxicityScore,
+        psychiatricBedsPer100k:     mentalHealth?.psychiatric_beds_per_100k    ?? null,
+        psychiatricBedsScore,
+        mentalHealthBudgetPct:      mentalHealth?.mental_health_budget_pct     ?? null,
+        mhBudgetScore,
+        recoveryBedsPer100k:        mentalHealth?.recovery_beds_per_100k       ?? null,
+        recoveryBedsScore,
+        sourceNotes:                mentalHealth?.source_notes ?? null,
+        dataDate:                   mentalHealth?.data_date    ?? null,
+      },
     },
     taxes: taxes ? {
       salesTaxPct:                taxes.sales_tax_pct ?? null,
@@ -424,6 +470,7 @@ function buildNationalSummary(scoredProvinces) {
     avgInfrastructure: avg(scoredProvinces.map(p => p.categories.infrastructure.score)),
     avgEconomy:      avg(scoredProvinces.map(p => p.categories.economy.score)),
     avgSafety:       avg(scoredProvinces.map(p => p.categories.safety.score)),
+    avgMentalHealth: avg(scoredProvinces.map(p => p.categories.mentalhealth.score)),
     topProvince:     sorted[0]?.code,
     bottomProvince:  sorted[sorted.length - 1]?.code,
     nationalAvgHealthcareSurgical: Math.round(
