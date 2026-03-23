@@ -317,6 +317,21 @@ function EconomyTab({ c }) {
           </div>
         )}
       </div>
+
+      {e.childcareMonthlyAvg != null && (
+        <div className="dp-metrics" style={{ marginTop: 16 }}>
+          <div className="dp-section-label" style={{ marginBottom: 8 }}>Childcare affordability</div>
+          <MetricRow
+            label="Regulated childcare cost"
+            score={e.childcareScore}
+            rawDisplay={`$${e.childcareMonthlyAvg.toLocaleString('en-CA')}/mo avg`}
+            compareDisplay="QC $196 · ON $1,456 · Affects labour force participation" />
+          <p className="dp-source" style={{ marginTop: 6 }}>
+            Weighted 15% of economy score — high costs reduce workforce participation, especially for women.
+            Note: federal cost-sharing (2021 deal) means this partly reflects federal policy, not solely provincial.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

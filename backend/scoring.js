@@ -142,7 +142,7 @@ function scoreProvince(prov) {
   const infraResult = scoreInfraProjects(infrastructure);
   const infrastructureScore = infraResult.score ?? 50;
 
-  // ─── ECONOMY & GOVERNANCE (20%) ─────────────────────────────────────
+  // ─── ECONOMY & GOVERNANCE (15%) ─────────────────────────────────────
   let unemployScore = null, gdpGrowthScore = null;
   if (statscan) {
     unemployScore   = normalizeInverted(statscan.unemployment_delta_from_national ?? 0, BOUNDS.unemploymentDelta.best, BOUNDS.unemploymentDelta.worst);
@@ -155,7 +155,22 @@ function scoreProvince(prov) {
     (polling.premier_approval_pct - polling.premier_disapproval_pct),
     BOUNDS.premierNetApproval.best, BOUNDS.premierNetApproval.worst
   ) : 50;
-  const economyScore = Math.round(avg(employmentScore, creditScore, agScore, approvalScore) ?? 50);
+  // Childcare as economy sub-metric: high costs suppress labour force participation
+  // Note: federal cost-sharing (2021 deal) means not purely provincial, flagged in methodology
+  const childcareScore = taxes?.childcare_monthly_avg != null
+    ? normalizeInverted(taxes.childcare_monthly_avg, BOUNDS.childcareMonthly.best, BOUNDS.childcareMonthly.worst)
+    : null;
+  // Weighted economy: employment 25%, credit 20%, AG 20%, approval 20%, childcare 15%
+  const economyScore = (() => {
+    const parts = [], wts = [];
+    parts.push(employmentScore * 0.25); wts.push(0.25);
+    parts.push(creditScore     * 0.20); wts.push(0.20);
+    parts.push(agScore         * 0.20); wts.push(0.20);
+    parts.push(approvalScore   * 0.20); wts.push(0.20);
+    if (childcareScore != null) { parts.push(childcareScore * 0.15); wts.push(0.15); }
+    const tw = wts.reduce((a, b) => a + b, 0);
+    return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
+  })();
 
   // ─── SAFETY (10%) ───────────────────────────────────────────────────
   let victimizationScore = null, homicideScore = null;
@@ -199,14 +214,14 @@ function scoreProvince(prov) {
   // ─── PURCHASING POWER INDEX (not in composite — informational) ───────────────
   // Measures how far take-home pay goes on day-to-day essentials.
   // Weights: rent-to-income 35%, groceries 25%, energy 20%, auto insurance 15%, childcare 5%
-  let ppiRentScore = null, ppiGroceryScore = null, ppiEnergyScore = null, ppiInsuranceScore = null, ppiChildcareScore = null;
+  let ppiRentScore = null, ppiGroceryScore = null, ppiEnergyScore = null, ppiInsuranceScore = null;
   if (costOfLiving) {
     ppiRentScore      = costOfLiving.rent_to_income_pct    != null ? normalizeInverted(costOfLiving.rent_to_income_pct,    BOUNDS.rentToIncomePct.best,     BOUNDS.rentToIncomePct.worst)     : null;
     ppiGroceryScore   = costOfLiving.grocery_index         != null ? normalizeInverted(costOfLiving.grocery_index,         BOUNDS.groceryIndex.best,         BOUNDS.groceryIndex.worst)        : null;
     ppiEnergyScore    = costOfLiving.annual_energy_cost    != null ? normalizeInverted(costOfLiving.annual_energy_cost,    BOUNDS.annualEnergyCost.best,     BOUNDS.annualEnergyCost.worst)    : null;
     ppiInsuranceScore = costOfLiving.auto_insurance_annual != null ? normalizeInverted(costOfLiving.auto_insurance_annual, BOUNDS.autoInsuranceAnnual.best,  BOUNDS.autoInsuranceAnnual.worst) : null;
   }
-  ppiChildcareScore = taxes?.childcare_monthly_avg != null ? normalizeInverted(taxes.childcare_monthly_avg, BOUNDS.childcareMonthly.best, BOUNDS.childcareMonthly.worst) : null;
+  // childcareScore already computed above — reused here
 
   const ppiScore = (() => {
     const parts = [], wts = [];
@@ -214,7 +229,7 @@ function scoreProvince(prov) {
     if (ppiGroceryScore   != null) { parts.push(ppiGroceryScore   * 0.25); wts.push(0.25); }
     if (ppiEnergyScore    != null) { parts.push(ppiEnergyScore    * 0.20); wts.push(0.20); }
     if (ppiInsuranceScore != null) { parts.push(ppiInsuranceScore * 0.15); wts.push(0.15); }
-    if (ppiChildcareScore != null) { parts.push(ppiChildcareScore * 0.05); wts.push(0.05); }
+    if (childcareScore    != null) { parts.push(childcareScore    * 0.05); wts.push(0.05); }
     if (!parts.length) return null;
     const tw = wts.reduce((a, b) => a + b, 0);
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
@@ -320,7 +335,9 @@ function scoreProvince(prov) {
         premierApprovalPct:    polling?.premier_approval_pct ?? null,
         premierDisapprovalPct: polling?.premier_disapproval_pct ?? null,
         approvalScore,
-        pollSourceNotes: polling?.source_notes ?? null,
+        pollSourceNotes:      polling?.source_notes ?? null,
+        childcareMonthlyAvg:  taxes?.childcare_monthly_avg ?? null,
+        childcareScore,
       },
       education: {
         score: educationScore,
@@ -367,7 +384,7 @@ function scoreProvince(prov) {
       autoInsuranceAnnual: costOfLiving?.auto_insurance_annual ?? null,
       insuranceScore:     ppiInsuranceScore,
       childcareMonthlyAvg: taxes?.childcare_monthly_avg       ?? null,
-      childcareScore:     ppiChildcareScore,
+      childcareScore,
       sourceNotes:        costOfLiving?.source_notes          ?? null,
       dataDate:           costOfLiving?.data_date             ?? null,
     },
