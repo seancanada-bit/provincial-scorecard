@@ -59,9 +59,6 @@ export default function ProvinceCard({
         aria-expanded={isMobile ? expanded : undefined}
         aria-pressed={!isMobile ? selected : undefined}
       >
-        {/* Rank */}
-        <span className="pcard__rank">#{rank}</span>
-
         {/* Left: flag badge + name */}
         <div className="pcard__left">
           <div className="pcard__badge" style={{ borderColor: color }} aria-hidden="true">
@@ -84,8 +81,9 @@ export default function ProvinceCard({
           </div>
         </div>
 
-        {/* Right: two named score blocks — performance + bang/duck */}
+        {/* Right: rank + two named score blocks — performance + bang/duck */}
         <div className="pcard__right">
+          <span className="pcard__rank">#{rank}</span>
           <span className="pcard__perf-label">performance</span>
           <span
             className={`pcard__grade ${gradeColorClass(province.grade)}`}
@@ -111,9 +109,16 @@ export default function ProvinceCard({
                 aria-label={`Duck Score: ${duckGrade} — ${duckDesc} value. Click for explanation.`}
               >
                 <span className="pcard__value-divider" aria-hidden="true" />
-                <span className="pcard__value-label">🦆 bang/duck</span>
-                <span className="pcard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
-                <span className="pcard__value-subnum">{province.valueScore}</span>
+                <span className="pcard__duck-row">
+                  <span className="pcard__duck-emoji" aria-hidden="true">🦆</span>
+                  <span className="pcard__duck-words" aria-hidden="true">
+                    <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                  </span>
+                  <span className="pcard__duck-scores">
+                    <span className="pcard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
+                    <span className="pcard__value-subnum">{province.valueScore}</span>
+                  </span>
+                </span>
                 {showValueTip && (
                   <span className="pcard__value-tip" role="tooltip">
                     <strong>🦆 Duck Score: {duckGrade}</strong> — {duckDesc.toLowerCase()} value for provincial taxes paid.

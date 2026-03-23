@@ -625,9 +625,16 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
                 aria-label={`Duck Score: ${duckGrade}. Click for explanation.`}
               >
                 <span className="dp-header__value-divider" aria-hidden="true" />
-                <span className="dp-header__value-label">🦆 bang for your duck</span>
-                <span className="dp-header__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
-                <span className="dp-header__value-subnum">{province.valueScore}</span>
+                <span className="dp-header__duck-row">
+                  <span className="dp-header__duck-emoji" aria-hidden="true">🦆</span>
+                  <span className="dp-header__duck-words" aria-hidden="true">
+                    <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                  </span>
+                  <span className="dp-header__duck-scores">
+                    <span className="dp-header__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
+                    <span className="dp-header__value-subnum">{province.valueScore}</span>
+                  </span>
+                </span>
               </span>
             );
           })()}
