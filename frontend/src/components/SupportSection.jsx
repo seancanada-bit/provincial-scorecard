@@ -1,11 +1,6 @@
-// Ko-fi tip links — amounts cannot be pre-filled via URL on standard tip pages.
-// KOFI_COFFEE: your main tip page (set your base "coffee price" to $5 in Ko-fi settings)
-// KOFI_LUNCH: create a Ko-fi Shop item at $15 → Ko-fi dashboard → Shop → Add Item →
-//   set price $15, copy the resulting URL (https://ko-fi.com/s/XXXXXXXXXX) and paste here.
-// KOFI_MONTHLY: membership tiers page — correct as-is.
-const KOFI_COFFEE  = 'https://ko-fi.com/goodgovernance';
-const KOFI_LUNCH   = 'https://ko-fi.com/goodgovernance';   // TODO: replace with Shop item URL for $15
-const KOFI_MONTHLY = 'https://ko-fi.com/goodgovernance/tiers';
+const STRIPE_COFFEE  = 'https://buy.stripe.com/4gM4gA6EF6cQ7iq4ASfUQ00';
+const STRIPE_LUNCH   = 'https://buy.stripe.com/3cIbJ2e77eJm32a2sKfUQ01';
+const STRIPE_MONTHLY = 'https://buy.stripe.com/eVqfZi2op9p2dGO1oGfUQ02';
 
 export default function SupportSection({ supporters = [] }) {
   const activeNames = supporters.filter(s => s.active !== false).map(s => s.display_name);
@@ -50,36 +45,36 @@ export default function SupportSection({ supporters = [] }) {
 
       <div className="support-section__buttons">
         <a
-          href={KOFI_COFFEE}
+          href={STRIPE_COFFEE}
           target="_blank"
           rel="noopener noreferrer"
           className="support-btn support-btn--coffee"
-          aria-label="Buy a coffee, one-time $5 donation via Ko-fi"
+          aria-label="One-time $5 donation via Stripe"
         >
           ☕ Buy a coffee — $5
         </a>
         <a
-          href={KOFI_LUNCH}
+          href={STRIPE_LUNCH}
           target="_blank"
           rel="noopener noreferrer"
           className="support-btn support-btn--lunch"
-          aria-label="Buy lunch, one-time $15 donation via Ko-fi"
+          aria-label="One-time $15 donation via Stripe"
         >
           🍱 Buy lunch — $15
         </a>
         <a
-          href={KOFI_MONTHLY}
+          href={STRIPE_MONTHLY}
           target="_blank"
           rel="noopener noreferrer"
           className="support-btn support-btn--monthly"
-          aria-label="Become a monthly supporter, $4 per month via Ko-fi"
+          aria-label="$4 per month recurring support via Stripe"
         >
           ⭐ Monthly supporter — $4/mo
         </a>
       </div>
 
       <p className="support-note">
-        Payments go directly to Pacific Logo Design via Ko-fi. Zero platform fee on tips.
+        Payments processed securely by Stripe. Cancel monthly support any time.
       </p>
 
       {activeNames.length > 0 && (
