@@ -88,6 +88,21 @@ export const PROVINCE_COLORS = {
   PE: '#CF0A2C', NL: '#003DA5',
 };
 
+// Official provincial flags — Wikimedia Commons (stable URLs, free to use)
+const W = 'https://upload.wikimedia.org/wikipedia/commons/thumb';
+export const PROVINCE_FLAGS = {
+  BC: `${W}/b/b8/Flag_of_British_Columbia.svg/200px-Flag_of_British_Columbia.svg.png`,
+  AB: `${W}/f/f5/Flag_of_Alberta.svg/200px-Flag_of_Alberta.svg.png`,
+  SK: `${W}/b/bb/Flag_of_Saskatchewan.svg/200px-Flag_of_Saskatchewan.svg.png`,
+  MB: `${W}/c/c4/Flag_of_Manitoba.svg/200px-Flag_of_Manitoba.svg.png`,
+  ON: `${W}/8/88/Flag_of_Ontario.svg/200px-Flag_of_Ontario.svg.png`,
+  QC: `${W}/5/5f/Flag_of_Quebec.svg/200px-Flag_of_Quebec.svg.png`,
+  NB: `${W}/f/fb/Flag_of_New_Brunswick.svg/200px-Flag_of_New_Brunswick.svg.png`,
+  NS: `${W}/c/c0/Flag_of_Nova_Scotia.svg/200px-Flag_of_Nova_Scotia.svg.png`,
+  PE: `${W}/e/e9/Flag_of_Prince_Edward_Island.svg/200px-Flag_of_Prince_Edward_Island.svg.png`,
+  NL: `${W}/d/dd/Flag_of_Newfoundland_and_Labrador.svg/200px-Flag_of_Newfoundland_and_Labrador.svg.png`,
+};
+
 export const CATEGORY_ICONS = {
   healthcare:     '🏥',
   housing:        '🏠',

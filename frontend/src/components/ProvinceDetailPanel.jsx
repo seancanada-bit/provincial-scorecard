@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   gradeFill, gradeColorClass, gradeBgClass, scoreFill,
   outlookSymbol, outlookLabel, formatDollars, overrunColor, delayColor,
-  PROVINCE_COLORS,
+  PROVINCE_COLORS, PROVINCE_FLAGS,
 } from '../utils/grading.js';
 
 const TABS = [
@@ -379,10 +379,31 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
 
   return (
     <div className="dp-panel">
-      {/* Header */}
-      <div className="dp-header" style={{ borderTop: `4px solid ${color}` }}>
+      {/* Header — flag banner background */}
+      <div
+        className="dp-header"
+        style={{
+          borderTop: `4px solid ${color}`,
+          '--flag-url': `url(${PROVINCE_FLAGS[province.code] ?? ''})`,
+        }}
+      >
+        {PROVINCE_FLAGS[province.code] && (
+          <div className="dp-header__flag-bg" aria-hidden="true" />
+        )}
         <div className="dp-header__left">
-          <div className="dp-header__badge" style={{ background: color }}>{province.code}</div>
+          <div className="dp-header__badge" style={{ borderColor: color }}>
+            <img
+              src={PROVINCE_FLAGS[province.code]}
+              alt=""
+              className="dp-header__flag-img"
+              onError={e => {
+                e.target.style.display = 'none';
+                e.target.parentNode.style.background = color;
+                e.target.parentNode.style.color = '#fff';
+                e.target.parentNode.textContent = province.code;
+              }}
+            />
+          </div>
           <div>
             <div className="dp-header__name">{province.name}</div>
             <div className="dp-header__premier">{province.premierName}</div>

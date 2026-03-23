@@ -12,5 +12,8 @@
     "axios": "^1.7.0",
     "cors": "^2.8.5",
     "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "pg": "^8.20.0"
   }
 }

@@ -3,7 +3,7 @@ import { useProvinceData }     from './hooks/useProvinceData.js';
 import Header                  from './components/Header.jsx';
 import NationalSummary         from './components/NationalSummary.jsx';
 import SortTabs                from './components/SortTabs.jsx';
-import ProvinceGrid            from './components/ProvinceGrid.jsx';
+import CanadaMap               from './components/CanadaMap.jsx';
 import ProvinceCard            from './components/ProvinceCard.jsx';
 import ProvinceDetailPanel     from './components/ProvinceDetailPanel.jsx';
 import SupportSection          from './components/SupportSection.jsx';
@@ -90,14 +90,12 @@ export default function App() {
       <main>
         <div className="app-shell">
 
-          {/* ── Province overview grid ── */}
-          <div className="app-shell__grid-wrap">
-            <ProvinceGrid
-              provinces={sortedProvinces}
-              selectedCode={selectedCode}
-              onSelect={handleSelect}
-            />
-          </div>
+          {/* ── Canada choropleth map ── */}
+          <CanadaMap
+            provinces={data?.provinces ?? []}
+            selectedCode={selectedCode}
+            onSelect={handleSelect}
+          />
 
           {/* ── Sort tabs ── */}
           <SortTabs active={sortKey} onChange={handleTabChange} />

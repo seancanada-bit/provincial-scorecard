@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { PROVINCE_COLORS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
+import { PROVINCE_COLORS, PROVINCE_FLAGS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
 import ProvinceDetailPanel from './ProvinceDetailPanel.jsx';
 
 const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education'];
@@ -49,9 +49,21 @@ export default function ProvinceCard({
         {/* Rank */}
         <span className="pcard__rank">#{rank}</span>
 
-        {/* Left: badge + name */}
+        {/* Left: flag badge + name */}
         <div className="pcard__left">
-          <div className="pcard__badge" style={{ background: color }} aria-hidden="true">{province.code}</div>
+          <div className="pcard__badge" style={{ borderColor: color }} aria-hidden="true">
+            <img
+              src={PROVINCE_FLAGS[province.code]}
+              alt={`Flag of ${province.name}`}
+              className="pcard__flag"
+              onError={e => {
+                e.target.style.display = 'none';
+                e.target.parentNode.style.background = color;
+                e.target.parentNode.style.color = '#fff';
+                e.target.parentNode.textContent = province.code;
+              }}
+            />
+          </div>
           <div className="pcard__nameblock">
             <div className="pcard__name">{province.name}</div>
             <div className="pcard__premier">{province.premierName}</div>
