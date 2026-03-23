@@ -107,9 +107,9 @@ function scoreProvince(prov) {
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
-  const primaryScore   = healthcare ? normalize(healthcare.primary_care_attachment_pct, BOUNDS.primaryCareAttach.best, BOUNDS.primaryCareAttach.worst) : null;
+  const primaryCareScore = healthcare ? normalize(healthcare.primary_care_attachment_pct, BOUNDS.primaryCareAttach.best, BOUNDS.primaryCareAttach.worst) : null;
   const erScore        = healthcare ? normalize(healthcare.er_benchmark_met_pct, BOUNDS.erBenchmark.best, BOUNDS.erBenchmark.worst) : null;
-  const healthcareScore = Math.round(avg(surgicalScore, primaryScore, erScore) ?? 50);
+  const healthcareScore = Math.round(avg(surgicalScore, primaryCareScore, erScore) ?? 50);
 
   // ─── HOUSING (20%) ──────────────────────────────────────────────────
   const startsScore  = housing ? normalize(housing.housing_starts_per_1000_growth, BOUNDS.housingStartsPer1k.best, BOUNDS.housingStartsPer1k.worst) : null;
