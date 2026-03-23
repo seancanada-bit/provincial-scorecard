@@ -35,12 +35,20 @@ export function gradeBgClass(grade) {
 export function gradeFill(grade) {
   if (!grade) return '#ccc';
   const letter = grade[0];
-  const map = { A: '#1B5E20', B: '#388E3C', C: '#F57F17', D: '#E65100', F: '#B71C1C' };
+  const map = { A: '#1B5E20', B: '#2E7D32', C: '#B45309', D: '#C2410C', F: '#B71C1C' };
   return map[letter] ?? '#ccc';
 }
 
 export function scoreFill(score) {
   return gradeFill(toGrade(score ?? 0));
+}
+
+// Accessible colours for grade text on dark/near-black backgrounds (WCAG AA ≥4.5:1)
+export function gradeFillDark(grade) {
+  if (!grade) return '#aaa';
+  const letter = grade[0];
+  const map = { A: '#6EE7B7', B: '#86EFAC', C: '#FCD34D', D: '#FB923C', F: '#FCA5A5' };
+  return map[letter] ?? '#aaa';
 }
 
 export function overrunColor(pct) {

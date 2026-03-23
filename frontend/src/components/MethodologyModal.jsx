@@ -1,7 +1,86 @@
 import { useEffect } from 'react';
 
+const CATEGORIES = [
+  {
+    key: 'healthcare', label: 'Healthcare', weight: 20,
+    why: 'Whether you can get a family doctor and how long you wait for surgery are the most visceral ways most Canadians experience their provincial government.',
+    metrics: [
+      { name: 'Surgical wait time',       weight: '⅓', direction: 'lower ↓', best: '19 wks',  worst: '61 wks',  source: 'CIHI' },
+      { name: 'Primary care attachment',  weight: '⅓', direction: 'higher ↑', best: '100%',   worst: '70%',     source: 'CIHI' },
+      { name: 'ER wait-time benchmark met', weight: '⅓', direction: 'higher ↑', best: '90%', worst: '50%',     source: 'CIHI' },
+    ],
+  },
+  {
+    key: 'housing', label: 'Housing', weight: 15,
+    why: 'Whether you can afford a home or rent is the defining quality-of-life question for many Canadians, and housing supply is primarily a provincial responsibility.',
+    metrics: [
+      { name: 'Housing starts per 1k pop. growth', weight: '⅓', direction: 'higher ↑', best: '300', worst: '50',  source: 'CMHC / Stats Can' },
+      { name: 'Home price YoY % change',           weight: '⅓', direction: 'lower ↓',  best: '−2%', worst: '+15%', source: 'CREA MLS HPI' },
+      { name: 'Rent inflation',                     weight: '⅓', direction: 'lower ↓',  best: '0%',  worst: '10%',  source: 'CMHC Rental Market' },
+    ],
+  },
+  {
+    key: 'fiscal', label: 'Fiscal', weight: 15,
+    why: 'A province spending heavily on debt interest has less money for services. Fiscal health today determines service quality tomorrow.',
+    metrics: [
+      { name: 'Budget balance % of GDP',         weight: '⅓', direction: 'higher ↑', best: '+1.5%',  worst: '−5%',     source: 'Provincial budgets' },
+      { name: 'Debt interest per $ revenue',     weight: '⅓', direction: 'lower ↓',  best: '4¢',     worst: '15¢',     source: 'Provincial budgets' },
+      { name: 'Net debt per capita',             weight: '⅓', direction: 'lower ↓',  best: '$5,000', worst: '$40,000', source: 'Stats Can / FP' },
+      { name: 'Three-year fiscal trend bonus',   weight: 'adj.', direction: 'n/a',   best: '+5 pts', worst: '−5 pts',  source: 'Trend analysis' },
+    ],
+  },
+  {
+    key: 'infrastructure', label: 'Infrastructure', weight: 11,
+    why: 'Whether big capital projects come in on time and on budget tells you a lot about government execution. Major overruns crowd out other priorities.',
+    metrics: [
+      { name: 'Avg project cost overrun', weight: '60%', direction: 'lower ↓', best: '0%',   worst: '100%',  source: 'Project disclosures' },
+      { name: 'Avg project delay',        weight: '40%', direction: 'lower ↓', best: '0 mo', worst: '36 mo', source: 'Project disclosures' },
+    ],
+  },
+  {
+    key: 'economy', label: 'Economy', weight: 15,
+    why: 'Employment, economic growth, credit health, and Auditor General findings all reflect the underlying condition of the province\'s economy and governance.',
+    metrics: [
+      { name: 'Unemployment rate Δ vs. national', weight: '¼', direction: 'lower ↓',  best: '−3pp', worst: '+3pp', source: 'Stats Can LFS' },
+      { name: 'GDP growth Δ vs. national',        weight: '¼', direction: 'higher ↑', best: '+3pp', worst: '−3pp', source: 'Stats Can' },
+      { name: 'Credit rating (avg. of agencies)', weight: '¼', direction: 'higher ↑', best: 'Aaa / AAA', worst: 'Baa3 / BBB−', source: 'Moody\'s, DBRS, S&P, Fitch' },
+      { name: 'Premier net approval',             weight: '¼', direction: 'higher ↑', best: '+40pp', worst: '−40pp', source: 'Abacus / Leger / Angus Reid' },
+    ],
+  },
+  {
+    key: 'education', label: 'Education', weight: 14,
+    why: 'Literacy, numeracy, and the cost of higher education shape long-term economic mobility. Outcomes, not just spending, are what matter.',
+    metrics: [
+      { name: 'PCAP math + reading avg.',   weight: '60%', direction: 'higher ↑', best: '540', worst: '440',     source: 'PCAP (Council of Ministers)' },
+      { name: 'University tuition',         weight: '30%', direction: 'lower ↓',  best: '$3,000/yr', worst: '$10,000/yr', source: 'Stats Can TUCC' },
+      { name: 'Student–teacher ratio',      weight: '10%', direction: 'lower ↓',  best: '12:1', worst: '21:1',    source: 'Stats Can' },
+    ],
+  },
+  {
+    key: 'safety', label: 'Safety', weight: 10,
+    why: 'Survey-based victimization avoids reporting-confidence bias that plagues police-reported crime stats. Homicides are always counted.',
+    metrics: [
+      { name: 'GSS victimization rate',  weight: '50%', direction: 'lower ↓', best: '55 / 1k', worst: '175 / 1k', source: 'Stats Can GSS Cycle 36 (2019)' },
+      { name: 'Homicide rate per 100k', weight: '50%', direction: 'lower ↓', best: '0.3',      worst: '6.5',       source: 'Stats Can Homicide Survey (2023)' },
+    ],
+  },
+];
+
+const GRADES = [
+  ['A+', '93–100'], ['A', '87–92'], ['A−', '80–86'],
+  ['B+', '77–79'],  ['B', '73–76'], ['B−', '70–72'],
+  ['C+', '67–69'],  ['C', '60–66'], ['C−', '57–59'],
+  ['D', '40–56'],   ['F', '0–39'],
+];
+
+const GRADE_COLORS = {
+  'A+': '#1B5E20', 'A': '#1B5E20', 'A−': '#1B5E20',
+  'B+': '#2E7D32', 'B': '#2E7D32', 'B−': '#2E7D32',
+  'C+': '#B45309', 'C': '#B45309', 'C−': '#B45309',
+  'D': '#C2410C', 'F': '#B71C1C',
+};
+
 export default function MethodologyModal({ onClose }) {
-  // Close on Escape
   useEffect(() => {
     const handler = e => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handler);
@@ -20,96 +99,165 @@ export default function MethodologyModal({ onClose }) {
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="modal-panel" style={{ position: 'relative' }}>
+      <div className="modal-panel">
         <button className="modal-panel__close" onClick={onClose} aria-label="Close methodology panel">×</button>
 
         <h2 className="modal-panel__title" id="modal-title">How we score this</h2>
 
+        {/* THE FORMULA */}
         <section className="modal-section">
-          <h3>What this site measures</h3>
-          <p>
-            Provincial Scorecard grades each province on five things that affect Canadians' daily lives:
-            healthcare delivery, housing affordability, fiscal responsibility, infrastructure delivery,
-            and economic and governance health.
+          <h3>The composite formula</h3>
+          <p className="modal-section__intro">
+            Each province gets a single 0–100 composite score — a weighted average of seven categories:
           </p>
+          <div className="modal-formula">
+            {CATEGORIES.map((cat, i) => (
+              <span key={cat.key} className="modal-formula__term">
+                <span className="modal-formula__label">{cat.label}</span>
+                <span className="modal-formula__weight">×{cat.weight}%</span>
+                {i < CATEGORIES.length - 1 && <span className="modal-formula__plus"> + </span>}
+              </span>
+            ))}
+          </div>
+
+          <p className="modal-section__intro" style={{ marginTop: 16 }}>
+            Each raw metric is normalized to 0–100 using:
+          </p>
+          <div className="modal-normalize">
+            <span className="modal-normalize__eq">
+              score = <span className="modal-normalize__frac">
+                <span className="modal-normalize__num">value − worst</span>
+                <span className="modal-normalize__den">best − worst</span>
+              </span> × 100
+            </span>
+            <span className="modal-normalize__note">
+              For lower-is-better metrics (wait times, debt, crime), best and worst are swapped.
+            </span>
+          </div>
         </section>
 
+        {/* CATEGORY BREAKDOWN */}
         <section className="modal-section">
-          <h3>Why these five categories</h3>
-          <p>
-            <strong>Healthcare (25%)</strong> — Whether you can get a family doctor and how long you wait
-            for surgery are the most visceral ways most Canadians experience their provincial government.
-          </p>
-          <p>
-            <strong>Housing (20%)</strong> — Whether you can afford a home or rent is increasingly the
-            defining quality-of-life question for working Canadians, and housing policy is primarily
-            a provincial responsibility.
-          </p>
-          <p>
-            <strong>Fiscal responsibility (20%)</strong> — A province spending heavily on debt interest
-            has less money for services. Fiscal health today determines service quality tomorrow.
-          </p>
-          <p>
-            <strong>Infrastructure (15%)</strong> — Whether those big capital projects actually come in
-            on time and on budget tells you a lot about government competence. Major overruns mean less
-            money for other priorities.
-          </p>
-          <p>
-            <strong>Economy & Governance (20%)</strong> — Employment, economic growth, credit ratings,
-            and whether the Auditor General has concerns all reflect the underlying health of the province.
-          </p>
+          <h3>Category breakdown</h3>
+          {CATEGORIES.map(cat => (
+            <div key={cat.key} className="modal-category">
+              <div className="modal-category__header">
+                <span className="modal-category__name">{cat.label}</span>
+                <span className="modal-category__weight">{cat.weight}% of composite</span>
+              </div>
+              <p className="modal-category__why">{cat.why}</p>
+              <table className="modal-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Sub-weight</th>
+                    <th>Direction</th>
+                    <th>Best → Worst</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cat.metrics.map(m => (
+                    <tr key={m.name}>
+                      <td>{m.name}</td>
+                      <td className="modal-table__center">{m.weight}</td>
+                      <td className="modal-table__center">{m.direction}</td>
+                      <td className="modal-table__mono">{m.best} → {m.worst}</td>
+                      <td className="modal-table__muted">{m.source}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
         </section>
 
-        <section className="modal-section">
-          <h3>How the math works</h3>
-          <p>
-            Each metric gets converted to a 0–100 score. We set a realistic best-case and worst-case
-            based on actual Canadian provincial data, then place each province linearly on that scale.
-          </p>
-          <p>
-            For example, surgical wait times: the best-performing province historically averages about
-            19 weeks (score: 100), and the worst about 61 weeks (score: 0). A province at 28 weeks
-            scores roughly 79 out of 100.
-          </p>
-          <p>
-            Within each category, sub-scores are averaged equally. Categories are then combined using
-            the weighted percentages above to produce the composite score.
-          </p>
-          <p>
-            A three-year fiscal trend adds or subtracts 5 points from the fiscal category score to
-            reward improvement and flag deterioration.
-          </p>
-        </section>
-
+        {/* GRADE SCALE */}
         <section className="modal-section">
           <h3>Letter grades</h3>
+          <div className="modal-grades">
+            {GRADES.map(([g, range]) => (
+              <div key={g} className="modal-grade-chip" style={{ color: GRADE_COLORS[g], borderColor: GRADE_COLORS[g] + '44' }}>
+                <span className="modal-grade-chip__letter">{g}</span>
+                <span className="modal-grade-chip__range">{range}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* $ VALUE */}
+        <section className="modal-section">
+          <h3>$ Value score</h3>
           <p>
-            A+ = 93+ | A = 87–92 | A− = 80–86 | B+ = 77–79 | B = 73–76 | B− = 70–72 |
-            C+ = 67–69 | C = 60–66 | C− = 57–59 | D = 40–56 | F = under 40
+            The <strong>$ Value</strong> tab ranks provinces by <em>composite ÷ tax burden index</em>,
+            where 100 = national average tax burden. A province scoring 70 composite with a tax index
+            of 90 earns a Value score of 78 — better return on your dollar than a province scoring 80
+            composite with a tax index of 120.
           </p>
         </section>
 
-        <section className="modal-section">
-          <h3>Honest limitations</h3>
-          <p>This site cannot capture everything.</p>
-          <ul>
-            <li>Some data is updated annually, not in real time.</li>
-            <li>Infrastructure scoring depends on which projects the maintainer is tracking — we focus on the largest and most publicly reported projects per province.</li>
-            <li>Credit ratings are produced by private agencies using their own methodology.</li>
-            <li>Premier approval reflects public sentiment, not policy quality directly.</li>
-            <li>Smaller provinces have less publicly available data, which may affect score precision.</li>
-            <li>This is a one-person project. If you find an error, please contact us.</li>
-          </ul>
+        {/* FAIRNESS NOTES */}
+        <section className="modal-section modal-section--fairness">
+          <h3>Fairness — what we do and don't adjust for</h3>
+
+          <div className="modal-fairness-item">
+            <span className="modal-fairness-item__label modal-fairness-item__label--good">✓ Already per-capita</span>
+            <p>
+              Every metric is rate-based or per-capita — wait weeks per patient, debt per resident,
+              crimes per 100k, etc. Absolute population size doesn't advantage Ontario or penalize PEI.
+            </p>
+          </div>
+
+          <div className="modal-fairness-item">
+            <span className="modal-fairness-item__label modal-fairness-item__label--note">⚠ Equalization context</span>
+            <p>
+              Provinces receiving federal equalization payments (currently QC, MB, NS, NB, PE, and
+              sometimes NL) have access to more revenue per capita than they generate provincially.
+              Quebec's affordable tuition and strong healthcare are partly funded through a system
+              that Alberta and Ontario taxpayers contribute to. Fiscal scores don't explicitly
+              separate self-generated revenue from federal transfers.
+            </p>
+          </div>
+
+          <div className="modal-fairness-item">
+            <span className="modal-fairness-item__label modal-fairness-item__label--note">⚠ Resource royalty volatility</span>
+            <p>
+              Alberta, Saskatchewan, and Newfoundland &amp; Labrador receive substantial natural
+              resource royalties that fluctuate with commodity prices. In high-price years, fiscal
+              scores reflect this windfall; in bust years, deficits appear. These scores measure
+              current outcomes, not structural fiscal management capacity.
+            </p>
+          </div>
+
+          <div className="modal-fairness-item">
+            <span className="modal-fairness-item__label modal-fairness-item__label--note">⚠ Geography and service delivery</span>
+            <p>
+              Delivering healthcare and education to remote, sparsely-populated areas costs far more
+              per resident than urban delivery. Newfoundland, northern Manitoba, and Saskatchewan
+              face structural challenges that outcome-based metrics don't fully capture.
+            </p>
+          </div>
+
+          <div className="modal-fairness-item">
+            <span className="modal-fairness-item__label modal-fairness-item__label--note">⚠ Safety scores in SK and MB</span>
+            <p>
+              Saskatchewan and Manitoba's lower safety scores partly reflect historically
+              underserved Indigenous communities — a legacy of federal policy and residential
+              schools, not solely current provincial governance. The GSS survey captures
+              province-wide victimization without separating this structural context.
+            </p>
+          </div>
         </section>
 
+        {/* ABOUT */}
         <section className="modal-section">
-          <h3>About the maintainer</h3>
+          <h3>About this project</h3>
           <p>
-            Provincial Scorecard is maintained by a single individual based in British Columbia, not
-            affiliated with any government, political party, or advocacy organization. It was built out
-            of genuine frustration at not being able to find a clear, nonpartisan comparison of provincial
-            government performance. If you have data corrections or suggestions, please reach out via
-            the contact link in the footer.
+            Provincial Scorecard is maintained by a single individual based in British Columbia,
+            not affiliated with any government, political party, or advocacy organization.
+            It was built out of genuine frustration at not being able to find a clear, nonpartisan
+            comparison of provincial government performance. Data is updated as new figures are released.
+            If you find an error or have a data suggestion, please reach out via the footer.
           </p>
         </section>
       </div>

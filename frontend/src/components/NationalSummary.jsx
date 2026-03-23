@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { gradeFill } from '../utils/grading.js';
+import { gradeFillDark } from '../utils/grading.js';
 
 function buildHeadline(national, provinces) {
   if (!national || !provinces) return null;
@@ -34,7 +34,7 @@ export default function NationalSummary({ national, provinces }) {
           <div className="editorial-callout">
             <span className="editorial-callout__label">Best overall</span>
             <span className="editorial-callout__province">{top?.name}</span>
-            <span className="editorial-callout__grade" style={{ color: gradeFill(top?.grade) }}>
+            <span className="editorial-callout__grade" style={{ color: gradeFillDark(top?.grade) }}>
               {top?.grade} · {top?.composite}/100
             </span>
           </div>
@@ -42,7 +42,7 @@ export default function NationalSummary({ national, provinces }) {
           <div className="editorial-callout">
             <span className="editorial-callout__label">Most urgent</span>
             <span className="editorial-callout__province">{bot?.name}</span>
-            <span className="editorial-callout__grade" style={{ color: gradeFill(bot?.grade) }}>
+            <span className="editorial-callout__grade" style={{ color: gradeFillDark(bot?.grade) }}>
               {bot?.grade} · {bot?.composite}/100
             </span>
           </div>
@@ -50,7 +50,7 @@ export default function NationalSummary({ national, provinces }) {
           <div className="editorial-callout">
             <span className="editorial-callout__label">Biggest healthcare gap</span>
             <span className="editorial-callout__province">{worstHealth?.name}</span>
-            <span className="editorial-callout__grade" style={{ color: gradeFill(worstHealth?.categories?.healthcare?.grade) }}>
+            <span className="editorial-callout__grade" style={{ color: gradeFillDark(worstHealth?.categories?.healthcare?.grade) }}>
               {worstHealth?.categories?.healthcare?.grade} · {worstHealth?.categories?.healthcare?.score}/100
             </span>
           </div>
