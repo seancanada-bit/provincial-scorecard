@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   gradeFill, gradeColorClass, gradeBgClass, scoreFill,
   outlookSymbol, outlookLabel, formatDollars, overrunColor, delayColor,
@@ -370,9 +370,21 @@ function EducationTab({ c }) {
 
 export default function ProvinceDetailPanel({ province, onMethodology, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? 'healthcare');
+  const [showValueTip, setShowValueTip] = useState(false);
+  const valueBadgeRef = useRef(null);
   const c    = province.categories;
   const taxes = province.taxes ?? null;
   const color = PROVINCE_COLORS[province.code] ?? '#333';
+
+  // Close value tooltip on outside click
+  useEffect(() => {
+    if (!showValueTip) return;
+    const handler = e => {
+      if (!valueBadgeRef.current?.contains(e.target)) setShowValueTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showValueTip]);
 
   const tabScore = key => c[key]?.score ?? 0;
   const tabGrade = key => c[key]?.grade ?? '—';
@@ -414,13 +426,30 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
           <span className={`dp-header__grade ${gradeColorClass(province.grade)}`}>{province.grade}</span>
           <span className="dp-header__score">{province.composite}<span style={{fontSize:13,opacity:.6}}>/100</span></span>
           {province.valueScore != null && (
-            <span className="dp-header__value" title="Value score: overall score ÷ tax burden">
+            <span
+              ref={valueBadgeRef}
+              className={`dp-header__value${showValueTip ? ' dp-header__value--open' : ''}`}
+              onClick={() => setShowValueTip(v => !v)}
+              onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setShowValueTip(v => !v)}
+              role="button"
+              tabIndex={0}
+              aria-expanded={showValueTip}
+              aria-label={`Value score ${province.valueScore}. Click for explanation.`}
+            >
               <span className="dp-header__value-label">$ Value</span>
               <span className="dp-header__value-num">{province.valueScore}</span>
             </span>
           )}
         </div>
       </div>
+
+      {/* Value score explanation bar */}
+      {showValueTip && (
+        <div className="dp-value-tip" role="status">
+          <span><strong>$ Value score</strong> — overall score ÷ tax burden. Who gives you the most for your dollar?</span>
+          <button className="dp-value-tip__close" onClick={() => setShowValueTip(false)} aria-label="Close">✕</button>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="dp-tabs" role="tablist">
