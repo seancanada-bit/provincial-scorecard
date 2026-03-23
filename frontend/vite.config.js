@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/provincial-scorecard/',
+  base: process.env.VITE_BASE_PATH || '/provincial-scorecard/',
   build: {
     outDir: 'dist',
     sourcemap: false,

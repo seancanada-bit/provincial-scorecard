@@ -23,10 +23,11 @@ jobs:
       - name: Install dependencies
         run: cd frontend && npm ci
 
-      - name: Build
+      - name: Build for GitHub Pages
         run: cd frontend && npm run build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_BASE_PATH: /provincial-scorecard/
 
       - name: Deploy to GitHub Pages (docs/)
         run: |
@@ -38,6 +39,12 @@ jobs:
           git add docs/
           git diff --staged --quiet || git commit -m "chore: build frontend [skip ci]"
           git push
+
+      - name: Build for CWH (root domain)
+        run: cd frontend && npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_BASE_PATH: /
 
       - name: Deploy to CWH via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
