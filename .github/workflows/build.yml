@@ -23,24 +23,7 @@ jobs:
       - name: Install dependencies
         run: cd frontend && npm ci
 
-      - name: Build for GitHub Pages
-        run: cd frontend && npm run build
-        env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
-          VITE_BASE_PATH: /provincial-scorecard/
-
-      - name: Deploy to GitHub Pages (docs/)
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
-          rm -rf docs
-          cp -r frontend/dist docs
-          git add docs/
-          git diff --staged --quiet || git commit -m "chore: build frontend [skip ci]"
-          git push
-
-      - name: Build for CWH (root domain)
+      - name: Build
         run: cd frontend && npm run build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
