@@ -1,36 +1,45 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { useProvinceData } from './hooks/useProvinceData.js';
-import Header           from './components/Header.jsx';
-import NationalSummary  from './components/NationalSummary.jsx';
-import SortTabs         from './components/SortTabs.jsx';
-import ProvinceCard     from './components/ProvinceCard.jsx';
-import ProvinceDetail   from './components/ProvinceDetail.jsx';
-import SupportSection   from './components/SupportSection.jsx';
-import DataSources      from './components/DataSources.jsx';
-import Footer           from './components/Footer.jsx';
-import MethodologyModal from './components/MethodologyModal.jsx';
-import { PROVINCE_COLORS, gradeColorClass } from './utils/grading.js';
+import { useProvinceData }     from './hooks/useProvinceData.js';
+import Header                  from './components/Header.jsx';
+import NationalSummary         from './components/NationalSummary.jsx';
+import SortTabs                from './components/SortTabs.jsx';
+import ProvinceGrid            from './components/ProvinceGrid.jsx';
+import ProvinceCard            from './components/ProvinceCard.jsx';
+import ProvinceDetailPanel     from './components/ProvinceDetailPanel.jsx';
+import SupportSection          from './components/SupportSection.jsx';
+import DataSources             from './components/DataSources.jsx';
+import Footer                  from './components/Footer.jsx';
+import MethodologyModal        from './components/MethodologyModal.jsx';
 
 function getCategoryScore(province, category) {
   if (category === 'overall') return province.composite;
   return province.categories[category]?.score ?? 0;
 }
 
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const handler = () => setMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return mobile;
+}
+
 export default function App() {
   const { data } = useProvinceData();
-  const [sortKey, setSortKey]         = useState('overall');
-  const [expandedCode, setExpandedCode] = useState(null);
+  const [sortKey, setSortKey]           = useState('overall');
+  const [selectedCode, setSelectedCode] = useState(null);
   const [showMethodology, setShowMethodology] = useState(false);
+  const isMobile = useIsMobile();
 
-  // Count-up only fires once per session
+  // Count-up fires once on first data load
   const hasAnimated = useRef(false);
   const [animateCount, setAnimateCount] = useState(false);
-
   useEffect(() => {
     if (data && !hasAnimated.current) {
       hasAnimated.current = true;
       setAnimateCount(true);
-      // Reset after first render so subsequent sort re-renders don't retrigger
       setTimeout(() => setAnimateCount(false), 800);
     }
   }, [data]);
@@ -42,86 +51,105 @@ export default function App() {
     );
   }, [data, sortKey]);
 
+  // Auto-select top province on desktop
+  useEffect(() => {
+    if (!isMobile && sortedProvinces.length && !selectedCode) {
+      setSelectedCode(sortedProvinces[0].code);
+    }
+  }, [isMobile, sortedProvinces.length]);
+
+  // On sort change, select new top province on desktop
   function handleTabChange(key) {
     setSortKey(key);
-    // Collapse expanded card on re-sort so the list re-orders cleanly
-    setExpandedCode(null);
+    if (!isMobile && sortedProvinces.length) {
+      const newTop = [...(data?.provinces ?? [])].sort(
+        (a, b) => getCategoryScore(b, key) - getCategoryScore(a, key)
+      )[0];
+      if (newTop) setSelectedCode(newTop.code);
+    }
   }
 
-  function handleToggle(code) {
-    setExpandedCode(prev => (prev === code ? null : code));
+  function handleSelect(code) {
+    if (isMobile) {
+      setSelectedCode(prev => prev === code ? null : code);
+    } else {
+      setSelectedCode(code);
+    }
   }
+
+  const selectedProvince = sortedProvinces.find(p => p.code === selectedCode);
+
+  if (!data) return null;
 
   return (
     <>
-      <Header lastUpdated={data?.lastUpdated} />
-      <NationalSummary national={data?.national} provinces={data?.provinces} />
-      <SortTabs active={sortKey} onChange={handleTabChange} />
+      <Header lastUpdated={data.lastUpdated} />
+      <NationalSummary national={data.national} provinces={data.provinces} />
 
       <main>
-        <div className="app-layout">
-          {/* ── Left column: province list ── */}
-          <div className="app-layout__left">
-            <ol className="province-list" aria-label="Provinces ranked by selected category" style={{ listStyle: 'none' }}>
-              {sortedProvinces.map((province, idx) => (
-                <li key={province.code} style={{ transition: 'all 0.15s ease' }}>
-                  <ProvinceCard
-                    province={province}
-                    rank={idx + 1}
-                    expanded={expandedCode === province.code}
-                    onToggle={() => handleToggle(province.code)}
-                    sortKey={sortKey}
-                    animateCount={animateCount}
-                    onMethodology={() => setShowMethodology(true)}
-                  />
-                </li>
-              ))}
-            </ol>
+        <div className="app-shell">
 
-            <SupportSection supporters={data?.supporters ?? []} />
-            <DataSources />
+          {/* ── Province overview grid ── */}
+          <div className="app-shell__grid-wrap">
+            <ProvinceGrid
+              provinces={sortedProvinces}
+              selectedCode={selectedCode}
+              onSelect={handleSelect}
+            />
           </div>
 
-          {/* ── Right column: desktop detail panel + ad placeholder ── */}
-          <aside className="app-layout__right" aria-label="Province detail panel">
-            {expandedCode ? (
-              <div style={{ background: 'var(--card-bg)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow)', border: '1px solid var(--border)', padding: '0' }}>
-                {(() => {
-                  const prov = sortedProvinces.find(p => p.code === expandedCode);
-                  if (!prov) return null;
-                  const color = PROVINCE_COLORS[prov.code] ?? '#333';
-                  return (
-                    <div>
-                      <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <div style={{ width: 36, height: 36, borderRadius: 6, background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 13, fontWeight: 800, fontFamily: 'var(--font-serif)' }}>{prov.code}</div>
-                        <div>
-                          <div style={{ fontWeight: 600, fontSize: 15 }}>{prov.name}</div>
-                          <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{prov.premierName}</div>
-                        </div>
-                        <div style={{ marginLeft: 'auto', fontFamily: 'var(--font-serif)', fontSize: 32, fontWeight: 800, color: 'var(--grade-a)' }}>
-                          {prov.grade}
-                        </div>
-                      </div>
-                      <ProvinceDetail province={prov} onMethodology={() => setShowMethodology(true)} />
-                    </div>
-                  );
-                })()}
-              </div>
-            ) : (
-              <div style={{ padding: '32px 24px', textAlign: 'center', color: 'var(--text-muted)', fontSize: 14, background: 'var(--card-bg)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }}>
-                <div style={{ fontSize: 32, marginBottom: 12 }}>🇨🇦</div>
-                <p>Select a province to see its full breakdown here.</p>
+          {/* ── Sort tabs ── */}
+          <SortTabs active={sortKey} onChange={handleTabChange} />
+
+          {/* ── Two-column layout ── */}
+          <div className="app-shell__columns">
+
+            {/* Left: ranked list */}
+            <div className="app-shell__list-col">
+              <ol className="province-list" aria-label="Provinces ranked by selected category" style={{ listStyle: 'none' }}>
+                {sortedProvinces.map((province, idx) => (
+                  <li key={province.code}>
+                    <ProvinceCard
+                      province={province}
+                      rank={idx + 1}
+                      selected={selectedCode === province.code}
+                      expanded={isMobile && selectedCode === province.code}
+                      onSelect={handleSelect}
+                      sortKey={sortKey}
+                      animateCount={animateCount}
+                      onMethodology={() => setShowMethodology(true)}
+                      isMobile={isMobile}
+                    />
+                  </li>
+                ))}
+              </ol>
+
+              <SupportSection supporters={data.supporters ?? []} />
+              <DataSources />
+            </div>
+
+            {/* Right: detail panel (desktop only) */}
+            {!isMobile && (
+              <div className="app-shell__detail-col" aria-label="Province detail">
+                {selectedProvince ? (
+                  <ProvinceDetailPanel
+                    key={selectedProvince.code}
+                    province={selectedProvince}
+                    onMethodology={() => setShowMethodology(true)}
+                  />
+                ) : (
+                  <div className="dp-empty">
+                    <span className="dp-empty__flag">🇨🇦</span>
+                    <p>Select a province to see its full breakdown</p>
+                  </div>
+                )}
               </div>
             )}
-
-            {/* EthicalAds placeholder */}
-            {/* To activate: add EthicalAds script to index.html and set data-ea-publisher */}
-            <div id="ethical-ad-unit" className="ad-placeholder" aria-hidden="true" />
-          </aside>
+          </div>
         </div>
       </main>
 
-      <div style={{ maxWidth: '1140px', margin: '0 auto', padding: '0 16px' }}>
+      <div className="app-footer-wrap">
         <Footer onMethodology={() => setShowMethodology(true)} />
       </div>
 
