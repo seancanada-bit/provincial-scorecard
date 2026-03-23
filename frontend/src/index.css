@@ -94,6 +94,7 @@ body {
 .site-header {
   position: sticky; top: 0; z-index: 100;
   background: var(--card-bg);
+  border-top: 5px solid var(--canada-red);   /* ① Canadian masthead stripe */
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   padding: 0 var(--space-md);
@@ -101,19 +102,20 @@ body {
 .site-header__inner {
   max-width: 1140px; margin: 0 auto;
   display: flex; align-items: center; gap: var(--space-md);
-  height: 56px;
+  height: 64px;                              /* ③ taller for bigger wordmark */
 }
 .site-header__wordmark {
   font-family: var(--font-serif);
-  font-size: 20px; font-weight: 800;
+  font-size: 26px; font-weight: 800;         /* ③ bigger, prouder wordmark */
   color: var(--text-primary);
   letter-spacing: -0.02em;
   text-decoration: none;
   flex-shrink: 0;
+  display: flex; align-items: center;
 }
 .site-header__wordmark span { color: var(--canada-red); }
 .site-header__tagline {
-  font-size: 12px; color: var(--text-muted);
+  font-size: 13px; color: var(--text-secondary);
   display: none;
 }
 .site-header__updated {
@@ -568,20 +570,25 @@ body {
 }
 
 /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
-.site-footer {
-  border-top: 1px solid var(--border);
+.app-footer-wrap {                           /* ⑥ newspaper back-page bookend */
+  background: #1C1917;
+  border-top: 4px solid var(--canada-red);
   margin-top: var(--space-2xl);
+}
+.site-footer {
+  border-top: none;
+  margin-top: 0;
   padding: var(--space-xl) var(--space-md);
   max-width: 1140px; margin-left: auto; margin-right: auto;
 }
 .site-footer__inner {
   display: flex; flex-wrap: wrap; gap: var(--space-md);
   align-items: center; justify-content: space-between;
-  font-size: 13px; color: var(--text-muted);
+  font-size: 13px; color: rgba(255,255,255,0.45);
 }
 .site-footer__links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
-.site-footer__links a { color: var(--text-muted); text-decoration: none; }
-.site-footer__links a:hover { color: var(--text-primary); text-decoration: underline; }
+.site-footer__links a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.site-footer__links a:hover { color: #fff; text-decoration: underline; }
 
 /* ─── METHODOLOGY MODAL ──────────────────────────────────────────────────── */
 .modal-backdrop {
@@ -675,10 +682,10 @@ body {
 
 /* ─── EDITORIAL SUMMARY ─────────────────────────────────────────────────── */
 .editorial-summary {
-  background: var(--text-primary);
+  background: #1C1917;                       /* ④ warm near-black, not blue-navy */
   color: #fff;
   padding: var(--space-xl) var(--space-md);
-  border-bottom: 3px solid var(--canada-red);
+  border-top: 4px solid var(--canada-red);   /* ④ red stripe at top, not bottom */
 }
 .editorial-summary__inner {
   max-width: 1140px; margin: 0 auto;
@@ -895,7 +902,7 @@ body {
 }
 .pcard__grade {
   font-family: var(--font-serif);
-  font-size: 52px;
+  font-size: 62px;                           /* ⑤ grade letters own the card */
   font-weight: 800;
   line-height: 1;
 }
@@ -964,7 +971,7 @@ body {
 .dp-header__right { display: flex; flex-direction: column; align-items: flex-end; }
 .dp-header__grade {
   font-family: var(--font-serif);
-  font-size: 36px; font-weight: 800; line-height: 1;
+  font-size: 44px; font-weight: 800; line-height: 1; /* ⑤ */
 }
 .dp-header__score {
   font-family: var(--font-mono);

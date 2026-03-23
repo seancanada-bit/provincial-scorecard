@@ -6,7 +6,7 @@ export default function Footer({ onMethodology }) {
         <nav className="site-footer__links" aria-label="Footer navigation">
           <button
             onClick={onMethodology}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', fontSize: '13px', padding: 0 }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.45)', fontSize: '13px', padding: 0 }}
             aria-haspopup="dialog"
           >
             Methodology
