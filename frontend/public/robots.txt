@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seancanada-bit.github.io/provincial-scorecard/sitemap.xml

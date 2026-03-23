@@ -1,0 +1,63 @@
+/**
+ * Supabase client and data fetcher.
+ * Called once per 24h by the cache refresh cycle.
+ */
+
+const { createClient } = require('@supabase/supabase-js');
+
+let supabase = null;
+
+function getClient() {
+  if (!supabase) {
+    const url = process.env.SUPABASE_URL;
+    const key = process.env.SUPABASE_ANON_KEY;
+    if (!url || !key) throw new Error('SUPABASE_URL and SUPABASE_ANON_KEY env vars required');
+    supabase = createClient(url, key);
+  }
+  return supabase;
+}
+
+async function fetchAllSupabaseData() {
+  const sb = getClient();
+
+  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters] = await Promise.all([
+    sb.from('provinces_meta').select('*'),
+    sb.from('provinces_healthcare').select('*'),
+    sb.from('provinces_housing').select('*'),
+    sb.from('provinces_credit').select('*'),
+    sb.from('provinces_polling').select('*'),
+    sb.from('provinces_governance').select('*'),
+    sb.from('infrastructure_projects').select('*'),
+    sb.from('supporters').select('display_name, tier').eq('active', true).order('added_date'),
+  ]);
+
+  // Check for errors
+  for (const [name, result] of [
+    ['meta', meta], ['healthcare', healthcare], ['housing', housing],
+    ['credit', credit], ['polling', polling], ['governance', governance],
+    ['infrastructure', infrastructure], ['supporters', supporters],
+  ]) {
+    if (result.error) throw new Error(`Supabase error on ${name}: ${result.error.message}`);
+  }
+
+  // Index by province_code for easy lookup
+  const byCode = key => arr => arr.reduce((acc, row) => { acc[row.province_code] = row; return acc; }, {});
+  const byCodeMulti = arr => arr.reduce((acc, row) => {
+    if (!acc[row.province_code]) acc[row.province_code] = [];
+    acc[row.province_code].push(row);
+    return acc;
+  }, {});
+
+  return {
+    meta:           meta.data,
+    healthcare:     byCode('province_code')(healthcare.data),
+    housing:        byCode('province_code')(housing.data),
+    credit:         byCode('province_code')(credit.data),
+    polling:        byCode('province_code')(polling.data),
+    governance:     byCode('province_code')(governance.data),
+    infrastructure: byCodeMulti(infrastructure.data),
+    supporters:     supporters.data,
+  };
+}
+
+module.exports = { fetchAllSupabaseData };

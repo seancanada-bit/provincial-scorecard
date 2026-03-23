@@ -1,0 +1,908 @@
+{
+  "lastUpdated": "2026-03-22T00:00:00Z",
+  "note": "Fallback cache — populated from publicly available data as of March 2026. Update via Supabase table editor.",
+  "national": {
+    "avgComposite": 62,
+    "avgHealthcare": 54,
+    "avgHousing": 48,
+    "avgFiscal": 66,
+    "avgInfrastructure": 52,
+    "avgEconomy": 68,
+    "topProvince": "PE",
+    "bottomProvince": "NL",
+    "nationalAvgHealthcareSurgical": 27
+  },
+  "provinces": [
+    {
+      "code": "BC",
+      "name": "British Columbia",
+      "premierName": "David Eby",
+      "composite": 61,
+      "grade": "C",
+      "categories": {
+        "healthcare": {
+          "score": 55,
+          "grade": "C-",
+          "surgicalWaitWeeks": 28,
+          "surgicalWaitScore": 79,
+          "primaryCareAttachPct": 83,
+          "primaryCareScore": 43,
+          "erBenchmarkMetPct": 57,
+          "erBenchmarkScore": 18,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 34,
+          "grade": "D",
+          "mlsHpiBenchmark": 995000,
+          "mlsHpiYoyPct": 2.5,
+          "priceScore": 75,
+          "housingStartsPer1000Growth": 175,
+          "startsScore": 49,
+          "rentInflationPct": 4.5,
+          "rentScore": 55,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 61,
+          "grade": "C",
+          "budgetBalancePctGdp": -1.5,
+          "balanceScore": 53,
+          "debtInterestCentsPerDollar": 5.2,
+          "interestScore": 88,
+          "netDebtPerCapita": 11200,
+          "debtScore": 82,
+          "fiscalTrend": "stable",
+          "trendBonus": 0
+        },
+        "infrastructure": {
+          "score": 60,
+          "grade": "C",
+          "avgOverrunPct": 6.5,
+          "avgDelayMonths": 5,
+          "projects": [
+            {"name": "Broadway Subway (SkyTrain Ext.)", "type": "Transit", "originalBudget": 2830000000, "currentBudget": 2830000000, "overrunPct": 0, "originalCompletion": "2025-12", "currentCompletion": "2026-03", "monthsDelayed": 3, "status": "In Construction"},
+            {"name": "Pattullo Bridge Replacement", "type": "Bridge", "originalBudget": 1380000000, "currentBudget": 1460000000, "overrunPct": 5.8, "originalCompletion": "2027-06", "currentCompletion": "2027-06", "monthsDelayed": 0, "status": "In Construction"},
+            {"name": "St. Paul's Hospital (New Site)", "type": "Hospital", "originalBudget": 2100000000, "currentBudget": 2300000000, "overrunPct": 9.5, "originalCompletion": "2026-12", "currentCompletion": "2028-01", "monthsDelayed": 13, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 64,
+          "grade": "C",
+          "employmentScore": 62,
+          "unemploymentRate": 5.8,
+          "unemploymentDeltaFromNational": -0.5,
+          "unemployScore": 58,
+          "gdpGrowthPct": 2.1,
+          "gdpGrowthDeltaFromNational": 0.2,
+          "gdpGrowthScore": 55,
+          "creditScore": 78,
+          "credit": {
+            "moodys": {"rating": "Aa2", "outlook": "stable"},
+            "dbrs":   {"rating": "AA",  "outlook": "stable"},
+            "sp":     {"rating": "AA",  "outlook": "stable"},
+            "fitch":  {"rating": "AA",  "outlook": "stable"}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 45,
+          "premierDisapprovalPct": 42,
+          "approvalScore": 54,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "AB",
+      "name": "Alberta",
+      "premierName": "Danielle Smith",
+      "composite": 68,
+      "grade": "C+",
+      "categories": {
+        "healthcare": {
+          "score": 51,
+          "grade": "D",
+          "surgicalWaitWeeks": 34,
+          "surgicalWaitScore": 64,
+          "primaryCareAttachPct": 79,
+          "primaryCareScore": 30,
+          "erBenchmarkMetPct": 62,
+          "erBenchmarkScore": 30,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 55,
+          "grade": "C-",
+          "mlsHpiBenchmark": 490000,
+          "mlsHpiYoyPct": 8.5,
+          "priceScore": 38,
+          "housingStartsPer1000Growth": 220,
+          "startsScore": 68,
+          "rentInflationPct": 6.8,
+          "rentScore": 32,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 92,
+          "grade": "A",
+          "budgetBalancePctGdp": 2.5,
+          "balanceScore": 100,
+          "debtInterestCentsPerDollar": 3.8,
+          "interestScore": 100,
+          "netDebtPerCapita": 3200,
+          "debtScore": 100,
+          "fiscalTrend": "stable",
+          "trendBonus": 0
+        },
+        "infrastructure": {
+          "score": 48,
+          "grade": "D",
+          "avgOverrunPct": 17,
+          "avgDelayMonths": 16,
+          "projects": [
+            {"name": "Calgary Green Line LRT", "type": "Transit", "originalBudget": 4650000000, "currentBudget": 5600000000, "overrunPct": 20.4, "originalCompletion": "2026-12", "currentCompletion": "2028-06", "monthsDelayed": 18, "status": "In Construction"},
+            {"name": "Edmonton Valley Line West LRT", "type": "Transit", "originalBudget": 1870000000, "currentBudget": 2100000000, "overrunPct": 12.3, "originalCompletion": "2023-12", "currentCompletion": "2025-12", "monthsDelayed": 24, "status": "Delayed Opening"},
+            {"name": "Red Deer Regional Hospital Campus", "type": "Hospital", "originalBudget": 910000000, "currentBudget": 1100000000, "overrunPct": 20.9, "originalCompletion": "2027-06", "currentCompletion": "2027-12", "monthsDelayed": 6, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 70,
+          "grade": "B-",
+          "employmentScore": 48,
+          "unemploymentRate": 7.2,
+          "unemploymentDeltaFromNational": 0.8,
+          "unemployScore": 37,
+          "gdpGrowthPct": 3.8,
+          "gdpGrowthDeltaFromNational": 1.9,
+          "gdpGrowthScore": 81,
+          "creditScore": 88,
+          "credit": {
+            "moodys": {"rating": "Aa1", "outlook": "stable"},
+            "dbrs":   {"rating": "AA+", "outlook": "stable"},
+            "sp":     {"rating": "AA",  "outlook": "stable"},
+            "fitch":  {"rating": null,  "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 44,
+          "premierDisapprovalPct": 48,
+          "approvalScore": 48,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "SK",
+      "name": "Saskatchewan",
+      "premierName": "Scott Moe",
+      "composite": 65,
+      "grade": "C",
+      "categories": {
+        "healthcare": {
+          "score": 62,
+          "grade": "C",
+          "surgicalWaitWeeks": 26,
+          "surgicalWaitScore": 83,
+          "primaryCareAttachPct": 77,
+          "primaryCareScore": 23,
+          "erBenchmarkMetPct": 72,
+          "erBenchmarkScore": 55,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 62,
+          "grade": "C",
+          "mlsHpiBenchmark": 325000,
+          "mlsHpiYoyPct": 5.0,
+          "priceScore": 59,
+          "housingStartsPer1000Growth": 200,
+          "startsScore": 60,
+          "rentInflationPct": 4.2,
+          "rentScore": 58,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 77,
+          "grade": "B+",
+          "budgetBalancePctGdp": 0.5,
+          "balanceScore": 83,
+          "debtInterestCentsPerDollar": 6.0,
+          "interestScore": 82,
+          "netDebtPerCapita": 8000,
+          "debtScore": 92,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
+        },
+        "infrastructure": {
+          "score": 35,
+          "grade": "D",
+          "avgOverrunPct": 55,
+          "avgDelayMonths": 12,
+          "projects": [
+            {"name": "Regina Bypass (Ring Road)", "type": "Highway", "originalBudget": 400000000, "currentBudget": 1400000000, "overrunPct": 250, "originalCompletion": "2017-10", "currentCompletion": "2019-12", "monthsDelayed": 26, "status": "Complete (over budget)"},
+            {"name": "Prince Albert Victoria Hospital Redevelopment", "type": "Hospital", "originalBudget": 260000000, "currentBudget": 310000000, "overrunPct": 19.2, "originalCompletion": "2027-03", "currentCompletion": "2027-09", "monthsDelayed": 6, "status": "In Construction"},
+            {"name": "SK Highway 1 Corridor Twinning", "type": "Highway", "originalBudget": 185000000, "currentBudget": 205000000, "overrunPct": 10.8, "originalCompletion": "2026-10", "currentCompletion": "2026-10", "monthsDelayed": 0, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 72,
+          "grade": "B-",
+          "employmentScore": 65,
+          "unemploymentRate": 5.0,
+          "unemploymentDeltaFromNational": -1.3,
+          "unemployScore": 72,
+          "gdpGrowthPct": 2.8,
+          "gdpGrowthDeltaFromNational": 0.9,
+          "gdpGrowthScore": 65,
+          "creditScore": 78,
+          "credit": {
+            "moodys": {"rating": "Aa2", "outlook": "stable"},
+            "dbrs":   {"rating": "AA",  "outlook": "stable"},
+            "sp":     {"rating": "AA",  "outlook": "stable"},
+            "fitch":  {"rating": null,  "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 42,
+          "premierDisapprovalPct": 48,
+          "approvalScore": 48,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "MB",
+      "name": "Manitoba",
+      "premierName": "Wab Kinew",
+      "composite": 59,
+      "grade": "C-",
+      "categories": {
+        "healthcare": {
+          "score": 52,
+          "grade": "D",
+          "surgicalWaitWeeks": 34,
+          "surgicalWaitScore": 64,
+          "primaryCareAttachPct": 80,
+          "primaryCareScore": 33,
+          "erBenchmarkMetPct": 58,
+          "erBenchmarkScore": 20,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 58,
+          "grade": "C-",
+          "mlsHpiBenchmark": 355000,
+          "mlsHpiYoyPct": 3.5,
+          "priceScore": 71,
+          "housingStartsPer1000Growth": 155,
+          "startsScore": 42,
+          "rentInflationPct": 5.0,
+          "rentScore": 50,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 52,
+          "grade": "D",
+          "budgetBalancePctGdp": -1.8,
+          "balanceScore": 50,
+          "debtInterestCentsPerDollar": 8.0,
+          "interestScore": 64,
+          "netDebtPerCapita": 18500,
+          "debtScore": 61,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
+        },
+        "infrastructure": {
+          "score": 70,
+          "grade": "B-",
+          "avgOverrunPct": 8,
+          "avgDelayMonths": 3,
+          "projects": [
+            {"name": "Kenaston Underpass Extension", "type": "Highway", "originalBudget": 195000000, "currentBudget": 207000000, "overrunPct": 6.2, "originalCompletion": "2025-10", "currentCompletion": "2025-10", "monthsDelayed": 0, "status": "Complete"},
+            {"name": "Health Sciences Centre Redevelopment", "type": "Hospital", "originalBudget": 850000000, "currentBudget": 940000000, "overrunPct": 10.6, "originalCompletion": "2028-06", "currentCompletion": "2028-12", "monthsDelayed": 6, "status": "In Construction"},
+            {"name": "Southwest Rapid Transit Corridor", "type": "Transit", "originalBudget": 490000000, "currentBudget": 520000000, "overrunPct": 6.1, "originalCompletion": "2027-06", "currentCompletion": "2027-06", "monthsDelayed": 0, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 58,
+          "grade": "C-",
+          "employmentScore": 62,
+          "unemploymentRate": 5.2,
+          "unemploymentDeltaFromNational": -1.1,
+          "unemployScore": 69,
+          "gdpGrowthPct": 1.8,
+          "gdpGrowthDeltaFromNational": -0.1,
+          "gdpGrowthScore": 48,
+          "creditScore": 65,
+          "credit": {
+            "moodys": {"rating": "A1", "outlook": "stable"},
+            "dbrs":   {"rating": "A+", "outlook": "stable"},
+            "sp":     {"rating": "A+", "outlook": "stable"},
+            "fitch":  {"rating": null, "outlook": null}
+          },
+          "agOpinion": "qualified",
+          "agYear": 2024,
+          "agScore": 50,
+          "premierApprovalPct": 52,
+          "premierDisapprovalPct": 35,
+          "approvalScore": 71,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "ON",
+      "name": "Ontario",
+      "premierName": "Doug Ford",
+      "composite": 55,
+      "grade": "C-",
+      "categories": {
+        "healthcare": {
+          "score": 60,
+          "grade": "C",
+          "surgicalWaitWeeks": 25,
+          "surgicalWaitScore": 86,
+          "primaryCareAttachPct": 82,
+          "primaryCareScore": 40,
+          "erBenchmarkMetPct": 60,
+          "erBenchmarkScore": 25,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 39,
+          "grade": "D",
+          "mlsHpiBenchmark": 855000,
+          "mlsHpiYoyPct": 1.5,
+          "priceScore": 79,
+          "housingStartsPer1000Growth": 140,
+          "startsScore": 36,
+          "rentInflationPct": 4.8,
+          "rentScore": 52,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 42,
+          "grade": "D",
+          "budgetBalancePctGdp": -2.0,
+          "balanceScore": 46,
+          "debtInterestCentsPerDollar": 9.2,
+          "interestScore": 53,
+          "netDebtPerCapita": 22000,
+          "debtScore": 51,
+          "fiscalTrend": "worsening",
+          "trendBonus": -5
+        },
+        "infrastructure": {
+          "score": 22,
+          "grade": "F",
+          "avgOverrunPct": 80,
+          "avgDelayMonths": 38,
+          "projects": [
+            {"name": "Eglinton Crosstown LRT", "type": "Transit", "originalBudget": 5300000000, "currentBudget": 12500000000, "overrunPct": 135.8, "originalCompletion": "2021-12", "currentCompletion": "2025-10", "monthsDelayed": 46, "status": "Delayed Opening"},
+            {"name": "Ontario Line Subway", "type": "Transit", "originalBudget": 10900000000, "currentBudget": 13200000000, "overrunPct": 21.1, "originalCompletion": "2030-12", "currentCompletion": "2033-06", "monthsDelayed": 30, "status": "In Construction"},
+            {"name": "Finch West LRT", "type": "Transit", "originalBudget": 1200000000, "currentBudget": 2100000000, "overrunPct": 75.0, "originalCompletion": "2023-06", "currentCompletion": "2026-03", "monthsDelayed": 33, "status": "Delayed Opening"}
+          ]
+        },
+        "economy": {
+          "score": 60,
+          "grade": "C",
+          "employmentScore": 42,
+          "unemploymentRate": 6.8,
+          "unemploymentDeltaFromNational": 0.5,
+          "unemployScore": 42,
+          "gdpGrowthPct": 1.9,
+          "gdpGrowthDeltaFromNational": 0.0,
+          "gdpGrowthScore": 50,
+          "creditScore": 78,
+          "credit": {
+            "moodys": {"rating": "Aa3", "outlook": "stable"},
+            "dbrs":   {"rating": "AA-", "outlook": "stable"},
+            "sp":     {"rating": "AA-", "outlook": "stable"},
+            "fitch":  {"rating": "AA-", "outlook": "stable"}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 38,
+          "premierDisapprovalPct": 55,
+          "approvalScore": 40,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "QC",
+      "name": "Quebec",
+      "premierName": "François Legault",
+      "composite": 57,
+      "grade": "C-",
+      "categories": {
+        "healthcare": {
+          "score": 29,
+          "grade": "F",
+          "surgicalWaitWeeks": 54,
+          "surgicalWaitScore": 17,
+          "primaryCareAttachPct": 73,
+          "primaryCareScore": 10,
+          "erBenchmarkMetPct": 68,
+          "erBenchmarkScore": 45,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 52,
+          "grade": "D",
+          "mlsHpiBenchmark": 480000,
+          "mlsHpiYoyPct": 6.0,
+          "priceScore": 53,
+          "housingStartsPer1000Growth": 120,
+          "startsScore": 28,
+          "rentInflationPct": 5.5,
+          "rentScore": 45,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 52,
+          "grade": "D",
+          "budgetBalancePctGdp": -1.2,
+          "balanceScore": 57,
+          "debtInterestCentsPerDollar": 10.5,
+          "interestScore": 41,
+          "netDebtPerCapita": 14000,
+          "debtScore": 74,
+          "fiscalTrend": "worsening",
+          "trendBonus": -5
+        },
+        "infrastructure": {
+          "score": 63,
+          "grade": "C",
+          "avgOverrunPct": 22,
+          "avgDelayMonths": 10,
+          "projects": [
+            {"name": "REM (Réseau express métropolitain)", "type": "Transit", "originalBudget": 6300000000, "currentBudget": 6900000000, "overrunPct": 9.5, "originalCompletion": "2023-06", "currentCompletion": "2024-09", "monthsDelayed": 15, "status": "Operational (phased)"},
+            {"name": "CHUM Hospital Expansion", "type": "Hospital", "originalBudget": 1460000000, "currentBudget": 2570000000, "overrunPct": 75.9, "originalCompletion": "2019-06", "currentCompletion": "2023-12", "monthsDelayed": 54, "status": "Complete (over budget)"},
+            {"name": "Champlain Bridge Link (federal/prov)", "type": "Bridge", "originalBudget": 4200000000, "currentBudget": 4200000000, "overrunPct": 0, "originalCompletion": "2019-12", "currentCompletion": "2019-12", "monthsDelayed": 0, "status": "Complete"}
+          ]
+        },
+        "economy": {
+          "score": 68,
+          "grade": "C+",
+          "employmentScore": 62,
+          "unemploymentRate": 5.9,
+          "unemploymentDeltaFromNational": -0.4,
+          "unemployScore": 57,
+          "gdpGrowthPct": 2.0,
+          "gdpGrowthDeltaFromNational": 0.1,
+          "gdpGrowthScore": 52,
+          "creditScore": 78,
+          "credit": {
+            "moodys": {"rating": "Aa2", "outlook": "stable"},
+            "dbrs":   {"rating": "AA",  "outlook": "stable"},
+            "sp":     {"rating": "AA-", "outlook": "stable"},
+            "fitch":  {"rating": null,  "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 37,
+          "premierDisapprovalPct": 56,
+          "approvalScore": 38,
+          "pollSourceNotes": "Angus Reid / Léger Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "NB",
+      "name": "New Brunswick",
+      "premierName": "Susan Holt",
+      "composite": 67,
+      "grade": "C+",
+      "categories": {
+        "healthcare": {
+          "score": 49,
+          "grade": "D",
+          "surgicalWaitWeeks": 40,
+          "surgicalWaitScore": 50,
+          "primaryCareAttachPct": 70,
+          "primaryCareScore": 0,
+          "erBenchmarkMetPct": 74,
+          "erBenchmarkScore": 60,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 72,
+          "grade": "B-",
+          "mlsHpiBenchmark": 298000,
+          "mlsHpiYoyPct": 4.5,
+          "priceScore": 62,
+          "housingStartsPer1000Growth": 245,
+          "startsScore": 78,
+          "rentInflationPct": 7.2,
+          "rentScore": 28,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 72,
+          "grade": "B-",
+          "budgetBalancePctGdp": 0.8,
+          "balanceScore": 87,
+          "debtInterestCentsPerDollar": 8.0,
+          "interestScore": 64,
+          "netDebtPerCapita": 16000,
+          "debtScore": 68,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
+        },
+        "infrastructure": {
+          "score": 72,
+          "grade": "B-",
+          "avgOverrunPct": 10,
+          "avgDelayMonths": 4,
+          "projects": [
+            {"name": "Mactaquac Dam Renewal", "type": "Utility", "originalBudget": 2900000000, "currentBudget": 3500000000, "overrunPct": 20.7, "originalCompletion": "2030-12", "currentCompletion": "2030-12", "monthsDelayed": 0, "status": "In Planning/Construction"},
+            {"name": "Fredericton-Moncton Highway (Twinning)", "type": "Highway", "originalBudget": 550000000, "currentBudget": 600000000, "overrunPct": 9.1, "originalCompletion": "2028-12", "currentCompletion": "2028-12", "monthsDelayed": 0, "status": "In Construction"},
+            {"name": "Horizon Health Network Hospital Expansions", "type": "Hospital", "originalBudget": 310000000, "currentBudget": 345000000, "overrunPct": 11.3, "originalCompletion": "2027-06", "currentCompletion": "2027-09", "monthsDelayed": 3, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 68,
+          "grade": "C+",
+          "employmentScore": 48,
+          "unemploymentRate": 7.5,
+          "unemploymentDeltaFromNational": 1.2,
+          "unemployScore": 37,
+          "gdpGrowthPct": 2.4,
+          "gdpGrowthDeltaFromNational": 0.5,
+          "gdpGrowthScore": 58,
+          "creditScore": 65,
+          "credit": {
+            "moodys": {"rating": "A1", "outlook": "stable"},
+            "dbrs":   {"rating": "A",  "outlook": "positive"},
+            "sp":     {"rating": "A+", "outlook": "stable"},
+            "fitch":  {"rating": null, "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 48,
+          "premierDisapprovalPct": 32,
+          "approvalScore": 70,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "NS",
+      "name": "Nova Scotia",
+      "premierName": "Tim Houston",
+      "composite": 63,
+      "grade": "C",
+      "categories": {
+        "healthcare": {
+          "score": 42,
+          "grade": "D",
+          "surgicalWaitWeeks": 43,
+          "surgicalWaitScore": 43,
+          "primaryCareAttachPct": 71,
+          "primaryCareScore": 3,
+          "erBenchmarkMetPct": 70,
+          "erBenchmarkScore": 50,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 50,
+          "grade": "D",
+          "mlsHpiBenchmark": 415000,
+          "mlsHpiYoyPct": 5.5,
+          "priceScore": 56,
+          "housingStartsPer1000Growth": 190,
+          "startsScore": 56,
+          "rentInflationPct": 6.5,
+          "rentScore": 35,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 65,
+          "grade": "C",
+          "budgetBalancePctGdp": -1.5,
+          "balanceScore": 53,
+          "debtInterestCentsPerDollar": 9.0,
+          "interestScore": 55,
+          "netDebtPerCapita": 12500,
+          "debtScore": 79,
+          "fiscalTrend": "stable",
+          "trendBonus": 0
+        },
+        "infrastructure": {
+          "score": 58,
+          "grade": "C-",
+          "avgOverrunPct": 27,
+          "avgDelayMonths": 8,
+          "projects": [
+            {"name": "QEII New Generation Project (Halifax)", "type": "Hospital", "originalBudget": 2000000000, "currentBudget": 2500000000, "overrunPct": 25.0, "originalCompletion": "2028-06", "currentCompletion": "2029-06", "monthsDelayed": 12, "status": "In Construction"},
+            {"name": "Halifax Infirmary Expansion", "type": "Hospital", "originalBudget": 1300000000, "currentBudget": 1460000000, "overrunPct": 12.3, "originalCompletion": "2027-12", "currentCompletion": "2028-06", "monthsDelayed": 6, "status": "In Construction"},
+            {"name": "Highway 104 Twinning (Antigonish)", "type": "Highway", "originalBudget": 310000000, "currentBudget": 365000000, "overrunPct": 17.7, "originalCompletion": "2026-10", "currentCompletion": "2026-10", "monthsDelayed": 0, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 72,
+          "grade": "B-",
+          "employmentScore": 58,
+          "unemploymentRate": 6.2,
+          "unemploymentDeltaFromNational": -0.1,
+          "unemployScore": 52,
+          "gdpGrowthPct": 3.2,
+          "gdpGrowthDeltaFromNational": 1.3,
+          "gdpGrowthScore": 72,
+          "creditScore": 65,
+          "credit": {
+            "moodys": {"rating": "A1", "outlook": "stable"},
+            "dbrs":   {"rating": "A+", "outlook": "stable"},
+            "sp":     {"rating": "A+", "outlook": "stable"},
+            "fitch":  {"rating": null, "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 52,
+          "premierDisapprovalPct": 38,
+          "approvalScore": 68,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "PE",
+      "name": "Prince Edward Island",
+      "premierName": "Dennis King",
+      "composite": 74,
+      "grade": "B",
+      "categories": {
+        "healthcare": {
+          "score": 66,
+          "grade": "C",
+          "surgicalWaitWeeks": 35,
+          "surgicalWaitScore": 62,
+          "primaryCareAttachPct": 76,
+          "primaryCareScore": 20,
+          "erBenchmarkMetPct": 82,
+          "erBenchmarkScore": 80,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 68,
+          "grade": "C+",
+          "mlsHpiBenchmark": 370000,
+          "mlsHpiYoyPct": 3.0,
+          "priceScore": 71,
+          "housingStartsPer1000Growth": 270,
+          "startsScore": 88,
+          "rentInflationPct": 5.8,
+          "rentScore": 42,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 80,
+          "grade": "A-",
+          "budgetBalancePctGdp": 0.5,
+          "balanceScore": 83,
+          "debtInterestCentsPerDollar": 7.0,
+          "interestScore": 73,
+          "netDebtPerCapita": 10500,
+          "debtScore": 84,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
+        },
+        "infrastructure": {
+          "score": 78,
+          "grade": "B+",
+          "avgOverrunPct": 14,
+          "avgDelayMonths": 3,
+          "projects": [
+            {"name": "PEI Hospital (Charlottetown) Redevelopment", "type": "Hospital", "originalBudget": 154000000, "currentBudget": 210000000, "overrunPct": 36.4, "originalCompletion": "2022-09", "currentCompletion": "2023-12", "monthsDelayed": 15, "status": "Complete"},
+            {"name": "Trans-Canada Highway Upgrades", "type": "Highway", "originalBudget": 280000000, "currentBudget": 295000000, "overrunPct": 5.4, "originalCompletion": "2027-10", "currentCompletion": "2027-10", "monthsDelayed": 0, "status": "In Construction"},
+            {"name": "Charlottetown Water Utility Upgrades", "type": "Utility", "originalBudget": 95000000, "currentBudget": 98000000, "overrunPct": 3.2, "originalCompletion": "2026-06", "currentCompletion": "2026-06", "monthsDelayed": 0, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 78,
+          "grade": "B+",
+          "employmentScore": 52,
+          "unemploymentRate": 8.5,
+          "unemploymentDeltaFromNational": 2.2,
+          "unemployScore": 30,
+          "gdpGrowthPct": 4.8,
+          "gdpGrowthDeltaFromNational": 2.9,
+          "gdpGrowthScore": 98,
+          "creditScore": 65,
+          "credit": {
+            "moodys": {"rating": "A1", "outlook": "stable"},
+            "dbrs":   {"rating": "A+", "outlook": "stable"},
+            "sp":     {"rating": null,  "outlook": null},
+            "fitch":  {"rating": null,  "outlook": null}
+          },
+          "agOpinion": "clean",
+          "agYear": 2024,
+          "agScore": 100,
+          "premierApprovalPct": 55,
+          "premierDisapprovalPct": 30,
+          "approvalScore": 81,
+          "pollSourceNotes": "Angus Reid / local polling Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    },
+    {
+      "code": "NL",
+      "name": "Newfoundland and Labrador",
+      "premierName": "Andrew Furey",
+      "composite": 48,
+      "grade": "D",
+      "categories": {
+        "healthcare": {
+          "score": 40,
+          "grade": "D",
+          "surgicalWaitWeeks": 43,
+          "surgicalWaitScore": 43,
+          "primaryCareAttachPct": 72,
+          "primaryCareScore": 7,
+          "erBenchmarkMetPct": 68,
+          "erBenchmarkScore": 45,
+          "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
+          "dataDate": "2025-01-01"
+        },
+        "housing": {
+          "score": 65,
+          "grade": "C",
+          "mlsHpiBenchmark": 290000,
+          "mlsHpiYoyPct": 2.0,
+          "priceScore": 76,
+          "housingStartsPer1000Growth": 88,
+          "startsScore": 15,
+          "rentInflationPct": 3.2,
+          "rentScore": 68,
+          "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
+          "dataDate": "2026-02-01"
+        },
+        "fiscal": {
+          "score": 35,
+          "grade": "D",
+          "budgetBalancePctGdp": -2.5,
+          "balanceScore": 38,
+          "debtInterestCentsPerDollar": 12.0,
+          "interestScore": 27,
+          "netDebtPerCapita": 28000,
+          "debtScore": 34,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
+        },
+        "infrastructure": {
+          "score": 20,
+          "grade": "F",
+          "avgOverrunPct": 115,
+          "avgDelayMonths": 48,
+          "projects": [
+            {"name": "Muskrat Falls / Labrador-Island Link", "type": "Utility", "originalBudget": 6200000000, "currentBudget": 13100000000, "overrunPct": 111.3, "originalCompletion": "2017-12", "currentCompletion": "2023-06", "monthsDelayed": 66, "status": "Operational (over budget)"},
+            {"name": "New Foxtrap Access Road", "type": "Highway", "originalBudget": 32000000, "currentBudget": 36000000, "overrunPct": 12.5, "originalCompletion": "2025-06", "currentCompletion": "2025-09", "monthsDelayed": 3, "status": "Complete"},
+            {"name": "Corner Brook Acute Care Hospital", "type": "Hospital", "originalBudget": 820000000, "currentBudget": 1150000000, "overrunPct": 40.2, "originalCompletion": "2025-12", "currentCompletion": "2027-06", "monthsDelayed": 18, "status": "In Construction"}
+          ]
+        },
+        "economy": {
+          "score": 45,
+          "grade": "D",
+          "employmentScore": 20,
+          "unemploymentRate": 10.5,
+          "unemploymentDeltaFromNational": 4.2,
+          "unemployScore": 12,
+          "gdpGrowthPct": 1.5,
+          "gdpGrowthDeltaFromNational": -0.4,
+          "gdpGrowthScore": 43,
+          "creditScore": 55,
+          "credit": {
+            "moodys": {"rating": "A3", "outlook": "negative"},
+            "dbrs":   {"rating": "A-", "outlook": "negative"},
+            "sp":     {"rating": "A-", "outlook": "stable"},
+            "fitch":  {"rating": null,  "outlook": null}
+          },
+          "agOpinion": "qualified",
+          "agYear": 2024,
+          "agScore": 50,
+          "premierApprovalPct": 42,
+          "premierDisapprovalPct": 42,
+          "approvalScore": 50,
+          "pollSourceNotes": "Angus Reid Feb 2026"
+        }
+      },
+      "lastUpdated": {
+        "healthcare": "2025-01-01",
+        "housing": "2026-02-01",
+        "credit": "2025-10-01",
+        "polling": "2026-02-01",
+        "infrastructure": "2026-01-01"
+      }
+    }
+  ],
+  "supporters": []
+}
