@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import {
-  gradeFill, gradeColorClass, gradeBgClass, scoreFill,
+  gradeFill, gradeColorClass, gradeBgClass, scoreFill, toGrade,
   outlookSymbol, outlookLabel, formatDollars, overrunColor, delayColor,
   PROVINCE_COLORS, PROVINCE_FLAGS, FLAG_POSITIONS,
 } from '../utils/grading.js';
@@ -571,28 +571,32 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         <div className="dp-header__right">
           <span className={`dp-header__grade ${gradeColorClass(province.grade)}`}>{province.grade}</span>
           <span className="dp-header__score">{province.composite}<span style={{fontSize:13,opacity:.6}}>/100</span></span>
-          {province.valueScore != null && (
-            <span
-              ref={valueBadgeRef}
-              className={`dp-header__value${showValueTip ? ' dp-header__value--open' : ''}`}
-              onClick={() => setShowValueTip(v => !v)}
-              onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setShowValueTip(v => !v)}
-              role="button"
-              tabIndex={0}
-              aria-expanded={showValueTip}
-              aria-label={`Duck Score ${province.valueScore}. Click for explanation.`}
-            >
-              <span className="dp-header__value-label">🦆 Duck Score</span>
-              <span className="dp-header__value-num">{province.valueScore}</span>
-            </span>
-          )}
+          {province.valueScore != null && (() => {
+            const duckGrade = toGrade(province.valueScore);
+            return (
+              <span
+                ref={valueBadgeRef}
+                className={`dp-header__value${showValueTip ? ' dp-header__value--open' : ''}`}
+                onClick={() => setShowValueTip(v => !v)}
+                onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setShowValueTip(v => !v)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={showValueTip}
+                aria-label={`Duck Score: ${duckGrade}. Click for explanation.`}
+              >
+                <span className="dp-header__value-label">🦆 Duck Score</span>
+                <span className="dp-header__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
+                <span className="dp-header__value-subnum">{province.valueScore}</span>
+              </span>
+            );
+          })()}
         </div>
       </div>
 
       {/* Value score explanation bar */}
       {showValueTip && (
         <div className="dp-value-tip" role="status">
-          <span><strong>🦆 Duck Score</strong> — your province's performance score relative to its tax burden. Higher means more bang for your loonie.</span>
+          <span><strong>🦆 Duck Score: {toGrade(province.valueScore)}</strong> — how much government performance you get per tax dollar paid. Grade uses the same A–F scale as the composite score.</span>
           <button className="dp-value-tip__close" onClick={() => setShowValueTip(false)} aria-label="Close">✕</button>
         </div>
       )}

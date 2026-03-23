@@ -95,26 +95,33 @@ export default function ProvinceCard({
           <span className="pcard__score" aria-label={`${displayScore} out of 100`}>
             {displayScore}<span className="pcard__score-denom">/100</span>
           </span>
-          {province.valueScore != null && (
-            <span
-              ref={valueBadgeRef}
-              className={`pcard__value-badge${showValueTip ? ' pcard__value-badge--open' : ''}`}
-              onClick={e => { e.stopPropagation(); setShowValueTip(v => !v); }}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); setShowValueTip(v => !v); } }}
-              role="button"
-              tabIndex={0}
-              aria-expanded={showValueTip}
-              aria-label={`Duck Score ${province.valueScore}. Click for explanation.`}
-            >
-              <span className="pcard__value-label">🦆 DUCK</span>
-              <span className="pcard__value-num">{province.valueScore}</span>
-              {showValueTip && (
-                <span className="pcard__value-tip" role="tooltip">
-                  🦆 Duck Score — how much you get for what you pay in provincial taxes. Higher = more bang for your loonie.
-                </span>
-              )}
-            </span>
-          )}
+          {province.valueScore != null && (() => {
+            const duckGrade = toGrade(province.valueScore);
+            const duckDesc  = { A: 'Excellent', B: 'Good', C: 'Fair', D: 'Below average', F: 'Poor' }[duckGrade[0]] ?? '';
+            return (
+              <span
+                ref={valueBadgeRef}
+                className={`pcard__value-badge${showValueTip ? ' pcard__value-badge--open' : ''}`}
+                onClick={e => { e.stopPropagation(); setShowValueTip(v => !v); }}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); setShowValueTip(v => !v); } }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={showValueTip}
+                aria-label={`Duck Score: ${duckGrade} — ${duckDesc} value. Click for explanation.`}
+              >
+                <span className="pcard__value-label">🦆 Duck Score</span>
+                <span className="pcard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
+                <span className="pcard__value-subnum">{province.valueScore}</span>
+                {showValueTip && (
+                  <span className="pcard__value-tip" role="tooltip">
+                    <strong>🦆 Duck Score: {duckGrade}</strong> — {duckDesc.toLowerCase()} value for provincial taxes paid.
+                    This province delivers {duckGrade[0] === 'A' || duckGrade[0] === 'B' ? 'above' : duckGrade[0] === 'C' ? 'around' : 'below'}-average
+                    government services relative to its tax burden.
+                  </span>
+                )}
+              </span>
+            );
+          })()}
         </div>
       </div>
 

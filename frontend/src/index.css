@@ -1370,10 +1370,19 @@ body {
   text-transform: uppercase;
   line-height: 1.2;
 }
-.pcard__value-num {
-  font-size: 13px;
+/* Grade letter — serif, coloured, matches composite grade aesthetic */
+.pcard__value-grade {
+  font-family: var(--font-serif);
+  font-size: 17px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
+}
+/* Raw score — tiny reference number below grade */
+.pcard__value-subnum {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  opacity: 0.5;
+  line-height: 1;
 }
 .pcard__value-tip {
   position: absolute;
@@ -1444,12 +1453,19 @@ body {
   color: var(--text-secondary);
   font-family: var(--font-mono);
 }
-.dp-header__value-num {
-  font-family: var(--font-mono);
-  font-size: 18px;
+/* Grade letter — serif, coloured */
+.dp-header__value-grade {
+  font-family: var(--font-serif);
+  font-size: 22px;
   font-weight: 700;
-  color: var(--text-primary);
   line-height: 1.1;
+}
+/* Raw score — small reference below grade */
+.dp-header__value-subnum {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1;
 }
 
 /* ── Your Money / What You Pay grid ── */
