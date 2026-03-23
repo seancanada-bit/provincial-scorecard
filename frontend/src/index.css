@@ -965,7 +965,7 @@ body {
 
 /* ─── SORT TABS (update sticky offset) ──────────────────────────────────── */
 .sort-tabs {
-  margin: var(--space-md) var(--space-md) 0;
+  margin: var(--space-md) 0 0;
   border-radius: var(--radius-md) var(--radius-md) 0 0;
   border-bottom: 1px solid var(--border);
   position: static;
