@@ -443,3 +443,55 @@ update provinces_housing set core_housing_need_pct = 10.2 where province_code = 
 update provinces_housing set core_housing_need_pct = 13.8 where province_code = 'NS';
 update provinces_housing set core_housing_need_pct = 13.1 where province_code = 'PE';
 update provinces_housing set core_housing_need_pct =  9.8 where province_code = 'NL';
+
+-- ─── ADD: Workplace injury rate to statscan table ─────────────────────────────
+-- lost-time injuries per 100 workers (AWCBC — Association of Workers' Compensation Boards)
+-- Lower = better. Source: AWCBC National Work Injury, Disease and Fatality Statistics 2022.
+alter table provinces_statscan
+  add column if not exists workplace_injury_rate numeric;
+
+update provinces_statscan set workplace_injury_rate = 1.4 where province_code = 'BC';
+update provinces_statscan set workplace_injury_rate = 1.6 where province_code = 'AB';
+update provinces_statscan set workplace_injury_rate = 1.9 where province_code = 'SK';
+update provinces_statscan set workplace_injury_rate = 2.1 where province_code = 'MB';
+update provinces_statscan set workplace_injury_rate = 1.2 where province_code = 'ON';
+update provinces_statscan set workplace_injury_rate = 1.6 where province_code = 'QC';
+update provinces_statscan set workplace_injury_rate = 1.8 where province_code = 'NB';
+update provinces_statscan set workplace_injury_rate = 1.6 where province_code = 'NS';
+update provinces_statscan set workplace_injury_rate = 1.3 where province_code = 'PE';
+update provinces_statscan set workplace_injury_rate = 2.3 where province_code = 'NL';
+
+-- ─── LONG-TERM CARE ───────────────────────────────────────────────────────────
+-- ltc_beds_per_1k_75plus: licensed LTC beds per 1,000 residents aged 75+
+--   Source: CIHI Long-Term Care Homes in Canada 2023; Stats Can age demographics 2021 Census
+--   Higher = better capacity relative to the population most likely to need LTC
+-- direct_care_hours_per_day: avg direct care hours per resident per day (nursing + personal care)
+--   Source: CIHI Discharge Abstract Database / LTC MDS 2022-23
+--   CLTC (Canadian LTC Coalition) recommends minimum 4.1 hrs; higher = better
+-- home_care_recipients_per_1k: provincially-funded home care recipients per 1,000 seniors
+--   Source: CIHI Home Care Reporting System 2022
+--   Higher = more seniors supported in community, reducing institutional pressure
+create table if not exists provinces_ltc (
+  id                              serial primary key,
+  province_code                   text not null references provinces_meta(province_code),
+  ltc_beds_per_1k_75plus          numeric,  -- licensed LTC beds per 1,000 residents 75+ (higher = better)
+  direct_care_hours_per_day       numeric,  -- avg direct care hours per resident/day (higher = better)
+  home_care_recipients_per_1k     numeric,  -- home care recipients per 1,000 seniors (higher = better)
+  source_notes                    text,
+  data_date                       date
+);
+
+-- ─── SEED: Long-term care data (2022–2023) ────────────────────────────────────
+-- Sources: CIHI Long-Term Care Homes in Canada 2023; CIHI DAD; CIHI HCRS 2022; Stats Can 2021 Census age profile
+insert into provinces_ltc (province_code, ltc_beds_per_1k_75plus, direct_care_hours_per_day, home_care_recipients_per_1k, source_notes, data_date)
+values
+  ('BC', 52, 3.2, 72,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('AB', 55, 2.7, 68,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('SK', 70, 3.0, 58,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('MB', 65, 2.8, 62,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('ON', 55, 3.0, 65,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('QC', 72, 2.4, 82,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('NB', 68, 3.1, 55,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('NS', 62, 3.3, 60,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('PE', 58, 3.5, 65,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
+  ('NL', 57, 3.1, 48,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01');

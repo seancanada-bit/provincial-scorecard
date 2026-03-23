@@ -129,6 +129,7 @@ export const CATEGORY_ICONS = {
   education:      '🎓',
   safety:         '🛡️',
   mentalhealth:   '🧠',
+  ltc:            '🛏️',
 };
 
 export const CATEGORY_LABELS = {
@@ -141,5 +142,6 @@ export const CATEGORY_LABELS = {
   education:      'Education',
   safety:         'Safety',
   mentalhealth:   'Mental Health',
+  ltc:            'Long-Term Care',
   value:          '🦆 Duck Score',
 };

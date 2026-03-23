@@ -41,6 +41,7 @@ async function generate() {
       statscan:       supa.statscan[code]         ?? null,
       costOfLiving:   supa.costOfLiving[code]     ?? null,
       mentalHealth:   supa.mentalHealth[code]     ?? null,
+      ltc:            supa.ltc[code]              ?? null,
     });
   });
 

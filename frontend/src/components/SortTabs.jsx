@@ -8,6 +8,7 @@ const TABS = [
   { key: 'education',      label: 'Education' },
   { key: 'safety',         label: 'Safety' },
   { key: 'mentalhealth',   label: 'Mental Health' },
+  { key: 'ltc',            label: 'Long-Term Care' },
   { key: 'value',          label: '🦆 Duck Score', title: 'Performance per tax dollar — the more you get for what you pay, the higher the Duck Score' },
 ];
 

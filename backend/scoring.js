@@ -44,6 +44,12 @@ const BOUNDS = {
   oatAccessIndex:            { best: 100,  worst: 30   }, // 30–100 composite policy index (higher = better)
   // Housing — core need
   coreHousingNeedPct:        { best: 8,    worst: 20   }, // % households in core need (lower = better)
+  // Workplace injury
+  workplaceInjuryRate:       { best: 0.8,  worst: 3.0  }, // lost-time injuries per 100 workers (lower = better)
+  // Long-Term Care
+  ltcBedsPer1k75plus:        { best: 80,   worst: 35   }, // LTC beds per 1,000 residents 75+ (higher = better)
+  directCareHours:           { best: 4.5,  worst: 2.0  }, // direct care hours per resident per day (higher = better)
+  homeCareRecipientsPer1k:   { best: 100,  worst: 25   }, // home care recipients per 1,000 seniors (higher = better)
 };
 
 function normalize(value, best, worst) {
@@ -118,7 +124,7 @@ function scoreInfraProjects(projects) {
 }
 
 function scoreProvince(prov) {
-  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety, costOfLiving, mentalHealth } = prov;
+  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes, safety, costOfLiving, mentalHealth, ltc } = prov;
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
@@ -181,14 +187,18 @@ function scoreProvince(prov) {
   const childcareScore = taxes?.childcare_monthly_avg != null
     ? normalizeInverted(taxes.childcare_monthly_avg, BOUNDS.childcareMonthly.best, BOUNDS.childcareMonthly.worst)
     : null;
-  // Weighted economy: employment 25%, credit 20%, AG 20%, approval 20%, childcare 15%
+  // Workplace injury: lost-time injuries per 100 workers (AWCBC data) — lower = better
+  const workplaceInjuryScore = statscan?.workplace_injury_rate != null
+    ? normalizeInverted(statscan.workplace_injury_rate, BOUNDS.workplaceInjuryRate.best, BOUNDS.workplaceInjuryRate.worst)
+    : null;
+  // Weighted economy: employment 25%, credit 20%, AG 20%, workplace injury 20% (null-safe), childcare 15%
   const economyScore = (() => {
     const parts = [], wts = [];
     parts.push(employmentScore * 0.25); wts.push(0.25);
     parts.push(creditScore     * 0.20); wts.push(0.20);
     parts.push(agScore         * 0.20); wts.push(0.20);
-    parts.push(approvalScore   * 0.20); wts.push(0.20);
-    if (childcareScore != null) { parts.push(childcareScore * 0.15); wts.push(0.15); }
+    if (workplaceInjuryScore != null) { parts.push(workplaceInjuryScore * 0.20); wts.push(0.20); }
+    if (childcareScore       != null) { parts.push(childcareScore       * 0.15); wts.push(0.15); }
     const tw = wts.reduce((a, b) => a + b, 0);
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
@@ -264,6 +274,27 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
 
+  // ─── LONG-TERM CARE (8%) ────────────────────────────────────────────────────
+  // beds 40% · direct care hours 35% · home care recipients 25%
+  let ltcBedsScore = null, directCareScore = null, homeCareScore = null;
+  if (ltc) {
+    ltcBedsScore    = ltc.ltc_beds_per_1k_75plus    != null
+      ? normalize(ltc.ltc_beds_per_1k_75plus,    BOUNDS.ltcBedsPer1k75plus.best,      BOUNDS.ltcBedsPer1k75plus.worst)      : null;
+    directCareScore = ltc.direct_care_hours_per_day != null
+      ? normalize(ltc.direct_care_hours_per_day,  BOUNDS.directCareHours.best,         BOUNDS.directCareHours.worst)         : null;
+    homeCareScore   = ltc.home_care_recipients_per_1k != null
+      ? normalize(ltc.home_care_recipients_per_1k, BOUNDS.homeCareRecipientsPer1k.best, BOUNDS.homeCareRecipientsPer1k.worst) : null;
+  }
+  const ltcScore = (() => {
+    const parts = [], wts = [];
+    if (ltcBedsScore    != null) { parts.push(ltcBedsScore    * 0.40); wts.push(0.40); }
+    if (directCareScore != null) { parts.push(directCareScore * 0.35); wts.push(0.35); }
+    if (homeCareScore   != null) { parts.push(homeCareScore   * 0.25); wts.push(0.25); }
+    if (!parts.length) return 50;
+    const tw = wts.reduce((a, b) => a + b, 0);
+    return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
+  })();
+
   // ─── PURCHASING POWER INDEX (not in composite — informational) ───────────────
   // Measures how far take-home pay goes on day-to-day essentials.
   // Weights: rent-to-income 35%, groceries 25%, energy 20%, auto insurance 15%, childcare 5%
@@ -288,18 +319,19 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
 
-  // ─── COMPOSITE (8 categories) ────────────────────────────────────
-  // healthcare 17% + housing 14% + fiscal 14% + infrastructure 10% +
-  // economy 14% + education 13% + safety 10% + mentalHealth 8% = 100%
+  // ─── COMPOSITE (9 categories) ────────────────────────────────────
+  // healthcare 16% + housing 13% + fiscal 13% + infrastructure 9% +
+  // economy 13% + education 11% + safety 9% + mentalHealth 8% + ltc 8% = 100%
   const composite = Math.round(
-    healthcareScore     * 0.17 +
-    housingScore        * 0.14 +
-    fiscalScore         * 0.14 +
-    infrastructureScore * 0.10 +
-    economyScore        * 0.14 +
-    educationScore      * 0.13 +
-    safetyScore         * 0.10 +
-    mentalHealthScore   * 0.08
+    healthcareScore     * 0.16 +
+    housingScore        * 0.13 +
+    fiscalScore         * 0.13 +
+    infrastructureScore * 0.09 +
+    economyScore        * 0.13 +
+    educationScore      * 0.11 +
+    safetyScore         * 0.09 +
+    mentalHealthScore   * 0.08 +
+    ltcScore            * 0.08
   );
 
   // ─── VALUE SCORE ────────────────────────────────────────────────────
@@ -394,6 +426,8 @@ function scoreProvince(prov) {
         premierDisapprovalPct: polling?.premier_disapproval_pct ?? null,
         approvalScore,
         pollSourceNotes:      polling?.source_notes ?? null,
+        workplaceInjuryRate:  statscan?.workplace_injury_rate ?? null,
+        workplaceInjuryScore,
         childcareMonthlyAvg:  taxes?.childcare_monthly_avg ?? null,
         childcareScore,
       },
@@ -436,6 +470,18 @@ function scoreProvince(prov) {
         oatAccessScore,
         sourceNotes:                mentalHealth?.source_notes ?? null,
         dataDate:                   mentalHealth?.data_date    ?? null,
+      },
+      ltc: {
+        score: ltcScore,
+        grade: toGrade(ltcScore),
+        ltcBedsPer1k75plus:        ltc?.ltc_beds_per_1k_75plus     ?? null,
+        ltcBedsScore,
+        directCareHoursPerDay:     ltc?.direct_care_hours_per_day  ?? null,
+        directCareScore,
+        homeCareRecipientsPer1k:   ltc?.home_care_recipients_per_1k ?? null,
+        homeCareScore,
+        sourceNotes:               ltc?.source_notes ?? null,
+        dataDate:                  ltc?.data_date    ?? null,
       },
     },
     taxes: taxes ? {
@@ -501,6 +547,7 @@ function buildNationalSummary(scoredProvinces) {
     avgEconomy:      avg(scoredProvinces.map(p => p.categories.economy.score)),
     avgSafety:       avg(scoredProvinces.map(p => p.categories.safety.score)),
     avgMentalHealth: avg(scoredProvinces.map(p => p.categories.mentalhealth.score)),
+    avgLtc:          avg(scoredProvinces.map(p => p.categories.ltc.score)),
     topProvince:     sorted[0]?.code,
     bottomProvince:  sorted[sorted.length - 1]?.code,
     nationalAvgHealthcareSurgical: Math.round(

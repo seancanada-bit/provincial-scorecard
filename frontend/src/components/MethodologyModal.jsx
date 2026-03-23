@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const CATEGORIES = [
   {
-    key: 'healthcare', label: 'Healthcare', weight: 17,
+    key: 'healthcare', label: 'Healthcare', weight: 16,
     why: 'Whether you can get a family doctor and how long you wait for surgery are the most visceral ways most Canadians experience their provincial government.',
     metrics: [
       { name: 'Surgical wait time',       weight: '⅓', direction: 'lower ↓', best: '19 wks',  worst: '61 wks',  source: 'CIHI' },
@@ -11,7 +11,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'housing', label: 'Housing', weight: 14,
+    key: 'housing', label: 'Housing', weight: 13,
     why: 'Whether you can afford a home or rent is the defining quality-of-life question for many Canadians, and housing supply is primarily a provincial responsibility.',
     metrics: [
       { name: 'Housing starts per 1k pop. growth', weight: '30%', direction: 'higher ↑', best: '300',  worst: '50',   source: 'CMHC / Stats Can' },
@@ -21,7 +21,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'fiscal', label: 'Fiscal', weight: 14,
+    key: 'fiscal', label: 'Fiscal', weight: 13,
     why: 'A province spending heavily on debt interest has less money for services. Fiscal health today determines service quality tomorrow.',
     metrics: [
       { name: 'Budget balance % of GDP',         weight: '⅓', direction: 'higher ↑', best: '+1.5%',  worst: '−5%',     source: 'Provincial budgets' },
@@ -31,7 +31,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'infrastructure', label: 'Infrastructure', weight: 10,
+    key: 'infrastructure', label: 'Infrastructure', weight: 9,
     why: 'Whether big capital projects come in on time and on budget tells you a lot about government execution. Major overruns crowd out other priorities.',
     metrics: [
       { name: 'Avg project cost overrun', weight: '60%', direction: 'lower ↓', best: '0%',   worst: '100%',  source: 'Project disclosures' },
@@ -39,17 +39,18 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'economy', label: 'Economy', weight: 14,
-    why: 'Employment, economic growth, credit health, and Auditor General findings all reflect the underlying condition of the province\'s economy and governance.',
+    key: 'economy', label: 'Economy', weight: 13,
+    why: 'Employment, economic growth, credit health, governance quality, workplace safety, and childcare affordability all reflect conditions that are substantially under provincial influence.',
     metrics: [
-      { name: 'Unemployment rate Δ vs. national', weight: '¼', direction: 'lower ↓',  best: '−3pp', worst: '+3pp', source: 'Stats Can LFS' },
-      { name: 'GDP growth Δ vs. national',        weight: '¼', direction: 'higher ↑', best: '+3pp', worst: '−3pp', source: 'Stats Can' },
-      { name: 'Credit rating (avg. of agencies)', weight: '¼', direction: 'higher ↑', best: 'Aaa / AAA', worst: 'Baa3 / BBB−', source: 'Moody\'s, DBRS, S&P, Fitch' },
-      { name: 'Premier net approval',             weight: '¼', direction: 'higher ↑', best: '+40pp', worst: '−40pp', source: 'Abacus / Leger / Angus Reid' },
+      { name: 'Employment vs. national (unemp. + GDP avg.)', weight: '25%', direction: 'lower unemp. ↓ / higher GDP ↑', best: '−3pp / +3pp', worst: '+3pp / −3pp', source: 'Stats Can LFS + GDP' },
+      { name: 'Credit rating (avg. of agencies)', weight: '20%', direction: 'higher ↑', best: 'Aaa / AAA', worst: 'Baa3 / BBB−', source: 'Moody\'s, DBRS, S&P, Fitch' },
+      { name: 'Auditor General opinion',          weight: '20%', direction: 'clean ↑',  best: 'Clean', worst: 'Adverse', source: 'Provincial AGs' },
+      { name: 'Workplace injury rate',            weight: '20%', direction: 'lower ↓',  best: '0.8 / 100', worst: '3.0 / 100', source: 'AWCBC (lost-time injuries per 100 workers)' },
+      { name: 'Regulated childcare cost',         weight: '15%', direction: 'lower ↓',  best: '$150/mo', worst: '$1,500/mo', source: 'CCPA Childcare Fee Survey 2024' },
     ],
   },
   {
-    key: 'education', label: 'Education', weight: 13,
+    key: 'education', label: 'Education', weight: 11,
     why: 'Literacy, numeracy, and the cost of higher education shape long-term economic mobility. Outcomes, not just spending, are what matter.',
     metrics: [
       { name: 'PCAP math + reading avg.',   weight: '60%', direction: 'higher ↑', best: '540', worst: '440',     source: 'PCAP (Council of Ministers)' },
@@ -58,11 +59,20 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'safety', label: 'Safety', weight: 10,
+    key: 'safety', label: 'Safety', weight: 9,
     why: 'Survey-based victimization avoids reporting-confidence bias that plagues police-reported crime stats. Homicides are always counted.',
     metrics: [
       { name: 'GSS victimization rate',  weight: '50%', direction: 'lower ↓', best: '55 / 1k', worst: '175 / 1k', source: 'Stats Can GSS Cycle 36 (2019)' },
       { name: 'Homicide rate per 100k', weight: '50%', direction: 'lower ↓', best: '0.3',      worst: '6.5',       source: 'Stats Can Homicide Survey (2023)' },
+    ],
+  },
+  {
+    key: 'ltc', label: 'Long-Term Care', weight: 8,
+    why: 'As the population ages, how provinces fund and staff long-term care — and whether they invest in home care to reduce institutional demand — directly affects quality of life for hundreds of thousands of seniors.',
+    metrics: [
+      { name: 'LTC beds per 1,000 residents 75+',       weight: '40%', direction: 'higher ↑', best: '80',      worst: '35',     source: 'CIHI Long-Term Care Homes in Canada 2023' },
+      { name: 'Direct care hours per resident / day',   weight: '35%', direction: 'higher ↑', best: '4.5 hrs', worst: '2.0 hrs', source: 'CIHI Discharge Abstract Database' },
+      { name: 'Home care recipients per 1,000 seniors', weight: '25%', direction: 'higher ↑', best: '100',     worst: '25',     source: 'CIHI Home Care Reporting System 2022' },
     ],
   },
   {
@@ -121,7 +131,7 @@ export default function MethodologyModal({ onClose }) {
         <section className="modal-section">
           <h3>The composite formula</h3>
           <p className="modal-section__intro">
-            Each province gets a single 0–100 composite score — a weighted average of eight categories:
+            Each province gets a single 0–100 composite score — a weighted average of nine categories:
           </p>
           <div className="modal-formula">
             {CATEGORIES.map((cat, i) => (

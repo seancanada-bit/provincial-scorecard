@@ -22,6 +22,7 @@ function buildHeadline(national, provinces) {
     { label: 'education',         avg: national.avgEducation },
     { label: 'public safety',     avg: national.avgSafety },
     { label: 'mental health',     avg: national.avgMentalHealth },
+    { label: 'long-term care',    avg: national.avgLtc },
   ].filter(c => c.avg != null);
   const weakest = [...catAvgs].sort((a, b) => a.avg - b.avg)[0];
 

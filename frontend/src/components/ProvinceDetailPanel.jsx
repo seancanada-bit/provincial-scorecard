@@ -14,6 +14,7 @@ const TABS = [
   { key: 'education',      label: 'Education',  icon: '🎓' },
   { key: 'safety',         label: 'Safety',       icon: '🛡️' },
   { key: 'mentalhealth',   label: 'Mental Health', icon: '🧠' },
+  { key: 'ltc',            label: 'Long-Term Care', icon: '🛏️' },
   { key: 'purchasing',     label: 'Buying Power', icon: '🛒' },
 ];
 
@@ -281,6 +282,11 @@ function EconomyTab({ c }) {
           rawDisplay={e.unemploymentRate != null ? `${e.unemploymentRate}% unemployment` : '—'} />
         <MetricRow label="GDP growth vs. national" score={e.gdpGrowthScore}
           rawDisplay={e.gdpGrowthPct != null ? `${e.gdpGrowthPct}% GDP growth` : '—'} />
+        {e.workplaceInjuryRate != null && (
+          <MetricRow label="Workplace injury rate" score={e.workplaceInjuryScore}
+            rawDisplay={`${e.workplaceInjuryRate} lost-time injuries per 100 workers`}
+            compareDisplay="ON: 1.2 (best) · NL: 2.3 (worst) · AWCBC data · Lower = better" />
+        )}
       </div>
 
       {e.credit && (
@@ -467,6 +473,39 @@ function MentalHealthTab({ c }) {
   );
 }
 
+function LTCTab({ c }) {
+  const ltc = c.ltc;
+  if (!ltc) return <div className="dp-tab-content"><p className="dp-source">Long-term care data not yet available.</p></div>;
+  return (
+    <div className="dp-tab-content">
+      <KeyStat
+        value={ltc.ltcBedsPer1k75plus != null ? ltc.ltcBedsPer1k75plus : '—'}
+        unit=" per 1k 75+"
+        label="LTC beds per 1,000 residents aged 75 and over"
+        score={ltc.score}
+        grade={ltc.grade}
+      />
+      <div className="dp-metrics">
+        <MetricRow label="LTC beds per 1,000 seniors (75+)" score={ltc.ltcBedsScore}
+          rawDisplay={ltc.ltcBedsPer1k75plus != null ? `${ltc.ltcBedsPer1k75plus} beds per 1,000 residents 75+` : '—'}
+          compareDisplay="QC: 72 · SK: 70 · ON/BC: 52–55 · Target: 80+" />
+        <MetricRow label="Direct care hours per resident/day" score={ltc.directCareScore}
+          rawDisplay={ltc.directCareHoursPerDay != null ? `${ltc.directCareHoursPerDay} hrs/resident/day` : '—'}
+          compareDisplay="PE: 3.5 · QC: 2.4 · CLTC recommends 4.1+ hours" />
+        <MetricRow label="Home care recipients per 1,000 seniors" score={ltc.homeCareScore}
+          rawDisplay={ltc.homeCareRecipientsPer1k != null ? `${ltc.homeCareRecipientsPer1k} recipients per 1,000 seniors` : '—'}
+          compareDisplay="QC: 82 · NL: 48 · Reduces institutional demand" />
+      </div>
+      <p className="dp-source" style={{ marginTop: 8 }}>
+        Weighted: LTC beds 40% · direct care hours 35% · home care recipients 25%.
+        Beds: CIHI Long-Term Care Homes in Canada 2023. Care hours: CIHI DAD. Home care: CIHI Home Care Reporting System 2022.
+        Beds denominated per 1,000 residents aged 75+ to account for demographic differences.
+      </p>
+      {ltc.sourceNotes && <p className="dp-source">Source: {ltc.sourceNotes}</p>}
+    </div>
+  );
+}
+
 function PurchasingPowerTab({ province }) {
   const pp = province.purchasingPower;
   const taxes = province.taxes;
@@ -641,6 +680,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         {activeTab === 'education'      && <EducationTab c={c} />}
         {activeTab === 'safety'         && <SafetyTab c={c} />}
         {activeTab === 'mentalhealth'   && <MentalHealthTab c={c} />}
+        {activeTab === 'ltc'            && <LTCTab c={c} />}
         {activeTab === 'purchasing'     && <PurchasingPowerTab province={province} />}
       </div>
 
@@ -648,7 +688,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
       <div className="dp-composite">
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
         {TABS.filter(tab => tab.key !== 'purchasing').map(tab => {
-          const WEIGHTS = { healthcare: 17, housing: 14, fiscal: 14, infrastructure: 10, economy: 14, education: 13, safety: 10, mentalhealth: 8 };
+          const WEIGHTS = { healthcare: 16, housing: 13, fiscal: 13, infrastructure: 9, economy: 13, education: 11, safety: 9, mentalhealth: 8, ltc: 8 };
           const score = tabScore(tab.key);
           const grade = tabGrade(tab.key);
           return (
