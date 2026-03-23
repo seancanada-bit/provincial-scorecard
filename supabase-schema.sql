@@ -271,3 +271,30 @@ values
   ('NS', 10.0,   true,  16.0, 113, 631,  62,  94,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
   ('PE', 10.0,   true,  15.6, 109, 398,  120, 98,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
   ('NL', 10.0,   true,  15.5, 110, 598,  107, 104, 'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01');
+
+-- ─── SAFETY ──────────────────────────────────────────────────────────────────
+-- Survey-based methodology: GSS victimization avoids reporting-confidence bias.
+-- Homicide rates are always counted (body count), most reliable objective metric.
+create table if not exists provinces_safety (
+  id                          serial primary key,
+  province_code               text not null references provinces_meta(province_code),
+  victimization_rate_per_1000 numeric,  -- GSS Cycle 36 (2019) — self-reported victimization per 1,000 residents
+  homicide_rate_per_100k      numeric,  -- Stats Canada Homicide Survey 2023 — per 100,000 residents
+  source_notes                text,
+  data_date                   date
+);
+
+-- ─── SEED: Safety data ───────────────────────────────────────────────────────
+-- Sources: Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey (2023)
+insert into provinces_safety (province_code, victimization_rate_per_1000, homicide_rate_per_100k, source_notes, data_date)
+values
+  ('BC', 118, 2.42, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('AB', 113, 2.76, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('SK', 140, 4.85, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('MB', 131, 5.24, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('ON',  97, 1.55, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('QC',  82, 1.38, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('NB',  99, 1.48, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('NS', 107, 2.21, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('PE',  78, 0.58, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01'),
+  ('NL',  91, 1.91, 'Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023', '2023-01-01');
