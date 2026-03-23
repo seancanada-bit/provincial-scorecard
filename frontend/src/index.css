@@ -797,12 +797,6 @@ body {
 }
 .modal-grade-explainer p:last-child { margin-bottom: 0; }
 
-/* "Premier" prefix in province name block */
-.pcard__premier-title,
-.dp-header__premier-title {
-  opacity: 0.55;
-  font-style: italic;
-}
 
 /* Fairness notes */
 .modal-section--fairness .modal-fairness-item { margin-bottom: var(--space-md); }
