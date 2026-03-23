@@ -826,7 +826,7 @@ body {
   border-radius: var(--radius-lg);
   border: 2px solid var(--border);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
   transition: border-color 0.15s, box-shadow 0.15s;
   cursor: pointer;
 }
@@ -1147,18 +1147,57 @@ body {
 
 /* Value badge on province card */
 .pcard__value-badge {
-  display: inline-block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 4px;
-  padding: 2px 7px;
-  border-radius: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
   color: var(--text-secondary);
-  cursor: help;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.pcard__value-badge:hover,
+.pcard__value-badge--open {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.28);
+}
+.pcard__value-label {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.pcard__value-num {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.pcard__value-tip {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 210px;
+  background: var(--card-bg, #1a1a2e);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+  color: var(--text-primary);
+  z-index: 20;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  text-align: left;
+  line-height: 1.5;
 }
 
 /* Value badge / label in detail panel header */

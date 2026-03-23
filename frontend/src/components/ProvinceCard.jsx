@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { PROVINCE_COLORS, PROVINCE_FLAGS, FLAG_POSITIONS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
 import ProvinceDetailPanel from './ProvinceDetailPanel.jsx';
 
@@ -28,6 +28,19 @@ export default function ProvinceCard({
     };
     requestAnimationFrame(frame);
   }, [animateCount, province.composite]);
+
+  const [showValueTip, setShowValueTip] = useState(false);
+  const valueBadgeRef = useRef(null);
+
+  // Close tooltip on outside click
+  useEffect(() => {
+    if (!showValueTip) return;
+    const handler = e => {
+      if (!valueBadgeRef.current?.contains(e.target)) setShowValueTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showValueTip]);
 
   const handleClick = () => onSelect(province.code);
 
@@ -84,11 +97,22 @@ export default function ProvinceCard({
           </span>
           {province.valueScore != null && (
             <span
-              className="pcard__value-badge"
-              title="Value score: overall grade ÷ tax burden. How much do you get for what you pay?"
-              aria-label={`Value score ${province.valueScore}`}
+              ref={valueBadgeRef}
+              className={`pcard__value-badge${showValueTip ? ' pcard__value-badge--open' : ''}`}
+              onClick={e => { e.stopPropagation(); setShowValueTip(v => !v); }}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); setShowValueTip(v => !v); } }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={showValueTip}
+              aria-label={`Value score ${province.valueScore}. Click for explanation.`}
             >
-              ${province.valueScore}
+              <span className="pcard__value-label">$ VALUE</span>
+              <span className="pcard__value-num">{province.valueScore}</span>
+              {showValueTip && (
+                <span className="pcard__value-tip" role="tooltip">
+                  Score ÷ tax burden — who gives you the most for your dollar
+                </span>
+              )}
             </span>
           )}
         </div>
