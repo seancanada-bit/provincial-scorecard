@@ -81,6 +81,9 @@ async function refresh() {
         polling:        supa.polling[code]         ?? null,
         governance:     supa.governance[code]      ?? null,
         infrastructure: supa.infrastructure[code]  ?? [],
+        education:      supa.education[code]       ?? null,
+        taxes:          supa.taxes[code]           ?? null,
+        safety:         supa.safety[code]          ?? null,
         statscan:       sc?.[code]                 ?? null,
       };
       return scoreProvince(rawProvince);
