@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { PROVINCE_COLORS, PROVINCE_FLAGS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
+import { PROVINCE_COLORS, PROVINCE_FLAGS, FLAG_POSITIONS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
 import ProvinceDetailPanel from './ProvinceDetailPanel.jsx';
 
 const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education'];
@@ -56,6 +56,7 @@ export default function ProvinceCard({
               src={PROVINCE_FLAGS[province.code]}
               alt={`Flag of ${province.name}`}
               className="pcard__flag"
+              style={{ objectPosition: FLAG_POSITIONS[province.code] ?? 'center' }}
               onError={e => {
                 e.target.style.display = 'none';
                 e.target.parentNode.style.background = color;

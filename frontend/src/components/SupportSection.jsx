@@ -1,6 +1,10 @@
-// Replace the href values with your actual Ko-fi URLs before deploying
+// Ko-fi tip links — amounts cannot be pre-filled via URL on standard tip pages.
+// KOFI_COFFEE: your main tip page (set your base "coffee price" to $5 in Ko-fi settings)
+// KOFI_LUNCH: create a Ko-fi Shop item at $15 → Ko-fi dashboard → Shop → Add Item →
+//   set price $15, copy the resulting URL (https://ko-fi.com/s/XXXXXXXXXX) and paste here.
+// KOFI_MONTHLY: membership tiers page — correct as-is.
 const KOFI_COFFEE  = 'https://ko-fi.com/goodgovernance';
-const KOFI_LUNCH   = 'https://ko-fi.com/goodgovernance';
+const KOFI_LUNCH   = 'https://ko-fi.com/goodgovernance';   // TODO: replace with Shop item URL for $15
 const KOFI_MONTHLY = 'https://ko-fi.com/goodgovernance/tiers';
 
 export default function SupportSection({ supporters = [] }) {

@@ -65,7 +65,7 @@ export default function DataSources() {
         {open ? '▾ Hide data sources' : '▸ Show data sources'}
       </button>
 
-      <div id="sources-table-wrap" style={{ display: open ? 'block' : 'none' }} className="sources-table-wrap">
+      <div id="sources-table-wrap" className={`sources-table-wrap${open ? ' sources-table-wrap--open' : ''}`}>
         {SOURCES.map(cat => (
           <div key={cat.category} style={{ marginBottom: '24px' }}>
             <h3 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
@@ -101,10 +101,6 @@ export default function DataSources() {
         </div>
       </div>
 
-      {/* Always visible on desktop — toggle is hidden via CSS for ≥768px */}
-      <div className="sources-table-wrap--desktop" style={{ display: 'none' }} aria-hidden="true">
-        {/* Desktop: same content, always shown — handled by CSS media query override */}
-      </div>
     </section>
   );
 }

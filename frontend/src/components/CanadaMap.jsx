@@ -50,27 +50,24 @@ function labelColor(score) {
   return (35 + t * 60) > 67 ? '#1a1a2e' : '#fff';
 }
 
-// ── Main projection (full Canada) ─────────────────────────────────────────
+// ── Main projection — provinces only (42–60°N) ────────────────────────────
+// scale:800 fills the 800-wide viewBox across the province longitude span.
+// center:[0,51] puts 51°N (mid-province) at the SVG translate point.
+// viewBox "0 145 800 290" crops to exactly the province envelope ±~20px.
 const MAIN_CFG = {
   projection: 'geoAlbers',
   projectionConfig: {
     rotate:    [96, 0, 0],
-    parallels: [49, 77],
-    scale:     530,
-    center:    [0, 20],
+    parallels: [42, 60],
+    scale:     800,
+    center:    [0, 51],
   },
 };
 
-// ── Atlantic inset projection ─────────────────────────────────────────────
-const INSET_CFG = {
-  projection: 'geoAlbers',
-  projectionConfig: {
-    rotate:    [65, 0, 0],
-    parallels: [44, 49],
-    scale:     3200,
-    center:    [0, -7],
-  },
-};
+// ── Atlantic inset — same projection as main, panned to Atlantic region ───
+// Provinces render at x≈216–490, y≈176–411 in shared SVG coords.
+// viewBox "200 160 300 255" pans the inset window into that region.
+const INSET_CFG = MAIN_CFG; // identical projection, different viewBox only
 
 export default function CanadaMap({ provinces, selectedCode, onSelect }) {
   const byCode = {};
@@ -84,11 +81,13 @@ export default function CanadaMap({ provinces, selectedCode, onSelect }) {
         <ComposableMap
           projection={MAIN_CFG.projection}
           projectionConfig={MAIN_CFG.projectionConfig}
-          viewBox="0 0 800 520"
+          viewBox="0 145 800 290"
           style={{ width: '100%', height: 'auto' }}
         >
           <Geographies geography={geoData}>
-            {({ geographies }) => geographies.map(geo => {
+            {({ geographies }) => geographies
+              .filter(geo => NAME_TO_CODE[geo.properties.name] != null)
+              .map(geo => {
               const name  = geo.properties.name;
               const code  = NAME_TO_CODE[name] ?? null;
               const prov  = code ? byCode[code] : null;
@@ -139,7 +138,7 @@ export default function CanadaMap({ provinces, selectedCode, onSelect }) {
                   <text
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    fontSize={13}
+                    fontSize={15}
                     fontWeight="800"
                     fill={labelColor(prov.composite)}
                     style={{ pointerEvents: 'none', fontFamily: 'var(--font-serif)' }}
@@ -157,11 +156,13 @@ export default function CanadaMap({ provinces, selectedCode, onSelect }) {
           <ComposableMap
             projection={INSET_CFG.projection}
             projectionConfig={INSET_CFG.projectionConfig}
-            viewBox="0 0 280 220"
+            viewBox="200 158 300 258"
             style={{ width: '100%', height: 'auto' }}
           >
             <Geographies geography={geoData}>
-              {({ geographies }) => geographies.map(geo => {
+              {({ geographies }) => geographies
+                .filter(geo => NAME_TO_CODE[geo.properties.name] != null)
+                .map(geo => {
                 const name  = geo.properties.name;
                 const code  = NAME_TO_CODE[name] ?? null;
                 const prov  = code ? byCode[code] : null;

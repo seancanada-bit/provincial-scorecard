@@ -99,8 +99,17 @@ export const PROVINCE_FLAGS = {
   QC: `${W}/5/5f/Flag_of_Quebec.svg/200px-Flag_of_Quebec.svg.png`,
   NB: `${W}/f/fb/Flag_of_New_Brunswick.svg/200px-Flag_of_New_Brunswick.svg.png`,
   NS: `${W}/c/c0/Flag_of_Nova_Scotia.svg/200px-Flag_of_Nova_Scotia.svg.png`,
-  PE: `${W}/e/e9/Flag_of_Prince_Edward_Island.svg/200px-Flag_of_Prince_Edward_Island.svg.png`,
+  PE: `${W}/d/d7/Flag_of_Prince_Edward_Island.svg/200px-Flag_of_Prince_Edward_Island.svg.png`,
   NL: `${W}/d/dd/Flag_of_Newfoundland_and_Labrador.svg/200px-Flag_of_Newfoundland_and_Labrador.svg.png`,
+};
+
+// object-position overrides for flags where the key emblem isn't centred
+// Red Ensign variants (MB, ON): provincial arms sit on the right/fly side
+// SK: provincial shield sits in the upper-left quarter
+export const FLAG_POSITIONS = {
+  MB: 'right center',
+  ON: 'right center',
+  SK: 'left center',
 };
 
 export const CATEGORY_ICONS = {

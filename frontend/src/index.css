@@ -197,6 +197,22 @@ body {
   border-bottom-color: var(--canada-red);
   font-weight: 600;
 }
+/* Mobile: tighter padding + right-fade to hint at more tabs */
+@media (max-width: 767px) {
+  .sort-tabs__tab { padding: 12px 10px; font-size: 12px; }
+  .sort-tabs {
+    position: relative;
+  }
+  .sort-tabs::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 36px;
+    background: linear-gradient(to right, transparent, var(--card-bg, #fff));
+    pointer-events: none;
+    z-index: 1;
+  }
+}
 
 /* ─── LAYOUT ────────────────────────────────────────────────────────────── */
 .app-layout {
@@ -464,6 +480,7 @@ body {
 .support-section__header {
   font-family: var(--font-serif); font-size: 22px; font-weight: 700;
   margin-bottom: var(--space-md); color: var(--text-primary);
+  text-wrap: balance;
 }
 .support-section__body {
   font-size: 14px; line-height: 1.75; color: var(--text-secondary);
@@ -523,6 +540,14 @@ body {
 }
 @media (min-width: 768px) {
   .data-sources__toggle { display: none; }
+}
+
+/* Mobile: hidden by default, shown when toggle opens it */
+.sources-table-wrap { display: none; }
+.sources-table-wrap--open { display: block; }
+/* Desktop: always visible regardless of toggle state */
+@media (min-width: 768px) {
+  .sources-table-wrap { display: block; }
 }
 
 .sources-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -666,6 +691,7 @@ body {
   margin-bottom: var(--space-lg);
   max-width: 800px;
   color: #fff;
+  text-wrap: pretty;
 }
 .editorial-summary__callouts {
   display: flex;
@@ -891,6 +917,9 @@ body {
   scrollbar-width: none;
 }
 .pcard__cats::-webkit-scrollbar { display: none; }
+@media (max-width: 767px) {
+  .pcard__cats { flex-wrap: wrap; overflow-x: visible; }
+}
 
 .pcard__pill {
   flex-shrink: 0;
@@ -1255,6 +1284,8 @@ body {
 /* ── Map wrapper ──────────────────────────────────────────────── */
 .canada-map-wrap {
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   padding: 0 0 4px;
 }
 
@@ -1269,9 +1300,9 @@ body {
   position: absolute;
   bottom: 8%;
   right: 2%;
-  width: 22%;
-  min-width: 80px;
-  max-width: 180px;
+  width: 20%;
+  min-width: 72px;
+  max-width: 160px;
   background: rgba(10, 10, 22, 0.82);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 6px;

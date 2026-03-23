@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   gradeFill, gradeColorClass, gradeBgClass, scoreFill,
   outlookSymbol, outlookLabel, formatDollars, overrunColor, delayColor,
-  PROVINCE_COLORS, PROVINCE_FLAGS,
+  PROVINCE_COLORS, PROVINCE_FLAGS, FLAG_POSITIONS,
 } from '../utils/grading.js';
 
 const TABS = [
@@ -396,6 +396,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
               src={PROVINCE_FLAGS[province.code]}
               alt=""
               className="dp-header__flag-img"
+              style={{ objectPosition: FLAG_POSITIONS[province.code] ?? 'center' }}
               onError={e => {
                 e.target.style.display = 'none';
                 e.target.parentNode.style.background = color;
