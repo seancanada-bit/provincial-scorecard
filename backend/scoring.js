@@ -20,6 +20,12 @@ const BOUNDS = {
   gdpGrowthDelta:      { best: 3,     worst: -3    }, // vs national (higher = better)
   infraOverrunPct:     { best: 0,     worst: 100   }, // % (lower = better)
   infraDelayMonths:    { best: 0,     worst: 36    }, // months (lower = better)
+  // Education
+  pcapScore:           { best: 540,   worst: 440   }, // PCAP score (higher = better)
+  tuition:             { best: 3000,  worst: 10000 }, // $ annual (lower = better)
+  studentTeacherRatio: { best: 12,    worst: 21    }, // (lower = better)
+  // Tax burden
+  taxBurdenIndex:      { best: 65,    worst: 135   }, // 100 = national avg (lower = better)
 };
 
 function normalize(value, best, worst) {
@@ -94,7 +100,7 @@ function scoreInfraProjects(projects) {
 }
 
 function scoreProvince(prov) {
-  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan } = prov;
+  const { meta, healthcare, housing, fiscal, credit, polling, governance, infrastructure, statscan, education, taxes } = prov;
 
   // ─── HEALTHCARE (25%) ───────────────────────────────────────────────
   const surgicalScore  = healthcare ? normalizeInverted(healthcare.surgical_wait_weeks, BOUNDS.surgicalWait.best, BOUNDS.surgicalWait.worst) : null;
@@ -142,21 +148,49 @@ function scoreProvince(prov) {
   ) : 50;
   const economyScore = Math.round(avg(employmentScore, creditScore, agScore, approvalScore) ?? 50);
 
-  // ─── COMPOSITE ──────────────────────────────────────────────────────
+  // ─── EDUCATION (15%) ────────────────────────────────────────────────
+  let pcapScore = null, tuitionScore = null, strScore = null;
+  if (education) {
+    const pcapAvg = (education.pcap_math_score != null && education.pcap_reading_score != null)
+      ? (education.pcap_math_score + education.pcap_reading_score) / 2
+      : education.pcap_math_score ?? education.pcap_reading_score ?? null;
+    pcapScore    = pcapAvg    != null ? normalize(pcapAvg, BOUNDS.pcapScore.best, BOUNDS.pcapScore.worst) : null;
+    tuitionScore = education.avg_university_tuition != null
+      ? normalizeInverted(education.avg_university_tuition, BOUNDS.tuition.best, BOUNDS.tuition.worst) : null;
+    strScore     = education.student_teacher_ratio  != null
+      ? normalizeInverted(education.student_teacher_ratio, BOUNDS.studentTeacherRatio.best, BOUNDS.studentTeacherRatio.worst) : null;
+  }
+  const educationScore = (() => {
+    const parts = []; const wts = [];
+    if (pcapScore    != null) { parts.push(pcapScore    * 0.60); wts.push(0.60); }
+    if (tuitionScore != null) { parts.push(tuitionScore * 0.30); wts.push(0.30); }
+    if (strScore     != null) { parts.push(strScore     * 0.10); wts.push(0.10); }
+    if (!parts.length) return 50;
+    const tw = wts.reduce((a,b)=>a+b,0);
+    return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
+  })();
+
+  // ─── COMPOSITE (education 15%, others rescaled) ──────────────────
   const composite = Math.round(
-    healthcareScore * 0.25 +
-    housingScore    * 0.20 +
-    fiscalScore     * 0.20 +
-    infrastructureScore * 0.15 +
-    economyScore    * 0.20
+    healthcareScore * 0.22 +
+    housingScore    * 0.17 +
+    fiscalScore     * 0.17 +
+    infrastructureScore * 0.12 +
+    economyScore    * 0.17 +
+    educationScore  * 0.15
   );
 
+  // ─── VALUE SCORE ────────────────────────────────────────────────────
+  const taxBurdenIndex = taxes?.tax_burden_index ?? 100;
+  const valueScore     = Math.round(composite * 100 / taxBurdenIndex);
+
   return {
-    code:       meta.province_code,
-    name:       meta.name,
+    code:        meta.province_code,
+    name:        meta.name,
     premierName: meta.premier_name,
     composite,
-    grade:      toGrade(composite),
+    grade:       toGrade(composite),
+    valueScore,
     categories: {
       healthcare: {
         score: healthcareScore,
@@ -237,7 +271,29 @@ function scoreProvince(prov) {
         approvalScore,
         pollSourceNotes: polling?.source_notes ?? null,
       },
+      education: {
+        score: educationScore,
+        grade: toGrade(educationScore),
+        pcapMathScore:        education?.pcap_math_score ?? null,
+        pcapReadingScore:     education?.pcap_reading_score ?? null,
+        perPupilSpending:     education?.per_pupil_spending ?? null,
+        studentTeacherRatio:  education?.student_teacher_ratio ?? null,
+        avgUniversityTuition: education?.avg_university_tuition ?? null,
+        tuitionScore,
+        pcapScore,
+        sourceNotes:          education?.source_notes ?? null,
+      },
     },
+    taxes: taxes ? {
+      salesTaxPct:                taxes.sales_tax_pct ?? null,
+      hasHst:                     taxes.has_hst ?? false,
+      incomeEffectiveRatePct:     taxes.income_effective_rate_pct ?? null,
+      taxBurdenIndex:             taxes.tax_burden_index ?? null,
+      childcareMonthlyAvg:        taxes.childcare_monthly_avg ?? null,
+      legislatureCostPerCapita:   taxes.legislature_cost_per_capita ?? null,
+      publicSectorPer1000:        taxes.public_sector_per_1000 ?? null,
+      sourceNotes:                taxes.source_notes ?? null,
+    } : null,
     lastUpdated: {
       healthcare:     meta.last_updated_healthcare ?? null,
       housing:        meta.last_updated_housing ?? null,

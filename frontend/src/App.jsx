@@ -13,6 +13,7 @@ import MethodologyModal        from './components/MethodologyModal.jsx';
 
 function getCategoryScore(province, category) {
   if (category === 'overall') return province.composite;
+  if (category === 'value')   return province.valueScore ?? 0;
   return province.categories[category]?.score ?? 0;
 }
 

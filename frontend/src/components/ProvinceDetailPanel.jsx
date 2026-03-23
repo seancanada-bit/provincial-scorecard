@@ -11,6 +11,7 @@ const TABS = [
   { key: 'fiscal',         label: 'Fiscal',     icon: '💰' },
   { key: 'infrastructure', label: 'Infra',      icon: '🏗️' },
   { key: 'economy',        label: 'Economy',    icon: '📈' },
+  { key: 'education',      label: 'Education',  icon: '🎓' },
 ];
 
 function MetricRow({ label, score, rawDisplay, compareDisplay }) {
@@ -103,7 +104,7 @@ function HousingTab({ c }) {
   );
 }
 
-function FiscalTab({ c }) {
+function FiscalTab({ c, taxes }) {
   const f = c.fiscal;
   const cents = f.debtInterestCentsPerDollar;
   return (
@@ -137,6 +138,59 @@ function FiscalTab({ c }) {
           <span>Fiscal trend {f.fiscalTrend}
             {f.fiscalTrend === 'improving' ? ' (+5 bonus)' : f.fiscalTrend === 'worsening' ? ' (−5 penalty)' : ''}
           </span>
+        </div>
+      )}
+
+      {/* ── What you pay ── */}
+      {taxes && (
+        <div className="dp-your-money">
+          <div className="dp-section-label" style={{ marginBottom: 12 }}>What a typical household pays this province</div>
+          <div className="dp-money-grid">
+            <div className="dp-money-cell">
+              <div className="dp-money-cell__value">
+                {taxes.incomeEffectiveRatePct != null ? `${taxes.incomeEffectiveRatePct}%` : '—'}
+              </div>
+              <div className="dp-money-cell__label">Provincial income tax<br/><span className="dp-money-cell__sub">effective rate at $60K income</span></div>
+            </div>
+            <div className="dp-money-cell">
+              <div className="dp-money-cell__value">
+                {taxes.salesTaxPct != null
+                  ? taxes.salesTaxPct === 0 ? 'None' : `${taxes.salesTaxPct}%`
+                  : '—'}
+              </div>
+              <div className="dp-money-cell__label">
+                {taxes.hasHst ? 'HST' : taxes.salesTaxPct === 0 ? 'No provincial sales tax' : 'Provincial sales tax (PST)'}
+                {taxes.salesTaxPct === 0 && <><br/><span className="dp-money-cell__sub highlight-good">Only 5% federal GST applies</span></>}
+              </div>
+            </div>
+            <div className="dp-money-cell">
+              <div className="dp-money-cell__value">
+                {taxes.childcareMonthlyAvg != null
+                  ? `$${taxes.childcareMonthlyAvg.toLocaleString('en-CA')}`
+                  : '—'}
+              </div>
+              <div className="dp-money-cell__label">Regulated childcare<br/><span className="dp-money-cell__sub">avg monthly cost, toddler age</span></div>
+            </div>
+            <div className="dp-money-cell">
+              <div className="dp-money-cell__value">
+                {taxes.legislatureCostPerCapita != null ? `$${taxes.legislatureCostPerCapita}` : '—'}
+              </div>
+              <div className="dp-money-cell__label">Legislature cost<br/><span className="dp-money-cell__sub">per resident per year</span></div>
+            </div>
+            <div className="dp-money-cell">
+              <div className="dp-money-cell__value">
+                {taxes.publicSectorPer1000 != null ? taxes.publicSectorPer1000 : '—'}
+              </div>
+              <div className="dp-money-cell__label">Public sector workers<br/><span className="dp-money-cell__sub">per 1,000 residents</span></div>
+            </div>
+            <div className="dp-money-cell dp-money-cell--highlight">
+              <div className="dp-money-cell__value dp-money-cell__value--index">
+                {taxes.taxBurdenIndex != null ? taxes.taxBurdenIndex : '—'}
+              </div>
+              <div className="dp-money-cell__label">Tax burden index<br/><span className="dp-money-cell__sub">100 = national average</span></div>
+            </div>
+          </div>
+          {taxes.sourceNotes && <p className="dp-source">{taxes.sourceNotes}</p>}
         </div>
       )}
     </div>
@@ -265,9 +319,59 @@ function EconomyTab({ c }) {
   );
 }
 
+function EducationTab({ c }) {
+  const ed = c.education;
+  if (!ed) return <div className="dp-tab-content"><p className="dp-source">Education data not yet available.</p></div>;
+  return (
+    <div className="dp-tab-content">
+      <KeyStat
+        value={ed.pcapMathScore ?? '—'}
+        label={`PCAP math score (national avg ~490) · Reading: ${ed.pcapReadingScore ?? '—'}`}
+        score={ed.score}
+        grade={ed.grade}
+      />
+      <div className="dp-metrics">
+        <MetricRow label="Math outcomes (PCAP)" score={ed.pcapScore}
+          rawDisplay={ed.pcapMathScore != null ? `${ed.pcapMathScore} / 600` : '—'}
+          compareDisplay="QC: 531 · National avg: ~490" />
+        <MetricRow label="University tuition affordability" score={ed.tuitionScore}
+          rawDisplay={ed.avgUniversityTuition != null ? `$${ed.avgUniversityTuition.toLocaleString('en-CA')}/yr avg undergrad` : '—'}
+          compareDisplay="QC: $3,013 · ON: $9,070" />
+      </div>
+
+      <div className="dp-your-money" style={{ marginTop: 16 }}>
+        <div className="dp-section-label" style={{ marginBottom: 12 }}>Education system inputs</div>
+        <div className="dp-money-grid">
+          <div className="dp-money-cell">
+            <div className="dp-money-cell__value">
+              {ed.perPupilSpending != null ? `$${(ed.perPupilSpending / 1000).toFixed(0)}K` : '—'}
+            </div>
+            <div className="dp-money-cell__label">Per-pupil spending<br/><span className="dp-money-cell__sub">annual K–12 expenditure</span></div>
+          </div>
+          <div className="dp-money-cell">
+            <div className="dp-money-cell__value">
+              {ed.studentTeacherRatio != null ? `${ed.studentTeacherRatio}:1` : '—'}
+            </div>
+            <div className="dp-money-cell__label">Student–teacher ratio<br/><span className="dp-money-cell__sub">lower = more resources</span></div>
+          </div>
+          <div className="dp-money-cell">
+            <div className="dp-money-cell__value">
+              {ed.avgUniversityTuition != null ? `$${ed.avgUniversityTuition.toLocaleString('en-CA')}` : '—'}
+            </div>
+            <div className="dp-money-cell__label">Avg undergrad tuition<br/><span className="dp-money-cell__sub">annual, domestic student</span></div>
+          </div>
+        </div>
+      </div>
+
+      {ed.sourceNotes && <p className="dp-source">Source: {ed.sourceNotes}</p>}
+    </div>
+  );
+}
+
 export default function ProvinceDetailPanel({ province, onMethodology, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? 'healthcare');
-  const c = province.categories;
+  const c    = province.categories;
+  const taxes = province.taxes ?? null;
   const color = PROVINCE_COLORS[province.code] ?? '#333';
 
   const tabScore = key => c[key]?.score ?? 0;
@@ -287,6 +391,12 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         <div className="dp-header__right">
           <span className={`dp-header__grade ${gradeColorClass(province.grade)}`}>{province.grade}</span>
           <span className="dp-header__score">{province.composite}<span style={{fontSize:13,opacity:.6}}>/100</span></span>
+          {province.valueScore != null && (
+            <span className="dp-header__value" title="Value score: overall score ÷ tax burden">
+              <span className="dp-header__value-label">$ Value</span>
+              <span className="dp-header__value-num">{province.valueScore}</span>
+            </span>
+          )}
         </div>
       </div>
 
@@ -316,23 +426,33 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
       <div role="tabpanel">
         {activeTab === 'healthcare'     && <HealthTab c={c} />}
         {activeTab === 'housing'        && <HousingTab c={c} />}
-        {activeTab === 'fiscal'         && <FiscalTab c={c} />}
+        {activeTab === 'fiscal'         && <FiscalTab c={c} taxes={taxes} />}
         {activeTab === 'infrastructure' && <InfraTab c={c} />}
         {activeTab === 'economy'        && <EconomyTab c={c} />}
+        {activeTab === 'education'      && <EducationTab c={c} />}
       </div>
 
       {/* Composite + methodology */}
       <div className="dp-composite">
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
-        {TABS.map(tab => (
-          <div key={tab.key} className="dp-composite__row">
-            <span className="dp-composite__name">{tab.label}</span>
-            <div className="dp-composite__track">
-              <div className="dp-composite__fill" style={{ width: `${tabScore(tab.key)}%`, background: gradeFill(tabGrade(tab.key)) }} />
+        {TABS.map(tab => {
+          const WEIGHTS = { healthcare: 22, housing: 17, fiscal: 17, infrastructure: 12, economy: 17, education: 15 };
+          return (
+            <div key={tab.key} className="dp-composite__row">
+              <span className="dp-composite__name">{tab.label} <span className="dp-composite__weight">{WEIGHTS[tab.key]}%</span></span>
+              <div className="dp-composite__track">
+                <div className="dp-composite__fill" style={{ width: `${tabScore(tab.key)}%`, background: gradeFill(tabGrade(tab.key)) }} />
+              </div>
+              <span className="dp-composite__score">{tabScore(tab.key)}</span>
             </div>
-            <span className="dp-composite__score">{tabScore(tab.key)}</span>
+          );
+        })}
+        {province.valueScore != null && (
+          <div className="dp-composite__value-row">
+            <span>$ Value score <span className="dp-composite__weight">(score ÷ tax burden)</span></span>
+            <span className="dp-composite__score dp-composite__score--value">{province.valueScore}</span>
           </div>
-        ))}
+        )}
         <div style={{ marginTop: 12, textAlign: 'right' }}>
           <button className="methodology-link" onClick={onMethodology}>ℹ How we score this</button>
         </div>

@@ -1111,3 +1111,139 @@ body {
   max-width: 1140px; margin: 0 auto; padding: 0 var(--space-md);
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   PAY vs GET — Education + Taxes UI additions
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Value badge on province card */
+.pcard__value-badge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  cursor: help;
+}
+
+/* Value badge / label in detail panel header */
+.dp-header__value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: help;
+}
+.dp-header__value-label {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+.dp-header__value-num {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+/* ── Your Money / What You Pay grid ── */
+.dp-your-money {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dp-money-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+@media (max-width: 500px) {
+  .dp-money-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dp-money-cell {
+  padding: 12px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+.dp-money-cell--highlight {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+}
+.dp-money-cell__value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.dp-money-cell__value--index {
+  font-size: 24px;
+}
+.dp-money-cell__label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.dp-money-cell__sub {
+  font-size: 10px;
+  opacity: 0.7;
+  display: block;
+}
+.dp-money-cell__sub.highlight-good {
+  color: var(--grade-a);
+  opacity: 1;
+}
+
+/* Composite value row */
+.dp-composite__weight {
+  font-size: 10px;
+  opacity: 0.5;
+  font-family: var(--font-mono);
+  margin-left: 4px;
+}
+.dp-composite__value-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 4px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.dp-composite__score--value {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Ensure sort-tabs scrolls horizontally on small screens */
+.sort-tabs__inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.sort-tabs__inner::-webkit-scrollbar { display: none; }

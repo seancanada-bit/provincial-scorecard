@@ -90,6 +90,36 @@ create table if not exists infrastructure_projects (
   source_notes         text
 );
 
+-- ─── EDUCATION ──────────────────────────────────────────────────────────────
+-- PCAP = Pan-Canadian Assessment Program (CMEC) — Grade 8 equivalent outcomes
+create table if not exists provinces_education (
+  id                      serial primary key,
+  province_code           text not null references provinces_meta(province_code),
+  pcap_math_score         numeric,   -- PCAP math score (~440–540 range nationally)
+  pcap_reading_score      numeric,   -- PCAP reading score
+  per_pupil_spending      integer,   -- Annual K–12 spending per student ($CAD)
+  student_teacher_ratio   numeric,   -- Classroom student-to-teacher ratio
+  avg_university_tuition  integer,   -- Average domestic undergrad tuition ($CAD/yr)
+  source_notes            text,
+  data_date               date
+);
+
+-- ─── TAXES & COST BURDEN ────────────────────────────────────────────────────
+-- Household-level cost data for a typical two-income family (~$120K combined)
+create table if not exists provinces_tax (
+  id                          serial primary key,
+  province_code               text not null references provinces_meta(province_code),
+  sales_tax_pct               numeric,  -- Provincial sales/consumption tax rate (PST/QST/HST provincial portion)
+  has_hst                     boolean default false,  -- True if blended HST rather than separate PST
+  income_effective_rate_pct   numeric,  -- Effective provincial income tax rate at $60K individual income
+  tax_burden_index            integer,  -- Total provincial tax burden vs national avg (100 = average)
+  childcare_monthly_avg       integer,  -- Average regulated childcare cost, toddler, $/month
+  legislature_cost_per_capita numeric,  -- Annual Legislative Assembly operating cost per resident ($)
+  public_sector_per_1000      numeric,  -- Provincial + health sector employees per 1,000 population
+  source_notes                text,
+  data_date                   date
+);
+
 -- ─── SUPPORTERS ─────────────────────────────────────────────────────────────
 create table if not exists supporters (
   id           serial primary key,
@@ -211,3 +241,33 @@ values
   ('PE', 'Trans-Canada Highway Upgrades',         'Highway',   280000000,  295000000,   5.4, '2027-10', '2027-10',  0, 'In Construction'),
   ('NL', 'Muskrat Falls / Labrador-Island Link',  'Utility',  6200000000,13100000000, 111.3, '2017-12', '2023-06', 66, 'Operational (over budget)'),
   ('NL', 'Corner Brook Acute Care Hospital',      'Hospital',  820000000, 1150000000,  40.2, '2025-12', '2027-06', 18, 'In Construction');
+
+-- ─── SEED: Education data ────────────────────────────────────────────────────
+-- Source: CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO
+insert into provinces_education (province_code, pcap_math_score, pcap_reading_score, per_pupil_spending, student_teacher_ratio, avg_university_tuition, source_notes, data_date)
+values
+  ('BC', 504, 506, 12700, 17.5, 5974,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('AB', 503, 505, 14200, 16.8, 7280,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('SK', 483, 490, 12900, 17.2, 6793,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('MB', 473, 481, 13200, 16.5, 4850,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('ON', 494, 501, 12400, 18.2, 9070,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('QC', 531, 521, 13400, 15.8, 3013,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('NB', 475, 485, 13100, 14.2, 7242,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('NS', 472, 478, 14000, 14.8, 8391,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('PE', 464, 470, 13600, 14.1, 7210,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01'),
+  ('NL', 460, 466, 17200, 13.5, 3872,  'CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO', '2023-09-01');
+
+-- ─── SEED: Tax burden data ───────────────────────────────────────────────────
+-- Source: Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01
+insert into provinces_tax (province_code, sales_tax_pct, has_hst, income_effective_rate_pct, tax_burden_index, childcare_monthly_avg, legislature_cost_per_capita, public_sector_per_1000, source_notes, data_date)
+values
+  ('BC', 7.0,    false, 9.8,  94,  897,  17,  73,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('AB', 0.0,    false, 9.2,  70,  1242, 24,  72,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('SK', 6.0,    false, 11.5, 85,  912,  43,  82,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('MB', 7.0,    false, 13.5, 92,  584,  35,  90,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('ON', 8.0,    true,  9.2,  97,  1456, 9,   68,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('QC', 9.975,  false, 17.8, 128, 196,  22,  88,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('NB', 10.0,   true,  13.2, 100, 619,  54,  89,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('NS', 10.0,   true,  16.0, 113, 631,  62,  94,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('PE', 10.0,   true,  15.6, 109, 398,  120, 98,  'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01'),
+  ('NL', 10.0,   true,  15.5, 110, 598,  107, 104, 'Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01', '2024-01-01');

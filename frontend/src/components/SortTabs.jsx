@@ -3,8 +3,10 @@ const TABS = [
   { key: 'healthcare',     label: 'Healthcare' },
   { key: 'housing',        label: 'Housing' },
   { key: 'fiscal',         label: 'Fiscal' },
-  { key: 'infrastructure', label: 'Infrastructure' },
+  { key: 'infrastructure', label: 'Infra' },
   { key: 'economy',        label: 'Economy' },
+  { key: 'education',      label: 'Education' },
+  { key: 'value',          label: '$ Value',   title: 'Score ÷ tax burden — who gives you the most for your dollar' },
 ];
 
 export default function SortTabs({ active, onChange }) {
@@ -18,6 +20,7 @@ export default function SortTabs({ active, onChange }) {
             aria-selected={active === tab.key}
             className={`sort-tabs__tab${active === tab.key ? ' sort-tabs__tab--active' : ''}`}
             onClick={() => onChange(tab.key)}
+            title={tab.title}
           >
             {tab.label}
           </button>

@@ -94,6 +94,7 @@ export const CATEGORY_ICONS = {
   fiscal:         '💰',
   infrastructure: '🏗️',
   economy:        '📈',
+  education:      '🎓',
 };
 
 export const CATEGORY_LABELS = {
@@ -103,4 +104,6 @@ export const CATEGORY_LABELS = {
   fiscal:         'Fiscal',
   infrastructure: 'Infrastructure',
   economy:        'Economy',
+  education:      'Education',
+  value:          'Best Value',
 };

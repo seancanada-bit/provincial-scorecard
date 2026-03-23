@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { PROVINCE_COLORS, gradeFill, gradeColorClass, toGrade } from '../utils/grading.js';
 import ProvinceDetailPanel from './ProvinceDetailPanel.jsx';
 
-const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy'];
-const CAT_SHORT = { healthcare: 'Health', housing: 'Housing', fiscal: 'Fiscal', infrastructure: 'Infra', economy: 'Economy' };
+const CAT_KEYS = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education'];
+const CAT_SHORT = { healthcare: 'Health', housing: 'Housing', fiscal: 'Fiscal', infrastructure: 'Infra', economy: 'Economy', education: 'Edu' };
 
 export default function ProvinceCard({
   province, rank, selected, expanded, onSelect, sortKey, animateCount, onMethodology, isMobile,
@@ -58,7 +58,7 @@ export default function ProvinceCard({
           </div>
         </div>
 
-        {/* Right: grade hero */}
+        {/* Right: grade hero + value badge */}
         <div className="pcard__right">
           <span
             className={`pcard__grade ${gradeColorClass(province.grade)}`}
@@ -69,6 +69,15 @@ export default function ProvinceCard({
           <span className="pcard__score" aria-label={`${displayScore} out of 100`}>
             {displayScore}<span className="pcard__score-denom">/100</span>
           </span>
+          {province.valueScore != null && (
+            <span
+              className="pcard__value-badge"
+              title="Value score: overall grade ÷ tax burden. How much do you get for what you pay?"
+              aria-label={`Value score ${province.valueScore}`}
+            >
+              ${province.valueScore}
+            </span>
+          )}
         </div>
       </div>
 

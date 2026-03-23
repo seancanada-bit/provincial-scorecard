@@ -1,24 +1,26 @@
 {
-  "lastUpdated": "2026-03-22T00:00:00Z",
+  "lastUpdated": "2026-03-23T12:20:44.086Z",
   "note": "Fallback cache — populated from publicly available data as of March 2026. Update via Supabase table editor.",
   "national": {
-    "avgComposite": 62,
-    "avgHealthcare": 54,
-    "avgHousing": 48,
-    "avgFiscal": 66,
-    "avgInfrastructure": 52,
-    "avgEconomy": 68,
+    "avgComposite": 56,
+    "avgHealthcare": 51,
+    "avgHousing": 56,
+    "avgFiscal": 63,
+    "avgInfrastructure": 53,
+    "avgEconomy": 66,
     "topProvince": "PE",
     "bottomProvince": "NL",
-    "nationalAvgHealthcareSurgical": 27
+    "nationalAvgHealthcareSurgical": 27,
+    "avgEducation": 50,
+    "avgValue": 58
   },
   "provinces": [
     {
       "code": "BC",
       "name": "British Columbia",
       "premierName": "David Eby",
-      "composite": 61,
-      "grade": "C",
+      "composite": 55,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 55,
@@ -63,9 +65,39 @@
           "avgOverrunPct": 6.5,
           "avgDelayMonths": 5,
           "projects": [
-            {"name": "Broadway Subway (SkyTrain Ext.)", "type": "Transit", "originalBudget": 2830000000, "currentBudget": 2830000000, "overrunPct": 0, "originalCompletion": "2025-12", "currentCompletion": "2026-03", "monthsDelayed": 3, "status": "In Construction"},
-            {"name": "Pattullo Bridge Replacement", "type": "Bridge", "originalBudget": 1380000000, "currentBudget": 1460000000, "overrunPct": 5.8, "originalCompletion": "2027-06", "currentCompletion": "2027-06", "monthsDelayed": 0, "status": "In Construction"},
-            {"name": "St. Paul's Hospital (New Site)", "type": "Hospital", "originalBudget": 2100000000, "currentBudget": 2300000000, "overrunPct": 9.5, "originalCompletion": "2026-12", "currentCompletion": "2028-01", "monthsDelayed": 13, "status": "In Construction"}
+            {
+              "name": "Broadway Subway (SkyTrain Ext.)",
+              "type": "Transit",
+              "originalBudget": 2830000000,
+              "currentBudget": 2830000000,
+              "overrunPct": 0,
+              "originalCompletion": "2025-12",
+              "currentCompletion": "2026-03",
+              "monthsDelayed": 3,
+              "status": "In Construction"
+            },
+            {
+              "name": "Pattullo Bridge Replacement",
+              "type": "Bridge",
+              "originalBudget": 1380000000,
+              "currentBudget": 1460000000,
+              "overrunPct": 5.8,
+              "originalCompletion": "2027-06",
+              "currentCompletion": "2027-06",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            },
+            {
+              "name": "St. Paul's Hospital (New Site)",
+              "type": "Hospital",
+              "originalBudget": 2100000000,
+              "currentBudget": 2300000000,
+              "overrunPct": 9.5,
+              "originalCompletion": "2026-12",
+              "currentCompletion": "2028-01",
+              "monthsDelayed": 13,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -80,10 +112,22 @@
           "gdpGrowthScore": 55,
           "creditScore": 78,
           "credit": {
-            "moodys": {"rating": "Aa2", "outlook": "stable"},
-            "dbrs":   {"rating": "AA",  "outlook": "stable"},
-            "sp":     {"rating": "AA",  "outlook": "stable"},
-            "fitch":  {"rating": "AA",  "outlook": "stable"}
+            "moodys": {
+              "rating": "Aa2",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": "AA",
+              "outlook": "stable"
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -92,6 +136,18 @@
           "premierDisapprovalPct": 42,
           "approvalScore": 54,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 60,
+          "grade": "C",
+          "pcapMathScore": 504,
+          "pcapReadingScore": 506,
+          "perPupilSpending": 12700,
+          "studentTeacherRatio": 17.5,
+          "avgUniversityTuition": 5974,
+          "tuitionScore": 58,
+          "pcapScore": 65,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -100,14 +156,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 7,
+        "hasHst": false,
+        "incomeEffectiveRatePct": 9.8,
+        "taxBurdenIndex": 94,
+        "childcareMonthlyAvg": 897,
+        "legislatureCostPerCapita": 17,
+        "publicSectorPer1000": 73,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 59
     },
     {
       "code": "AB",
       "name": "Alberta",
       "premierName": "Danielle Smith",
-      "composite": 68,
-      "grade": "C+",
+      "composite": 62,
+      "grade": "C",
       "categories": {
         "healthcare": {
           "score": 51,
@@ -152,9 +219,39 @@
           "avgOverrunPct": 17,
           "avgDelayMonths": 16,
           "projects": [
-            {"name": "Calgary Green Line LRT", "type": "Transit", "originalBudget": 4650000000, "currentBudget": 5600000000, "overrunPct": 20.4, "originalCompletion": "2026-12", "currentCompletion": "2028-06", "monthsDelayed": 18, "status": "In Construction"},
-            {"name": "Edmonton Valley Line West LRT", "type": "Transit", "originalBudget": 1870000000, "currentBudget": 2100000000, "overrunPct": 12.3, "originalCompletion": "2023-12", "currentCompletion": "2025-12", "monthsDelayed": 24, "status": "Delayed Opening"},
-            {"name": "Red Deer Regional Hospital Campus", "type": "Hospital", "originalBudget": 910000000, "currentBudget": 1100000000, "overrunPct": 20.9, "originalCompletion": "2027-06", "currentCompletion": "2027-12", "monthsDelayed": 6, "status": "In Construction"}
+            {
+              "name": "Calgary Green Line LRT",
+              "type": "Transit",
+              "originalBudget": 4650000000,
+              "currentBudget": 5600000000,
+              "overrunPct": 20.4,
+              "originalCompletion": "2026-12",
+              "currentCompletion": "2028-06",
+              "monthsDelayed": 18,
+              "status": "In Construction"
+            },
+            {
+              "name": "Edmonton Valley Line West LRT",
+              "type": "Transit",
+              "originalBudget": 1870000000,
+              "currentBudget": 2100000000,
+              "overrunPct": 12.3,
+              "originalCompletion": "2023-12",
+              "currentCompletion": "2025-12",
+              "monthsDelayed": 24,
+              "status": "Delayed Opening"
+            },
+            {
+              "name": "Red Deer Regional Hospital Campus",
+              "type": "Hospital",
+              "originalBudget": 910000000,
+              "currentBudget": 1100000000,
+              "overrunPct": 20.9,
+              "originalCompletion": "2027-06",
+              "currentCompletion": "2027-12",
+              "monthsDelayed": 6,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -169,10 +266,22 @@
           "gdpGrowthScore": 81,
           "creditScore": 88,
           "credit": {
-            "moodys": {"rating": "Aa1", "outlook": "stable"},
-            "dbrs":   {"rating": "AA+", "outlook": "stable"},
-            "sp":     {"rating": "AA",  "outlook": "stable"},
-            "fitch":  {"rating": null,  "outlook": null}
+            "moodys": {
+              "rating": "Aa1",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "AA+",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -181,6 +290,18 @@
           "premierDisapprovalPct": 48,
           "approvalScore": 48,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 55,
+          "grade": "C-",
+          "pcapMathScore": 503,
+          "pcapReadingScore": 505,
+          "perPupilSpending": 14200,
+          "studentTeacherRatio": 16.8,
+          "avgUniversityTuition": 7280,
+          "tuitionScore": 39,
+          "pcapScore": 64,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -189,13 +310,24 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 0,
+        "hasHst": false,
+        "incomeEffectiveRatePct": 9.2,
+        "taxBurdenIndex": 70,
+        "childcareMonthlyAvg": 1242,
+        "legislatureCostPerCapita": 24,
+        "publicSectorPer1000": 72,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 89
     },
     {
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 65,
+      "composite": 61,
       "grade": "C",
       "categories": {
         "healthcare": {
@@ -214,7 +346,7 @@
           "score": 62,
           "grade": "C",
           "mlsHpiBenchmark": 325000,
-          "mlsHpiYoyPct": 5.0,
+          "mlsHpiYoyPct": 5,
           "priceScore": 59,
           "housingStartsPer1000Growth": 200,
           "startsScore": 60,
@@ -228,7 +360,7 @@
           "grade": "B+",
           "budgetBalancePctGdp": 0.5,
           "balanceScore": 83,
-          "debtInterestCentsPerDollar": 6.0,
+          "debtInterestCentsPerDollar": 6,
           "interestScore": 82,
           "netDebtPerCapita": 8000,
           "debtScore": 92,
@@ -241,16 +373,46 @@
           "avgOverrunPct": 55,
           "avgDelayMonths": 12,
           "projects": [
-            {"name": "Regina Bypass (Ring Road)", "type": "Highway", "originalBudget": 400000000, "currentBudget": 1400000000, "overrunPct": 250, "originalCompletion": "2017-10", "currentCompletion": "2019-12", "monthsDelayed": 26, "status": "Complete (over budget)"},
-            {"name": "Prince Albert Victoria Hospital Redevelopment", "type": "Hospital", "originalBudget": 260000000, "currentBudget": 310000000, "overrunPct": 19.2, "originalCompletion": "2027-03", "currentCompletion": "2027-09", "monthsDelayed": 6, "status": "In Construction"},
-            {"name": "SK Highway 1 Corridor Twinning", "type": "Highway", "originalBudget": 185000000, "currentBudget": 205000000, "overrunPct": 10.8, "originalCompletion": "2026-10", "currentCompletion": "2026-10", "monthsDelayed": 0, "status": "In Construction"}
+            {
+              "name": "Regina Bypass (Ring Road)",
+              "type": "Highway",
+              "originalBudget": 400000000,
+              "currentBudget": 1400000000,
+              "overrunPct": 250,
+              "originalCompletion": "2017-10",
+              "currentCompletion": "2019-12",
+              "monthsDelayed": 26,
+              "status": "Complete (over budget)"
+            },
+            {
+              "name": "Prince Albert Victoria Hospital Redevelopment",
+              "type": "Hospital",
+              "originalBudget": 260000000,
+              "currentBudget": 310000000,
+              "overrunPct": 19.2,
+              "originalCompletion": "2027-03",
+              "currentCompletion": "2027-09",
+              "monthsDelayed": 6,
+              "status": "In Construction"
+            },
+            {
+              "name": "SK Highway 1 Corridor Twinning",
+              "type": "Highway",
+              "originalBudget": 185000000,
+              "currentBudget": 205000000,
+              "overrunPct": 10.8,
+              "originalCompletion": "2026-10",
+              "currentCompletion": "2026-10",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
           "score": 72,
           "grade": "B-",
           "employmentScore": 65,
-          "unemploymentRate": 5.0,
+          "unemploymentRate": 5,
           "unemploymentDeltaFromNational": -1.3,
           "unemployScore": 72,
           "gdpGrowthPct": 2.8,
@@ -258,10 +420,22 @@
           "gdpGrowthScore": 65,
           "creditScore": 78,
           "credit": {
-            "moodys": {"rating": "Aa2", "outlook": "stable"},
-            "dbrs":   {"rating": "AA",  "outlook": "stable"},
-            "sp":     {"rating": "AA",  "outlook": "stable"},
-            "fitch":  {"rating": null,  "outlook": null}
+            "moodys": {
+              "rating": "Aa2",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -270,6 +444,18 @@
           "premierDisapprovalPct": 48,
           "approvalScore": 48,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 46,
+          "grade": "D",
+          "pcapMathScore": 483,
+          "pcapReadingScore": 490,
+          "perPupilSpending": 12900,
+          "studentTeacherRatio": 17.2,
+          "avgUniversityTuition": 6793,
+          "tuitionScore": 46,
+          "pcapScore": 47,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -278,14 +464,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 6,
+        "hasHst": false,
+        "incomeEffectiveRatePct": 11.5,
+        "taxBurdenIndex": 85,
+        "childcareMonthlyAvg": 912,
+        "legislatureCostPerCapita": 43,
+        "publicSectorPer1000": 82,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 72
     },
     {
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 59,
-      "grade": "C-",
+      "composite": 56,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 52,
@@ -307,7 +504,7 @@
           "priceScore": 71,
           "housingStartsPer1000Growth": 155,
           "startsScore": 42,
-          "rentInflationPct": 5.0,
+          "rentInflationPct": 5,
           "rentScore": 50,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025",
           "dataDate": "2026-02-01"
@@ -317,7 +514,7 @@
           "grade": "D",
           "budgetBalancePctGdp": -1.8,
           "balanceScore": 50,
-          "debtInterestCentsPerDollar": 8.0,
+          "debtInterestCentsPerDollar": 8,
           "interestScore": 64,
           "netDebtPerCapita": 18500,
           "debtScore": 61,
@@ -330,9 +527,39 @@
           "avgOverrunPct": 8,
           "avgDelayMonths": 3,
           "projects": [
-            {"name": "Kenaston Underpass Extension", "type": "Highway", "originalBudget": 195000000, "currentBudget": 207000000, "overrunPct": 6.2, "originalCompletion": "2025-10", "currentCompletion": "2025-10", "monthsDelayed": 0, "status": "Complete"},
-            {"name": "Health Sciences Centre Redevelopment", "type": "Hospital", "originalBudget": 850000000, "currentBudget": 940000000, "overrunPct": 10.6, "originalCompletion": "2028-06", "currentCompletion": "2028-12", "monthsDelayed": 6, "status": "In Construction"},
-            {"name": "Southwest Rapid Transit Corridor", "type": "Transit", "originalBudget": 490000000, "currentBudget": 520000000, "overrunPct": 6.1, "originalCompletion": "2027-06", "currentCompletion": "2027-06", "monthsDelayed": 0, "status": "In Construction"}
+            {
+              "name": "Kenaston Underpass Extension",
+              "type": "Highway",
+              "originalBudget": 195000000,
+              "currentBudget": 207000000,
+              "overrunPct": 6.2,
+              "originalCompletion": "2025-10",
+              "currentCompletion": "2025-10",
+              "monthsDelayed": 0,
+              "status": "Complete"
+            },
+            {
+              "name": "Health Sciences Centre Redevelopment",
+              "type": "Hospital",
+              "originalBudget": 850000000,
+              "currentBudget": 940000000,
+              "overrunPct": 10.6,
+              "originalCompletion": "2028-06",
+              "currentCompletion": "2028-12",
+              "monthsDelayed": 6,
+              "status": "In Construction"
+            },
+            {
+              "name": "Southwest Rapid Transit Corridor",
+              "type": "Transit",
+              "originalBudget": 490000000,
+              "currentBudget": 520000000,
+              "overrunPct": 6.1,
+              "originalCompletion": "2027-06",
+              "currentCompletion": "2027-06",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -347,10 +574,22 @@
           "gdpGrowthScore": 48,
           "creditScore": 65,
           "credit": {
-            "moodys": {"rating": "A1", "outlook": "stable"},
-            "dbrs":   {"rating": "A+", "outlook": "stable"},
-            "sp":     {"rating": "A+", "outlook": "stable"},
-            "fitch":  {"rating": null, "outlook": null}
+            "moodys": {
+              "rating": "A1",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "qualified",
           "agYear": 2024,
@@ -359,6 +598,18 @@
           "premierDisapprovalPct": 35,
           "approvalScore": 71,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 49,
+          "grade": "D",
+          "pcapMathScore": 473,
+          "pcapReadingScore": 481,
+          "perPupilSpending": 13200,
+          "studentTeacherRatio": 16.5,
+          "avgUniversityTuition": 4850,
+          "tuitionScore": 74,
+          "pcapScore": 37,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -367,14 +618,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 7,
+        "hasHst": false,
+        "incomeEffectiveRatePct": 13.5,
+        "taxBurdenIndex": 92,
+        "childcareMonthlyAvg": 584,
+        "legislatureCostPerCapita": 35,
+        "publicSectorPer1000": 90,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 61
     },
     {
       "code": "ON",
       "name": "Ontario",
       "premierName": "Doug Ford",
-      "composite": 55,
-      "grade": "C-",
+      "composite": 46,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 60,
@@ -404,7 +666,7 @@
         "fiscal": {
           "score": 42,
           "grade": "D",
-          "budgetBalancePctGdp": -2.0,
+          "budgetBalancePctGdp": -2,
           "balanceScore": 46,
           "debtInterestCentsPerDollar": 9.2,
           "interestScore": 53,
@@ -419,9 +681,39 @@
           "avgOverrunPct": 80,
           "avgDelayMonths": 38,
           "projects": [
-            {"name": "Eglinton Crosstown LRT", "type": "Transit", "originalBudget": 5300000000, "currentBudget": 12500000000, "overrunPct": 135.8, "originalCompletion": "2021-12", "currentCompletion": "2025-10", "monthsDelayed": 46, "status": "Delayed Opening"},
-            {"name": "Ontario Line Subway", "type": "Transit", "originalBudget": 10900000000, "currentBudget": 13200000000, "overrunPct": 21.1, "originalCompletion": "2030-12", "currentCompletion": "2033-06", "monthsDelayed": 30, "status": "In Construction"},
-            {"name": "Finch West LRT", "type": "Transit", "originalBudget": 1200000000, "currentBudget": 2100000000, "overrunPct": 75.0, "originalCompletion": "2023-06", "currentCompletion": "2026-03", "monthsDelayed": 33, "status": "Delayed Opening"}
+            {
+              "name": "Eglinton Crosstown LRT",
+              "type": "Transit",
+              "originalBudget": 5300000000,
+              "currentBudget": 12500000000,
+              "overrunPct": 135.8,
+              "originalCompletion": "2021-12",
+              "currentCompletion": "2025-10",
+              "monthsDelayed": 46,
+              "status": "Delayed Opening"
+            },
+            {
+              "name": "Ontario Line Subway",
+              "type": "Transit",
+              "originalBudget": 10900000000,
+              "currentBudget": 13200000000,
+              "overrunPct": 21.1,
+              "originalCompletion": "2030-12",
+              "currentCompletion": "2033-06",
+              "monthsDelayed": 30,
+              "status": "In Construction"
+            },
+            {
+              "name": "Finch West LRT",
+              "type": "Transit",
+              "originalBudget": 1200000000,
+              "currentBudget": 2100000000,
+              "overrunPct": 75,
+              "originalCompletion": "2023-06",
+              "currentCompletion": "2026-03",
+              "monthsDelayed": 33,
+              "status": "Delayed Opening"
+            }
           ]
         },
         "economy": {
@@ -432,14 +724,26 @@
           "unemploymentDeltaFromNational": 0.5,
           "unemployScore": 42,
           "gdpGrowthPct": 1.9,
-          "gdpGrowthDeltaFromNational": 0.0,
+          "gdpGrowthDeltaFromNational": 0,
           "gdpGrowthScore": 50,
           "creditScore": 78,
           "credit": {
-            "moodys": {"rating": "Aa3", "outlook": "stable"},
-            "dbrs":   {"rating": "AA-", "outlook": "stable"},
-            "sp":     {"rating": "AA-", "outlook": "stable"},
-            "fitch":  {"rating": "AA-", "outlook": "stable"}
+            "moodys": {
+              "rating": "Aa3",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "AA-",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "AA-",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": "AA-",
+              "outlook": "stable"
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -448,6 +752,18 @@
           "premierDisapprovalPct": 55,
           "approvalScore": 40,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 42,
+          "grade": "D",
+          "pcapMathScore": 494,
+          "pcapReadingScore": 501,
+          "perPupilSpending": 12400,
+          "studentTeacherRatio": 18.2,
+          "avgUniversityTuition": 9070,
+          "tuitionScore": 13,
+          "pcapScore": 58,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -456,14 +772,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 8,
+        "hasHst": true,
+        "incomeEffectiveRatePct": 9.2,
+        "taxBurdenIndex": 97,
+        "childcareMonthlyAvg": 1456,
+        "legislatureCostPerCapita": 9,
+        "publicSectorPer1000": 68,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 47
     },
     {
       "code": "QC",
       "name": "Quebec",
       "premierName": "François Legault",
-      "composite": 57,
-      "grade": "C-",
+      "composite": 56,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 29,
@@ -481,7 +808,7 @@
           "score": 52,
           "grade": "D",
           "mlsHpiBenchmark": 480000,
-          "mlsHpiYoyPct": 6.0,
+          "mlsHpiYoyPct": 6,
           "priceScore": 53,
           "housingStartsPer1000Growth": 120,
           "startsScore": 28,
@@ -508,9 +835,39 @@
           "avgOverrunPct": 22,
           "avgDelayMonths": 10,
           "projects": [
-            {"name": "REM (Réseau express métropolitain)", "type": "Transit", "originalBudget": 6300000000, "currentBudget": 6900000000, "overrunPct": 9.5, "originalCompletion": "2023-06", "currentCompletion": "2024-09", "monthsDelayed": 15, "status": "Operational (phased)"},
-            {"name": "CHUM Hospital Expansion", "type": "Hospital", "originalBudget": 1460000000, "currentBudget": 2570000000, "overrunPct": 75.9, "originalCompletion": "2019-06", "currentCompletion": "2023-12", "monthsDelayed": 54, "status": "Complete (over budget)"},
-            {"name": "Champlain Bridge Link (federal/prov)", "type": "Bridge", "originalBudget": 4200000000, "currentBudget": 4200000000, "overrunPct": 0, "originalCompletion": "2019-12", "currentCompletion": "2019-12", "monthsDelayed": 0, "status": "Complete"}
+            {
+              "name": "REM (Réseau express métropolitain)",
+              "type": "Transit",
+              "originalBudget": 6300000000,
+              "currentBudget": 6900000000,
+              "overrunPct": 9.5,
+              "originalCompletion": "2023-06",
+              "currentCompletion": "2024-09",
+              "monthsDelayed": 15,
+              "status": "Operational (phased)"
+            },
+            {
+              "name": "CHUM Hospital Expansion",
+              "type": "Hospital",
+              "originalBudget": 1460000000,
+              "currentBudget": 2570000000,
+              "overrunPct": 75.9,
+              "originalCompletion": "2019-06",
+              "currentCompletion": "2023-12",
+              "monthsDelayed": 54,
+              "status": "Complete (over budget)"
+            },
+            {
+              "name": "Champlain Bridge Link (federal/prov)",
+              "type": "Bridge",
+              "originalBudget": 4200000000,
+              "currentBudget": 4200000000,
+              "overrunPct": 0,
+              "originalCompletion": "2019-12",
+              "currentCompletion": "2019-12",
+              "monthsDelayed": 0,
+              "status": "Complete"
+            }
           ]
         },
         "economy": {
@@ -520,15 +877,27 @@
           "unemploymentRate": 5.9,
           "unemploymentDeltaFromNational": -0.4,
           "unemployScore": 57,
-          "gdpGrowthPct": 2.0,
+          "gdpGrowthPct": 2,
           "gdpGrowthDeltaFromNational": 0.1,
           "gdpGrowthScore": 52,
           "creditScore": 78,
           "credit": {
-            "moodys": {"rating": "Aa2", "outlook": "stable"},
-            "dbrs":   {"rating": "AA",  "outlook": "stable"},
-            "sp":     {"rating": "AA-", "outlook": "stable"},
-            "fitch":  {"rating": null,  "outlook": null}
+            "moodys": {
+              "rating": "Aa2",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "AA",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "AA-",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -537,6 +906,18 @@
           "premierDisapprovalPct": 56,
           "approvalScore": 38,
           "pollSourceNotes": "Angus Reid / Léger Feb 2026"
+        },
+        "education": {
+          "score": 87,
+          "grade": "A",
+          "pcapMathScore": 531,
+          "pcapReadingScore": 521,
+          "perPupilSpending": 13400,
+          "studentTeacherRatio": 15.8,
+          "avgUniversityTuition": 3013,
+          "tuitionScore": 100,
+          "pcapScore": 86,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -545,14 +926,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 9.975,
+        "hasHst": false,
+        "incomeEffectiveRatePct": 17.8,
+        "taxBurdenIndex": 128,
+        "childcareMonthlyAvg": 196,
+        "legislatureCostPerCapita": 22,
+        "publicSectorPer1000": 88,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 44
     },
     {
       "code": "NB",
       "name": "New Brunswick",
       "premierName": "Susan Holt",
-      "composite": 67,
-      "grade": "C+",
+      "composite": 62,
+      "grade": "C",
       "categories": {
         "healthcare": {
           "score": 49,
@@ -584,7 +976,7 @@
           "grade": "B-",
           "budgetBalancePctGdp": 0.8,
           "balanceScore": 87,
-          "debtInterestCentsPerDollar": 8.0,
+          "debtInterestCentsPerDollar": 8,
           "interestScore": 64,
           "netDebtPerCapita": 16000,
           "debtScore": 68,
@@ -597,9 +989,39 @@
           "avgOverrunPct": 10,
           "avgDelayMonths": 4,
           "projects": [
-            {"name": "Mactaquac Dam Renewal", "type": "Utility", "originalBudget": 2900000000, "currentBudget": 3500000000, "overrunPct": 20.7, "originalCompletion": "2030-12", "currentCompletion": "2030-12", "monthsDelayed": 0, "status": "In Planning/Construction"},
-            {"name": "Fredericton-Moncton Highway (Twinning)", "type": "Highway", "originalBudget": 550000000, "currentBudget": 600000000, "overrunPct": 9.1, "originalCompletion": "2028-12", "currentCompletion": "2028-12", "monthsDelayed": 0, "status": "In Construction"},
-            {"name": "Horizon Health Network Hospital Expansions", "type": "Hospital", "originalBudget": 310000000, "currentBudget": 345000000, "overrunPct": 11.3, "originalCompletion": "2027-06", "currentCompletion": "2027-09", "monthsDelayed": 3, "status": "In Construction"}
+            {
+              "name": "Mactaquac Dam Renewal",
+              "type": "Utility",
+              "originalBudget": 2900000000,
+              "currentBudget": 3500000000,
+              "overrunPct": 20.7,
+              "originalCompletion": "2030-12",
+              "currentCompletion": "2030-12",
+              "monthsDelayed": 0,
+              "status": "In Planning/Construction"
+            },
+            {
+              "name": "Fredericton-Moncton Highway (Twinning)",
+              "type": "Highway",
+              "originalBudget": 550000000,
+              "currentBudget": 600000000,
+              "overrunPct": 9.1,
+              "originalCompletion": "2028-12",
+              "currentCompletion": "2028-12",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            },
+            {
+              "name": "Horizon Health Network Hospital Expansions",
+              "type": "Hospital",
+              "originalBudget": 310000000,
+              "currentBudget": 345000000,
+              "overrunPct": 11.3,
+              "originalCompletion": "2027-06",
+              "currentCompletion": "2027-09",
+              "monthsDelayed": 3,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -614,10 +1036,22 @@
           "gdpGrowthScore": 58,
           "creditScore": 65,
           "credit": {
-            "moodys": {"rating": "A1", "outlook": "stable"},
-            "dbrs":   {"rating": "A",  "outlook": "positive"},
-            "sp":     {"rating": "A+", "outlook": "stable"},
-            "fitch":  {"rating": null, "outlook": null}
+            "moodys": {
+              "rating": "A1",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "A",
+              "outlook": "positive"
+            },
+            "sp": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -626,6 +1060,18 @@
           "premierDisapprovalPct": 32,
           "approvalScore": 70,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 43,
+          "grade": "D",
+          "pcapMathScore": 475,
+          "pcapReadingScore": 485,
+          "perPupilSpending": 13100,
+          "studentTeacherRatio": 14.2,
+          "avgUniversityTuition": 7242,
+          "tuitionScore": 39,
+          "pcapScore": 40,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -634,14 +1080,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 10,
+        "hasHst": true,
+        "incomeEffectiveRatePct": 13.2,
+        "taxBurdenIndex": 100,
+        "childcareMonthlyAvg": 619,
+        "legislatureCostPerCapita": 54,
+        "publicSectorPer1000": 89,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 62
     },
     {
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 63,
-      "grade": "C",
+      "composite": 53,
+      "grade": "D",
       "categories": {
         "healthcare": {
           "score": 42,
@@ -673,7 +1130,7 @@
           "grade": "C",
           "budgetBalancePctGdp": -1.5,
           "balanceScore": 53,
-          "debtInterestCentsPerDollar": 9.0,
+          "debtInterestCentsPerDollar": 9,
           "interestScore": 55,
           "netDebtPerCapita": 12500,
           "debtScore": 79,
@@ -686,9 +1143,39 @@
           "avgOverrunPct": 27,
           "avgDelayMonths": 8,
           "projects": [
-            {"name": "QEII New Generation Project (Halifax)", "type": "Hospital", "originalBudget": 2000000000, "currentBudget": 2500000000, "overrunPct": 25.0, "originalCompletion": "2028-06", "currentCompletion": "2029-06", "monthsDelayed": 12, "status": "In Construction"},
-            {"name": "Halifax Infirmary Expansion", "type": "Hospital", "originalBudget": 1300000000, "currentBudget": 1460000000, "overrunPct": 12.3, "originalCompletion": "2027-12", "currentCompletion": "2028-06", "monthsDelayed": 6, "status": "In Construction"},
-            {"name": "Highway 104 Twinning (Antigonish)", "type": "Highway", "originalBudget": 310000000, "currentBudget": 365000000, "overrunPct": 17.7, "originalCompletion": "2026-10", "currentCompletion": "2026-10", "monthsDelayed": 0, "status": "In Construction"}
+            {
+              "name": "QEII New Generation Project (Halifax)",
+              "type": "Hospital",
+              "originalBudget": 2000000000,
+              "currentBudget": 2500000000,
+              "overrunPct": 25,
+              "originalCompletion": "2028-06",
+              "currentCompletion": "2029-06",
+              "monthsDelayed": 12,
+              "status": "In Construction"
+            },
+            {
+              "name": "Halifax Infirmary Expansion",
+              "type": "Hospital",
+              "originalBudget": 1300000000,
+              "currentBudget": 1460000000,
+              "overrunPct": 12.3,
+              "originalCompletion": "2027-12",
+              "currentCompletion": "2028-06",
+              "monthsDelayed": 6,
+              "status": "In Construction"
+            },
+            {
+              "name": "Highway 104 Twinning (Antigonish)",
+              "type": "Highway",
+              "originalBudget": 310000000,
+              "currentBudget": 365000000,
+              "overrunPct": 17.7,
+              "originalCompletion": "2026-10",
+              "currentCompletion": "2026-10",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -703,10 +1190,22 @@
           "gdpGrowthScore": 72,
           "creditScore": 65,
           "credit": {
-            "moodys": {"rating": "A1", "outlook": "stable"},
-            "dbrs":   {"rating": "A+", "outlook": "stable"},
-            "sp":     {"rating": "A+", "outlook": "stable"},
-            "fitch":  {"rating": null, "outlook": null}
+            "moodys": {
+              "rating": "A1",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -715,6 +1214,18 @@
           "premierDisapprovalPct": 38,
           "approvalScore": 68,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 35,
+          "grade": "D",
+          "pcapMathScore": 472,
+          "pcapReadingScore": 478,
+          "perPupilSpending": 14000,
+          "studentTeacherRatio": 14.8,
+          "avgUniversityTuition": 8391,
+          "tuitionScore": 23,
+          "pcapScore": 35,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -723,14 +1234,25 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 10,
+        "hasHst": true,
+        "incomeEffectiveRatePct": 16,
+        "taxBurdenIndex": 113,
+        "childcareMonthlyAvg": 631,
+        "legislatureCostPerCapita": 62,
+        "publicSectorPer1000": 94,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 47
     },
     {
       "code": "PE",
       "name": "Prince Edward Island",
       "premierName": "Dennis King",
-      "composite": 74,
-      "grade": "B",
+      "composite": 68,
+      "grade": "C+",
       "categories": {
         "healthcare": {
           "score": 66,
@@ -748,7 +1270,7 @@
           "score": 68,
           "grade": "C+",
           "mlsHpiBenchmark": 370000,
-          "mlsHpiYoyPct": 3.0,
+          "mlsHpiYoyPct": 3,
           "priceScore": 71,
           "housingStartsPer1000Growth": 270,
           "startsScore": 88,
@@ -762,7 +1284,7 @@
           "grade": "A-",
           "budgetBalancePctGdp": 0.5,
           "balanceScore": 83,
-          "debtInterestCentsPerDollar": 7.0,
+          "debtInterestCentsPerDollar": 7,
           "interestScore": 73,
           "netDebtPerCapita": 10500,
           "debtScore": 84,
@@ -775,9 +1297,39 @@
           "avgOverrunPct": 14,
           "avgDelayMonths": 3,
           "projects": [
-            {"name": "PEI Hospital (Charlottetown) Redevelopment", "type": "Hospital", "originalBudget": 154000000, "currentBudget": 210000000, "overrunPct": 36.4, "originalCompletion": "2022-09", "currentCompletion": "2023-12", "monthsDelayed": 15, "status": "Complete"},
-            {"name": "Trans-Canada Highway Upgrades", "type": "Highway", "originalBudget": 280000000, "currentBudget": 295000000, "overrunPct": 5.4, "originalCompletion": "2027-10", "currentCompletion": "2027-10", "monthsDelayed": 0, "status": "In Construction"},
-            {"name": "Charlottetown Water Utility Upgrades", "type": "Utility", "originalBudget": 95000000, "currentBudget": 98000000, "overrunPct": 3.2, "originalCompletion": "2026-06", "currentCompletion": "2026-06", "monthsDelayed": 0, "status": "In Construction"}
+            {
+              "name": "PEI Hospital (Charlottetown) Redevelopment",
+              "type": "Hospital",
+              "originalBudget": 154000000,
+              "currentBudget": 210000000,
+              "overrunPct": 36.4,
+              "originalCompletion": "2022-09",
+              "currentCompletion": "2023-12",
+              "monthsDelayed": 15,
+              "status": "Complete"
+            },
+            {
+              "name": "Trans-Canada Highway Upgrades",
+              "type": "Highway",
+              "originalBudget": 280000000,
+              "currentBudget": 295000000,
+              "overrunPct": 5.4,
+              "originalCompletion": "2027-10",
+              "currentCompletion": "2027-10",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            },
+            {
+              "name": "Charlottetown Water Utility Upgrades",
+              "type": "Utility",
+              "originalBudget": 95000000,
+              "currentBudget": 98000000,
+              "overrunPct": 3.2,
+              "originalCompletion": "2026-06",
+              "currentCompletion": "2026-06",
+              "monthsDelayed": 0,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -792,10 +1344,22 @@
           "gdpGrowthScore": 98,
           "creditScore": 65,
           "credit": {
-            "moodys": {"rating": "A1", "outlook": "stable"},
-            "dbrs":   {"rating": "A+", "outlook": "stable"},
-            "sp":     {"rating": null,  "outlook": null},
-            "fitch":  {"rating": null,  "outlook": null}
+            "moodys": {
+              "rating": "A1",
+              "outlook": "stable"
+            },
+            "dbrs": {
+              "rating": "A+",
+              "outlook": "stable"
+            },
+            "sp": {
+              "rating": null,
+              "outlook": null
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "clean",
           "agYear": 2024,
@@ -804,6 +1368,18 @@
           "premierDisapprovalPct": 30,
           "approvalScore": 81,
           "pollSourceNotes": "Angus Reid / local polling Feb 2026"
+        },
+        "education": {
+          "score": 36,
+          "grade": "D",
+          "pcapMathScore": 464,
+          "pcapReadingScore": 470,
+          "perPupilSpending": 13600,
+          "studentTeacherRatio": 14.1,
+          "avgUniversityTuition": 7210,
+          "tuitionScore": 40,
+          "pcapScore": 27,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -812,13 +1388,24 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 10,
+        "hasHst": true,
+        "incomeEffectiveRatePct": 15.6,
+        "taxBurdenIndex": 109,
+        "childcareMonthlyAvg": 398,
+        "legislatureCostPerCapita": 120,
+        "publicSectorPer1000": 98,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 62
     },
     {
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 48,
+      "composite": 43,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -837,7 +1424,7 @@
           "score": 65,
           "grade": "C",
           "mlsHpiBenchmark": 290000,
-          "mlsHpiYoyPct": 2.0,
+          "mlsHpiYoyPct": 2,
           "priceScore": 76,
           "housingStartsPer1000Growth": 88,
           "startsScore": 15,
@@ -851,7 +1438,7 @@
           "grade": "D",
           "budgetBalancePctGdp": -2.5,
           "balanceScore": 38,
-          "debtInterestCentsPerDollar": 12.0,
+          "debtInterestCentsPerDollar": 12,
           "interestScore": 27,
           "netDebtPerCapita": 28000,
           "debtScore": 34,
@@ -864,9 +1451,39 @@
           "avgOverrunPct": 115,
           "avgDelayMonths": 48,
           "projects": [
-            {"name": "Muskrat Falls / Labrador-Island Link", "type": "Utility", "originalBudget": 6200000000, "currentBudget": 13100000000, "overrunPct": 111.3, "originalCompletion": "2017-12", "currentCompletion": "2023-06", "monthsDelayed": 66, "status": "Operational (over budget)"},
-            {"name": "New Foxtrap Access Road", "type": "Highway", "originalBudget": 32000000, "currentBudget": 36000000, "overrunPct": 12.5, "originalCompletion": "2025-06", "currentCompletion": "2025-09", "monthsDelayed": 3, "status": "Complete"},
-            {"name": "Corner Brook Acute Care Hospital", "type": "Hospital", "originalBudget": 820000000, "currentBudget": 1150000000, "overrunPct": 40.2, "originalCompletion": "2025-12", "currentCompletion": "2027-06", "monthsDelayed": 18, "status": "In Construction"}
+            {
+              "name": "Muskrat Falls / Labrador-Island Link",
+              "type": "Utility",
+              "originalBudget": 6200000000,
+              "currentBudget": 13100000000,
+              "overrunPct": 111.3,
+              "originalCompletion": "2017-12",
+              "currentCompletion": "2023-06",
+              "monthsDelayed": 66,
+              "status": "Operational (over budget)"
+            },
+            {
+              "name": "New Foxtrap Access Road",
+              "type": "Highway",
+              "originalBudget": 32000000,
+              "currentBudget": 36000000,
+              "overrunPct": 12.5,
+              "originalCompletion": "2025-06",
+              "currentCompletion": "2025-09",
+              "monthsDelayed": 3,
+              "status": "Complete"
+            },
+            {
+              "name": "Corner Brook Acute Care Hospital",
+              "type": "Hospital",
+              "originalBudget": 820000000,
+              "currentBudget": 1150000000,
+              "overrunPct": 40.2,
+              "originalCompletion": "2025-12",
+              "currentCompletion": "2027-06",
+              "monthsDelayed": 18,
+              "status": "In Construction"
+            }
           ]
         },
         "economy": {
@@ -881,10 +1498,22 @@
           "gdpGrowthScore": 43,
           "creditScore": 55,
           "credit": {
-            "moodys": {"rating": "A3", "outlook": "negative"},
-            "dbrs":   {"rating": "A-", "outlook": "negative"},
-            "sp":     {"rating": "A-", "outlook": "stable"},
-            "fitch":  {"rating": null,  "outlook": null}
+            "moodys": {
+              "rating": "A3",
+              "outlook": "negative"
+            },
+            "dbrs": {
+              "rating": "A-",
+              "outlook": "negative"
+            },
+            "sp": {
+              "rating": "A-",
+              "outlook": "stable"
+            },
+            "fitch": {
+              "rating": null,
+              "outlook": null
+            }
           },
           "agOpinion": "qualified",
           "agYear": 2024,
@@ -893,6 +1522,18 @@
           "premierDisapprovalPct": 42,
           "approvalScore": 50,
           "pollSourceNotes": "Angus Reid Feb 2026"
+        },
+        "education": {
+          "score": 48,
+          "grade": "D",
+          "pcapMathScore": 460,
+          "pcapReadingScore": 466,
+          "perPupilSpending": 17200,
+          "studentTeacherRatio": 13.5,
+          "avgUniversityTuition": 3872,
+          "tuitionScore": 88,
+          "pcapScore": 23,
+          "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         }
       },
       "lastUpdated": {
@@ -901,7 +1542,18 @@
         "credit": "2025-10-01",
         "polling": "2026-02-01",
         "infrastructure": "2026-01-01"
-      }
+      },
+      "taxes": {
+        "salesTaxPct": 10,
+        "hasHst": true,
+        "incomeEffectiveRatePct": 15.5,
+        "taxBurdenIndex": 110,
+        "childcareMonthlyAvg": 598,
+        "legislatureCostPerCapita": 107,
+        "publicSectorPer1000": 104,
+        "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
+      },
+      "valueScore": 39
     }
   ],
   "supporters": []

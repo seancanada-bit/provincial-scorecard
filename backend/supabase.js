@@ -20,7 +20,7 @@ function getClient() {
 async function fetchAllSupabaseData() {
   const sb = getClient();
 
-  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters] = await Promise.all([
+  const [meta, healthcare, housing, credit, polling, governance, infrastructure, supporters, education, taxes] = await Promise.all([
     sb.from('provinces_meta').select('*'),
     sb.from('provinces_healthcare').select('*'),
     sb.from('provinces_housing').select('*'),
@@ -29,9 +29,11 @@ async function fetchAllSupabaseData() {
     sb.from('provinces_governance').select('*'),
     sb.from('infrastructure_projects').select('*'),
     sb.from('supporters').select('display_name, tier').eq('active', true).order('added_date'),
+    sb.from('provinces_education').select('*'),
+    sb.from('provinces_tax').select('*'),
   ]);
 
-  // Check for errors
+  // Check for errors (education + taxes are optional — log but don't throw)
   for (const [name, result] of [
     ['meta', meta], ['healthcare', healthcare], ['housing', housing],
     ['credit', credit], ['polling', polling], ['governance', governance],
@@ -39,6 +41,8 @@ async function fetchAllSupabaseData() {
   ]) {
     if (result.error) throw new Error(`Supabase error on ${name}: ${result.error.message}`);
   }
+  if (education.error) console.warn('provinces_education not yet populated:', education.error.message);
+  if (taxes.error)     console.warn('provinces_tax not yet populated:',     taxes.error.message);
 
   // Index by province_code for easy lookup
   const byCode = key => arr => arr.reduce((acc, row) => { acc[row.province_code] = row; return acc; }, {});
@@ -57,6 +61,8 @@ async function fetchAllSupabaseData() {
     governance:     byCode('province_code')(governance.data),
     infrastructure: byCodeMulti(infrastructure.data),
     supporters:     supporters.data,
+    education:      education.data ? byCode('province_code')(education.data) : {},
+    taxes:          taxes.data     ? byCode('province_code')(taxes.data)     : {},
   };
 }
 
