@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Red rounded background -->
+  <rect width="32" height="32" rx="7" fill="#D52B1E"/>
+  <!-- Duck silhouette in white -->
+  <!-- Body -->
+  <ellipse cx="15" cy="21" rx="9" ry="6" fill="white"/>
+  <!-- Neck -->
+  <ellipse cx="21" cy="17" rx="3.5" ry="4.5" fill="white"/>
+  <!-- Head -->
+  <circle cx="22" cy="13" r="4" fill="white"/>
+  <!-- Beak -->
+  <polygon points="25.5,12.5 30,13 25.5,14" fill="#D52B1E"/>
+  <!-- Tail curl -->
+  <ellipse cx="7" cy="18" rx="3" ry="2" fill="white" transform="rotate(-25,7,18)"/>
+</svg>
