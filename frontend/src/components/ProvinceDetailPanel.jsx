@@ -9,7 +9,7 @@ const TABS = [
   { key: 'healthcare',     label: 'Health',     icon: '🏥' },
   { key: 'housing',        label: 'Housing',    icon: '🏠' },
   { key: 'fiscal',         label: 'Fiscal',     icon: '💰' },
-  { key: 'infrastructure', label: 'Infra',      icon: '🏗️' },
+  { key: 'infrastructure', label: 'Infrastructure', icon: '🏗️' },
   { key: 'economy',        label: 'Economy',    icon: '📈' },
   { key: 'education',      label: 'Education',  icon: '🎓' },
   { key: 'safety',         label: 'Safety',       icon: '🛡️' },
@@ -541,7 +541,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
           </div>
           <div>
             <div className="dp-header__name">{province.name}</div>
-            <div className="dp-header__premier">{province.premierName}</div>
+            <div className="dp-header__premier"><span className="dp-header__premier-title">Premier</span> {province.premierName}</div>
           </div>
         </div>
         <div className="dp-header__right">
@@ -556,9 +556,9 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
               role="button"
               tabIndex={0}
               aria-expanded={showValueTip}
-              aria-label={`Value score ${province.valueScore}. Click for explanation.`}
+              aria-label={`Duck Score ${province.valueScore}. Click for explanation.`}
             >
-              <span className="dp-header__value-label">$ Value</span>
+              <span className="dp-header__value-label">🦆 Duck Score</span>
               <span className="dp-header__value-num">{province.valueScore}</span>
             </span>
           )}
@@ -568,7 +568,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
       {/* Value score explanation bar */}
       {showValueTip && (
         <div className="dp-value-tip" role="status">
-          <span><strong>$ Value score</strong> — overall score ÷ tax burden. Who gives you the most for your dollar?</span>
+          <span><strong>🦆 Duck Score</strong> — your province's performance score relative to its tax burden. Higher means more bang for your loonie.</span>
           <button className="dp-value-tip__close" onClick={() => setShowValueTip(false)} aria-label="Close">✕</button>
         </div>
       )}
@@ -625,7 +625,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         })}
         {province.valueScore != null && (
           <div className="dp-composite__value-row">
-            <span>$ Value score <span className="dp-composite__weight">(score ÷ tax burden)</span></span>
+            <span>🦆 Duck Score <span className="dp-composite__weight">(score ÷ tax burden)</span></span>
             <span className="dp-composite__score dp-composite__score--value">{province.valueScore}</span>
           </div>
         )}

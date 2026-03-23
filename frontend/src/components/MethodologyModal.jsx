@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const CATEGORIES = [
   {
-    key: 'healthcare', label: 'Healthcare', weight: 20,
+    key: 'healthcare', label: 'Healthcare', weight: 17,
     why: 'Whether you can get a family doctor and how long you wait for surgery are the most visceral ways most Canadians experience their provincial government.',
     metrics: [
       { name: 'Surgical wait time',       weight: '⅓', direction: 'lower ↓', best: '19 wks',  worst: '61 wks',  source: 'CIHI' },
@@ -11,7 +11,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'housing', label: 'Housing', weight: 15,
+    key: 'housing', label: 'Housing', weight: 14,
     why: 'Whether you can afford a home or rent is the defining quality-of-life question for many Canadians, and housing supply is primarily a provincial responsibility.',
     metrics: [
       { name: 'Housing starts per 1k pop. growth', weight: '⅓', direction: 'higher ↑', best: '300', worst: '50',  source: 'CMHC / Stats Can' },
@@ -20,7 +20,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'fiscal', label: 'Fiscal', weight: 15,
+    key: 'fiscal', label: 'Fiscal', weight: 14,
     why: 'A province spending heavily on debt interest has less money for services. Fiscal health today determines service quality tomorrow.',
     metrics: [
       { name: 'Budget balance % of GDP',         weight: '⅓', direction: 'higher ↑', best: '+1.5%',  worst: '−5%',     source: 'Provincial budgets' },
@@ -30,7 +30,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'infrastructure', label: 'Infrastructure', weight: 11,
+    key: 'infrastructure', label: 'Infrastructure', weight: 10,
     why: 'Whether big capital projects come in on time and on budget tells you a lot about government execution. Major overruns crowd out other priorities.',
     metrics: [
       { name: 'Avg project cost overrun', weight: '60%', direction: 'lower ↓', best: '0%',   worst: '100%',  source: 'Project disclosures' },
@@ -38,7 +38,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'economy', label: 'Economy', weight: 15,
+    key: 'economy', label: 'Economy', weight: 14,
     why: 'Employment, economic growth, credit health, and Auditor General findings all reflect the underlying condition of the province\'s economy and governance.',
     metrics: [
       { name: 'Unemployment rate Δ vs. national', weight: '¼', direction: 'lower ↓',  best: '−3pp', worst: '+3pp', source: 'Stats Can LFS' },
@@ -48,7 +48,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'education', label: 'Education', weight: 14,
+    key: 'education', label: 'Education', weight: 13,
     why: 'Literacy, numeracy, and the cost of higher education shape long-term economic mobility. Outcomes, not just spending, are what matter.',
     metrics: [
       { name: 'PCAP math + reading avg.',   weight: '60%', direction: 'higher ↑', best: '540', worst: '440',     source: 'PCAP (Council of Ministers)' },
@@ -62,6 +62,16 @@ const CATEGORIES = [
     metrics: [
       { name: 'GSS victimization rate',  weight: '50%', direction: 'lower ↓', best: '55 / 1k', worst: '175 / 1k', source: 'Stats Can GSS Cycle 36 (2019)' },
       { name: 'Homicide rate per 100k', weight: '50%', direction: 'lower ↓', best: '0.3',      worst: '6.5',       source: 'Stats Can Homicide Survey (2023)' },
+    ],
+  },
+  {
+    key: 'mentalhealth', label: 'Mental Health & Addictions', weight: 8,
+    why: 'Drug toxicity deaths, psychiatric bed capacity, mental health budget share, and recovery bed availability together capture how seriously provinces fund and deliver mental health and addictions care.',
+    metrics: [
+      { name: 'Drug toxicity death rate',      weight: '35%', direction: 'lower ↓',  best: '1.0 / 100k',  worst: '45.0 / 100k', source: 'PHAC (2022)' },
+      { name: 'Psychiatric beds per 100k',     weight: '25%', direction: 'higher ↑', best: '60',           worst: '15',          source: 'CIHI (2023)' },
+      { name: 'Mental health budget share',    weight: '25%', direction: 'higher ↑', best: '10% of health', worst: '5%',         source: 'CIHI provincial profiles (2023)' },
+      { name: 'Addiction recovery beds / 100k', weight: '15%', direction: 'higher ↑', best: '50',          worst: '5',           source: 'CIHI (2023)' },
     ],
   },
 ];
@@ -108,7 +118,7 @@ export default function MethodologyModal({ onClose }) {
         <section className="modal-section">
           <h3>The composite formula</h3>
           <p className="modal-section__intro">
-            Each province gets a single 0–100 composite score — a weighted average of seven categories:
+            Each province gets a single 0–100 composite score — a weighted average of eight categories:
           </p>
           <div className="modal-formula">
             {CATEGORIES.map((cat, i) => (
@@ -183,16 +193,41 @@ export default function MethodologyModal({ onClose }) {
               </div>
             ))}
           </div>
+          <div className="modal-grade-explainer">
+            <h4>What do these grades actually mean?</h4>
+            <p>
+              Grades reflect <strong>peer performance within Canada</strong> — not historical change, and not a political judgment.
+              Every metric is calibrated against real Canadian data: the "best" bound is set to what the top-performing province
+              actually achieves today; the "worst" is set to the weakest. A province scoring a D on healthcare isn't failing by
+              some abstract standard — it means other Canadian provinces with comparable resources are delivering measurably better
+              outcomes right now.
+            </p>
+            <p>
+              This also explains why some scores look low across the board: if Canada's best surgical wait time is 19 weeks, that
+              sets the ceiling. No province scores a perfect 100 on wait times because no province has eliminated the problem —
+              they're competing against each other, not against a hypothetical ideal. The grades are a snapshot of
+              <em> who is doing better or worse, relative to Canadian peers, at this moment in time.</em>
+            </p>
+          </div>
         </section>
 
-        {/* $ VALUE */}
+        {/* DUCK SCORE */}
         <section className="modal-section">
-          <h3>$ Value score</h3>
+          <h3>🦆 Duck Score — bang for your loonie</h3>
           <p>
-            The <strong>$ Value</strong> tab ranks provinces by <em>composite ÷ tax burden index</em>,
-            where 100 = national average tax burden. A province scoring 70 composite with a tax index
-            of 90 earns a Value score of 78 — better return on your dollar than a province scoring 80
-            composite with a tax index of 120.
+            The <strong>Duck Score</strong> is the core question this site exists to answer: <em>are you getting what you pay for?</em>
+            It's calculated as <em>composite score ÷ tax burden index</em>, where a tax burden index of 100 equals the national average.
+          </p>
+          <p>
+            A province scoring 70 composite with a below-average tax burden (index 90) earns a Duck Score of 78 —
+            better bang for your loonie than a province scoring 80 composite but taxing you 20% more than average (index 120),
+            which earns only 67. You're paying more and getting less.
+          </p>
+          <p>
+            The Duck Score is shown as a badge on every province card and is available as a sort option.
+            It's deliberately separate from the composite — a province can deliver excellent services but still score
+            poorly on Duck Score if it taxes heavily to do so. Conversely, a lean-taxing province delivering decent
+            services can punch above its weight.
           </p>
         </section>
 

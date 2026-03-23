@@ -3,12 +3,12 @@ const TABS = [
   { key: 'healthcare',     label: 'Healthcare' },
   { key: 'housing',        label: 'Housing' },
   { key: 'fiscal',         label: 'Fiscal' },
-  { key: 'infrastructure', label: 'Infra' },
+  { key: 'infrastructure', label: 'Infrastructure' },
   { key: 'economy',        label: 'Economy' },
   { key: 'education',      label: 'Education' },
   { key: 'safety',         label: 'Safety' },
   { key: 'mentalhealth',   label: 'Mental Health' },
-  { key: 'value',          label: '$ Value',   title: 'Score ÷ tax burden — who gives you the most for your dollar' },
+  { key: 'value',          label: '🦆 Duck Score', title: 'Performance per tax dollar — the more you get for what you pay, the higher the Duck Score' },
 ];
 
 export default function SortTabs({ active, onChange }) {

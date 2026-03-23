@@ -80,7 +80,7 @@ export default function ProvinceCard({
           </div>
           <div className="pcard__nameblock">
             <div className="pcard__name">{province.name}</div>
-            <div className="pcard__premier">{province.premierName}</div>
+            <div className="pcard__premier"><span className="pcard__premier-title">Premier</span> {province.premierName}</div>
           </div>
         </div>
 
@@ -104,13 +104,13 @@ export default function ProvinceCard({
               role="button"
               tabIndex={0}
               aria-expanded={showValueTip}
-              aria-label={`Value score ${province.valueScore}. Click for explanation.`}
+              aria-label={`Duck Score ${province.valueScore}. Click for explanation.`}
             >
-              <span className="pcard__value-label">$ VALUE</span>
+              <span className="pcard__value-label">🦆 DUCK</span>
               <span className="pcard__value-num">{province.valueScore}</span>
               {showValueTip && (
                 <span className="pcard__value-tip" role="tooltip">
-                  Score ÷ tax burden — who gives you the most for your dollar
+                  🦆 Duck Score — how much you get for what you pay in provincial taxes. Higher = more bang for your loonie.
                 </span>
               )}
             </span>

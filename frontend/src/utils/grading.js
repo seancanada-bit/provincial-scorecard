@@ -141,5 +141,5 @@ export const CATEGORY_LABELS = {
   education:      'Education',
   safety:         'Safety',
   mentalhealth:   'Mental Health',
-  value:          'Best Value',
+  value:          '🦆 Duck Score',
 };

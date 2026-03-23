@@ -774,6 +774,29 @@ body {
 .modal-grade-chip__letter { font-family: var(--font-serif); font-size: 18px; font-weight: 700; line-height: 1; }
 .modal-grade-chip__range { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 3px; }
 
+/* Grade explainer block */
+.modal-grade-explainer {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--text-muted);
+}
+.modal-grade-explainer h4 {
+  font-size: 13px; font-weight: 600; margin: 0 0 8px; color: var(--text-primary);
+}
+.modal-grade-explainer p {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0 0 8px;
+}
+.modal-grade-explainer p:last-child { margin-bottom: 0; }
+
+/* "Premier" prefix in province name block */
+.pcard__premier-title,
+.dp-header__premier-title {
+  opacity: 0.55;
+  font-style: italic;
+}
+
 /* Fairness notes */
 .modal-section--fairness .modal-fairness-item { margin-bottom: var(--space-md); }
 .modal-fairness-item__label {
