@@ -375,22 +375,24 @@ function SafetyTab({ c }) {
   return (
     <div className="dp-tab-content">
       <KeyStat
-        value={s.crimeSeverityIndex ?? '—'}
-        label={`Crime Severity Index (national avg 73) · lower = safer`}
+        value={s.homicideRatePer100k != null ? s.homicideRatePer100k.toFixed(2) : '—'}
+        unit=" per 100k"
+        label="homicide rate — most reliably reported crime (always counted)"
         score={s.score}
         grade={s.grade}
       />
       <div className="dp-metrics">
-        <MetricRow label="Crime Severity Index" score={s.csiScore}
-          rawDisplay={s.crimeSeverityIndex != null ? `${s.crimeSeverityIndex} (Stats Can composite)` : '—'}
-          compareDisplay="National avg: 73 · Best: PE 56" />
-        <MetricRow label="Violent crime rate" score={s.violentScore}
-          rawDisplay={s.violentCrimeRatePer100k != null ? `${s.violentCrimeRatePer100k.toLocaleString('en-CA')} per 100,000 residents` : '—'}
-          compareDisplay="National avg: ~760 · Best: PE 533" />
-        <MetricRow label="Property crime rate" score={s.propertyScore}
-          rawDisplay={s.propertyCrimeRatePer100k != null ? `${s.propertyCrimeRatePer100k.toLocaleString('en-CA')} per 100,000 residents` : '—'}
-          compareDisplay="Includes theft, break & enter · Best: PE 1,712" />
+        <MetricRow label="Victimization rate (GSS survey)" score={s.victimizationScore}
+          rawDisplay={s.victimizationRatePer1000 != null ? `${s.victimizationRatePer1000} per 1,000 residents` : '—'}
+          compareDisplay="Self-reported — not police data · National avg: ~101" />
+        <MetricRow label="Homicide rate" score={s.homicideScore}
+          rawDisplay={s.homicideRatePer100k != null ? `${s.homicideRatePer100k.toFixed(2)} per 100,000 residents` : '—'}
+          compareDisplay="National avg: ~1.9 · Best: PE 0.58" />
       </div>
+      <p className="dp-source" style={{ marginTop: 8 }}>
+        Uses survey-based data to avoid reporting bias — crime statistics based on police reports
+        undercount incidents as public confidence in reporting declines.
+      </p>
       {s.sourceNotes && <p className="dp-source">Source: {s.sourceNotes}</p>}
     </div>
   );

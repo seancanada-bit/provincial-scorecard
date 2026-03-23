@@ -26,10 +26,9 @@ const BOUNDS = {
   studentTeacherRatio: { best: 12,    worst: 21    }, // (lower = better)
   // Tax burden
   taxBurdenIndex:      { best: 65,    worst: 135   }, // 100 = national avg (lower = better)
-  // Safety (lower = better for all three)
-  crimeSeverityIndex:  { best: 45,    worst: 185   }, // Stats Can CSI (lower = better)
-  violentCrimeRate:    { best: 400,   worst: 2000  }, // per 100k (lower = better)
-  propertyCrimeRate:   { best: 1000,  worst: 5500  }, // per 100k (lower = better)
+  // Safety — survey-based, not police-reported (avoids reporting-bias)
+  victimizationRate:   { best: 55,    worst: 175   }, // GSS per 1,000 (lower = better)
+  homicideRate:        { best: 0.3,   worst: 6.5   }, // per 100k (lower = better)
 };
 
 function normalize(value, best, worst) {
@@ -153,17 +152,17 @@ function scoreProvince(prov) {
   const economyScore = Math.round(avg(employmentScore, creditScore, agScore, approvalScore) ?? 50);
 
   // ─── SAFETY (10%) ───────────────────────────────────────────────────
-  let csiScore = null, violentScore = null, propertyScore = null;
+  let victimizationScore = null, homicideScore = null;
   if (safety) {
-    csiScore      = safety.crime_severity_index   != null ? normalize(safety.crime_severity_index,   BOUNDS.crimeSeverityIndex.best, BOUNDS.crimeSeverityIndex.worst) : null;
-    violentScore  = safety.violent_crime_rate_per_100k != null ? normalize(safety.violent_crime_rate_per_100k, BOUNDS.violentCrimeRate.best,   BOUNDS.violentCrimeRate.worst)   : null;
-    propertyScore = safety.property_crime_rate_per_100k != null ? normalize(safety.property_crime_rate_per_100k, BOUNDS.propertyCrimeRate.best, BOUNDS.propertyCrimeRate.worst) : null;
+    victimizationScore = safety.victimization_rate_per_1000 != null
+      ? normalize(safety.victimization_rate_per_1000, BOUNDS.victimizationRate.best, BOUNDS.victimizationRate.worst) : null;
+    homicideScore = safety.homicide_rate_per_100k != null
+      ? normalize(safety.homicide_rate_per_100k, BOUNDS.homicideRate.best, BOUNDS.homicideRate.worst) : null;
   }
   const safetyScore = (() => {
     const parts = []; const wts = [];
-    if (csiScore      != null) { parts.push(csiScore      * 0.40); wts.push(0.40); }
-    if (violentScore  != null) { parts.push(violentScore  * 0.40); wts.push(0.40); }
-    if (propertyScore != null) { parts.push(propertyScore * 0.20); wts.push(0.20); }
+    if (victimizationScore != null) { parts.push(victimizationScore * 0.50); wts.push(0.50); }
+    if (homicideScore      != null) { parts.push(homicideScore      * 0.50); wts.push(0.50); }
     if (!parts.length) return 50;
     const tw = wts.reduce((a,b)=>a+b,0);
     return Math.round(parts.reduce((a,b)=>a+b,0) / tw);
@@ -308,12 +307,10 @@ function scoreProvince(prov) {
       safety: {
         score: safetyScore,
         grade: toGrade(safetyScore),
-        crimeSeverityIndex:       safety?.crime_severity_index          ?? null,
-        csiScore,
-        violentCrimeRatePer100k:  safety?.violent_crime_rate_per_100k   ?? null,
-        violentScore,
-        propertyCrimeRatePer100k: safety?.property_crime_rate_per_100k  ?? null,
-        propertyScore,
+        victimizationRatePer1000: safety?.victimization_rate_per_1000 ?? null,
+        victimizationScore,
+        homicideRatePer100k:      safety?.homicide_rate_per_100k      ?? null,
+        homicideScore,
         sourceNotes:              safety?.source_notes ?? null,
         dataDate:                 safety?.data_date    ?? null,
       },

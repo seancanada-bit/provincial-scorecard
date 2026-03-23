@@ -20,7 +20,7 @@
       "code": "BC",
       "name": "British Columbia",
       "premierName": "David Eby",
-      "composite": 55,
+      "composite": 56,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -151,16 +151,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 56,
-          "grade": "D",
-          "crimeSeverityIndex": 103.8,
-          "csiScore": 58,
-          "violentCrimeRatePer100k": 1048,
-          "violentScore": 60,
-          "propertyCrimeRatePer100k": 3521,
-          "propertyScore": 44,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 59,
+          "grade": "C-",
+          "victimizationRatePer1000": 118,
+          "victimizationScore": 52,
+          "homicideRatePer100k": 2.42,
+          "homicideScore": 66,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -180,7 +178,7 @@
         "publicSectorPer1000": 73,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 59
+      "valueScore": 60
     },
     {
       "code": "AB",
@@ -317,16 +315,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 59,
+          "score": 58,
           "grade": "C-",
-          "crimeSeverityIndex": 97.7,
-          "csiScore": 62,
-          "violentCrimeRatePer100k": 1024,
-          "violentScore": 61,
-          "propertyCrimeRatePer100k": 3214,
-          "propertyScore": 51,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "victimizationRatePer1000": 113,
+          "victimizationScore": 56,
+          "homicideRatePer100k": 2.76,
+          "homicideScore": 60,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -352,8 +348,8 @@
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 56,
-      "grade": "D",
+      "composite": 57,
+      "grade": "C-",
       "categories": {
         "healthcare": {
           "score": 62,
@@ -483,16 +479,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 12,
+          "score": 30,
           "grade": "F",
-          "crimeSeverityIndex": 172.9,
-          "csiScore": 9,
-          "violentCrimeRatePer100k": 1851,
-          "violentScore": 9,
-          "propertyCrimeRatePer100k": 4489,
-          "propertyScore": 22,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "victimizationRatePer1000": 140,
+          "victimizationScore": 33,
+          "homicideRatePer100k": 4.85,
+          "homicideScore": 27,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -512,7 +506,7 @@
         "publicSectorPer1000": 82,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 66
+      "valueScore": 67
     },
     {
       "code": "MB",
@@ -649,16 +643,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 32,
+          "score": 31,
           "grade": "F",
-          "crimeSeverityIndex": 137.2,
-          "csiScore": 34,
-          "violentCrimeRatePer100k": 1548,
-          "violentScore": 28,
-          "propertyCrimeRatePer100k": 3987,
-          "propertyScore": 34,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "victimizationRatePer1000": 131,
+          "victimizationScore": 41,
+          "homicideRatePer100k": 5.24,
+          "homicideScore": 20,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -684,7 +676,7 @@
       "code": "ON",
       "name": "Ontario",
       "premierName": "Doug Ford",
-      "composite": 50,
+      "composite": 49,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -815,16 +807,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 85,
-          "grade": "A",
-          "crimeSeverityIndex": 62.0,
-          "csiScore": 88,
-          "violentCrimeRatePer100k": 620,
-          "violentScore": 86,
-          "propertyCrimeRatePer100k": 1998,
-          "propertyScore": 78,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 75,
+          "grade": "B",
+          "victimizationRatePer1000": 97,
+          "victimizationScore": 69,
+          "homicideRatePer100k": 1.55,
+          "homicideScore": 80,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -844,7 +834,7 @@
         "publicSectorPer1000": 68,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 52
+      "valueScore": 51
     },
     {
       "code": "QC",
@@ -981,16 +971,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 84,
-          "grade": "A",
-          "crimeSeverityIndex": 63.9,
-          "csiScore": 87,
-          "violentCrimeRatePer100k": 663,
-          "violentScore": 84,
-          "propertyCrimeRatePer100k": 2073,
-          "propertyScore": 76,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 83,
+          "grade": "A-",
+          "victimizationRatePer1000": 82,
+          "victimizationScore": 82,
+          "homicideRatePer100k": 1.38,
+          "homicideScore": 83,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -1147,16 +1135,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 79,
-          "grade": "B+",
-          "crimeSeverityIndex": 70.8,
-          "csiScore": 82,
-          "violentCrimeRatePer100k": 752,
-          "violentScore": 78,
-          "propertyCrimeRatePer100k": 2155,
-          "propertyScore": 74,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 75,
+          "grade": "B",
+          "victimizationRatePer1000": 99,
+          "victimizationScore": 68,
+          "homicideRatePer100k": 1.48,
+          "homicideScore": 81,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -1182,7 +1168,7 @@
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 55,
+      "composite": 54,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -1313,16 +1299,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 73,
-          "grade": "B",
-          "crimeSeverityIndex": 79.3,
-          "csiScore": 76,
-          "violentCrimeRatePer100k": 836,
-          "violentScore": 73,
-          "propertyCrimeRatePer100k": 2590,
-          "propertyScore": 65,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 65,
+          "grade": "C+",
+          "victimizationRatePer1000": 107,
+          "victimizationScore": 61,
+          "homicideRatePer100k": 2.21,
+          "homicideScore": 69,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -1342,7 +1326,7 @@
         "publicSectorPer1000": 94,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 49
+      "valueScore": 48
     },
     {
       "code": "PE",
@@ -1479,16 +1463,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 90,
+          "score": 91,
           "grade": "A",
-          "crimeSeverityIndex": 55.7,
-          "csiScore": 92,
-          "violentCrimeRatePer100k": 533,
-          "violentScore": 92,
-          "propertyCrimeRatePer100k": 1712,
-          "propertyScore": 84,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "victimizationRatePer1000": 78,
+          "victimizationScore": 85,
+          "homicideRatePer100k": 0.58,
+          "homicideScore": 96,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -1514,7 +1496,7 @@
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 45,
+      "composite": 46,
       "grade": "D",
       "categories": {
         "healthcare": {
@@ -1645,16 +1627,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 65,
-          "grade": "C+",
-          "crimeSeverityIndex": 94.7,
-          "csiScore": 65,
-          "violentCrimeRatePer100k": 932,
-          "violentScore": 67,
-          "propertyCrimeRatePer100k": 2679,
-          "propertyScore": 63,
-          "sourceNotes": "Statistics Canada, Table 35-10-0177-01, 2023",
-          "dataDate": "2024-07-01"
+          "score": 74,
+          "grade": "B-",
+          "victimizationRatePer1000": 91,
+          "victimizationScore": 74,
+          "homicideRatePer100k": 1.91,
+          "homicideScore": 74,
+          "sourceNotes": "Stats Canada GSS Cycle 36 (2019) victimization survey; Homicide Survey 2023",
+          "dataDate": "2023-01-01"
         }
       },
       "lastUpdated": {
@@ -1674,7 +1654,7 @@
         "publicSectorPer1000": 104,
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
-      "valueScore": 41
+      "valueScore": 42
     }
   ],
   "supporters": []
