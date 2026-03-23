@@ -11,7 +11,7 @@ const path      = require('path');
 const fs        = require('fs');
 
 const { fetchAllSupabaseData }  = require('./supabase');
-const { scoreProvince, buildNationalSummary } = require('./scoring');
+const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -64,7 +64,7 @@ async function refresh() {
     }
 
     // 2. Assemble per-province raw objects and score them
-    const scoredProvinces = supa.meta.map(meta => {
+    const rawScored = supa.meta.map(meta => {
       const code = meta.province_code;
       const rawProvince = {
         meta,
@@ -84,6 +84,9 @@ async function refresh() {
       };
       return scoreProvince(rawProvince);
     });
+
+    // 3. Peer-normalize so the top Canadian province per category scores 87 (B)
+    const scoredProvinces = normalizeCategoryScores(rawScored);
 
     const national = buildNationalSummary(scoredProvinces);
 

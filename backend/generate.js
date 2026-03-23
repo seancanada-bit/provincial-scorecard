@@ -16,7 +16,7 @@ const fs   = require('fs');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const { fetchAllSupabaseData } = require('./supabase');
-const { scoreProvince, buildNationalSummary } = require('./scoring');
+const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
 
 const OUT_PATH = path.join(__dirname, '../frontend/src/data/fallback.json');
 
@@ -25,7 +25,7 @@ async function generate() {
 
   const supa = await fetchAllSupabaseData();
 
-  const scoredProvinces = supa.meta.map(meta => {
+  const rawScored = supa.meta.map(meta => {
     const code = meta.province_code;
     return scoreProvince({
       meta,
@@ -44,6 +44,9 @@ async function generate() {
       ltc:            supa.ltc[code]              ?? null,
     });
   });
+
+  // Peer-normalize so the top Canadian province per category scores 87 (B)
+  const scoredProvinces = normalizeCategoryScores(rawScored);
 
   const payload = {
     lastUpdated: new Date().toISOString(),

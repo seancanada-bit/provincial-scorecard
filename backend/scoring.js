@@ -520,6 +520,58 @@ function scoreProvince(prov) {
   };
 }
 
+// ─── PEER-RELATIVE NORMALIZATION ─────────────────────────────────────────────
+// After all provinces are scored in isolation, rescale each category so the
+// top Canadian province maps to CATEGORY_CEILING (87 = B, "best in Canada,
+// still imperfect"). Relative standings within each category are preserved.
+// The composite and value score are recomputed from the normalized category scores.
+
+const CATEGORY_CEILING = 87;
+
+const COMPOSITE_CATS    = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education', 'safety', 'mentalhealth', 'ltc'];
+const COMPOSITE_WEIGHTS = { healthcare: 0.16, housing: 0.13, fiscal: 0.13, infrastructure: 0.09, economy: 0.13, education: 0.11, safety: 0.09, mentalhealth: 0.08, ltc: 0.08 };
+
+function normalizeCategoryScores(scoredProvinces) {
+  // 1. Find the maximum raw score per category across all provinces
+  const maxes = {};
+  for (const cat of COMPOSITE_CATS) {
+    maxes[cat] = Math.max(...scoredProvinces.map(p => p.categories[cat]?.score ?? 0));
+  }
+
+  // 2. Rescale each province's category scores so the top scorer hits CATEGORY_CEILING
+  return scoredProvinces.map(p => {
+    const newCats = { ...p.categories };
+
+    for (const cat of COMPOSITE_CATS) {
+      const raw = p.categories[cat]?.score;
+      if (raw == null) continue; // skip missing categories gracefully
+      const normalized = maxes[cat] > 0
+        ? Math.round((raw / maxes[cat]) * CATEGORY_CEILING)
+        : raw;
+      newCats[cat] = { ...p.categories[cat], score: normalized, grade: toGrade(normalized) };
+    }
+
+    // 3. Recompute composite from normalized category scores
+    const composite = Math.round(
+      newCats.healthcare.score     * COMPOSITE_WEIGHTS.healthcare     +
+      newCats.housing.score        * COMPOSITE_WEIGHTS.housing        +
+      newCats.fiscal.score         * COMPOSITE_WEIGHTS.fiscal         +
+      newCats.infrastructure.score * COMPOSITE_WEIGHTS.infrastructure +
+      newCats.economy.score        * COMPOSITE_WEIGHTS.economy        +
+      newCats.education.score      * COMPOSITE_WEIGHTS.education      +
+      newCats.safety.score         * COMPOSITE_WEIGHTS.safety         +
+      newCats.mentalhealth.score   * COMPOSITE_WEIGHTS.mentalhealth   +
+      newCats.ltc.score            * COMPOSITE_WEIGHTS.ltc
+    );
+
+    // 4. Recompute value score (bang/duck) from normalized composite
+    const taxBurdenIndex = p.taxes?.taxBurdenIndex ?? 100;
+    const valueScore     = Math.round(composite * 100 / taxBurdenIndex);
+
+    return { ...p, categories: newCats, composite, grade: toGrade(composite), valueScore };
+  });
+}
+
 function toGrade(score) {
   if (score >= 93) return 'A+';
   if (score >= 87) return 'A';
@@ -557,4 +609,4 @@ function buildNationalSummary(scoredProvinces) {
   };
 }
 
-module.exports = { scoreProvince, buildNationalSummary, toGrade };
+module.exports = { scoreProvince, normalizeCategoryScores, buildNationalSummary, toGrade };

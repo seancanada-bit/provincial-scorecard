@@ -221,6 +221,13 @@ export default function MethodologyModal({ onClose }) {
               they're competing against each other, not against a hypothetical ideal. The grades are a snapshot of
               <em> who is doing better or worse, relative to Canadian peers, at this moment in time.</em>
             </p>
+            <p>
+              Each category blends several metrics, and different provinces tend to lead on different ones — so even the top province
+              on surgical waits may rank poorly on primary care attachment, pulling its overall Healthcare score into the middle of
+              the pack. To ensure at least one clear leader emerges per category, scores are peer-normalized after calculation:
+              the top Canadian province per category is anchored at <strong>87 (B)</strong>, reflecting that even the best is still
+              imperfect. All other provinces scale proportionally beneath that ceiling.
+            </p>
           </div>
         </section>
 
