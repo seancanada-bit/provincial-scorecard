@@ -1,7 +1,7 @@
 // Replace the href values with your actual Ko-fi URLs before deploying
-const KOFI_COFFEE  = 'https://ko-fi.com/YOUR_KOFI_NAME';
-const KOFI_LUNCH   = 'https://ko-fi.com/YOUR_KOFI_NAME';
-const KOFI_MONTHLY = 'https://ko-fi.com/YOUR_KOFI_NAME/tiers';
+const KOFI_COFFEE  = 'https://ko-fi.com/goodgovernance';
+const KOFI_LUNCH   = 'https://ko-fi.com/goodgovernance';
+const KOFI_MONTHLY = 'https://ko-fi.com/goodgovernance/tiers';
 
 export default function SupportSection({ supporters = [] }) {
   const activeNames = supporters.filter(s => s.active !== false).map(s => s.display_name);
