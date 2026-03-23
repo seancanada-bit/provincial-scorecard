@@ -1069,6 +1069,16 @@ body {
   flex-shrink: 0;
   gap: 0;
 }
+/* Micro-label above composite grade */
+.pcard__perf-label {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-bottom: 1px;
+}
 .pcard__grade {
   font-family: var(--font-serif);
   font-size: 62px;
@@ -1134,9 +1144,19 @@ body {
 .dp-header__name { font-size: 15px; font-weight: 600; }
 .dp-header__premier { font-size: 11px; color: var(--text-muted); }
 .dp-header__right { display: flex; flex-direction: column; align-items: flex-end; }
+/* Micro-label above composite grade in detail panel */
+.dp-header__perf-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-bottom: 1px;
+}
 .dp-header__grade {
   font-family: var(--font-serif);
-  font-size: 44px; font-weight: 800; line-height: 1; /* ⑤ */
+  font-size: 44px; font-weight: 800; line-height: 1;
 }
 .dp-header__score {
   font-family: var(--font-mono);
@@ -1340,40 +1360,37 @@ body {
    PAY vs GET — Education + Taxes UI additions
    ═══════════════════════════════════════════════════════════════ */
 
-/* Value badge on province card */
+/* Duck score — second named score block beneath composite, no badge chrome */
 .pcard__value-badge {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 4px;
-  padding: 3px 8px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  font-family: var(--font-mono);
-  color: var(--text-secondary);
+  align-items: flex-end;
   cursor: pointer;
   user-select: none;
-  transition: background 0.15s;
+  /* no border, no background — it's just a second score, not a badge */
 }
-.pcard__value-badge:hover,
-.pcard__value-badge--open {
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.28);
+/* Thin rule separating the two score blocks */
+.pcard__value-divider {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  margin: 5px 0 3px;
+  align-self: flex-end;
 }
 .pcard__value-label {
   font-size: 7px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  opacity: 0.6;
+  color: var(--text-muted);
   text-transform: uppercase;
   line-height: 1.2;
 }
 /* Grade letter — serif, coloured, matches composite grade aesthetic */
 .pcard__value-grade {
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.1;
 }
@@ -1404,25 +1421,23 @@ body {
   line-height: 1.5;
 }
 
-/* Value badge / label in detail panel header */
+/* Duck score block in detail panel header — no badge chrome */
 .dp-header__value {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 6px;
-  padding: 4px 10px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  align-items: flex-end;
   cursor: pointer;
   user-select: none;
-  transition: background 0.15s;
 }
-.dp-header__value:hover,
-.dp-header__value--open {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.24);
+/* Thin rule separating the two score blocks in the panel header */
+.dp-header__value-divider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0 3px;
+  align-self: flex-end;
 }
 .dp-value-tip {
   display: flex;
@@ -1447,18 +1462,20 @@ body {
   line-height: 1;
 }
 .dp-header__value-label {
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  line-height: 1.3;
 }
 /* Grade letter — serif, coloured */
 .dp-header__value-grade {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 /* Raw score — small reference below grade */
 .dp-header__value-subnum {

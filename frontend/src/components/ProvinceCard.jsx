@@ -84,8 +84,9 @@ export default function ProvinceCard({
           </div>
         </div>
 
-        {/* Right: grade hero + value badge */}
+        {/* Right: two named score blocks — performance + bang/duck */}
         <div className="pcard__right">
+          <span className="pcard__perf-label">performance</span>
           <span
             className={`pcard__grade ${gradeColorClass(province.grade)}`}
             aria-label={`Grade ${province.grade}`}
@@ -109,7 +110,8 @@ export default function ProvinceCard({
                 aria-expanded={showValueTip}
                 aria-label={`Duck Score: ${duckGrade} — ${duckDesc} value. Click for explanation.`}
               >
-                <span className="pcard__value-label">🦆 Duck Score</span>
+                <span className="pcard__value-divider" aria-hidden="true" />
+                <span className="pcard__value-label">🦆 bang/duck</span>
                 <span className="pcard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
                 <span className="pcard__value-subnum">{province.valueScore}</span>
                 {showValueTip && (

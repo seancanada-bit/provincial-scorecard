@@ -608,6 +608,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
           </div>
         </div>
         <div className="dp-header__right">
+          <span className="dp-header__perf-label">performance</span>
           <span className={`dp-header__grade ${gradeColorClass(province.grade)}`}>{province.grade}</span>
           <span className="dp-header__score">{province.composite}<span style={{fontSize:13,opacity:.6}}>/100</span></span>
           {province.valueScore != null && (() => {
@@ -623,7 +624,8 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
                 aria-expanded={showValueTip}
                 aria-label={`Duck Score: ${duckGrade}. Click for explanation.`}
               >
-                <span className="dp-header__value-label">🦆 Duck Score</span>
+                <span className="dp-header__value-divider" aria-hidden="true" />
+                <span className="dp-header__value-label">🦆 bang for your duck</span>
                 <span className="dp-header__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
                 <span className="dp-header__value-subnum">{province.valueScore}</span>
               </span>
