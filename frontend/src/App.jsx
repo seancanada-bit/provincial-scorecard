@@ -17,7 +17,7 @@ function getCategoryScore(province, category) {
 }
 
 export default function App() {
-  const { data, loading, error } = useProvinceData();
+  const { data } = useProvinceData();
   const [sortKey, setSortKey]         = useState('overall');
   const [expandedCode, setExpandedCode] = useState(null);
   const [showMethodology, setShowMethodology] = useState(false);
@@ -50,38 +50,6 @@ export default function App() {
 
   function handleToggle(code) {
     setExpandedCode(prev => (prev === code ? null : code));
-  }
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <main>
-          <div className="loading-screen" role="status" aria-live="polite">
-            <div className="loading-screen__spinner" aria-hidden="true" />
-            <p className="loading-screen__text">Loading province data…</p>
-          </div>
-        </main>
-      </>
-    );
-  }
-
-  if (error && !data) {
-    return (
-      <>
-        <Header />
-        <main>
-          <div className="error-screen" role="alert">
-            <h1 className="error-screen__title">Data unavailable</h1>
-            <p className="error-screen__msg">
-              Could not load province data. Please try refreshing the page.
-              <br />
-              <small style={{ color: 'var(--text-muted)' }}>{error}</small>
-            </p>
-          </div>
-        </main>
-      </>
-    );
   }
 
   return (
