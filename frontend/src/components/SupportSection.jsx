@@ -1,45 +1,41 @@
-const STRIPE_COFFEE  = 'https://buy.stripe.com/4gM4gA6EF6cQ7iq4ASfUQ00';
-const STRIPE_LUNCH   = 'https://buy.stripe.com/3cIbJ2e77eJm32a2sKfUQ01';
-const STRIPE_MONTHLY = 'https://buy.stripe.com/eVqfZi2op9p2dGO1oGfUQ02';
+const STRIPE_LOONIE  = 'https://buy.stripe.com/4gM4gA6EF6cQ7iq4ASfUQ00'; // $5 one-time — unchanged
+const STRIPE_RESEARCH = 'https://buy.stripe.com/3cIbJ2e77eJm32a2sKfUQ01'; // TODO: update Stripe link to $20
+const STRIPE_KEEPER  = 'https://buy.stripe.com/eVqfZi2op9p2dGO1oGfUQ02'; // TODO: update Stripe link to $6/mo
 
 const TIERS = [
   {
-    id: 'coffee',
-    emoji: '☕',
-    level: 'Level 1',
-    name: 'Quick Thanks',
+    id: 'loonie',
+    emoji: '🦆',
+    name: 'Toss a Loonie',
     price: '$5',
     cadence: 'one-time',
-    funds: 'Keeps the site running for a week',
-    cta: 'Buy a coffee',
-    href: STRIPE_COFFEE,
+    funds: 'Keeps the server running. Every one counts.',
+    cta: 'Chip in $5',
+    href: STRIPE_LOONIE,
     highlight: false,
   },
   {
-    id: 'lunch',
-    emoji: '📊',
-    level: 'Level 2',
-    name: 'Data Booster',
-    price: '$15',
+    id: 'research',
+    emoji: '🔬',
+    name: 'Fund the Research',
+    price: '$20',
     cadence: 'one-time',
-    funds: 'Unlocks a new provincial dataset',
-    cta: 'Buy lunch',
-    href: STRIPE_LUNCH,
-    highlight: true,
-    badge: 'Most helpful',
+    funds: 'Directly pays for data, hosting, and the hours behind the numbers.',
+    cta: 'Fund it',
+    href: STRIPE_RESEARCH,
+    highlight: false,
   },
   {
-    id: 'monthly',
+    id: 'keeper',
     emoji: '🇨🇦',
-    level: 'Level 3',
-    name: 'Province Insider',
-    price: '$4',
+    name: 'Province Keeper',
+    price: '$6',
     cadence: '/mo',
-    funds: 'Your name in credits + monthly digest',
-    cta: 'Become an Insider',
-    href: STRIPE_MONTHLY,
-    highlight: false,
-    badge: 'Best value',
+    funds: 'Your name on the site + a note when scores are updated.',
+    cta: 'Become a Keeper',
+    href: STRIPE_KEEPER,
+    highlight: true,
+    badge: 'Recommended',
   },
 ];
 
@@ -54,7 +50,9 @@ export default function SupportSection({ supporters = [] }) {
 
       <div className="support-section__pitch">
         <p>
-          This site runs on public data, paid subscriptions, and a lot of unpaid hours. Better data costs real money — Angus Reid polling, CIHI extracts, infrastructure tracking. Your support tells me to keep digging and make the scores sharper.
+          This site costs real money to run — hosting, data subscriptions, and a lot of unpaid
+          hours tracking down numbers governments don't make easy to find. If you've ever shared
+          it, argued about it, or used it to form an opinion, consider kicking in. Even $5 helps.
         </p>
       </div>
 
@@ -68,7 +66,6 @@ export default function SupportSection({ supporters = [] }) {
             {tier.badge && (
               <span className="support-tier__badge">{tier.badge}</span>
             )}
-            <span className="support-tier__level">{tier.level}</span>
             <span className="support-tier__emoji" aria-hidden="true">{tier.emoji}</span>
             <strong className="support-tier__name">{tier.name}</strong>
             <div className="support-tier__price">
@@ -95,7 +92,7 @@ export default function SupportSection({ supporters = [] }) {
 
       {activeNames.length > 0 && (
         <div className="supporters-wall" aria-label="Current supporters">
-          Supporters keeping this running:{' '}
+          Province Keepers keeping this running:{' '}
           <span className="supporters-wall__names">{activeNames.join(', ')}</span>
         </div>
       )}

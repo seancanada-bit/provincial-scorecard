@@ -539,14 +539,6 @@ body {
 .support-tier--highlight .support-tier__badge {
   background: var(--canada-red);
 }
-.support-tier:last-child .support-tier__badge {
-  background: #1A1A1A;
-}
-.support-tier__level {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--text-muted);
-  margin-bottom: 2px;
-}
 .support-tier__emoji {
   font-size: 28px; line-height: 1; margin-bottom: 4px;
 }
