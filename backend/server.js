@@ -190,7 +190,7 @@ app.get('/api/data', async (req, res) => {
   const payload = cache || loadFallback();
   if (!payload) return res.status(503).json({ error: 'Data not yet available. Try again shortly.' });
 
-  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.setHeader('Cache-Control', 'private, max-age=3600');
   res.json(payload);
 });
 
