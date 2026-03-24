@@ -7,6 +7,7 @@ import SortTabs                from './components/SortTabs.jsx';
 import ProvinceCard            from './components/ProvinceCard.jsx';
 import ProvinceDetailPanel     from './components/ProvinceDetailPanel.jsx';
 import SupportSection          from './components/SupportSection.jsx';
+import SiteActivity            from './components/SiteActivity.jsx';
 import DataSources             from './components/DataSources.jsx';
 import Footer                  from './components/Footer.jsx';
 import MethodologyModal        from './components/MethodologyModal.jsx';
@@ -128,6 +129,7 @@ export default function App() {
               </ol>
 
               <SupportSection supporters={data.supporters ?? []} />
+              <SiteActivity />
               <DataSources />
             </div>
 

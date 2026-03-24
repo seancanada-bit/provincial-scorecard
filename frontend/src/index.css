@@ -594,6 +594,67 @@ body {
 .supporters-wall__names { font-weight: 500; color: var(--text-primary); }
 
 /* ─── DATA SOURCES ───────────────────────────────────────────────────────── */
+/* ─── SITE ACTIVITY ──────────────────────────────────────────────────────────── */
+.site-activity { margin: var(--space-lg) 0 var(--space-xl); }
+
+.sa-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; background: none; border: none;
+  border-top: 1px solid var(--border);
+  padding: var(--space-md) 0;
+  cursor: pointer; color: var(--text-primary); text-align: left;
+}
+.sa-toggle:hover .sa-toggle__label { color: var(--canada-red); }
+.sa-toggle__label { font-family: var(--font-serif); font-size: 16px; font-weight: 700; transition: color 0.15s; }
+.sa-toggle__chevron { font-size: 11px; color: var(--text-muted); }
+
+.sa-body { padding: var(--space-sm) 0 var(--space-md); }
+
+.sa-cols {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+@media (max-width: 600px) {
+  .sa-cols { grid-template-columns: 1fr; gap: var(--space-lg); }
+}
+
+.sa-col__title {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-muted); margin-bottom: var(--space-sm); font-weight: 600;
+}
+
+.sa-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.sa-row {
+  display: grid; grid-template-columns: 150px 1fr 38px;
+  align-items: center; gap: var(--space-sm);
+}
+@media (max-width: 480px) {
+  .sa-row { grid-template-columns: 120px 1fr 32px; }
+}
+
+.sa-label {
+  font-size: 13px; color: var(--text-secondary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sa-bar-wrap {
+  height: 5px; background: var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.sa-bar {
+  display: block; height: 100%;
+  background: var(--canada-red); border-radius: 3px;
+  transition: width 0.5s ease;
+}
+.sa-count {
+  font-size: 12px; color: var(--text-muted);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.sa-empty { font-size: 13px; color: var(--text-muted); padding: var(--space-sm) 0; }
+.sa-footer {
+  font-size: 12px; color: var(--text-muted);
+  margin-top: var(--space-md); font-style: italic;
+}
+
 .data-sources { margin: var(--space-xl) 0; }
 .data-sources__header {
   font-family: var(--font-serif); font-size: 20px; font-weight: 700;

@@ -35,6 +35,11 @@ let cache = null;        // The full scored JSON payload
 let cacheTimestamp = 0;  // Unix ms of last successful refresh
 let refreshRunning = false;
 
+// Stats cache (5-minute TTL — light queries, no need to hit DB every request)
+let statsCache = null;
+let statsCacheTs = 0;
+const STATS_TTL = 5 * 60 * 1000;
+
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 const FALLBACK_PATH = path.join(__dirname, 'data', 'fallback-cache.json');
 
@@ -134,6 +139,45 @@ app.post('/api/event', express.json({ limit: '2kb' }), async (req, res) => {
     });
   } catch {
     // Silently ignore — tracking must never surface errors
+  }
+});
+
+// ─── STATS (what people are clicking) ────────────────────────────────────────
+app.get('/api/stats', async (req, res) => {
+  try {
+    if (statsCache && Date.now() - statsCacheTs < STATS_TTL) {
+      return res.setHeader('Cache-Control', 'public, max-age=300').json(statsCache);
+    }
+
+    const sb  = getSupabaseClient();
+    const since = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
+
+    const [{ data: provRows }, { data: tabRows }] = await Promise.all([
+      sb.from('events').select('province').eq('event', 'province_expanded').gte('ts', since).not('province', 'is', null),
+      sb.from('events').select('detail').eq('event', 'tab_viewed').gte('ts', since).not('detail', 'is', null),
+    ]);
+
+    const countBy = (rows, key) => {
+      const counts = {};
+      (rows ?? []).forEach(r => { if (r[key]) counts[r[key]] = (counts[r[key]] ?? 0) + 1; });
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 7)
+        .map(([name, count]) => ({ name, count }));
+    };
+
+    statsCache = {
+      topProvinces: countBy(provRows, 'province'),
+      topTabs:      countBy(tabRows,  'detail'),
+      total:        (provRows?.length ?? 0) + (tabRows?.length ?? 0),
+    };
+    statsCacheTs = Date.now();
+
+    res.setHeader('Cache-Control', 'public, max-age=300');
+    res.json(statsCache);
+  } catch (err) {
+    console.error('[stats]', err.message);
+    res.json({ topProvinces: [], topTabs: [], total: 0 });
   }
 });
 
