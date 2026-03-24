@@ -1,6 +1,6 @@
 const STRIPE_LOONIE  = 'https://buy.stripe.com/4gM4gA6EF6cQ7iq4ASfUQ00'; // $5 one-time — unchanged
-const STRIPE_RESEARCH = 'https://buy.stripe.com/3cIbJ2e77eJm32a2sKfUQ01'; // TODO: update Stripe link to $20
-const STRIPE_KEEPER  = 'https://buy.stripe.com/eVqfZi2op9p2dGO1oGfUQ02'; // TODO: update Stripe link to $6/mo
+const STRIPE_RESEARCH = 'https://buy.stripe.com/dRmaEYe770Sw32a7N4fUQ03'; // $20 one-time
+const STRIPE_KEEPER  = 'https://buy.stripe.com/cNicN62opfNqcCKebsfUQ04'; // $6/mo recurring
 
 const TIERS = [
   {
