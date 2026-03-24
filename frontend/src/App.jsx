@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useProvinceData }     from './hooks/useProvinceData.js';
+import { track }               from './utils/track.js';
 import Header                  from './components/Header.jsx';
 import NationalSummary         from './components/NationalSummary.jsx';
 import SortTabs                from './components/SortTabs.jsx';
@@ -60,6 +61,7 @@ export default function App() {
 
   // On sort change, select new top province on desktop
   function handleTabChange(key) {
+    track('sort_changed', { detail: key });
     setSortKey(key);
     if (!isMobile && sortedProvinces.length) {
       const newTop = [...(data?.provinces ?? [])].sort(
@@ -69,10 +71,20 @@ export default function App() {
     }
   }
 
+  function handleOpenMethodology() {
+    track('methodology_opened');
+    setShowMethodology(true);
+  }
+
   function handleSelect(code) {
     if (isMobile) {
-      setSelectedCode(prev => prev === code ? null : code);
+      setSelectedCode(prev => {
+        const next = prev === code ? null : code;
+        if (next) track('province_expanded', { province: code });
+        return next;
+      });
     } else {
+      track('province_expanded', { province: code });
       setSelectedCode(code);
     }
   }
@@ -108,7 +120,7 @@ export default function App() {
                       onSelect={handleSelect}
                       sortKey={sortKey}
                       animateCount={animateCount}
-                      onMethodology={() => setShowMethodology(true)}
+                      onMethodology={handleOpenMethodology}
                       isMobile={isMobile}
                     />
                   </li>
@@ -126,7 +138,7 @@ export default function App() {
                   <ProvinceDetailPanel
                     key={selectedProvince.code}
                     province={selectedProvince}
-                    onMethodology={() => setShowMethodology(true)}
+                    onMethodology={handleOpenMethodology}
                   />
                 ) : (
                   <div className="dp-empty">
@@ -141,7 +153,7 @@ export default function App() {
       </main>
 
       <div className="app-footer-wrap">
-        <Footer onMethodology={() => setShowMethodology(true)} />
+        <Footer onMethodology={handleOpenMethodology} />
       </div>
 
       {showMethodology && (

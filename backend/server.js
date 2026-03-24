@@ -10,7 +10,7 @@ const cors      = require('cors');
 const path      = require('path');
 const fs        = require('fs');
 
-const { fetchAllSupabaseData }  = require('./supabase');
+const { fetchAllSupabaseData, getSupabaseClient } = require('./supabase');
 const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
 
 const app  = express();
@@ -110,6 +110,32 @@ async function refresh() {
 
 // ─── ROUTES ──────────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ ok: true }));
+
+// ─── EVENT TRACKING ──────────────────────────────────────────────────────────
+const VALID_EVENTS = new Set([
+  'province_expanded', 'tab_viewed', 'sort_changed', 'methodology_opened',
+]);
+
+app.post('/api/event', express.json({ limit: '2kb' }), async (req, res) => {
+  // Always respond immediately — never block the browser
+  res.json({ ok: true });
+
+  try {
+    const { event, province, detail, referrer, device } = req.body ?? {};
+    if (!event || !VALID_EVENTS.has(event)) return;
+
+    const sb = getSupabaseClient();
+    await sb.from('events').insert({
+      event,
+      province:  province  ?? null,
+      detail:    detail    ?? null,
+      referrer:  referrer  ?? null,
+      device:    device    ?? null,
+    });
+  } catch {
+    // Silently ignore — tracking must never surface errors
+  }
+});
 
 app.get('/api/data', async (req, res) => {
   // Trigger refresh if cache is stale or empty

@@ -81,4 +81,4 @@ async function fetchAllSupabaseData() {
   };
 }
 
-module.exports = { fetchAllSupabaseData };
+module.exports = { fetchAllSupabaseData, getSupabaseClient: getClient };

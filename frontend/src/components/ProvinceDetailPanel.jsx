@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { track } from '../utils/track.js';
 import {
   gradeFill, gradeColorClass, gradeBgClass, scoreFill, toGrade,
   outlookSymbol, outlookLabel, formatDollars, overrunColor, delayColor,
@@ -662,7 +663,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
               role="tab"
               aria-selected={isActive}
               className={`dp-tab${isActive ? ' dp-tab--active' : ''}${isContext ? ' dp-tab--context' : ''}`}
-              onClick={() => setActiveTab(tab.key)}
+              onClick={() => { track('tab_viewed', { province: province.code, detail: tab.key }); setActiveTab(tab.key); }}
               style={{ '--tab-color': gradeFill(grade) }}
               title={tab.label}
             >

@@ -495,3 +495,32 @@ values
   ('NS', 62, 3.3, 60,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
   ('PE', 58, 3.5, 65,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
   ('NL', 57, 3.1, 48,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01');
+
+-- ─── EVENT TRACKING ──────────────────────────────────────────────────────────
+-- Run this once in the Supabase SQL editor.
+-- No personal data is stored — no IPs, no cookies, no identifiers.
+
+create table if not exists events (
+  id        bigserial    primary key,
+  ts        timestamptz  not null default now(),
+  event     text         not null,   -- 'province_expanded' | 'tab_viewed' | 'sort_changed' | 'methodology_opened'
+  province  text,                    -- province code, e.g. 'ON'
+  detail    text,                    -- tab name, sort key, etc.
+  referrer  text,                    -- document.referrer (may be empty)
+  device    text                     -- 'mobile' | 'desktop'
+);
+
+-- Index for time-series queries
+create index if not exists events_ts_idx    on events (ts desc);
+-- Index for per-event queries
+create index if not exists events_event_idx on events (event);
+
+-- Useful starter queries:
+-- Top provinces by click count:
+--   select province, count(*) from events where event = 'province_expanded' group by province order by count desc;
+-- Most-viewed tabs:
+--   select detail, count(*) from events where event = 'tab_viewed' group by detail order by count desc;
+-- Sort tab popularity:
+--   select detail, count(*) from events where event = 'sort_changed' group by detail order by count desc;
+-- Daily activity:
+--   select date_trunc('day', ts) as day, count(*) from events group by day order by day desc;
