@@ -61,8 +61,9 @@ function toGrade(score) {
 
 function weightedScore(parts) {
   // parts: [{ score, weight }] — nulls skipped, weights re-normalized
+  // Returns null when ALL inputs are null — no free 50 for missing data.
   const valid = parts.filter(p => p.score != null);
-  if (!valid.length) return 50; // fallback
+  if (!valid.length) return null;
   const totalWeight = valid.reduce((a, p) => a + p.weight, 0);
   return Math.round(valid.reduce((a, p) => a + p.score * p.weight, 0) / totalWeight);
 }
@@ -123,8 +124,8 @@ function scoreCity(raw) {
     { score: csiScore,        weight: 0.60 },
     { score: violentCsiScore, weight: 0.40 },
   ]);
-  const safetyScore = baseSafetyScore === 50 && csiScore == null
-    ? 50
+  const safetyScore = baseSafetyScore == null
+    ? null
     : Math.min(100, Math.max(0, baseSafetyScore + trendBonus));
 
   // ─── CATEGORY 3: FISCAL MANAGEMENT (20%) ────────────────────────────────
@@ -223,8 +224,8 @@ function scoreCity(raw) {
     { score: homelessScore, weight: 0.60 },
     { score: socialScore,   weight: 0.40 },
   ]);
-  const communityScore = baseCommunityScore === 50 && homelessScore == null
-    ? 50
+  const communityScore = baseCommunityScore == null
+    ? null
     : Math.min(100, Math.max(0, baseCommunityScore + homelessTrendBonus));
 
   // ─── INFRASTRUCTURE PROJECTS (context only, no composite impact) ─────────
@@ -242,14 +243,15 @@ function scoreCity(raw) {
 
   // ─── COMPOSITE ───────────────────────────────────────────────────────────
   // Housing 25% + Safety 20% + Fiscal 20% + Liveability 15% + Economic 10% + Community 10% = 100%
-  const composite = Math.round(
-    housingScore   * 0.25 +
-    safetyScore    * 0.20 +
-    fiscalScore    * 0.20 +
-    liveabilityScore * 0.15 +
-    economicScore  * 0.10 +
-    communityScore * 0.10
-  );
+  // Null categories are excluded and weights re-normalised — no phantom 50s.
+  const composite = weightedScore([
+    { score: housingScore,      weight: 0.25 },
+    { score: safetyScore,       weight: 0.20 },
+    { score: fiscalScore,       weight: 0.20 },
+    { score: liveabilityScore,  weight: 0.15 },
+    { score: economicScore,     weight: 0.10 },
+    { score: communityScore,    weight: 0.10 },
+  ]) ?? 50;
 
   // ─── DUCK SCORE ──────────────────────────────────────────────────────────
   // Uses absolute annual property tax on a benchmark home, not just the rate %.
@@ -379,7 +381,7 @@ function scoreCity(raw) {
 // After all cities are scored in isolation, rescale each category so the
 // top Canadian city maps to CATEGORY_CEILING (87 = B). Same pattern as Provinces.
 
-const CATEGORY_CEILING = 87;
+const CATEGORY_CEILING = 82;
 const COMPOSITE_CATS    = ['housing', 'safety', 'fiscal', 'liveability', 'economic', 'community'];
 const COMPOSITE_WEIGHTS = { housing: 0.25, safety: 0.20, fiscal: 0.20, liveability: 0.15, economic: 0.10, community: 0.10 };
 
@@ -401,14 +403,14 @@ function normalizeCityScores(scoredCities) {
       newCats[cat] = { ...c.categories[cat], score: normalized, grade: toGrade(normalized) };
     }
 
-    const composite = Math.round(
-      newCats.housing.score    * COMPOSITE_WEIGHTS.housing    +
-      newCats.safety.score     * COMPOSITE_WEIGHTS.safety     +
-      newCats.fiscal.score     * COMPOSITE_WEIGHTS.fiscal     +
-      newCats.liveability.score * COMPOSITE_WEIGHTS.liveability +
-      newCats.economic.score   * COMPOSITE_WEIGHTS.economic   +
-      newCats.community.score  * COMPOSITE_WEIGHTS.community
-    );
+    const composite = weightedScore([
+      { score: newCats.housing.score,      weight: COMPOSITE_WEIGHTS.housing     },
+      { score: newCats.safety.score,       weight: COMPOSITE_WEIGHTS.safety      },
+      { score: newCats.fiscal.score,       weight: COMPOSITE_WEIGHTS.fiscal      },
+      { score: newCats.liveability.score,  weight: COMPOSITE_WEIGHTS.liveability },
+      { score: newCats.economic.score,     weight: COMPOSITE_WEIGHTS.economic    },
+      { score: newCats.community.score,    weight: COMPOSITE_WEIGHTS.community   },
+    ]) ?? 50;
 
     // Recompute duck score: absolute annual tax on benchmark home, sqrt-curved
     const NATIONAL_MEDIAN_ANNUAL_TAX = 4500;

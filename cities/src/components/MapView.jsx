@@ -51,13 +51,34 @@ export default function MapView({ cities, onSelect, sortKey }) {
   useEffect(() => {
     if (!cities.length) return;
 
-    import('leaflet').then(leaflet => {
+    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([leafletModule]) => {
       if (!mapRef.current) return;
-      const L = leaflet.default;
+      const L = leafletModule.default;
 
-      // Clear old markers
-      markersRef.current.forEach(({ marker }) => marker.remove());
-      markersRef.current = [];
+      // Clear old cluster layer
+      if (markersRef.current.cluster) {
+        mapRef.current.removeLayer(markersRef.current.cluster);
+      }
+      markersRef.current = { cluster: null, items: [] };
+
+      const cluster = L.markerClusterGroup({
+        maxClusterRadius: 40,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        iconCreateFunction: (c) => {
+          const count = c.getChildCount();
+          return L.divIcon({
+            className: '',
+            html: `<div style="
+              background:#1A1A1A;border:2px solid white;border-radius:50%;
+              width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+              font-size:11px;font-weight:700;color:white;
+              box-shadow:0 2px 8px rgba(0,0,0,0.4);font-family:system-ui,sans-serif;">${count}</div>`,
+            iconSize:   [34, 34],
+            iconAnchor: [17, 17],
+          });
+        },
+      });
 
       cities.forEach(city => {
         if (!city.lat || !city.lng) return;
@@ -79,7 +100,6 @@ export default function MapView({ cities, onSelect, sortKey }) {
         });
 
         const marker = L.marker([city.lat, city.lng], { icon })
-          .addTo(mapRef.current)
           .bindPopup(`
             <div style="font-family:system-ui,sans-serif;min-width:140px;">
               <strong style="font-size:13px;">${city.name}</strong>
@@ -98,8 +118,12 @@ export default function MapView({ cities, onSelect, sortKey }) {
             </div>
           `);
 
-        markersRef.current.push({ cmaCode: city.cmaCode, marker });
+        cluster.addLayer(marker);
+        markersRef.current.items.push({ cmaCode: city.cmaCode, marker });
       });
+
+      mapRef.current.addLayer(cluster);
+      markersRef.current.cluster = cluster;
 
       // Global bridge for popup button clicks
       window.__citySelectFromMap__ = cmaCode => {
