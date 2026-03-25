@@ -29,7 +29,7 @@ function MetricRow({ label, score, rawDisplay, compareDisplay }) {
   );
 }
 
-function KeyStat({ value, unit, label, score, grade }) {
+function KeyStat({ value, unit, label, sublabel, score, grade }) {
   return (
     <div className="dp-keystat">
       <div className="dp-keystat__number">
@@ -37,6 +37,7 @@ function KeyStat({ value, unit, label, score, grade }) {
         {unit && <span className="dp-keystat__unit">{unit}</span>}
       </div>
       <div className="dp-keystat__label">{label}</div>
+      {sublabel && <div className="dp-keystat__sublabel">{sublabel}</div>}
       {score != null && (
         <div className={`dp-keystat__grade ${gradeBgClass(grade)} ${gradeColorClass(grade)}`}>
           {grade} · {score}/100
@@ -131,11 +132,18 @@ function SafetyTab({ c }) {
 function FiscalTab({ c }) {
   const f = c.fiscal;
   if (!f) return <div className="dp-tab-content"><p className="dp-empty">Fiscal data not yet available.</p></div>;
+  const benchmarkPrice = c.housing?.mlsHpiBenchmark;
+  const annualTax = (f.propertyTaxRate != null && benchmarkPrice != null)
+    ? Math.round((f.propertyTaxRate / 100) * benchmarkPrice)
+    : null;
   return (
     <div className="dp-tab-content">
       <KeyStat
         value={f.propertyTaxRate != null ? `${f.propertyTaxRate}%` : '—'}
-        label="residential property tax rate"
+        label="effective tax rate"
+        sublabel={annualTax != null
+          ? `≈ $${annualTax.toLocaleString('en-CA')}/yr on a $${Math.round(benchmarkPrice / 1000)}k benchmark home`
+          : null}
         score={f.score}
         grade={f.grade}
       />
