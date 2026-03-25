@@ -2,9 +2,7 @@ DirectoryIndex index.html
 Options -MultiViews
 
 RewriteEngine On
-RewriteBase /
-# Pass /cities/* through to its own index + .htaccess
-RewriteRule ^cities(/.*)?$ - [L]
+RewriteBase /cities/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule . /cities/index.html [L]
