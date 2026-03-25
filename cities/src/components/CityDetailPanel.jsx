@@ -450,28 +450,31 @@ export default function CityDetailPanel({ city, onClose, sortKey }) {
         </div>
       </div>
 
-      {/* Category score row */}
-      <div className="dp-cat-row" role="list" aria-label="Category scores">
-        {TABS.map(tab => {
-          const cat   = cats[tab.key];
-          const score = cat?.score ?? 0;
-          const grade = cat?.grade ?? 'N/A';
-          return (
-            <button
-              key={tab.key}
-              role="listitem"
-              className={`dp-cat-chip${activeTab === tab.key ? ' dp-cat-chip--active' : ''}`}
-              style={{ color: gradeFill(grade), background: activeTab === tab.key ? `${gradeFill(grade)}18` : undefined }}
-              onClick={() => handleTabChange(tab.key)}
-              aria-pressed={activeTab === tab.key}
-              aria-label={`${tab.label}: ${score}/100`}
-            >
-              <span className="dp-cat-chip__icon" aria-hidden="true">{tab.icon}</span>
-              <span className="dp-cat-chip__label">{tab.label}</span>
-              <span className="dp-cat-chip__score">{score}</span>
-            </button>
-          );
-        })}
+      {/* Category score row — wrapped for right-edge scroll fade */}
+      <div className="dp-cat-scroll-wrap">
+        <div className="dp-cat-row" role="list" aria-label="Category scores">
+          {TABS.map(tab => {
+            const cat   = cats[tab.key];
+            const score = cat?.score ?? null;
+            const grade = cat?.grade ?? 'N/A';
+            return (
+              <button
+                key={tab.key}
+                role="listitem"
+                className={`dp-cat-chip${activeTab === tab.key ? ' dp-cat-chip--active' : ''}`}
+                style={{ color: gradeFill(grade), background: activeTab === tab.key ? `${gradeFill(grade)}18` : undefined }}
+                onClick={() => handleTabChange(tab.key)}
+                aria-pressed={activeTab === tab.key}
+                aria-label={`${tab.label}${score != null ? `: ${score}/100` : ''}`}
+              >
+                <span className="dp-cat-chip__icon" aria-hidden="true">{tab.icon}</span>
+                <span className="dp-cat-chip__label">{tab.label}</span>
+                {score != null && <span className="dp-cat-chip__score">{score}</span>}
+              </button>
+            );
+          })}
+        </div>
+        <div className="dp-cat-fade" aria-hidden="true" />
       </div>
 
       {/* Tab content */}

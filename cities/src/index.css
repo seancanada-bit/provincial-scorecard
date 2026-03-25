@@ -483,13 +483,23 @@ body {
 .dp-header__num { font-size: 12px; opacity: 0.9; }
 
 /* Category chips row */
+.dp-cat-scroll-wrap {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
 .dp-cat-row {
   display: flex; overflow-x: auto; gap: 6px;
   padding: var(--space-sm) var(--space-md);
-  border-bottom: 1px solid var(--border);
   scrollbar-width: none;
 }
 .dp-cat-row::-webkit-scrollbar { display: none; }
+/* Right-edge fade hints that more tabs exist */
+.dp-cat-fade {
+  position: absolute; top: 0; right: 0;
+  width: 48px; height: 100%;
+  background: linear-gradient(to right, transparent, var(--bg-card) 90%);
+  pointer-events: none;
+}
 .dp-cat-chip {
   flex-shrink: 0;
   display: flex; align-items: center; gap: 3px;
