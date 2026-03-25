@@ -142,7 +142,6 @@ async function refreshCities() {
       return;
     }
 
-    console.log('[cities] First meta lat/lng sample:', supa.meta[0]?.city_name, supa.meta[0]?.lat, supa.meta[0]?.lng);
     const rawScored = supa.meta.map(meta => {
       const code = meta.cma_code;
       return scoreCity({
