@@ -1,0 +1,125 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import Header from './components/Header.jsx';
+import NationalSummary from './components/NationalSummary.jsx';
+import ProvinceFilter from './components/ProvinceFilter.jsx';
+import SortTabs from './components/SortTabs.jsx';
+import CityGrid from './components/CityGrid.jsx';
+import CityDetailPanel from './components/CityDetailPanel.jsx';
+import MapView from './components/MapView.jsx';
+import SupportSection from './components/SupportSection.jsx';
+import Footer from './components/Footer.jsx';
+import fallback from './data/fallback.json';
+
+const API = import.meta.env.VITE_API_URL || '';
+
+const SORT_KEYS = [
+  { key: 'duck',        label: 'Value',       icon: '🦆' },
+  { key: 'composite',   label: 'Performance'              },
+  { key: 'housing',     label: 'Housing'                  },
+  { key: 'safety',      label: 'Safety'                   },
+  { key: 'fiscal',      label: 'Fiscal'                   },
+  { key: 'liveability', label: 'Liveability'              },
+  { key: 'economic',    label: 'Economic'                 },
+  { key: 'community',   label: 'Community'                },
+];
+
+export default function App() {
+  const [data, setData]               = useState(fallback);
+  const [loading, setLoading]         = useState(true);
+  const [sortKey, setSortKey]         = useState('duck');
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [provinceFilter, setProvinceFilter] = useState('ALL');
+  const [mapView, setMapView]         = useState(false);
+
+  // Read ?province= from URL on load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prov = params.get('province');
+    if (prov) setProvinceFilter(prov.toUpperCase());
+  }, []);
+
+  // Update URL when province filter changes
+  useEffect(() => {
+    const url = new URL(window.location);
+    if (provinceFilter === 'ALL') {
+      url.searchParams.delete('province');
+    } else {
+      url.searchParams.set('province', provinceFilter.toLowerCase());
+    }
+    window.history.replaceState({}, '', url);
+  }, [provinceFilter]);
+
+  useEffect(() => {
+    fetch(`${API}/api/cities`)
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const cities = data?.cities ?? [];
+  const national = data?.national ?? {};
+
+  const sortScore = city => {
+    if (sortKey === 'duck')      return city.duckScore ?? 0;
+    if (sortKey === 'composite') return city.composite ?? 0;
+    return city.categories?.[sortKey]?.score ?? 0;
+  };
+
+  const filteredCities = useMemo(() => {
+    let list = [...cities];
+    if (provinceFilter !== 'ALL') {
+      list = list.filter(c => c.provinceAbbr === provinceFilter);
+    }
+    return list.sort((a, b) => sortScore(b) - sortScore(a));
+  }, [cities, provinceFilter, sortKey]);
+
+  const rankedAll = useMemo(() =>
+    [...cities].sort((a, b) => sortScore(b) - sortScore(a)),
+    [cities, sortKey]
+  );
+
+  return (
+    <div className="app-shell">
+      <Header lastUpdated={data?.lastUpdated} />
+      <NationalSummary national={national} cities={cities} provinceFilter={provinceFilter} filteredCities={filteredCities} />
+      <main className="app-shell__main">
+        <ProvinceFilter active={provinceFilter} onChange={setProvinceFilter} />
+        <SortTabs
+          sortKey={sortKey}
+          onChange={setSortKey}
+          tabs={SORT_KEYS}
+          mapView={mapView}
+          onToggleMap={() => setMapView(v => !v)}
+        />
+        {provinceFilter !== 'ALL' && (
+          <p className="province-filter-label">
+            Viewing {filteredCities.length} {filteredCities.length === 1 ? 'city' : 'cities'} in {provinceFilter}
+          </p>
+        )}
+        {mapView ? (
+          <MapView cities={filteredCities} onSelect={setSelectedCity} sortKey={sortKey} />
+        ) : (
+          <div className="app-shell__columns">
+            <CityGrid
+              cities={filteredCities}
+              allCities={rankedAll}
+              selectedCity={selectedCity}
+              onSelect={setSelectedCity}
+              sortKey={sortKey}
+              loading={loading}
+            />
+            {selectedCity && (
+              <CityDetailPanel
+                city={selectedCity}
+                onClose={() => setSelectedCity(null)}
+                sortKey={sortKey}
+              />
+            )}
+          </div>
+        )}
+      </main>
+      <SupportSection />
+      <Footer lastUpdated={data?.lastUpdated} />
+    </div>
+  );
+}

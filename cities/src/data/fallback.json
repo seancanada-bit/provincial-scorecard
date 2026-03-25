@@ -1,0 +1,21 @@
+{
+  "lastUpdated": "2026-03-25T00:00:00.000Z",
+  "national": {
+    "totalCities": 0,
+    "avgComposite": null,
+    "avgHousing": null,
+    "avgSafety": null,
+    "avgFiscal": null,
+    "avgLiveability": null,
+    "avgEconomic": null,
+    "avgCommunity": null,
+    "topCity": null,
+    "bottomCity": null,
+    "safestCity": null,
+    "mostHousingCity": null,
+    "csiGap": null,
+    "housingStartsGap": null,
+    "surplusCityCount": null
+  },
+  "cities": []
+}

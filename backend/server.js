@@ -10,8 +10,9 @@ const cors      = require('cors');
 const path      = require('path');
 const fs        = require('fs');
 
-const { fetchAllSupabaseData, getSupabaseClient } = require('./supabase');
+const { fetchAllSupabaseData, fetchAllCitiesData, getSupabaseClient } = require('./supabase');
 const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
+const { scoreCity, normalizeCityScores, buildCitiesSummary } = require('./scoring-cities');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -41,9 +42,13 @@ app.use(cors({
 }));
 
 // ─── IN-MEMORY CACHE ─────────────────────────────────────────────────────────
-let cache = null;        // The full scored JSON payload
-let cacheTimestamp = 0;  // Unix ms of last successful refresh
+let cache = null;        // provinces payload
+let cacheTimestamp = 0;
 let refreshRunning = false;
+
+let citiesCache = null;  // cities payload
+let citiesCacheTs = 0;
+let citiesRefreshRunning = false;
 
 // Stats cache (5-minute TTL — light queries, no need to hit DB every request)
 let statsCache = null;
@@ -124,6 +129,46 @@ async function refresh() {
   }
 }
 
+// ─── CITIES REFRESH ──────────────────────────────────────────────────────────
+async function refreshCities() {
+  if (citiesRefreshRunning) return;
+  citiesRefreshRunning = true;
+  console.log('[cities] Starting refresh at', new Date().toISOString());
+
+  try {
+    const supa = await fetchAllCitiesData().catch(() => null);
+    if (!supa) {
+      console.warn('[cities] Fetch failed — serving stale cache');
+      return;
+    }
+
+    const rawScored = supa.meta.map(meta => {
+      const code = meta.cma_code;
+      return scoreCity({
+        meta,
+        housing:        supa.housing[code]        ?? null,
+        safety:         supa.safety[code]         ?? null,
+        fiscal:         supa.fiscal[code]         ?? null,
+        liveability:    supa.liveability[code]    ?? null,
+        economic:       supa.economic[code]       ?? null,
+        community:      supa.community[code]      ?? null,
+        infrastructure: supa.infrastructure[code] ?? [],
+      });
+    });
+
+    const scoredCities = normalizeCityScores(rawScored);
+    const national     = buildCitiesSummary(scoredCities);
+
+    citiesCache = { lastUpdated: new Date().toISOString(), national, cities: scoredCities };
+    citiesCacheTs = Date.now();
+    console.log(`[cities] Done. ${scoredCities.length} cities scored.`);
+  } catch (err) {
+    console.error('[cities] Unexpected error:', err.message);
+  } finally {
+    citiesRefreshRunning = false;
+  }
+}
+
 // ─── ROUTES ──────────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ ok: true }));
 
@@ -192,6 +237,15 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
+app.get('/api/cities', async (req, res) => {
+  if (!citiesCache || Date.now() - citiesCacheTs > CACHE_TTL_MS) {
+    await refreshCities();
+  }
+  if (!citiesCache) return res.status(503).json({ error: 'Cities data not yet available.' });
+  res.setHeader('Cache-Control', 'private, max-age=3600');
+  res.json(citiesCache);
+});
+
 app.get('/api/data', async (req, res) => {
   // Trigger refresh if cache is stale or empty
   if (!cache || Date.now() - cacheTimestamp > CACHE_TTL_MS) {
@@ -209,9 +263,11 @@ app.get('/api/data', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Provincial Scorecard API listening on port ${PORT}`);
 
-  // Prime the cache on startup (non-blocking)
+  // Prime the caches on startup (non-blocking)
   refresh();
+  refreshCities();
 
-  // Schedule 24h refresh
+  // Schedule 24h refreshes
   setInterval(refresh, CACHE_TTL_MS);
+  setInterval(refreshCities, CACHE_TTL_MS);
 });

@@ -84,4 +84,39 @@ async function fetchAllSupabaseData() {
   };
 }
 
-module.exports = { fetchAllSupabaseData, getSupabaseClient: getClient };
+async function fetchAllCitiesData() {
+  const sb = getClient();
+
+  const [meta, housing, safety, fiscal, liveability, economic, community, infrastructure] = await Promise.all([
+    sb.from('cities_meta').select('*'),
+    sb.from('cities_housing').select('*'),
+    sb.from('cities_safety').select('*'),
+    sb.from('cities_fiscal').select('*'),
+    sb.from('cities_liveability').select('*'),
+    sb.from('cities_economic').select('*'),
+    sb.from('cities_community').select('*'),
+    sb.from('cities_infrastructure_projects').select('*'),
+  ]);
+
+  if (meta.error) throw new Error(`Supabase error on cities_meta: ${meta.error.message}`);
+
+  const byCode  = key => arr => (arr ?? []).reduce((acc, row) => { acc[row[key]] = row; return acc; }, {});
+  const byCodeMulti = (arr, key) => (arr ?? []).reduce((acc, row) => {
+    if (!acc[row[key]]) acc[row[key]] = [];
+    acc[row[key]].push(row);
+    return acc;
+  }, {});
+
+  return {
+    meta:           meta.data,
+    housing:        housing.data     ? byCode('cma_code')(housing.data)     : {},
+    safety:         safety.data      ? byCode('cma_code')(safety.data)      : {},
+    fiscal:         fiscal.data      ? byCode('cma_code')(fiscal.data)      : {},
+    liveability:    liveability.data ? byCode('cma_code')(liveability.data) : {},
+    economic:       economic.data    ? byCode('cma_code')(economic.data)    : {},
+    community:      community.data   ? byCode('cma_code')(community.data)   : {},
+    infrastructure: byCodeMulti(infrastructure.data, 'cma_code'),
+  };
+}
+
+module.exports = { fetchAllSupabaseData, fetchAllCitiesData, getSupabaseClient: getClient };
