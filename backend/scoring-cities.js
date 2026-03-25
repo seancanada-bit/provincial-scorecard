@@ -30,6 +30,13 @@ const BOUNDS = {
   // Community
   homelessnessPer10k:    { best: 5,    worst: 80   }, // per 10k pop (lower = better)
   socialServicesSpend:   { best: 800,  worst: 100  }, // $ per capita (higher = better)
+  // Walkability (Walk Score API, 0–100; CMA averages skew lower than city-centre)
+  walkabilityScore:      { best: 90,   worst: 20   }, // higher = more walkable
+  walkTransitScore:      { best: 90,   worst: 10   }, // Walk Score transit metric
+  bikeScore:             { best: 85,   worst: 10   }, // higher = more bikeable
+  // Infrastructure delivery
+  infraOverrunPct:       { best: 0,    worst: 100  }, // % cost overrun (lower = better)
+  infraDelayMonths:      { best: 0,    worst: 48   }, // months delayed (lower = better)
 };
 
 // ─── HELPERS (mirrors scoring.js) ────────────────────────────────────────────
@@ -151,10 +158,23 @@ function scoreCity(raw) {
     { score: debtScore,      weight: 0.30 },
   ]);
 
-  // ─── CATEGORY 4: LIVEABILITY (15%) ──────────────────────────────────────
+  // ─── CATEGORY 4: LIVEABILITY (13%) ──────────────────────────────────────
   let transitScore = null, commuteScore = null, parksScore = null, aqhiScore = null;
+  let walkabilityNorm = null, walkTransitNorm = null, bikeNorm = null;
 
   if (liveability) {
+    walkabilityNorm = liveability.walkability_score != null
+      ? normalize(liveability.walkability_score, BOUNDS.walkabilityScore.best, BOUNDS.walkabilityScore.worst)
+      : null;
+
+    walkTransitNorm = liveability.transit_score != null
+      ? normalize(liveability.transit_score, BOUNDS.walkTransitScore.best, BOUNDS.walkTransitScore.worst)
+      : null;
+
+    bikeNorm = liveability.bike_score != null
+      ? normalize(liveability.bike_score, BOUNDS.bikeScore.best, BOUNDS.bikeScore.worst)
+      : null;
+
     transitScore = liveability.transit_ridership_per_capita != null
       ? normalize(liveability.transit_ridership_per_capita, BOUNDS.transitPerCapita.best, BOUNDS.transitPerCapita.worst)
       : null;
@@ -173,10 +193,13 @@ function scoreCity(raw) {
   }
 
   const liveabilityScore = weightedScore([
-    { score: transitScore, weight: 0.30 },
-    { score: commuteScore, weight: 0.30 },
-    { score: parksScore,   weight: 0.20 },
-    { score: aqhiScore,    weight: 0.20 },
+    { score: walkabilityNorm,  weight: 0.20 },
+    { score: walkTransitNorm,  weight: 0.15 },
+    { score: bikeNorm,         weight: 0.10 },
+    { score: transitScore,     weight: 0.15 },
+    { score: commuteScore,     weight: 0.20 },
+    { score: parksScore,       weight: 0.10 },
+    { score: aqhiScore,        weight: 0.10 },
   ]);
 
   // ─── CATEGORY 5: ECONOMIC VITALITY (10%) ────────────────────────────────
@@ -228,7 +251,7 @@ function scoreCity(raw) {
     ? null
     : Math.min(100, Math.max(0, baseCommunityScore + homelessTrendBonus));
 
-  // ─── INFRASTRUCTURE PROJECTS (context only, no composite impact) ─────────
+  // ─── CATEGORY 7: INFRASTRUCTURE DELIVERY (10%) ──────────────────────────
   const infraProjects = (infrastructure || []).map(p => ({
     name:               p.project_name,
     type:               p.project_type,
@@ -241,16 +264,41 @@ function scoreCity(raw) {
     status:             p.status,
   }));
 
+  let infraAvgOverrunPct = null, infraAvgDelayMonths = null;
+  let infraOverrunNorm   = null, infraDelayNorm      = null;
+  let infraDeliveryScore = null;
+
+  if (infrastructure && infrastructure.length > 0) {
+    const overruns = infrastructure.filter(p => p.overrun_pct    != null).map(p => p.overrun_pct);
+    const delays   = infrastructure.filter(p => p.months_delayed != null).map(p => p.months_delayed);
+
+    if (overruns.length > 0) {
+      infraAvgOverrunPct = Math.round(overruns.reduce((a, b) => a + b, 0) / overruns.length * 10) / 10;
+      infraOverrunNorm   = normalizeInverted(infraAvgOverrunPct, BOUNDS.infraOverrunPct.best, BOUNDS.infraOverrunPct.worst);
+    }
+    if (delays.length > 0) {
+      infraAvgDelayMonths = Math.round(delays.reduce((a, b) => a + b, 0) / delays.length * 10) / 10;
+      infraDelayNorm      = normalizeInverted(infraAvgDelayMonths, BOUNDS.infraDelayMonths.best, BOUNDS.infraDelayMonths.worst);
+    }
+
+    infraDeliveryScore = weightedScore([
+      { score: infraOverrunNorm, weight: 0.55 },
+      { score: infraDelayNorm,   weight: 0.45 },
+    ]);
+  }
+
   // ─── COMPOSITE ───────────────────────────────────────────────────────────
-  // Housing 25% + Safety 20% + Fiscal 20% + Liveability 15% + Economic 10% + Community 10% = 100%
-  // Null categories are excluded and weights re-normalised — no phantom 50s.
+  // Housing 23% · Safety 18% · Fiscal 18% · Liveability 13% · Infrastructure 10%
+  // Economic 9% · Community 9% = 100%
+  // Null categories excluded, weights re-normalised — no phantom 50s.
   const composite = weightedScore([
-    { score: housingScore,      weight: 0.25 },
-    { score: safetyScore,       weight: 0.20 },
-    { score: fiscalScore,       weight: 0.20 },
-    { score: liveabilityScore,  weight: 0.15 },
-    { score: economicScore,     weight: 0.10 },
-    { score: communityScore,    weight: 0.10 },
+    { score: housingScore,       weight: 0.23 },
+    { score: safetyScore,        weight: 0.18 },
+    { score: fiscalScore,        weight: 0.18 },
+    { score: liveabilityScore,   weight: 0.13 },
+    { score: infraDeliveryScore, weight: 0.10 },
+    { score: economicScore,      weight: 0.09 },
+    { score: communityScore,     weight: 0.09 },
   ]) ?? 50;
 
   // ─── DUCK SCORE ──────────────────────────────────────────────────────────
@@ -332,18 +380,23 @@ function scoreCity(raw) {
       liveability: {
         score: liveabilityScore,
         grade: toGrade(liveabilityScore),
+        walkabilityScore:          liveability?.walkability_score ?? null,
+        walkabilityNorm,
+        transitScoreRaw:           liveability?.transit_score ?? null,
+        walkTransitNorm,
+        bikeScoreRaw:              liveability?.bike_score ?? null,
+        bikeNorm,
         transitRidershipPerCapita: liveability?.transit_ridership_per_capita ?? null,
         transitScore,
-        transitRecoveryPct:     liveability?.transit_recovery_pct_prepandemic ?? null,
-        avgCommuteMins:         liveability?.avg_commute_time_mins ?? null,
+        transitRecoveryPct:        liveability?.transit_recovery_pct_prepandemic ?? null,
+        avgCommuteMins:            liveability?.avg_commute_time_mins ?? null,
         commuteScore,
-        aqhiAnnualAvg:          liveability?.air_quality_index_annual_avg ?? null,
+        aqhiAnnualAvg:             liveability?.air_quality_index_annual_avg ?? null,
         aqhiScore,
         parksRecSpendingPerCapita: liveability?.parks_rec_spending_per_capita ?? null,
         parksScore,
-        walkabilityScore:       liveability?.walkability_score ?? null,
-        sourceNotes:            liveability?.source_notes ?? null,
-        dataDate:               liveability?.data_date ?? null,
+        sourceNotes:               liveability?.source_notes ?? null,
+        dataDate:                  liveability?.data_date ?? null,
       },
       economic: {
         score: economicScore,
@@ -372,8 +425,17 @@ function scoreCity(raw) {
         sourceNotes:            community?.source_notes ?? null,
         dataDate:               community?.data_date ?? null,
       },
+      infrastructure: {
+        score:          infraDeliveryScore,
+        grade:          toGrade(infraDeliveryScore),
+        avgOverrunPct:  infraAvgOverrunPct,
+        avgDelayMonths: infraAvgDelayMonths,
+        infraOverrunNorm,
+        infraDelayNorm,
+        projects:       infraProjects,
+        dataDate:       '2024',
+      },
     },
-    infrastructure: infraProjects,
   };
 }
 
@@ -382,8 +444,8 @@ function scoreCity(raw) {
 // top Canadian city maps to CATEGORY_CEILING (87 = B). Same pattern as Provinces.
 
 const CATEGORY_CEILING = 82;
-const COMPOSITE_CATS    = ['housing', 'safety', 'fiscal', 'liveability', 'economic', 'community'];
-const COMPOSITE_WEIGHTS = { housing: 0.25, safety: 0.20, fiscal: 0.20, liveability: 0.15, economic: 0.10, community: 0.10 };
+const COMPOSITE_CATS    = ['housing', 'safety', 'fiscal', 'liveability', 'economic', 'community', 'infrastructure'];
+const COMPOSITE_WEIGHTS = { housing: 0.23, safety: 0.18, fiscal: 0.18, liveability: 0.13, economic: 0.09, community: 0.09, infrastructure: 0.10 };
 
 function normalizeCityScores(scoredCities) {
   const maxes = {};
@@ -404,12 +466,13 @@ function normalizeCityScores(scoredCities) {
     }
 
     const composite = weightedScore([
-      { score: newCats.housing.score,      weight: COMPOSITE_WEIGHTS.housing     },
-      { score: newCats.safety.score,       weight: COMPOSITE_WEIGHTS.safety      },
-      { score: newCats.fiscal.score,       weight: COMPOSITE_WEIGHTS.fiscal      },
-      { score: newCats.liveability.score,  weight: COMPOSITE_WEIGHTS.liveability },
-      { score: newCats.economic.score,     weight: COMPOSITE_WEIGHTS.economic    },
-      { score: newCats.community.score,    weight: COMPOSITE_WEIGHTS.community   },
+      { score: newCats.housing.score,          weight: COMPOSITE_WEIGHTS.housing        },
+      { score: newCats.safety.score,           weight: COMPOSITE_WEIGHTS.safety         },
+      { score: newCats.fiscal.score,           weight: COMPOSITE_WEIGHTS.fiscal         },
+      { score: newCats.liveability.score,      weight: COMPOSITE_WEIGHTS.liveability    },
+      { score: newCats.infrastructure?.score,  weight: COMPOSITE_WEIGHTS.infrastructure },
+      { score: newCats.economic.score,         weight: COMPOSITE_WEIGHTS.economic       },
+      { score: newCats.community.score,        weight: COMPOSITE_WEIGHTS.community      },
     ]) ?? 50;
 
     // Recompute duck score: absolute annual tax on benchmark home, sqrt-curved

@@ -15,14 +15,15 @@ import fallback from './data/fallback.json';
 const API = import.meta.env.VITE_API_URL || '';
 
 const SORT_KEYS = [
-  { key: 'duck',        label: 'Value',       icon: '🦆' },
-  { key: 'composite',   label: 'Performance'              },
-  { key: 'housing',     label: 'Housing'                  },
-  { key: 'safety',      label: 'Safety'                   },
-  { key: 'fiscal',      label: 'Fiscal'                   },
-  { key: 'liveability', label: 'Liveability'              },
-  { key: 'economic',    label: 'Economic'                 },
-  { key: 'community',   label: 'Community'                },
+  { key: 'duck',           label: 'Value',          icon: '🦆' },
+  { key: 'composite',      label: 'Performance'               },
+  { key: 'housing',        label: 'Housing'                   },
+  { key: 'safety',         label: 'Safety'                    },
+  { key: 'fiscal',         label: 'Fiscal'                    },
+  { key: 'liveability',    label: 'Liveability'               },
+  { key: 'economic',       label: 'Economic'                  },
+  { key: 'community',      label: 'Community'                 },
+  { key: 'infrastructure', label: 'Infrastructure', icon: '🏗️' },
 ];
 
 export default function App() {

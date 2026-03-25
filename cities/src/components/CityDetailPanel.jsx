@@ -3,12 +3,13 @@ import { gradeFill, gradeColorClass, gradeBgClass, scoreFill, toGrade, PROVINCE_
 import { track } from '../utils/track.js';
 
 const TABS = [
-  { key: 'housing',     label: 'Housing',    icon: '🏠' },
-  { key: 'safety',      label: 'Safety',     icon: '🛡️' },
-  { key: 'fiscal',      label: 'Fiscal',     icon: '💰' },
-  { key: 'liveability', label: 'Liveable',   icon: '🌳' },
-  { key: 'economic',    label: 'Economic',   icon: '📈' },
-  { key: 'community',   label: 'Community',  icon: '🤝' },
+  { key: 'housing',        label: 'Housing',    icon: '🏠' },
+  { key: 'safety',         label: 'Safety',     icon: '🛡️' },
+  { key: 'fiscal',         label: 'Fiscal',     icon: '💰' },
+  { key: 'liveability',    label: 'Liveable',   icon: '🌳' },
+  { key: 'economic',       label: 'Economic',   icon: '📈' },
+  { key: 'community',      label: 'Community',  icon: '🤝' },
+  { key: 'infrastructure', label: 'Build',      icon: '🏗️' },
 ];
 
 function MetricRow({ label, score, rawDisplay, compareDisplay }) {
@@ -181,6 +182,30 @@ function LiveabilityTab({ c }) {
         grade={l.grade}
       />
       <div className="dp-metrics">
+        {l.walkabilityScore != null && (
+          <MetricRow
+            label="Walk Score"
+            score={l.walkabilityNorm}
+            rawDisplay={`${l.walkabilityScore}/100`}
+            compareDisplay="Walker's Paradise = 90+"
+          />
+        )}
+        {l.transitScoreRaw != null && (
+          <MetricRow
+            label="Transit Score"
+            score={l.walkTransitNorm}
+            rawDisplay={`${l.transitScoreRaw}/100`}
+            compareDisplay="Rider's Paradise = 90+"
+          />
+        )}
+        {l.bikeScoreRaw != null && (
+          <MetricRow
+            label="Bike Score"
+            score={l.bikeNorm}
+            rawDisplay={`${l.bikeScoreRaw}/100`}
+            compareDisplay="Biker's Paradise = 90+"
+          />
+        )}
         <MetricRow
           label="Transit ridership per capita"
           score={l.transitScore}
@@ -206,10 +231,74 @@ function LiveabilityTab({ c }) {
           compareDisplay="Nat'l avg: ~$150"
         />
       </div>
-      {l.walkabilityScore != null && (
-        <p className="dp-note">Walkability score: {l.walkabilityScore}/100</p>
+      <p className="dp-source">Source: Walk Score · Stats Canada · APTA · {l.dataDate ?? '2024'}</p>
+    </div>
+  );
+}
+
+function InfrastructureTab({ c }) {
+  const infra = c.infrastructure;
+  const projects = infra?.projects ?? [];
+
+  if (!infra || (infra.score == null && !projects.length)) {
+    return (
+      <div className="dp-tab-content">
+        <p className="dp-empty">No major infrastructure project data on file for this city.</p>
+        <p className="dp-source">Source: Municipal budgets · Parliamentary Budget Office · 2024</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="dp-tab-content">
+      {infra.score != null && (
+        <KeyStat
+          value={infra.avgOverrunPct != null ? `+${infra.avgOverrunPct}%` : '—'}
+          label="avg project cost overrun"
+          score={infra.score}
+          grade={infra.grade}
+        />
       )}
-      <p className="dp-source">Source: Stats Canada · APTA · {l.dataDate ?? '2023'}</p>
+      {infra.avgDelayMonths != null && (
+        <p className="dp-note">
+          Avg schedule delay: {infra.avgDelayMonths} months across {projects.length} tracked project{projects.length !== 1 ? 's' : ''}
+        </p>
+      )}
+      {projects.length > 0 && (
+        <div className="dp-infra-projects">
+          {projects.map((p, i) => (
+            <div key={i} className="dp-infra-project">
+              <div className="dp-infra-project__header">
+                <span className="dp-infra-project__name">{p.name}</span>
+                <span className={`dp-infra-project__status dp-infra-project__status--${p.status ?? 'unknown'}`}>
+                  {p.status ?? 'unknown'}
+                </span>
+              </div>
+              <div className="dp-infra-project__type">{p.type}</div>
+              <div className="dp-infra-project__badges">
+                {p.overrunPct != null && (
+                  <span className={`dp-infra-badge ${p.overrunPct > 30 ? 'dp-infra-badge--bad' : p.overrunPct > 10 ? 'dp-infra-badge--warn' : 'dp-infra-badge--ok'}`}>
+                    +{p.overrunPct}% over budget
+                  </span>
+                )}
+                {p.monthsDelayed != null && p.monthsDelayed > 0 && (
+                  <span className={`dp-infra-badge ${p.monthsDelayed > 24 ? 'dp-infra-badge--bad' : p.monthsDelayed > 12 ? 'dp-infra-badge--warn' : 'dp-infra-badge--ok'}`}>
+                    {p.monthsDelayed} mo delayed
+                  </span>
+                )}
+                {p.currentBudget != null && (
+                  <span className="dp-infra-badge dp-infra-badge--neutral">
+                    ${p.currentBudget >= 1e9
+                      ? `${(p.currentBudget / 1e9).toFixed(1)}B`
+                      : `${Math.round(p.currentBudget / 1e6)}M`}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <p className="dp-source">Source: Municipal budgets · PBO · Auditor General · {infra.dataDate ?? '2024'}</p>
     </div>
   );
 }
@@ -296,12 +385,13 @@ function CommunityTab({ c }) {
 }
 
 const TAB_CONTENT = {
-  housing:     HousingTab,
-  safety:      SafetyTab,
-  fiscal:      FiscalTab,
-  liveability: LiveabilityTab,
-  economic:    EconomicTab,
-  community:   CommunityTab,
+  housing:        HousingTab,
+  safety:         SafetyTab,
+  fiscal:         FiscalTab,
+  liveability:    LiveabilityTab,
+  economic:       EconomicTab,
+  community:      CommunityTab,
+  infrastructure: InfrastructureTab,
 };
 
 export default function CityDetailPanel({ city, onClose, sortKey }) {

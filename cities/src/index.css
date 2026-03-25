@@ -514,6 +514,46 @@ body {
 .dp-note { font-size: 12px; color: var(--text-secondary); }
 .dp-source { font-size: 11px; color: var(--text-muted); margin-top: var(--space-sm); }
 
+/* Infrastructure project cards */
+.dp-infra-projects {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: var(--space-xs);
+}
+.dp-infra-project {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+}
+.dp-infra-project__header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+  margin-bottom: 2px;
+}
+.dp-infra-project__name {
+  font-size: 13px; font-weight: 600; color: var(--text-primary); line-height: 1.3;
+}
+.dp-infra-project__type {
+  font-size: 11px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.dp-infra-project__status {
+  font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px;
+  white-space: nowrap; text-transform: capitalize; flex-shrink: 0;
+}
+.dp-infra-project__status--completed   { background: #E8F5E9; color: #1B5E20; }
+.dp-infra-project__status--delayed     { background: #FFF3E0; color: #E65100; }
+.dp-infra-project__status--in-progress { background: #E3F2FD; color: #0D47A1; }
+.dp-infra-project__status--cancelled   { background: #FFEBEE; color: #B71C1C; }
+.dp-infra-project__status--unknown     { background: #F5F5F5; color: #757575; }
+.dp-infra-project__badges {
+  display: flex; flex-wrap: wrap; gap: 5px;
+}
+.dp-infra-badge {
+  font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px;
+}
+.dp-infra-badge--bad     { background: #FFEBEE; color: #C62828; }
+.dp-infra-badge--warn    { background: #FFF3E0; color: #E65100; }
+.dp-infra-badge--ok      { background: #E8F5E9; color: #2E7D32; }
+.dp-infra-badge--neutral { background: #F3F4F6; color: #374151; }
+
 /* KeyStat */
 .dp-keystat {
   text-align: center; padding: var(--space-sm) 0 var(--space-xs);
