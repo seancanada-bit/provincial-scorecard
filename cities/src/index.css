@@ -259,6 +259,8 @@ body {
 }
 .app-shell__columns {
   display: flex; gap: var(--space-lg); align-items: flex-start;
+  max-width: 1140px; margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
 }
 .city-grid {
   flex: 1 1 0; min-width: 0;

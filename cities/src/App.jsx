@@ -52,7 +52,15 @@ export default function App() {
   useEffect(() => {
     fetch(`${API}/api/cities`)
       .then(r => r.json())
-      .then(d => { setData(d); setLoading(false); })
+      .then(d => {
+        setData(d);
+        setLoading(false);
+        // Auto-select top city on desktop so panel is immediately visible
+        if (window.innerWidth >= 900 && d?.cities?.length) {
+          const sorted = [...d.cities].sort((a, b) => (b.duckScore ?? 0) - (a.duckScore ?? 0));
+          setSelectedCity(sorted[0]);
+        }
+      })
       .catch(() => setLoading(false));
   }, []);
 
