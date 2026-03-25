@@ -241,8 +241,8 @@ body {
   flex: 1 1 200px;
 }
 .editorial-callout__label {
-  font-size: 10px; text-transform: uppercase;
-  letter-spacing: 0.08em; opacity: 0.55;
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.08em; opacity: 0.75;
 }
 .editorial-callout__province-row { display: flex; align-items: center; gap: 6px; }
 .editorial-callout__province {
@@ -332,7 +332,7 @@ body {
   margin-bottom: 2px;
 }
 .ccard__perf-label {
-  font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em;
   color: var(--text-muted);
 }
 .ccard__grade {
@@ -371,7 +371,7 @@ body {
 }
 .ccard__tower-duck { font-size: 22px; line-height: 1; }
 .ccard__tower-label {
-  font-size: 7px; font-weight: 800; letter-spacing: 0.1em;
+  font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--text-muted); line-height: 1.2;
 }
 .ccard__tower-rule {
@@ -431,13 +431,13 @@ body {
 }
 .dp-close {
   position: absolute; top: var(--space-sm); right: var(--space-sm);
-  background: rgba(255,255,255,0.15); border: none;
-  color: #fff; width: 28px; height: 28px; border-radius: 50%;
-  cursor: pointer; font-size: 14px;
+  background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.3);
+  color: #fff; width: 30px; height: 30px; border-radius: 50%;
+  cursor: pointer; font-size: 15px;
   display: flex; align-items: center; justify-content: center;
   transition: background 0.12s;
 }
-.dp-close:hover { background: rgba(255,255,255,0.3); }
+.dp-close:hover { background: rgba(255,255,255,0.38); }
 .dp-header__badge {
   width: 40px; height: 40px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -445,17 +445,18 @@ body {
 }
 .dp-header__abbr { font-size: 11px; font-weight: 800; color: #fff; letter-spacing: 0.02em; }
 .dp-header__name { font-family: var(--font-serif); font-size: 22px; font-weight: 800; line-height: 1.1; }
-.dp-header__meta { font-size: 11px; opacity: 0.7; line-height: 1.4; }
+.dp-header__meta { font-size: 12px; opacity: 0.85; line-height: 1.4; }
 .dp-header__scores { display: flex; gap: var(--space-md); flex-wrap: wrap; }
 .dp-header__score-block {
   display: flex; flex-direction: column; align-items: center; gap: 1px;
-  background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
   padding: 6px 12px; min-width: 72px;
 }
-.dp-header__score-block--duck { background: rgba(255,255,255,0.18); }
-.dp-header__score-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
+.dp-header__score-block--duck { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.3); }
+.dp-header__score-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
 .dp-header__grade { font-family: var(--font-serif); font-size: 28px; font-weight: 800; line-height: 1; }
-.dp-header__num { font-size: 11px; opacity: 0.8; }
+.dp-header__num { font-size: 12px; opacity: 0.9; }
 
 /* Category chips row */
 .dp-cat-row {
