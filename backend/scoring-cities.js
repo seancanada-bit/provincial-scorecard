@@ -252,12 +252,21 @@ function scoreCity(raw) {
   );
 
   // ─── DUCK SCORE ──────────────────────────────────────────────────────────
-  // composite ÷ sqrt-curved property tax index.
-  // Square-root curve compresses outliers: a city at ½ the median rate
-  // gets a 1.41× boost (not 2×), keeping scores in a readable range.
-  // National median ≈ 0.8% → taxIndex = 100 → duckScore = composite exactly.
-  const taxRate = fiscal?.property_tax_residential_rate ?? null;
-  const taxIndex = taxRate != null ? Math.sqrt(taxRate / 0.8) * 100 : 100;
+  // Uses absolute annual property tax on a benchmark home, not just the rate %.
+  // A low rate on a $1.2M home (Vancouver) is a real tax bill, not free money.
+  // Formula: annualTax = (taxRate/100) × benchmarkPrice
+  //          taxIndex  = sqrt(annualTax / NATIONAL_MEDIAN_TAX) × 100
+  //          duckScore = composite × 100 / taxIndex
+  // City at national median annual tax (~$4,500) → duckScore = composite exactly.
+  const NATIONAL_MEDIAN_ANNUAL_TAX = 4500;
+  const taxRate       = fiscal?.property_tax_residential_rate ?? null;
+  const benchmarkPrice = housing?.mls_hpi_benchmark ?? null;
+  const annualTax     = (taxRate != null && benchmarkPrice != null)
+    ? (taxRate / 100) * benchmarkPrice
+    : null;
+  const taxIndex  = annualTax != null
+    ? Math.sqrt(annualTax / NATIONAL_MEDIAN_ANNUAL_TAX) * 100
+    : 100;
   const duckScore = Math.round(composite * 100 / taxIndex);
 
   return {
@@ -399,9 +408,16 @@ function normalizeCityScores(scoredCities) {
       newCats.community.score  * COMPOSITE_WEIGHTS.community
     );
 
-    // Recompute duck score using normalized composite + sqrt curve
-    const taxRate  = c.categories.fiscal?.propertyTaxRate ?? null;
-    const taxIndex = taxRate != null ? Math.sqrt(taxRate / 0.8) * 100 : 100;
+    // Recompute duck score: absolute annual tax on benchmark home, sqrt-curved
+    const NATIONAL_MEDIAN_ANNUAL_TAX = 4500;
+    const taxRate      = c.categories.fiscal?.propertyTaxRate ?? null;
+    const benchmarkPrice = c.categories.housing?.mlsHpiBenchmark ?? null;
+    const annualTax    = (taxRate != null && benchmarkPrice != null)
+      ? (taxRate / 100) * benchmarkPrice
+      : null;
+    const taxIndex  = annualTax != null
+      ? Math.sqrt(annualTax / NATIONAL_MEDIAN_ANNUAL_TAX) * 100
+      : 100;
     const duckScore = Math.round(composite * 100 / taxIndex);
 
     return { ...c, categories: newCats, composite, grade: toGrade(composite), duckScore, duckGrade: toGrade(duckScore) };
