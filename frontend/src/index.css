@@ -102,9 +102,24 @@ body {
 }
 .site-header__inner {
   max-width: 1140px; margin: 0 auto;
-  display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: row;
+  align-items: center; justify-content: space-between;
   min-height: 64px;
-  padding: 8px 0;
+  padding: 10px 0;
+}
+.site-header__text {
+  display: flex; flex-direction: column; justify-content: center;
+  flex: 1;
+}
+.site-header__duck-hero {
+  font-size: 44px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 12px;
+  align-self: center;
+}
+@media (min-width: 600px) {
+  .site-header__duck-hero { font-size: 54px; }
 }
 .site-header__top {
   display: flex; align-items: center; gap: var(--space-md);
@@ -118,12 +133,6 @@ body {
   flex-shrink: 0;
 }
 .site-header__brand span { color: var(--canada-red); }
-.site-header__duck {
-  font-size: 0.82em;
-  color: initial;
-  vertical-align: -0.16em;
-  margin-left: 1px;
-}
 .site-header__tagline {
   font-family: var(--font-sans);
   font-size: clamp(12px, 1.6vw, 14px);
