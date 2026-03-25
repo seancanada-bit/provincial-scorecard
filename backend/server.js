@@ -22,10 +22,20 @@ const allowedOrigins = (process.env.CORS_ORIGIN || '')
   .map(s => s.trim())
   .filter(Boolean);
 
+// Allow any origin whose hostname is bangforyourduck.ca or a subdomain of it,
+// regardless of protocol — covers http/https, www, and hosting-provider mirrors.
+function isTrustedOrigin(origin) {
+  if (!origin) return true; // curl, mobile apps, no-origin requests
+  try {
+    const host = new URL(origin).hostname;
+    return host === 'bangforyourduck.ca' || host.endsWith('.bangforyourduck.ca');
+  } catch { return false; }
+}
+
 app.use(cors({
   origin: (origin, cb) => {
-    // Allow requests with no origin (curl, mobile apps) and configured origins
-    if (!origin || !allowedOrigins.length || allowedOrigins.includes(origin)) return cb(null, true);
+    if (!allowedOrigins.length || isTrustedOrigin(origin) || allowedOrigins.includes(origin))
+      return cb(null, true);
     cb(new Error(`CORS: origin ${origin} not allowed`));
   },
 }));
