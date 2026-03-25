@@ -119,11 +119,10 @@ body {
 }
 .site-header__brand span { color: var(--canada-red); }
 .site-header__tagline {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(13px, 1.8vw, 16px);
-  color: var(--text-primary);
-  margin-top: 3px;
+  font-family: var(--font-sans);
+  font-size: clamp(12px, 1.6vw, 14px);
+  color: var(--text-muted);
+  margin-top: 4px;
   line-height: 1.3;
 }
 .site-header__updated {
