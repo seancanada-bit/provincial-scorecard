@@ -30,7 +30,7 @@ function useIsMobile() {
 
 export default function App() {
   const { data } = useProvinceData();
-  const [sortKey, setSortKey]           = useState('overall');
+  const [sortKey, setSortKey]           = useState('value');
   const [selectedCode, setSelectedCode] = useState(null);
   const [showMethodology, setShowMethodology] = useState(false);
   const isMobile = useIsMobile();
