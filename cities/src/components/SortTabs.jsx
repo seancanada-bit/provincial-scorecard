@@ -13,15 +13,15 @@ export default function SortTabs({ sortKey, onChange, tabs, mapView, onToggleMap
             {tab.icon ? `${tab.icon} ${tab.label}` : tab.label}
           </button>
         ))}
-        <button
-          className={`sort-tabs__tab sort-tabs__tab--map${mapView ? ' sort-tabs__tab--active' : ''}`}
-          onClick={onToggleMap}
-          aria-pressed={mapView}
-          title={mapView ? 'Hide map' : 'Show map'}
-        >
-          {mapView ? '📋 List' : '🗺️ Map'}
-        </button>
       </div>
+      <button
+        className={`sort-tabs__map-toggle${mapView ? ' sort-tabs__map-toggle--active' : ''}`}
+        onClick={onToggleMap}
+        aria-pressed={mapView}
+        title={mapView ? 'Switch to list view' : 'Switch to map view'}
+      >
+        {mapView ? '📋 List' : '🗺️ Map'}
+      </button>
     </nav>
   );
 }

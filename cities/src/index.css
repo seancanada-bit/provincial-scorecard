@@ -175,6 +175,7 @@ body {
   background: var(--card-bg);
   border-bottom: 1px solid var(--border);
   position: sticky; top: 56px; z-index: 99;
+  display: flex; align-items: center;
 }
 @media (min-width: 768px) {
   .sort-tabs {
@@ -203,8 +204,27 @@ body {
   color: var(--text-primary);
   border-bottom-color: var(--canada-red); font-weight: 600;
 }
-.sort-tabs__tab--map {
-  margin-left: auto; border-left: 1px solid var(--border); padding-left: 16px;
+.sort-tabs__map-toggle {
+  flex-shrink: 0;
+  margin-right: var(--space-md);
+  padding: 5px 14px;
+  font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.sort-tabs__map-toggle:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+.sort-tabs__map-toggle--active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: #fff;
 }
 @media (max-width: 767px) {
   .sort-tabs__tab { padding: 12px 10px; font-size: 12px; }
