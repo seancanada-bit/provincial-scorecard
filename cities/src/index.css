@@ -455,7 +455,7 @@ body {
 }
 .dp-header__score-block--duck { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.3); }
 .dp-header__score-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
-.dp-header__grade { font-family: var(--font-serif); font-size: 28px; font-weight: 800; line-height: 1; }
+.dp-header__grade { font-family: var(--font-serif); font-size: 28px; font-weight: 800; line-height: 1; color: #fff; }
 .dp-header__num { font-size: 12px; opacity: 0.9; }
 
 /* Category chips row */
