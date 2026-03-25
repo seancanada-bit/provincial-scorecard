@@ -195,42 +195,26 @@ export default function ProvinceCard({
           const duckDesc  = duckGrade ? ({ A: 'Excellent', B: 'Good', C: 'Fair', D: 'Below average', F: 'Poor' }[duckGrade[0]] ?? '') : '';
 
           return (
-            <div className="pcard__right">
+            <div className={`pcard__right${isValueSort && duckGrade ? ' pcard__right--tower' : ''}`}>
               <span className="pcard__rank">#{rank}</span>
 
               {isValueSort && duckGrade ? (
-                /* ── VALUE MODE: duck is primary, performance is secondary ── */
-                <>
-                  <span
-                    className="pcard__duck-row pcard__duck-row--primary"
-                    aria-label={`Duck grade ${duckGrade}, ${province.valueScore} out of 100`}
-                  >
-                    <span className="pcard__duck-emoji" aria-hidden="true">🦆</span>
-                    <span className="pcard__duck-words" aria-hidden="true">
-                      <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
-                    </span>
-                    <span className="pcard__duck-scores">
-                      <span className={`pcard__grade ${gradeColorClass(duckGrade)}`}>{duckGrade}</span>
-                      <span className="pcard__score">
-                        {province.valueScore}<span className="pcard__score-denom">/100</span>
-                      </span>
-                    </span>
+                /* ── VALUE MODE: typographic tower ── */
+                <div
+                  className="pcard__value-tower"
+                  aria-label={`Duck grade ${duckGrade}, ${province.valueScore} out of 100. Performance: ${province.grade}, ${displayScore} out of 100`}
+                >
+                  <span className="pcard__tower-duck" aria-hidden="true">🦆</span>
+                  <span className="pcard__tower-label" aria-hidden="true">BANG FOR YOUR DUCK</span>
+                  <span className={`pcard__grade ${gradeColorClass(duckGrade)}`} aria-hidden="true">{duckGrade}</span>
+                  <span className="pcard__score" aria-hidden="true">
+                    {province.valueScore}<span className="pcard__score-denom">/100</span>
                   </span>
-
-                  {/* Performance as secondary */}
-                  <span className="pcard__value-badge" aria-label={`Performance: ${province.grade}, ${displayScore} out of 100`}>
-                    <span className="pcard__value-divider" aria-hidden="true" />
-                    <span className="pcard__duck-row">
-                      <span className="pcard__duck-words" aria-hidden="true">
-                        <span>PERF</span><span>SCORE</span>
-                      </span>
-                      <span className="pcard__duck-scores">
-                        <span className="pcard__value-grade" style={{ color: gradeFill(province.grade) }}>{province.grade}</span>
-                        <span className="pcard__value-subnum">{displayScore}</span>
-                      </span>
-                    </span>
+                  <span className="pcard__tower-rule" aria-hidden="true" />
+                  <span className="pcard__tower-perf" aria-hidden="true">
+                    performance · <span style={{ color: gradeFill(province.grade) }}>{province.grade}</span> · {displayScore}
                   </span>
-                </>
+                </div>
               ) : (
                 /* ── PERFORMANCE MODE: perf is primary, duck is secondary ── */
                 <>

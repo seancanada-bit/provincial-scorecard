@@ -1536,30 +1536,57 @@ body {
   margin: 5px 0 3px;
   align-self: flex-end;
 }
-/* Duck word-stack row: [🦆] [BANG/FOR/YOUR/DUCK] [grade+num] */
-/* --primary modifier: used when Value tab is active — scales up for hero position */
-.pcard__duck-row--primary {
+/* ── Value tab typographic tower ───────────────────────────────────────────── */
+/* pcard__right shifts to centre-aligned column when tower is active           */
+.pcard__right--tower {
   align-items: center;
-  gap: 5px;
 }
-.pcard__duck-row--primary .pcard__duck-emoji {
-  font-size: 20px;
-  align-self: flex-start;
-  margin-top: 6px;
+.pcard__right--tower .pcard__rank {
+  align-self: flex-end;
 }
-.pcard__duck-row--primary .pcard__duck-words span {
-  font-size: 8px;
-  letter-spacing: 0.1em;
+
+/* The tower itself: duck · label · grade · score · rule · perf footnote */
+.pcard__value-tower {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
 }
-.pcard__duck-row--primary .pcard__duck-scores {
-  gap: 2px;
-  align-items: flex-end;
+.pcard__tower-duck {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 1px;
 }
-.pcard__duck-row--primary .pcard__grade {
-  font-size: 48px;
+.pcard__tower-label {
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  color: var(--text-muted);
+  white-space: nowrap;
+  line-height: 1;
 }
-.pcard__duck-row--primary .pcard__score {
+.pcard__value-tower .pcard__score {
   font-size: 14px;
+  margin-top: -2px;
+}
+.pcard__tower-rule {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--border);
+  margin: 3px 0 2px;
+  opacity: 0.5;
+}
+.pcard__tower-perf {
+  font-size: 8px;
+  font-family: var(--font-sans);
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .pcard__duck-row {
