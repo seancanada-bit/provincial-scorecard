@@ -8,7 +8,7 @@ export default function Header({ lastUpdated }) {
       <div className="site-header__inner">
         <div className="site-header__top">
           <a href="/" className="site-header__wordmark" aria-label="Bang for Your Duck home">
-            <span className="site-header__brand">Bang for Your <span>Duck</span></span>
+            <span className="site-header__brand">Bang for Your <span>Duck</span><span className="site-header__duck" aria-hidden="true"> 🦆</span></span>
           </a>
           {formatted && (
             <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
