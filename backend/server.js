@@ -96,6 +96,7 @@ async function refresh() {
         costOfLiving:   supa.costOfLiving[code]     ?? null,
         mentalHealth:   supa.mentalHealth[code]     ?? null,
         ltc:            supa.ltc[code]              ?? null,
+        fiscal:         supa.fiscal[code]           ?? null,
       };
       return scoreProvince(rawProvince);
     });

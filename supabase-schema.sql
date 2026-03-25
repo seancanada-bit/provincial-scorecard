@@ -496,6 +496,48 @@ values
   ('PE', 58, 3.5, 65,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01'),
   ('NL', 57, 3.1, 48,  'CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022', '2023-01-01');
 
+-- ─── FISCAL HEALTH ───────────────────────────────────────────────────────────
+-- Sources: Finance Canada Fiscal Reference Tables 2024; Provincial Budgets 2023-24
+-- budget_balance_pct_gdp    : surplus(+) or deficit(-) as % of provincial GDP
+-- debt_interest_cents_per_dollar : debt service cost per $1 of own-source revenue
+-- net_debt_per_capita        : net financial debt per resident ($); negative = net assets
+-- fiscal_trend               : 'improving' | 'stable' | 'worsening'
+
+create table if not exists provinces_fiscal (
+  id                            serial primary key,
+  province_code                 text not null references provinces_meta(province_code),
+  budget_balance_pct_gdp        numeric,
+  debt_interest_cents_per_dollar numeric,
+  net_debt_per_capita           numeric,
+  fiscal_trend                  text,
+  source_notes                  text,
+  data_date                     date
+);
+
+insert into provinces_fiscal
+  (province_code, budget_balance_pct_gdp, debt_interest_cents_per_dollar, net_debt_per_capita, fiscal_trend, source_notes, data_date)
+values
+-- AB: strong oil-driven surpluses, net financial assets, negligible debt service
+  ('AB',  2.8,  2.1,  -3200, 'improving', 'Finance Canada FRT 2024; AB Budget 2024', '2024-03-01'),
+-- SK: modest surplus, low debt load
+  ('SK',  0.4,  4.2,   5400, 'stable',    'Finance Canada FRT 2024; SK Budget 2024', '2024-03-01'),
+-- NB: balanced budget champion among eastern provinces
+  ('NB',  0.8,  5.8,  13200, 'improving', 'Finance Canada FRT 2024; NB Budget 2024', '2024-03-01'),
+-- PE: small deficit, manageable debt
+  ('PE', -0.3,  5.4,  10400, 'stable',    'Finance Canada FRT 2024; PE Budget 2024', '2024-03-01'),
+-- BC: moved into deficit as commodity revenues fell
+  ('BC', -0.3,  5.0,   8900, 'worsening', 'Finance Canada FRT 2024; BC Budget 2024', '2024-03-01'),
+-- NS: near-balanced, stable trajectory
+  ('NS', -0.1,  7.2,  12600, 'stable',    'Finance Canada FRT 2024; NS Budget 2024', '2024-03-01'),
+-- MB: persistent deficit, but actively reducing
+  ('MB', -0.8,  6.8,  19500, 'improving', 'Finance Canada FRT 2024; MB Budget 2024', '2024-03-01'),
+-- NL: oil revenues helping, but legacy debt still very high per capita
+  ('NL',  1.1, 11.8,  29500, 'improving', 'Finance Canada FRT 2024; NL Budget 2024', '2024-03-01'),
+-- ON: growing structural deficit, high per-capita debt
+  ('ON', -0.9,  8.5,  22800, 'worsening', 'Finance Canada FRT 2024; ON Budget 2024', '2024-03-01'),
+-- QC: largest nominal deficit, high per-capita debt, though manageable interest costs
+  ('QC', -1.2,  8.9,  26000, 'worsening', 'Finance Canada FRT 2024; QC Budget 2024', '2024-03-01');
+
 -- ─── EVENT TRACKING ──────────────────────────────────────────────────────────
 -- Run this once in the Supabase SQL editor.
 -- No personal data is stored — no IPs, no cookies, no identifiers.
