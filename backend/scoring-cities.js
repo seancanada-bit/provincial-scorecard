@@ -252,11 +252,12 @@ function scoreCity(raw) {
   );
 
   // ─── DUCK SCORE ──────────────────────────────────────────────────────────
-  // composite ÷ normalized property tax rate
-  // Tax rate normalized: national median ≈ 0.8% → index of 100
-  // Lower tax = higher duck score (better bang for your buck)
+  // composite ÷ sqrt-curved property tax index.
+  // Square-root curve compresses outliers: a city at ½ the median rate
+  // gets a 1.41× boost (not 2×), keeping scores in a readable range.
+  // National median ≈ 0.8% → taxIndex = 100 → duckScore = composite exactly.
   const taxRate = fiscal?.property_tax_residential_rate ?? null;
-  const taxIndex = taxRate != null ? (taxRate / 0.8) * 100 : 100; // 0.8% = national median baseline
+  const taxIndex = taxRate != null ? Math.sqrt(taxRate / 0.8) * 100 : 100;
   const duckScore = Math.round(composite * 100 / taxIndex);
 
   return {
@@ -398,9 +399,9 @@ function normalizeCityScores(scoredCities) {
       newCats.community.score  * COMPOSITE_WEIGHTS.community
     );
 
-    // Recompute duck score using normalized composite
+    // Recompute duck score using normalized composite + sqrt curve
     const taxRate  = c.categories.fiscal?.propertyTaxRate ?? null;
-    const taxIndex = taxRate != null ? (taxRate / 0.8) * 100 : 100;
+    const taxIndex = taxRate != null ? Math.sqrt(taxRate / 0.8) * 100 : 100;
     const duckScore = Math.round(composite * 100 / taxIndex);
 
     return { ...c, categories: newCats, composite, grade: toGrade(composite), duckScore, duckGrade: toGrade(duckScore) };

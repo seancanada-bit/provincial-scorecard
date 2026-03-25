@@ -51,7 +51,7 @@ function HousingTab({ c }) {
   return (
     <div className="dp-tab-content">
       <KeyStat
-        value={h.mlsHpiBenchmark != null ? `$${Math.round(h.mlsHpiBenchmark / 1000)}k` : '—'}
+        value={h.mlsHpiBenchmark != null ? `$${Math.round(h.mlsHpiBenchmark / 1000).toLocaleString('en-CA')}k` : '—'}
         label="MLS benchmark home price"
         score={h.score}
         grade={h.grade}
