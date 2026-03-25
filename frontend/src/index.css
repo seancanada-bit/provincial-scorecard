@@ -1537,6 +1537,31 @@ body {
   align-self: flex-end;
 }
 /* Duck word-stack row: [🦆] [BANG/FOR/YOUR/DUCK] [grade+num] */
+/* --primary modifier: used when Value tab is active — scales up for hero position */
+.pcard__duck-row--primary {
+  align-items: center;
+  gap: 5px;
+}
+.pcard__duck-row--primary .pcard__duck-emoji {
+  font-size: 20px;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+.pcard__duck-row--primary .pcard__duck-words span {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+.pcard__duck-row--primary .pcard__duck-scores {
+  gap: 2px;
+  align-items: flex-end;
+}
+.pcard__duck-row--primary .pcard__grade {
+  font-size: 48px;
+}
+.pcard__duck-row--primary .pcard__score {
+  font-size: 14px;
+}
+
 .pcard__duck-row {
   display: flex;
   flex-direction: row;

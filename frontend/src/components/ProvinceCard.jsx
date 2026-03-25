@@ -201,15 +201,20 @@ export default function ProvinceCard({
               {isValueSort && duckGrade ? (
                 /* ── VALUE MODE: duck is primary, performance is secondary ── */
                 <>
-                  <span className="pcard__perf-label">🦆 bang for your duck</span>
                   <span
-                    className={`pcard__grade ${gradeColorClass(duckGrade)}`}
-                    aria-label={`Duck grade ${duckGrade}`}
+                    className="pcard__duck-row pcard__duck-row--primary"
+                    aria-label={`Duck grade ${duckGrade}, ${province.valueScore} out of 100`}
                   >
-                    {duckGrade}
-                  </span>
-                  <span className="pcard__score" aria-label={`${province.valueScore} out of 100`}>
-                    {province.valueScore}<span className="pcard__score-denom">/100</span>
+                    <span className="pcard__duck-emoji" aria-hidden="true">🦆</span>
+                    <span className="pcard__duck-words" aria-hidden="true">
+                      <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                    </span>
+                    <span className="pcard__duck-scores">
+                      <span className={`pcard__grade ${gradeColorClass(duckGrade)}`}>{duckGrade}</span>
+                      <span className="pcard__score">
+                        {province.valueScore}<span className="pcard__score-denom">/100</span>
+                      </span>
+                    </span>
                   </span>
 
                   {/* Performance as secondary */}
