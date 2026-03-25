@@ -23,7 +23,7 @@ export default function NationalSummary({ national, provinces }) {
     <div className="editorial-summary">
       <div className="editorial-summary__inner">
         <p className="editorial-summary__headline">
-          Getting bang for your duck?<br/>The gap across Canada is wider than you think.
+          Getting value for your loonie?<br/>The gap across Canada is wider than you think.
         </p>
         <div className="editorial-summary__callouts">
           <div className="editorial-callout">
