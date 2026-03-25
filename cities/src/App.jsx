@@ -16,13 +16,13 @@ const API = import.meta.env.VITE_API_URL || '';
 
 const SORT_KEYS = [
   { key: 'duck',           label: 'Value',          icon: '🦆' },
-  { key: 'composite',      label: 'Performance'               },
-  { key: 'housing',        label: 'Housing'                   },
-  { key: 'safety',         label: 'Safety'                    },
-  { key: 'fiscal',         label: 'Fiscal'                    },
-  { key: 'liveability',    label: 'Liveability'               },
-  { key: 'economic',       label: 'Economic'                  },
-  { key: 'community',      label: 'Community'                 },
+  { key: 'composite',      label: 'Overall',        icon: '🏆' },
+  { key: 'housing',        label: 'Housing',        icon: '🏠' },
+  { key: 'safety',         label: 'Safety',         icon: '🛡️' },
+  { key: 'fiscal',         label: 'Fiscal',         icon: '💰' },
+  { key: 'liveability',    label: 'Liveability',    icon: '🌳' },
+  { key: 'economic',       label: 'Economic',       icon: '📈' },
+  { key: 'community',      label: 'Community',      icon: '🤝' },
   { key: 'infrastructure', label: 'Infrastructure', icon: '🏗️' },
 ];
 
