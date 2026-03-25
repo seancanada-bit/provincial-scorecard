@@ -1,5 +1,6 @@
 const TABS = [
-  { key: 'overall',        label: 'Overall' },
+  { key: 'overall',        label: 'Performance',    title: 'Overall composite score across all 9 categories' },
+  { key: 'value',          label: '🦆 Value',        title: 'Bang for your duck — performance relative to tax burden' },
   { key: 'healthcare',     label: 'Healthcare' },
   { key: 'housing',        label: 'Housing' },
   { key: 'fiscal',         label: 'Fiscal' },
@@ -9,7 +10,6 @@ const TABS = [
   { key: 'safety',         label: 'Safety' },
   { key: 'mentalhealth',   label: 'Mental Health' },
   { key: 'ltc',            label: 'Long-Term Care' },
-  { key: 'value',          label: '🦆 Duck Score', title: 'Performance per tax dollar — the more you get for what you pay, the higher the Duck Score' },
 ];
 
 export default function SortTabs({ active, onChange }) {
