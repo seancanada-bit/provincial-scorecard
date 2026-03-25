@@ -23,6 +23,7 @@ export default function Header({ lastUpdated }) {
             )}
           </div>
           <p className="site-header__tagline">Which Canadian city gives you the most for your property tax?</p>
+          <p className="site-header__scope">Ranking all 41 Census Metropolitan Areas with core populations over 100,000.</p>
         </div>
         <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>

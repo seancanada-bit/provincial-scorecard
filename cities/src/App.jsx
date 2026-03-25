@@ -7,7 +7,9 @@ import CityGrid from './components/CityGrid.jsx';
 import CityDetailPanel from './components/CityDetailPanel.jsx';
 import MapView from './components/MapView.jsx';
 import SupportSection from './components/SupportSection.jsx';
+import DataSources from './components/DataSources.jsx';
 import Footer from './components/Footer.jsx';
+import MethodologyModal from './components/MethodologyModal.jsx';
 import fallback from './data/fallback.json';
 
 const API = import.meta.env.VITE_API_URL || '';
@@ -30,6 +32,7 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [provinceFilter, setProvinceFilter] = useState('ALL');
   const [mapView, setMapView]         = useState(false);
+  const [showMethodology, setShowMethodology] = useState(false);
 
   // Read ?province= from URL on load
   useEffect(() => {
@@ -127,7 +130,11 @@ export default function App() {
         )}
       </main>
       <SupportSection />
-      <Footer lastUpdated={data?.lastUpdated} />
+      <DataSources />
+      <Footer onMethodology={() => setShowMethodology(true)} />
+      {showMethodology && (
+        <MethodologyModal onClose={() => setShowMethodology(false)} />
+      )}
     </div>
   );
 }
