@@ -40,7 +40,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
 
       // Add city markers
       cities.forEach(city => {
-        if (!city.lat || !city.lon) return;
+        if (!city.lat || !city.lng) return;
         const score  = getScore(city, sortKey);
         const grade  = toGrade(score);
         const color  = PROVINCE_COLORS[city.provinceAbbr] ?? '#555';
@@ -64,7 +64,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
           iconAnchor: [14, 14],
         });
 
-        const marker = L.marker([city.lat, city.lon], { icon })
+        const marker = L.marker([city.lat, city.lng], { icon })
           .addTo(map)
           .bindPopup(`
             <div style="font-family: system-ui, sans-serif; min-width: 140px;">

@@ -276,6 +276,8 @@ function scoreCity(raw) {
     provinceAbbr: meta.province_abbr,
     mayorName:   meta.mayor_name,
     population:  meta.population_2021,
+    lat:         meta.lat ?? null,
+    lng:         meta.lng ?? null,
     composite,
     grade:       toGrade(composite),
     duckScore,
