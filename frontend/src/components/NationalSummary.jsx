@@ -27,8 +27,11 @@ export default function NationalSummary({ national, provinces }) {
         </p>
         <div className="editorial-summary__callouts">
           <div className="editorial-callout">
-            <span className="editorial-callout__label">🦆 Best bang for your duck</span>
-            <span className="editorial-callout__province">{bestValue?.name}</span>
+            <span className="editorial-callout__label">Best bang for your duck</span>
+            <span className="editorial-callout__province-row">
+              <span className="editorial-callout__province">{bestValue?.name}</span>
+              <span className="editorial-callout__duck-accent" aria-hidden="true">🦆</span>
+            </span>
             <span className="editorial-callout__grade" style={{ color: gradeFillDark(bestValueGrade) }}>
               {bestValueGrade} · {bestValue?.valueScore}/100
             </span>
