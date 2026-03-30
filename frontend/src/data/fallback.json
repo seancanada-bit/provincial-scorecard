@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-03-25T03:31:08.565Z",
+  "lastUpdated": "2026-03-30T13:28:23.614Z",
   "national": {
-    "avgComposite": 66,
+    "avgComposite": 61,
     "avgHealthcare": 66,
     "avgHousing": 69,
-    "avgFiscal": 87,
+    "avgFiscal": 46,
     "avgInfrastructure": 41,
     "avgEconomy": 74,
     "avgSafety": 61,
@@ -19,9 +19,9 @@
       "code": "BC",
       "name": "British Columbia",
       "premierName": "David Eby",
-      "composite": 65,
-      "grade": "C",
-      "valueScore": 69,
+      "composite": 57,
+      "grade": "C-",
+      "valueScore": 61,
       "categories": {
         "healthcare": {
           "score": 51,
@@ -51,16 +51,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 27,
+          "grade": "F",
+          "budgetBalancePctGdp": -0.3,
+          "balanceScore": 72,
+          "debtInterestCentsPerDollar": 5,
+          "interestScore": 9,
+          "netDebtPerCapita": 8900,
+          "debtScore": 11,
+          "fiscalTrend": "worsening",
+          "trendBonus": -5
         },
         "infrastructure": {
           "score": 9,
@@ -235,9 +235,9 @@
       "code": "AB",
       "name": "Alberta",
       "premierName": "Danielle Smith",
-      "composite": 69,
-      "grade": "C+",
-      "valueScore": 99,
+      "composite": 63,
+      "grade": "C",
+      "valueScore": 90,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -267,16 +267,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 40,
+          "grade": "D",
+          "budgetBalancePctGdp": 2.8,
+          "balanceScore": 100,
+          "debtInterestCentsPerDollar": 2.1,
+          "interestScore": 0,
+          "netDebtPerCapita": -3200,
+          "debtScore": 0,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
         },
         "infrastructure": {
           "score": 28,
@@ -451,9 +451,9 @@
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 67,
-      "grade": "C+",
-      "valueScore": 79,
+      "composite": 59,
+      "grade": "C-",
+      "valueScore": 69,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -483,15 +483,15 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
+          "score": 30,
+          "grade": "F",
+          "budgetBalancePctGdp": 0.4,
+          "balanceScore": 83,
+          "debtInterestCentsPerDollar": 4.2,
+          "interestScore": 2,
+          "netDebtPerCapita": 5400,
+          "debtScore": 1,
+          "fiscalTrend": "stable",
           "trendBonus": 0
         },
         "infrastructure": {
@@ -656,9 +656,9 @@
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 55,
+      "composite": 50,
       "grade": "D",
-      "valueScore": 60,
+      "valueScore": 54,
       "categories": {
         "healthcare": {
           "score": 57,
@@ -688,16 +688,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 51,
+          "grade": "D",
+          "budgetBalancePctGdp": -0.8,
+          "balanceScore": 65,
+          "debtInterestCentsPerDollar": 6.8,
+          "interestScore": 25,
+          "netDebtPerCapita": 19500,
+          "debtScore": 41,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
         },
         "infrastructure": {
           "score": 8,
@@ -861,9 +861,9 @@
       "code": "ON",
       "name": "Ontario",
       "premierName": "Doug Ford",
-      "composite": 69,
-      "grade": "C+",
-      "valueScore": 71,
+      "composite": 64,
+      "grade": "C",
+      "valueScore": 66,
       "categories": {
         "healthcare": {
           "score": 49,
@@ -893,16 +893,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 49,
+          "grade": "D",
+          "budgetBalancePctGdp": -0.9,
+          "balanceScore": 63,
+          "debtInterestCentsPerDollar": 8.5,
+          "interestScore": 41,
+          "netDebtPerCapita": 22800,
+          "debtScore": 51,
+          "fiscalTrend": "worsening",
+          "trendBonus": -5
         },
         "infrastructure": {
           "score": 87,
@@ -1077,9 +1077,9 @@
       "code": "QC",
       "name": "Quebec",
       "premierName": "François Legault",
-      "composite": 76,
-      "grade": "B",
-      "valueScore": 59,
+      "composite": 71,
+      "grade": "B-",
+      "valueScore": 55,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1109,16 +1109,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 51,
+          "grade": "D",
+          "budgetBalancePctGdp": -1.2,
+          "balanceScore": 58,
+          "debtInterestCentsPerDollar": 8.9,
+          "interestScore": 45,
+          "netDebtPerCapita": 26000,
+          "debtScore": 60,
+          "fiscalTrend": "worsening",
+          "trendBonus": -5
         },
         "infrastructure": {
           "score": 65,
@@ -1282,9 +1282,9 @@
       "code": "NB",
       "name": "New Brunswick",
       "premierName": "Susan Holt",
-      "composite": 66,
+      "composite": 61,
       "grade": "C",
-      "valueScore": 66,
+      "valueScore": 61,
       "categories": {
         "healthcare": {
           "score": 70,
@@ -1314,16 +1314,16 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "score": 50,
+          "grade": "D",
+          "budgetBalancePctGdp": 0.8,
+          "balanceScore": 89,
+          "debtInterestCentsPerDollar": 5.8,
+          "interestScore": 16,
+          "netDebtPerCapita": 13200,
+          "debtScore": 23,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
         },
         "infrastructure": {
           "score": 9,
@@ -1487,9 +1487,9 @@
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 67,
-      "grade": "C+",
-      "valueScore": 59,
+      "composite": 61,
+      "grade": "C",
+      "valueScore": 54,
       "categories": {
         "healthcare": {
           "score": 70,
@@ -1519,15 +1519,15 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
+          "score": 44,
+          "grade": "D",
+          "budgetBalancePctGdp": -0.1,
+          "balanceScore": 75,
+          "debtInterestCentsPerDollar": 7.2,
+          "interestScore": 29,
+          "netDebtPerCapita": 12600,
+          "debtScore": 22,
+          "fiscalTrend": "stable",
           "trendBonus": 0
         },
         "infrastructure": {
@@ -1692,9 +1692,9 @@
       "code": "PE",
       "name": "Prince Edward Island",
       "premierName": "Dennis King",
-      "composite": 69,
-      "grade": "C+",
-      "valueScore": 63,
+      "composite": 62,
+      "grade": "C",
+      "valueScore": 57,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1724,15 +1724,15 @@
           "dataDate": "2026-02-01"
         },
         "fiscal": {
-          "score": 87,
-          "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
+          "score": 35,
+          "grade": "F",
+          "budgetBalancePctGdp": -0.3,
+          "balanceScore": 72,
+          "debtInterestCentsPerDollar": 5.4,
+          "interestScore": 13,
+          "netDebtPerCapita": 10400,
+          "debtScore": 15,
+          "fiscalTrend": "stable",
           "trendBonus": 0
         },
         "infrastructure": {
@@ -1931,14 +1931,14 @@
         "fiscal": {
           "score": 87,
           "grade": "A",
-          "budgetBalancePctGdp": null,
-          "balanceScore": null,
-          "debtInterestCentsPerDollar": null,
-          "interestScore": null,
-          "netDebtPerCapita": null,
-          "debtScore": null,
-          "fiscalTrend": null,
-          "trendBonus": 0
+          "budgetBalancePctGdp": 1.1,
+          "balanceScore": 94,
+          "debtInterestCentsPerDollar": 11.8,
+          "interestScore": 71,
+          "netDebtPerCapita": 29500,
+          "debtScore": 70,
+          "fiscalTrend": "improving",
+          "trendBonus": 5
         },
         "infrastructure": {
           "score": 87,
