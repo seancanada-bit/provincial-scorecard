@@ -12,8 +12,8 @@
 const path = require('path');
 const fs   = require('fs');
 
-// Load .env when running locally
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+// Load .env when running locally (dotenv not required in CI — env vars injected by Actions)
+try { require('dotenv').config({ path: path.join(__dirname, '.env') }); } catch {}
 
 const { fetchAllSupabaseData } = require('./supabase');
 const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
