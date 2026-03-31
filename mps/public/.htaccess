@@ -11,6 +11,14 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 Header unset Server
 Header always unset X-Powered-By
 
+# Cache control: short TTL for HTML/SVG, long for hashed assets
+<FilesMatch "\.(html|svg)$">
+  Header set Cache-Control "public, max-age=300, must-revalidate"
+</FilesMatch>
+<FilesMatch "\.(js|css)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
 RewriteEngine On
 RewriteBase /mps/
 RewriteCond %{REQUEST_FILENAME} !-f

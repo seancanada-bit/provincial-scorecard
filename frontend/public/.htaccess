@@ -11,10 +11,19 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 Header unset Server
 Header always unset X-Powered-By
 
+# Cache control: short TTL for HTML/SVG (pick up changes fast), long for hashed assets
+<FilesMatch "\.(html|svg)$">
+  Header set Cache-Control "public, max-age=300, must-revalidate"
+</FilesMatch>
+<FilesMatch "\.(js|css)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
 RewriteEngine On
 RewriteBase /
-# Pass /cities/* through to its own index + .htaccess
+# Pass /cities/* and /mps/* through to their own index + .htaccess
 RewriteRule ^cities(/.*)?$ - [L]
+RewriteRule ^mps(/.*)?$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
