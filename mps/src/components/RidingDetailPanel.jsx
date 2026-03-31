@@ -90,7 +90,10 @@ function ElectoralTab({ c }) {
         <MetricRow label="Margin of victory" score={e.marginScore} rawDisplay={e.marginOfVictoryPct != null ? `${e.marginOfVictoryPct}%` : '—'} compareDisplay="Closer = more competitive" />
         <MetricRow label="Candidates" score={e.candidateScore} rawDisplay={e.candidatesCount != null ? `${e.candidatesCount}` : '—'} compareDisplay="More = healthier democracy" />
       </div>
-      <p className="dp-source">Source: Elections Canada · {e.dataDate ?? '2021'}</p>
+      <p className="dp-source">Source: Elections Canada · {e.dataDate ?? '2025'}</p>
+      <p className="dp-planned">
+        <strong>Coming soon:</strong> Competitiveness Index — a composite of margin of victory, 2nd/3rd place viability, turnout trend vs previous election, and incumbency streak. Research shows MPs in competitive ridings deliver 12-18% more discretionary federal spending per capita. Competitiveness is a proxy for accountability pressure.
+      </p>
     </div>
   );
 }
