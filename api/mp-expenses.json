@@ -1,0 +1,3002 @@
+{
+  "10001": {
+    "mpName": "Connors,  Paul",
+    "constituency": "Avalon",
+    "totalQ3": 162766,
+    "salaries": 100612,
+    "travel": 34373,
+    "hospitality": 1076,
+    "contracts": 26705,
+    "annualEstimate": 651064
+  },
+  "10002": {
+    "mpName": "Osborne,  Tom",
+    "constituency": "Cape Spear",
+    "totalQ3": 154155,
+    "salaries": 88144,
+    "travel": 47916,
+    "hospitality": 1224,
+    "contracts": 16871,
+    "annualEstimate": 616620
+  },
+  "10003": {
+    "mpName": "Small,  Clifford",
+    "constituency": "Central Newfoundland",
+    "totalQ3": 146419,
+    "salaries": 75317,
+    "travel": 50857,
+    "hospitality": 1658,
+    "contracts": 18587,
+    "annualEstimate": 585676
+  },
+  "10004": {
+    "mpName": "Earle,  Philip",
+    "constituency": "Labrador",
+    "totalQ3": 145303,
+    "salaries": 78484,
+    "travel": 29780,
+    "hospitality": 1351,
+    "contracts": 35687,
+    "annualEstimate": 581212
+  },
+  "10005": {
+    "mpName": "Anstey,  Carol",
+    "constituency": "Long Range Mountains",
+    "totalQ3": 180714,
+    "salaries": 98756,
+    "travel": 49006,
+    "hospitality": 0,
+    "contracts": 32952,
+    "annualEstimate": 722856
+  },
+  "10006": {
+    "mpName": "Thompson, Hon. Joanne",
+    "constituency": "St. John's East",
+    "totalQ3": 136524,
+    "salaries": 83583,
+    "travel": 21939,
+    "hospitality": 1190,
+    "contracts": 29812,
+    "annualEstimate": 546096
+  },
+  "10007": {
+    "mpName": "Rowe,  Jonathan",
+    "constituency": "Terra Nova—The Peninsulas",
+    "totalQ3": 153241,
+    "salaries": 74542,
+    "travel": 50990,
+    "hospitality": 356,
+    "contracts": 27354,
+    "annualEstimate": 612964
+  },
+  "11001": {
+    "mpName": "MacAulay, Hon. Lawrence",
+    "constituency": "Cardigan",
+    "totalQ3": 134180,
+    "salaries": 62620,
+    "travel": 19969,
+    "hospitality": 87,
+    "contracts": 51503,
+    "annualEstimate": 536720
+  },
+  "11002": {
+    "mpName": "Casey,  Sean",
+    "constituency": "Charlottetown",
+    "totalQ3": 139765,
+    "salaries": 91172,
+    "travel": 25186,
+    "hospitality": 535,
+    "contracts": 22872,
+    "annualEstimate": 559060
+  },
+  "11003": {
+    "mpName": "Morrissey,  Robert",
+    "constituency": "Egmont",
+    "totalQ3": 170380,
+    "salaries": 82361,
+    "travel": 43831,
+    "hospitality": 0,
+    "contracts": 44189,
+    "annualEstimate": 681520
+  },
+  "11004": {
+    "mpName": "MacDonald, Hon. Heath",
+    "constituency": "Malpeque",
+    "totalQ3": 97674,
+    "salaries": 65911,
+    "travel": 16006,
+    "hospitality": 313,
+    "contracts": 15443,
+    "annualEstimate": 390696
+  },
+  "12001": {
+    "mpName": "Ntumba,  Bienvenu-Olivier",
+    "constituency": "Mont-Saint-Bruno—L'Acadie",
+    "totalQ3": 131133,
+    "salaries": 72288,
+    "travel": 14001,
+    "hospitality": 3095,
+    "contracts": 41748,
+    "annualEstimate": 524532
+  },
+  "12002": {
+    "mpName": "Battiste,  Jaime",
+    "constituency": "Cape Breton—Canso—Antigonish",
+    "totalQ3": 137600,
+    "salaries": 76457,
+    "travel": 37146,
+    "hospitality": 577,
+    "contracts": 23419,
+    "annualEstimate": 550400
+  },
+  "12003": {
+    "mpName": "Fraser, Hon. Sean",
+    "constituency": "Central Nova",
+    "totalQ3": 141875,
+    "salaries": 77785,
+    "travel": 37377,
+    "hospitality": 518,
+    "contracts": 26195,
+    "annualEstimate": 567500
+  },
+  "12004": {
+    "mpName": "Mingarelli,  Giovanna",
+    "constituency": "Prescott—Russell—Cumberland",
+    "totalQ3": 146518,
+    "salaries": 95744,
+    "travel": 0,
+    "hospitality": 1310,
+    "contracts": 49464,
+    "annualEstimate": 586072
+  },
+  "12005": {
+    "mpName": "Fisher, Hon. Darren",
+    "constituency": "Dartmouth—Cole Harbour",
+    "totalQ3": 110085,
+    "salaries": 67778,
+    "travel": 17821,
+    "hospitality": 230,
+    "contracts": 24255,
+    "annualEstimate": 440340
+  },
+  "12006": {
+    "mpName": "Miedema,  Shannon",
+    "constituency": "Halifax",
+    "totalQ3": 155613,
+    "salaries": 87266,
+    "travel": 38840,
+    "hospitality": 293,
+    "contracts": 29214,
+    "annualEstimate": 622452
+  },
+  "12008": {
+    "mpName": "Gerretsen, Hon. Mark",
+    "constituency": "Kingston and the Islands",
+    "totalQ3": 164402,
+    "salaries": 93623,
+    "travel": 12938,
+    "hospitality": 359,
+    "contracts": 57483,
+    "annualEstimate": 657608
+  },
+  "12009": {
+    "mpName": "Samson,  Darrell",
+    "constituency": "Sackville—Preston—Chezzetcook",
+    "totalQ3": 10,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 10,
+    "annualEstimate": 40
+  },
+  "12010": {
+    "mpName": "Fancy,  Jessica",
+    "constituency": "South Shore—St. Margarets",
+    "totalQ3": 145869,
+    "salaries": 95862,
+    "travel": 23371,
+    "hospitality": 2272,
+    "contracts": 24365,
+    "annualEstimate": 583476
+  },
+  "12011": {
+    "mpName": "Kelloway,  Mike",
+    "constituency": "Sydney—Glace Bay",
+    "totalQ3": 169396,
+    "salaries": 117978,
+    "travel": 30541,
+    "hospitality": 157,
+    "contracts": 20719,
+    "annualEstimate": 677584
+  },
+  "13002": {
+    "mpName": "LeBlanc, Hon. Dominic",
+    "constituency": "Beauséjour",
+    "totalQ3": 142292,
+    "salaries": 71078,
+    "travel": 51097,
+    "hospitality": 3356,
+    "contracts": 16760,
+    "annualEstimate": 569168
+  },
+  "13003": {
+    "mpName": "Myles,  David",
+    "constituency": "Fredericton—Oromocto",
+    "totalQ3": 141970,
+    "salaries": 95733,
+    "travel": 32088,
+    "hospitality": 287,
+    "contracts": 13863,
+    "annualEstimate": 567880
+  },
+  "13004": {
+    "mpName": "Moore, Hon. Rob",
+    "constituency": "Fundy Royal",
+    "totalQ3": 138708,
+    "salaries": 88225,
+    "travel": 24004,
+    "hospitality": 187,
+    "contracts": 26292,
+    "annualEstimate": 554832
+  },
+  "13005": {
+    "mpName": "Deschênes-Thériault,  Guillaume",
+    "constituency": "Madawaska—Restigouche",
+    "totalQ3": 139068,
+    "salaries": 75030,
+    "travel": 26307,
+    "hospitality": 3253,
+    "contracts": 34478,
+    "annualEstimate": 556272
+  },
+  "13006": {
+    "mpName": "Dawson,  Mike",
+    "constituency": "Miramichi—Grand Lake",
+    "totalQ3": 164904,
+    "salaries": 95002,
+    "travel": 44413,
+    "hospitality": 2968,
+    "contracts": 22520,
+    "annualEstimate": 659616
+  },
+  "13007": {
+    "mpName": "Petitpas Taylor, Hon. Ginette",
+    "constituency": "Moncton—Dieppe",
+    "totalQ3": 114933,
+    "salaries": 80728,
+    "travel": 13608,
+    "hospitality": 0,
+    "contracts": 20597,
+    "annualEstimate": 459732
+  },
+  "13008": {
+    "mpName": "Williamson,  John",
+    "constituency": "Saint John—St. Croix",
+    "totalQ3": 177391,
+    "salaries": 108112,
+    "travel": 40433,
+    "hospitality": 1117,
+    "contracts": 27729,
+    "annualEstimate": 709564
+  },
+  "13010": {
+    "mpName": "Bragdon,  Richard",
+    "constituency": "Tobique—Mactaquac",
+    "totalQ3": 151512,
+    "salaries": 98196,
+    "travel": 23580,
+    "hospitality": 1368,
+    "contracts": 28368,
+    "annualEstimate": 606048
+  },
+  "24001": {
+    "mpName": "Lemire,  Sébastien",
+    "constituency": "Abitibi—Témiscamingue",
+    "totalQ3": 152377,
+    "salaries": 89888,
+    "travel": 35430,
+    "hospitality": 2130,
+    "contracts": 24930,
+    "annualEstimate": 609508
+  },
+  "24003": {
+    "mpName": "Joly, Hon. Mélanie",
+    "constituency": "Ahuntsic-Cartierville",
+    "totalQ3": 131728,
+    "salaries": 97461,
+    "travel": 11747,
+    "hospitality": 416,
+    "contracts": 22104,
+    "annualEstimate": 526912
+  },
+  "24004": {
+    "mpName": "Iacono,  Angelo",
+    "constituency": "Alfred-Pellan",
+    "totalQ3": 157979,
+    "salaries": 84754,
+    "travel": 21130,
+    "hospitality": 8169,
+    "contracts": 43926,
+    "annualEstimate": 631916
+  },
+  "24005": {
+    "mpName": "Lauzon,  Stéphane",
+    "constituency": "Argenteuil—La Petite-Nation",
+    "totalQ3": 100841,
+    "salaries": 67874,
+    "travel": 4489,
+    "hospitality": 1151,
+    "contracts": 27328,
+    "annualEstimate": 403364
+  },
+  "24006": {
+    "mpName": "Groleau,  Jason",
+    "constituency": "Beauce",
+    "totalQ3": 129343,
+    "salaries": 78144,
+    "travel": 17922,
+    "hospitality": 2961,
+    "contracts": 30316,
+    "annualEstimate": 517372
+  },
+  "24007": {
+    "mpName": "DeBellefeuille,  Claude",
+    "constituency": "Beauharnois—Salaberry—Soulanges—Huntingdon",
+    "totalQ3": 147955,
+    "salaries": 82956,
+    "travel": 17651,
+    "hospitality": 3723,
+    "contracts": 43626,
+    "annualEstimate": 591820
+  },
+  "24008": {
+    "mpName": "Lavoie,  Steeve",
+    "constituency": "Beauport—Limoilou",
+    "totalQ3": 149258,
+    "salaries": 70623,
+    "travel": 21965,
+    "hospitality": 247,
+    "contracts": 56423,
+    "annualEstimate": 597032
+  },
+  "24009": {
+    "mpName": "Plamondon,  Louis",
+    "constituency": "Bécancour—Nicolet—Saurel—Alnôbak",
+    "totalQ3": 129368,
+    "salaries": 72014,
+    "travel": 18055,
+    "hospitality": 668,
+    "contracts": 38632,
+    "annualEstimate": 517472
+  },
+  "24010": {
+    "mpName": "Vien,  Dominique",
+    "constituency": "Bellechasse—Les Etchemins—Lévis",
+    "totalQ3": 136943,
+    "salaries": 82047,
+    "travel": 13962,
+    "hospitality": 720,
+    "contracts": 40214,
+    "annualEstimate": 547772
+  },
+  "24011": {
+    "mpName": "Blanchet,  Yves-François",
+    "constituency": "Beloeil—Chambly",
+    "totalQ3": 145870,
+    "salaries": 75985,
+    "travel": 22437,
+    "hospitality": 1804,
+    "contracts": 45644,
+    "annualEstimate": 583480
+  },
+  "24012": {
+    "mpName": "Perron,  Yves",
+    "constituency": "Berthier—Maskinongé",
+    "totalQ3": 161408,
+    "salaries": 83999,
+    "travel": 23252,
+    "hospitality": 1621,
+    "contracts": 52537,
+    "annualEstimate": 645632
+  },
+  "24013": {
+    "mpName": "Dubourg,  Emmanuel",
+    "constituency": "Bourassa",
+    "totalQ3": 132808,
+    "salaries": 86298,
+    "travel": 16362,
+    "hospitality": 1375,
+    "contracts": 28773,
+    "annualEstimate": 531232
+  },
+  "24014": {
+    "mpName": "St-Onge, Hon. Pascale",
+    "constituency": "Brome—Missisquoi",
+    "totalQ3": 162311,
+    "salaries": 94555,
+    "travel": 27730,
+    "hospitality": 2599,
+    "contracts": 37427,
+    "annualEstimate": 649244
+  },
+  "24015": {
+    "mpName": "Mendès,  Alexandra",
+    "constituency": "Brossard—Saint-Lambert",
+    "totalQ3": 104066,
+    "salaries": 70824,
+    "travel": 9861,
+    "hospitality": 352,
+    "contracts": 23029,
+    "annualEstimate": 416264
+  },
+  "24016": {
+    "mpName": "Paul-Hus,  Pierre",
+    "constituency": "Charlesbourg—Haute-Saint-Charles",
+    "totalQ3": 125936,
+    "salaries": 71895,
+    "travel": 17460,
+    "hospitality": 169,
+    "contracts": 36412,
+    "annualEstimate": 503744
+  },
+  "24017": {
+    "mpName": "Shanahan,  Brenda",
+    "constituency": "Châteauguay—Lacolle",
+    "totalQ3": -2208,
+    "salaries": -1300,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": -908,
+    "annualEstimate": -8832
+  },
+  "24018": {
+    "mpName": "Martel,  Richard",
+    "constituency": "Chicoutimi—Le Fjord",
+    "totalQ3": 161659,
+    "salaries": 84976,
+    "travel": 31954,
+    "hospitality": 2138,
+    "contracts": 42591,
+    "annualEstimate": 646636
+  },
+  "24019": {
+    "mpName": "Bibeau, Hon. Marie-Claude",
+    "constituency": "Compton—Stanstead",
+    "totalQ3": 133718,
+    "salaries": 89752,
+    "travel": 13794,
+    "hospitality": 147,
+    "contracts": 30024,
+    "annualEstimate": 534872
+  },
+  "24020": {
+    "mpName": "Généreux,  Bernard",
+    "constituency": "Côte-du-Sud—Rivière-du-Loup—Kataskomiq—Témiscouata",
+    "totalQ3": 150129,
+    "salaries": 77686,
+    "travel": 24603,
+    "hospitality": 3965,
+    "contracts": 43875,
+    "annualEstimate": 600516
+  },
+  "24021": {
+    "mpName": "Gill,  Marilène",
+    "constituency": "Côte-Nord—Kawawachikamach—Nitassinan",
+    "totalQ3": 225267,
+    "salaries": 85291,
+    "travel": 82603,
+    "hospitality": 1627,
+    "contracts": 55746,
+    "annualEstimate": 901068
+  },
+  "24022": {
+    "mpName": "Dhillon,  Anju",
+    "constituency": "Dorval—Lachine—LaSalle",
+    "totalQ3": 59378,
+    "salaries": 47344,
+    "travel": 6820,
+    "hospitality": 0,
+    "contracts": 5214,
+    "annualEstimate": 237512
+  },
+  "24023": {
+    "mpName": "Champoux,  Martin",
+    "constituency": "Drummond",
+    "totalQ3": 124542,
+    "salaries": 62511,
+    "travel": 17322,
+    "hospitality": 689,
+    "contracts": 44020,
+    "annualEstimate": 498168
+  },
+  "24024": {
+    "mpName": "Deschênes,  Alexis",
+    "constituency": "Gaspésie—Les Îles-de-la-Madeleine—Listuguj",
+    "totalQ3": 246399,
+    "salaries": 91461,
+    "travel": 101560,
+    "hospitality": 1640,
+    "contracts": 51737,
+    "annualEstimate": 985596
+  },
+  "24025": {
+    "mpName": "MacKinnon, Hon. Steven",
+    "constituency": "Gatineau",
+    "totalQ3": 111529,
+    "salaries": 60171,
+    "travel": 2453,
+    "hospitality": 1607,
+    "contracts": 47298,
+    "annualEstimate": 446116
+  },
+  "24026": {
+    "mpName": "Ménard,  Marie-Gabrielle",
+    "constituency": "Hochelaga—Rosemont-Est",
+    "totalQ3": 132885,
+    "salaries": 76931,
+    "travel": 16021,
+    "hospitality": 1277,
+    "contracts": 38656,
+    "annualEstimate": 531540
+  },
+  "24027": {
+    "mpName": "St-Pierre,  Eric",
+    "constituency": "Honoré-Mercier",
+    "totalQ3": 121704,
+    "salaries": 84393,
+    "travel": 2298,
+    "hospitality": 1145,
+    "contracts": 33868,
+    "annualEstimate": 486816
+  },
+  "24028": {
+    "mpName": "Fergus, Hon. Greg",
+    "constituency": "Hull—Aylmer",
+    "totalQ3": 106148,
+    "salaries": 74526,
+    "travel": 178,
+    "hospitality": 61,
+    "contracts": 31383,
+    "annualEstimate": 424592
+  },
+  "24029": {
+    "mpName": "Ste-Marie,  Gabriel",
+    "constituency": "Joliette—Manawan",
+    "totalQ3": 130160,
+    "salaries": 93011,
+    "travel": 15494,
+    "hospitality": 787,
+    "contracts": 20869,
+    "annualEstimate": 520640
+  },
+  "24030": {
+    "mpName": "Simard,  Mario",
+    "constituency": "Jonquière",
+    "totalQ3": 161999,
+    "salaries": 88554,
+    "travel": 31995,
+    "hospitality": 5338,
+    "contracts": 36112,
+    "annualEstimate": 647996
+  },
+  "24031": {
+    "mpName": "Beaulieu,  Mario",
+    "constituency": "La Pointe-de-l'Île",
+    "totalQ3": 157358,
+    "salaries": 91317,
+    "travel": 11717,
+    "hospitality": 2261,
+    "contracts": 52062,
+    "annualEstimate": 629432
+  },
+  "24032": {
+    "mpName": "Therrien,  Alain",
+    "constituency": "La Prairie",
+    "totalQ3": 149,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 149,
+    "annualEstimate": 596
+  },
+  "24033": {
+    "mpName": "Normandin,  Christine",
+    "constituency": "Saint-Jean",
+    "totalQ3": 134696,
+    "salaries": 86860,
+    "travel": 16618,
+    "hospitality": 573,
+    "contracts": 30644,
+    "annualEstimate": 538784
+  },
+  "24034": {
+    "mpName": "Scarpaleggia, Hon. Francis",
+    "constituency": "Lac-Saint-Louis",
+    "totalQ3": 134279,
+    "salaries": 71199,
+    "travel": 26850,
+    "hospitality": 3279,
+    "contracts": 32951,
+    "annualEstimate": 537116
+  },
+  "24035": {
+    "mpName": "Guay,  Claude",
+    "constituency": "LaSalle—Émard—Verdun",
+    "totalQ3": 138005,
+    "salaries": 85710,
+    "travel": 21074,
+    "hospitality": 1128,
+    "contracts": 30093,
+    "annualEstimate": 552020
+  },
+  "24036": {
+    "mpName": "Gaudreau,  Marie-Hélène",
+    "constituency": "Laurentides—Labelle",
+    "totalQ3": 116388,
+    "salaries": 67547,
+    "travel": 19381,
+    "hospitality": 1875,
+    "contracts": 27585,
+    "annualEstimate": 465552
+  },
+  "24037": {
+    "mpName": "Guilbeault, Hon. Steven",
+    "constituency": "Laurier—Sainte-Marie",
+    "totalQ3": 134322,
+    "salaries": 97954,
+    "travel": 8036,
+    "hospitality": 1221,
+    "contracts": 27110,
+    "annualEstimate": 537288
+  },
+  "24038": {
+    "mpName": "El-Khoury,  Fayçal",
+    "constituency": "Laval—Les Îles",
+    "totalQ3": 114633,
+    "salaries": 68767,
+    "travel": 13142,
+    "hospitality": 982,
+    "contracts": 31743,
+    "annualEstimate": 458532
+  },
+  "24039": {
+    "mpName": "Watchorn,  Tim",
+    "constituency": "Les Pays-d'en-Haut",
+    "totalQ3": 164416,
+    "salaries": 96057,
+    "travel": 17726,
+    "hospitality": 929,
+    "contracts": 49704,
+    "annualEstimate": 657664
+  },
+  "24040": {
+    "mpName": "Gourde,  Jacques",
+    "constituency": "Lévis—Lotbinière",
+    "totalQ3": 175165,
+    "salaries": 80557,
+    "travel": 20677,
+    "hospitality": 2580,
+    "contracts": 71352,
+    "annualEstimate": 700660
+  },
+  "24041": {
+    "mpName": "Romanado,  Sherry",
+    "constituency": "Longueuil—Charles-LeMoyne",
+    "totalQ3": 127052,
+    "salaries": 72581,
+    "travel": 20309,
+    "hospitality": 446,
+    "contracts": 33716,
+    "annualEstimate": 508208
+  },
+  "24043": {
+    "mpName": "Lightbound, Hon. Joël",
+    "constituency": "Louis-Hébert",
+    "totalQ3": 145591,
+    "salaries": 102745,
+    "travel": 19546,
+    "hospitality": 614,
+    "contracts": 22685,
+    "annualEstimate": 582364
+  },
+  "24044": {
+    "mpName": "Lambropoulos,  Emmanuella",
+    "constituency": "Saint-Laurent",
+    "totalQ3": 105082,
+    "salaries": 67478,
+    "travel": 4879,
+    "hospitality": 517,
+    "contracts": 32210,
+    "annualEstimate": 420328
+  },
+  "24045": {
+    "mpName": "Leitão,  Carlos",
+    "constituency": "Marc-Aurèle-Fortin",
+    "totalQ3": 139262,
+    "salaries": 87205,
+    "travel": 8927,
+    "hospitality": 520,
+    "contracts": 42610,
+    "annualEstimate": 557048
+  },
+  "24046": {
+    "mpName": "Berthold,  Luc",
+    "constituency": "Mégantic—L'Érable—Lotbinière",
+    "totalQ3": 119529,
+    "salaries": 68876,
+    "travel": 17035,
+    "hospitality": 1124,
+    "contracts": 32494,
+    "annualEstimate": 478116
+  },
+  "24047": {
+    "mpName": "Garon,  Jean-Denis",
+    "constituency": "Mirabel",
+    "totalQ3": 145919,
+    "salaries": 89165,
+    "travel": 18236,
+    "hospitality": 1146,
+    "contracts": 37372,
+    "annualEstimate": 583676
+  },
+  "24049": {
+    "mpName": "Thériault,  Luc",
+    "constituency": "Montcalm",
+    "totalQ3": 135752,
+    "salaries": 77216,
+    "travel": 17066,
+    "hospitality": 1676,
+    "contracts": 39794,
+    "annualEstimate": 543008
+  },
+  "24050": {
+    "mpName": "Hardy,  Gabriel",
+    "constituency": "Montmorency—Charlevoix",
+    "totalQ3": 186267,
+    "salaries": 96608,
+    "travel": 24414,
+    "hospitality": 394,
+    "contracts": 64851,
+    "annualEstimate": 745068
+  },
+  "24051": {
+    "mpName": "Housefather,  Anthony",
+    "constituency": "Mount Royal",
+    "totalQ3": 140358,
+    "salaries": 91608,
+    "travel": 15725,
+    "hospitality": 937,
+    "contracts": 32089,
+    "annualEstimate": 561432
+  },
+  "24052": {
+    "mpName": "Gainey, Hon. Anna",
+    "constituency": "Notre-Dame-de-Grâce—Westmount",
+    "totalQ3": 102088,
+    "salaries": 67537,
+    "travel": 17535,
+    "hospitality": 809,
+    "contracts": 16206,
+    "annualEstimate": 408352
+  },
+  "24053": {
+    "mpName": "Bendayan, Hon. Rachel",
+    "constituency": "Outremont",
+    "totalQ3": 140482,
+    "salaries": 99732,
+    "travel": 7304,
+    "hospitality": 3888,
+    "contracts": 29558,
+    "annualEstimate": 561928
+  },
+  "24054": {
+    "mpName": "Michel, Hon. Marjorie",
+    "constituency": "Papineau",
+    "totalQ3": 112604,
+    "salaries": 72213,
+    "travel": 9850,
+    "hospitality": 1788,
+    "contracts": 28753,
+    "annualEstimate": 450416
+  },
+  "24055": {
+    "mpName": "Barsalou-Duval,  Xavier",
+    "constituency": "Pierre-Boucher—Les Patriotes—Verchères",
+    "totalQ3": 133131,
+    "salaries": 82203,
+    "travel": 13933,
+    "hospitality": 1536,
+    "contracts": 35459,
+    "annualEstimate": 532524
+  },
+  "24056": {
+    "mpName": "Zuberi,  Sameer",
+    "constituency": "Pierrefonds—Dollard",
+    "totalQ3": 142315,
+    "salaries": 85905,
+    "travel": 24849,
+    "hospitality": 3790,
+    "contracts": 27771,
+    "annualEstimate": 569260
+  },
+  "24057": {
+    "mpName": "Chatel,  Sophie",
+    "constituency": "Pontiac—Kitigan Zibi",
+    "totalQ3": 135744,
+    "salaries": 100742,
+    "travel": 3375,
+    "hospitality": 739,
+    "contracts": 30888,
+    "annualEstimate": 542976
+  },
+  "24058": {
+    "mpName": "Godin,  Joël",
+    "constituency": "Portneuf—Jacques-Cartier",
+    "totalQ3": 157067,
+    "salaries": 79853,
+    "travel": 25063,
+    "hospitality": 1177,
+    "contracts": 50974,
+    "annualEstimate": 628268
+  },
+  "24059": {
+    "mpName": "Duclos, Hon. Jean-Yves",
+    "constituency": "Québec Centre",
+    "totalQ3": 124101,
+    "salaries": 86542,
+    "travel": 13453,
+    "hospitality": 614,
+    "contracts": 23493,
+    "annualEstimate": 496404
+  },
+  "24060": {
+    "mpName": "Bonin,  Patrick",
+    "constituency": "Repentigny",
+    "totalQ3": 136936,
+    "salaries": 94047,
+    "travel": 14041,
+    "hospitality": 1084,
+    "contracts": 27764,
+    "annualEstimate": 547744
+  },
+  "24061": {
+    "mpName": "Miao,  Wilson",
+    "constituency": "Richmond Centre",
+    "totalQ3": -69,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": -69,
+    "annualEstimate": -276
+  },
+  "24062": {
+    "mpName": "Blanchette-Joncas,  Maxime",
+    "constituency": "Rimouski—La Matapédia",
+    "totalQ3": 166541,
+    "salaries": 65974,
+    "travel": 40037,
+    "hospitality": 920,
+    "contracts": 59609,
+    "annualEstimate": 666164
+  },
+  "24063": {
+    "mpName": "Desilets,  Luc",
+    "constituency": "Rivière-des-Mille-Îles",
+    "totalQ3": 174640,
+    "salaries": 95267,
+    "travel": 18552,
+    "hospitality": 2710,
+    "contracts": 58111,
+    "annualEstimate": 698560
+  },
+  "24064": {
+    "mpName": "Fortin,  Rhéal Éloi",
+    "constituency": "Rivière-du-Nord",
+    "totalQ3": 127456,
+    "salaries": 77347,
+    "travel": 11204,
+    "hospitality": 1692,
+    "contracts": 37213,
+    "annualEstimate": 509824
+  },
+  "24065": {
+    "mpName": "Boulerice,  Alexandre",
+    "constituency": "Rosemont—La Petite-Patrie",
+    "totalQ3": 112307,
+    "salaries": 74283,
+    "travel": 14279,
+    "hospitality": 840,
+    "contracts": 22907,
+    "annualEstimate": 449228
+  },
+  "24066": {
+    "mpName": "Savard-Tremblay,  Simon-Pierre",
+    "constituency": "Saint-Hyacinthe—Bagot—Acton",
+    "totalQ3": 143995,
+    "salaries": 92380,
+    "travel": 15164,
+    "hospitality": 1136,
+    "contracts": 35315,
+    "annualEstimate": 575980
+  },
+  "24069": {
+    "mpName": "Lattanzio,  Patricia",
+    "constituency": "Saint-Léonard—Saint-Michel",
+    "totalQ3": 126108,
+    "salaries": 76856,
+    "travel": 19390,
+    "hospitality": 189,
+    "contracts": 29673,
+    "annualEstimate": 504432
+  },
+  "24070": {
+    "mpName": "Champagne, Hon. François-Philippe",
+    "constituency": "Saint-Maurice—Champlain",
+    "totalQ3": 131976,
+    "salaries": 89991,
+    "travel": 13931,
+    "hospitality": 436,
+    "contracts": 27618,
+    "annualEstimate": 527904
+  },
+  "24071": {
+    "mpName": "Larouche,  Andréanne",
+    "constituency": "Shefford",
+    "totalQ3": 129624,
+    "salaries": 57075,
+    "travel": 19989,
+    "hospitality": 2611,
+    "contracts": 49949,
+    "annualEstimate": 518496
+  },
+  "24072": {
+    "mpName": "Brière, Hon. Élisabeth",
+    "constituency": "Sherbrooke",
+    "totalQ3": 121637,
+    "salaries": 72877,
+    "travel": 13995,
+    "hospitality": 1017,
+    "contracts": 33748,
+    "annualEstimate": 486548
+  },
+  "24073": {
+    "mpName": "Chabot,  Louise",
+    "constituency": "Thérèse-De Blainville",
+    "totalQ3": 120834,
+    "salaries": 89021,
+    "travel": 9434,
+    "hospitality": 135,
+    "contracts": 22244,
+    "annualEstimate": 483336
+  },
+  "24074": {
+    "mpName": "Desrochers,  Caroline",
+    "constituency": "Trois-Rivières",
+    "totalQ3": 150001,
+    "salaries": 97848,
+    "travel": 14988,
+    "hospitality": 628,
+    "contracts": 36538,
+    "annualEstimate": 600004
+  },
+  "24075": {
+    "mpName": "Schiefke,  Peter",
+    "constituency": "Vaudreuil",
+    "totalQ3": 174206,
+    "salaries": 90736,
+    "travel": 27596,
+    "hospitality": 12211,
+    "contracts": 43663,
+    "annualEstimate": 696824
+  },
+  "24076": {
+    "mpName": "Miller, Hon. Marc",
+    "constituency": "Ville-Marie—Le Sud-Ouest—Île-des-Soeurs",
+    "totalQ3": 106568,
+    "salaries": 91767,
+    "travel": 7661,
+    "hospitality": 0,
+    "contracts": 7140,
+    "annualEstimate": 426272
+  },
+  "24077": {
+    "mpName": "Koutrakis,  Annie",
+    "constituency": "Vimy",
+    "totalQ3": 155453,
+    "salaries": 89368,
+    "travel": 17592,
+    "hospitality": 1974,
+    "contracts": 46518,
+    "annualEstimate": 621812
+  },
+  "35001": {
+    "mpName": "Holland, Hon. Mark",
+    "constituency": "Ajax",
+    "totalQ3": 121184,
+    "salaries": 86677,
+    "travel": 14070,
+    "hospitality": 507,
+    "contracts": 19929,
+    "annualEstimate": 484736
+  },
+  "35002": {
+    "mpName": "Gallant,  Cheryl",
+    "constituency": "Algonquin—Renfrew—Pembroke",
+    "totalQ3": 155451,
+    "salaries": 112496,
+    "travel": 13527,
+    "hospitality": 484,
+    "contracts": 28944,
+    "annualEstimate": 621804
+  },
+  "35003": {
+    "mpName": "Cobena,  Sandra",
+    "constituency": "Newmarket—Aurora",
+    "totalQ3": 150372,
+    "salaries": 95685,
+    "travel": 22744,
+    "hospitality": 1545,
+    "contracts": 30399,
+    "annualEstimate": 601488
+  },
+  "35004": {
+    "mpName": "Brassard,  John",
+    "constituency": "Barrie South—Innisfil",
+    "totalQ3": 123895,
+    "salaries": 89032,
+    "travel": 14461,
+    "hospitality": 1446,
+    "contracts": 18956,
+    "annualEstimate": 495580
+  },
+  "35005": {
+    "mpName": "Shipley,  Doug",
+    "constituency": "Barrie—Springwater—Oro-Medonte",
+    "totalQ3": 138069,
+    "salaries": 88547,
+    "travel": 14378,
+    "hospitality": 656,
+    "contracts": 34488,
+    "annualEstimate": 552276
+  },
+  "35006": {
+    "mpName": "Malette,  Chris",
+    "constituency": "Bay of Quinte",
+    "totalQ3": 128362,
+    "salaries": 89738,
+    "travel": 14758,
+    "hospitality": 843,
+    "contracts": 23022,
+    "annualEstimate": 513448
+  },
+  "35007": {
+    "mpName": "Erskine-Smith, Hon. Nathaniel",
+    "constituency": "Beaches—East York",
+    "totalQ3": 139411,
+    "salaries": 89149,
+    "travel": 18486,
+    "hospitality": 0,
+    "contracts": 31776,
+    "annualEstimate": 557644
+  },
+  "35008": {
+    "mpName": "Jivani,  Jamil",
+    "constituency": "Bowmanville—Oshawa North",
+    "totalQ3": 154748,
+    "salaries": 104992,
+    "travel": 22699,
+    "hospitality": 2178,
+    "contracts": 24879,
+    "annualEstimate": 618992
+  },
+  "35009": {
+    "mpName": "Sodhi,  Amandeep",
+    "constituency": "Brampton Centre",
+    "totalQ3": 100595,
+    "salaries": 65137,
+    "travel": 6384,
+    "hospitality": 483,
+    "contracts": 28590,
+    "annualEstimate": 402380
+  },
+  "35010": {
+    "mpName": "Sidhu, Hon. Maninder",
+    "constituency": "Brampton East",
+    "totalQ3": 109249,
+    "salaries": 77353,
+    "travel": 12028,
+    "hospitality": 0,
+    "contracts": 19868,
+    "annualEstimate": 436996
+  },
+  "35011": {
+    "mpName": "Sahota, Hon. Ruby",
+    "constituency": "Brampton North—Caledon",
+    "totalQ3": 101637,
+    "salaries": 59115,
+    "travel": 15254,
+    "hospitality": -1181,
+    "contracts": 28449,
+    "annualEstimate": 406548
+  },
+  "35012": {
+    "mpName": "Sidhu,  Sonia",
+    "constituency": "Brampton South",
+    "totalQ3": 150364,
+    "salaries": 100550,
+    "travel": 12550,
+    "hospitality": 104,
+    "contracts": 37160,
+    "annualEstimate": 601456
+  },
+  "35013": {
+    "mpName": "Gill,  Amarjeet",
+    "constituency": "Brampton West",
+    "totalQ3": 75780,
+    "salaries": 49606,
+    "travel": 12990,
+    "hospitality": 47,
+    "contracts": 13136,
+    "annualEstimate": 303120
+  },
+  "35014": {
+    "mpName": "Ali, Hon. Shafqat",
+    "constituency": "Brampton—Chinguacousy Park",
+    "totalQ3": 129131,
+    "salaries": 68625,
+    "travel": 19120,
+    "hospitality": 2078,
+    "contracts": 39308,
+    "annualEstimate": 516524
+  },
+  "35015": {
+    "mpName": "Brock,  Larry",
+    "constituency": "Brantford—Brant South—Six Nations",
+    "totalQ3": 150401,
+    "salaries": 101426,
+    "travel": 19829,
+    "hospitality": 2303,
+    "contracts": 26844,
+    "annualEstimate": 601604
+  },
+  "35016": {
+    "mpName": "Ruff,  Alex",
+    "constituency": "Bruce—Grey—Owen Sound",
+    "totalQ3": 92315,
+    "salaries": 59609,
+    "travel": 12446,
+    "hospitality": 11,
+    "contracts": 20250,
+    "annualEstimate": 369260
+  },
+  "35017": {
+    "mpName": "Van Koeverden, Hon. Adam",
+    "constituency": "Burlington North—Milton West",
+    "totalQ3": 141405,
+    "salaries": 96932,
+    "travel": 13347,
+    "hospitality": 287,
+    "contracts": 30840,
+    "annualEstimate": 565620
+  },
+  "35019": {
+    "mpName": "Cody,  Connie",
+    "constituency": "Cambridge",
+    "totalQ3": 138118,
+    "salaries": 71711,
+    "travel": 22913,
+    "hospitality": 2340,
+    "contracts": 41156,
+    "annualEstimate": 552472
+  },
+  "35020": {
+    "mpName": "Poilievre, Hon. Pierre",
+    "constituency": "Carleton",
+    "totalQ3": 99739,
+    "salaries": 80883,
+    "travel": 0,
+    "hospitality": 350,
+    "contracts": 18506,
+    "annualEstimate": 398956
+  },
+  "35021": {
+    "mpName": "Epp,  Dave",
+    "constituency": "Chatham-Kent—Leamington",
+    "totalQ3": 108494,
+    "salaries": 63412,
+    "travel": 23420,
+    "hospitality": 629,
+    "contracts": 21033,
+    "annualEstimate": 433976
+  },
+  "35022": {
+    "mpName": "Dzerowicz,  Julie",
+    "constituency": "Davenport",
+    "totalQ3": 138870,
+    "salaries": 63240,
+    "travel": 33524,
+    "hospitality": 1477,
+    "contracts": 40629,
+    "annualEstimate": 555480
+  },
+  "35023": {
+    "mpName": "Chi,  Maggie",
+    "constituency": "Don Valley North",
+    "totalQ3": 158048,
+    "salaries": 75220,
+    "travel": 20484,
+    "hospitality": 4437,
+    "contracts": 57906,
+    "annualEstimate": 632192
+  },
+  "35024": {
+    "mpName": "Oliphant, Hon. Robert",
+    "constituency": "Don Valley West",
+    "totalQ3": 122924,
+    "salaries": 74612,
+    "travel": 29079,
+    "hospitality": 644,
+    "contracts": 18588,
+    "annualEstimate": 491696
+  },
+  "35025": {
+    "mpName": "Seeback,  Kyle",
+    "constituency": "Dufferin—Caledon",
+    "totalQ3": 137138,
+    "salaries": 83180,
+    "travel": 29788,
+    "hospitality": 2259,
+    "contracts": 21911,
+    "annualEstimate": 548552
+  },
+  "35026": {
+    "mpName": "Gasparro,  Vince",
+    "constituency": "Eglinton—Lawrence",
+    "totalQ3": 114033,
+    "salaries": 76981,
+    "travel": 15737,
+    "hospitality": 448,
+    "contracts": 20867,
+    "annualEstimate": 456132
+  },
+  "35027": {
+    "mpName": "Vecchio,  Karen",
+    "constituency": "Elgin—Middlesex—London",
+    "totalQ3": 9,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 9,
+    "annualEstimate": 36
+  },
+  "35028": {
+    "mpName": "Lewis,  Chris",
+    "constituency": "Essex",
+    "totalQ3": 177284,
+    "salaries": 97904,
+    "travel": 24143,
+    "hospitality": 265,
+    "contracts": 54972,
+    "annualEstimate": 709136
+  },
+  "35029": {
+    "mpName": "Baker,  Yvan",
+    "constituency": "Etobicoke Centre",
+    "totalQ3": 168507,
+    "salaries": 75218,
+    "travel": 43840,
+    "hospitality": 1134,
+    "contracts": 48315,
+    "annualEstimate": 674028
+  },
+  "35030": {
+    "mpName": "Zerucelli, Hon. John",
+    "constituency": "Etobicoke North",
+    "totalQ3": 109158,
+    "salaries": 80371,
+    "travel": 7762,
+    "hospitality": 128,
+    "contracts": 20897,
+    "annualEstimate": 436632
+  },
+  "35031": {
+    "mpName": "Maloney,  James",
+    "constituency": "Etobicoke—Lakeshore",
+    "totalQ3": 138301,
+    "salaries": 89016,
+    "travel": 31784,
+    "hospitality": 139,
+    "contracts": 17361,
+    "annualEstimate": 553204
+  },
+  "35032": {
+    "mpName": "Muys,  Dan",
+    "constituency": "Flamborough—Glanbrook—Brant North",
+    "totalQ3": 141496,
+    "salaries": 72222,
+    "travel": 25572,
+    "hospitality": 0,
+    "contracts": 43701,
+    "annualEstimate": 565984
+  },
+  "35033": {
+    "mpName": "O'Rourke,  Dominique",
+    "constituency": "Guelph",
+    "totalQ3": 149278,
+    "salaries": 77718,
+    "travel": 27042,
+    "hospitality": 969,
+    "contracts": 43548,
+    "annualEstimate": 597112
+  },
+  "35034": {
+    "mpName": "Lewis,  Leslyn",
+    "constituency": "Haldimand—Norfolk",
+    "totalQ3": 144854,
+    "salaries": 90092,
+    "travel": 43161,
+    "hospitality": 2642,
+    "contracts": 8959,
+    "annualEstimate": 579416
+  },
+  "35035": {
+    "mpName": "Schmale,  Jamie",
+    "constituency": "Haliburton—Kawartha Lakes",
+    "totalQ3": 166133,
+    "salaries": 114478,
+    "travel": 26991,
+    "hospitality": 814,
+    "contracts": 23850,
+    "annualEstimate": 664532
+  },
+  "35036": {
+    "mpName": "Green,  Matthew",
+    "constituency": "Hamilton Centre",
+    "totalQ3": 113391,
+    "salaries": 79854,
+    "travel": 14366,
+    "hospitality": 79,
+    "contracts": 19093,
+    "annualEstimate": 453564
+  },
+  "35037": {
+    "mpName": "Collins,  Chad",
+    "constituency": "Hamilton East—Stoney Creek",
+    "totalQ3": 140923,
+    "salaries": 78256,
+    "travel": 17620,
+    "hospitality": 1287,
+    "contracts": 43760,
+    "annualEstimate": 563692
+  },
+  "35038": {
+    "mpName": "Hepfner,  Lisa",
+    "constituency": "Hamilton Mountain",
+    "totalQ3": 122323,
+    "salaries": 87205,
+    "travel": 14208,
+    "hospitality": 404,
+    "contracts": 20507,
+    "annualEstimate": 489292
+  },
+  "35039": {
+    "mpName": "Danko,  John-Paul",
+    "constituency": "Hamilton West—Ancaster—Dundas",
+    "totalQ3": 126891,
+    "salaries": 78954,
+    "travel": 19022,
+    "hospitality": 0,
+    "contracts": 28915,
+    "annualEstimate": 507564
+  },
+  "35040": {
+    "mpName": "Kramp-Neuman,  Shelby",
+    "constituency": "Hastings—Lennox and Addington—Tyendinaga",
+    "totalQ3": 149461,
+    "salaries": 92556,
+    "travel": 22764,
+    "hospitality": 2128,
+    "contracts": 32013,
+    "annualEstimate": 597844
+  },
+  "35041": {
+    "mpName": "Sgro, Hon. Judy A.",
+    "constituency": "Humber River—Black Creek",
+    "totalQ3": 156572,
+    "salaries": 100869,
+    "travel": 30055,
+    "hospitality": 2430,
+    "contracts": 23218,
+    "annualEstimate": 626288
+  },
+  "35043": {
+    "mpName": "Sudds, Hon. Jenna",
+    "constituency": "Kanata",
+    "totalQ3": 120072,
+    "salaries": 83694,
+    "travel": 3166,
+    "hospitality": 1023,
+    "contracts": 32190,
+    "annualEstimate": 480288
+  },
+  "35044": {
+    "mpName": "Malette,  Gaétan",
+    "constituency": "Kapuskasing—Timmins—Mushkegowuk",
+    "totalQ3": 134754,
+    "salaries": 89702,
+    "travel": 18674,
+    "hospitality": 71,
+    "contracts": 26307,
+    "annualEstimate": 539016
+  },
+  "35045": {
+    "mpName": "Melillo,  Eric",
+    "constituency": "Kenora—Kiiwetinoong",
+    "totalQ3": 135073,
+    "salaries": 82043,
+    "travel": 31690,
+    "hospitality": 204,
+    "contracts": 21135,
+    "annualEstimate": 540292
+  },
+  "35046": {
+    "mpName": "Roberts,  Anna",
+    "constituency": "King—Vaughan",
+    "totalQ3": 125003,
+    "salaries": 60920,
+    "travel": 19794,
+    "hospitality": 60,
+    "contracts": 44229,
+    "annualEstimate": 500012
+  },
+  "35048": {
+    "mpName": "DeRidder,  Kelly",
+    "constituency": "Kitchener Centre",
+    "totalQ3": 140891,
+    "salaries": 60103,
+    "travel": 23583,
+    "hospitality": 6250,
+    "contracts": 50955,
+    "annualEstimate": 563564
+  },
+  "35049": {
+    "mpName": "Bradford,  Valerie",
+    "constituency": "Kitchener South—Hespeler",
+    "totalQ3": 111284,
+    "salaries": 67660,
+    "travel": 9150,
+    "hospitality": 2192,
+    "contracts": 32281,
+    "annualEstimate": 445136
+  },
+  "35050": {
+    "mpName": "Louis,  Tim",
+    "constituency": "Kitchener—Conestoga",
+    "totalQ3": 149456,
+    "salaries": 88750,
+    "travel": 37088,
+    "hospitality": 31,
+    "contracts": 23588,
+    "annualEstimate": 597824
+  },
+  "35051": {
+    "mpName": "Reid,  Scott",
+    "constituency": "Lanark—Frontenac",
+    "totalQ3": 134841,
+    "salaries": 78976,
+    "travel": 243,
+    "hospitality": 350,
+    "contracts": 55273,
+    "annualEstimate": 539364
+  },
+  "35052": {
+    "mpName": "Barrett,  Michael",
+    "constituency": "Leeds—Grenville—Thousand Islands—Rideau Lakes",
+    "totalQ3": 153601,
+    "salaries": 111212,
+    "travel": 11538,
+    "hospitality": 0,
+    "contracts": 30851,
+    "annualEstimate": 614404
+  },
+  "35053": {
+    "mpName": "Fragiskatos,  Peter",
+    "constituency": "London Centre",
+    "totalQ3": 126139,
+    "salaries": 86132,
+    "travel": 19709,
+    "hospitality": 0,
+    "contracts": 20298,
+    "annualEstimate": 504556
+  },
+  "35054": {
+    "mpName": "Kayabaga, Hon. Arielle",
+    "constituency": "London West",
+    "totalQ3": 134358,
+    "salaries": 89751,
+    "travel": 12522,
+    "hospitality": 165,
+    "contracts": 31920,
+    "annualEstimate": 537432
+  },
+  "35055": {
+    "mpName": "Rood,  Lianne",
+    "constituency": "Middlesex—London",
+    "totalQ3": 128437,
+    "salaries": 85321,
+    "travel": 24750,
+    "hospitality": 967,
+    "contracts": 17399,
+    "annualEstimate": 513748
+  },
+  "35056": {
+    "mpName": "Jaczek, Hon. Helena",
+    "constituency": "Markham—Stouffville",
+    "totalQ3": 125281,
+    "salaries": 92971,
+    "travel": 13783,
+    "hospitality": 425,
+    "contracts": 18101,
+    "annualEstimate": 501124
+  },
+  "35057": {
+    "mpName": "Lantsman,  Melissa",
+    "constituency": "Thornhill",
+    "totalQ3": 158259,
+    "salaries": 80503,
+    "travel": 44887,
+    "hospitality": 150,
+    "contracts": 32720,
+    "annualEstimate": 633036
+  },
+  "35060": {
+    "mpName": "Tesser Derksen,  Kristina",
+    "constituency": "Milton East—Halton Hills South",
+    "totalQ3": 89267,
+    "salaries": 68746,
+    "travel": 12353,
+    "hospitality": 586,
+    "contracts": 7583,
+    "annualEstimate": 357068
+  },
+  "35061": {
+    "mpName": "Al Soud,  Fares",
+    "constituency": "Mississauga Centre",
+    "totalQ3": 110654,
+    "salaries": 74457,
+    "travel": 20176,
+    "hospitality": 0,
+    "contracts": 16022,
+    "annualEstimate": 442616
+  },
+  "35062": {
+    "mpName": "Fonseca,  Peter",
+    "constituency": "Mississauga East—Cooksville",
+    "totalQ3": 111606,
+    "salaries": 66596,
+    "travel": 25352,
+    "hospitality": 3736,
+    "contracts": 15922,
+    "annualEstimate": 446424
+  },
+  "35063": {
+    "mpName": "Valdez, Hon. Rechie",
+    "constituency": "Mississauga—Streetsville",
+    "totalQ3": 166018,
+    "salaries": 88388,
+    "travel": 12025,
+    "hospitality": 8582,
+    "contracts": 57022,
+    "annualEstimate": 664072
+  },
+  "35067": {
+    "mpName": "Vandenbeld,  Anita",
+    "constituency": "Ottawa West—Nepean",
+    "totalQ3": 119334,
+    "salaries": 101953,
+    "travel": 928,
+    "hospitality": 137,
+    "contracts": 16316,
+    "annualEstimate": 477336
+  },
+  "35068": {
+    "mpName": "Davidson,  Scot",
+    "constituency": "New Tecumseth—Gwillimbury",
+    "totalQ3": 130493,
+    "salaries": 79401,
+    "travel": 21251,
+    "hospitality": 1399,
+    "contracts": 28442,
+    "annualEstimate": 521972
+  },
+  "35070": {
+    "mpName": "Baldinelli,  Tony",
+    "constituency": "Niagara Falls—Niagara-on-the-Lake",
+    "totalQ3": 124098,
+    "salaries": 81457,
+    "travel": 15200,
+    "hospitality": 151,
+    "contracts": 27289,
+    "annualEstimate": 496392
+  },
+  "35071": {
+    "mpName": "Davies,  Fred",
+    "constituency": "Niagara South",
+    "totalQ3": 124246,
+    "salaries": 80861,
+    "travel": 18503,
+    "hospitality": 418,
+    "contracts": 24465,
+    "annualEstimate": 496984
+  },
+  "35072": {
+    "mpName": "Allison,  Dean",
+    "constituency": "Niagara West",
+    "totalQ3": 174303,
+    "salaries": 100125,
+    "travel": 33625,
+    "hospitality": 2391,
+    "contracts": 38162,
+    "annualEstimate": 697212
+  },
+  "35073": {
+    "mpName": "Rochefort,  Pauline",
+    "constituency": "Nipissing—Timiskaming",
+    "totalQ3": 164632,
+    "salaries": 115524,
+    "travel": 22043,
+    "hospitality": 1232,
+    "contracts": 25833,
+    "annualEstimate": 658528
+  },
+  "35074": {
+    "mpName": "Lawrence,  Philip",
+    "constituency": "Northumberland—Clarke",
+    "totalQ3": 141938,
+    "salaries": 95944,
+    "travel": 15906,
+    "hospitality": 1416,
+    "contracts": 28672,
+    "annualEstimate": 567752
+  },
+  "35075": {
+    "mpName": "Anand, Hon. Anita",
+    "constituency": "Oakville East",
+    "totalQ3": 118297,
+    "salaries": 82470,
+    "travel": 9809,
+    "hospitality": 409,
+    "contracts": 25609,
+    "annualEstimate": 473188
+  },
+  "35076": {
+    "mpName": "Acan,  Sima",
+    "constituency": "Oakville West",
+    "totalQ3": 136764,
+    "salaries": 102464,
+    "travel": 19993,
+    "hospitality": 5,
+    "contracts": 14302,
+    "annualEstimate": 547056
+  },
+  "35077": {
+    "mpName": "Lalonde,  Marie-France",
+    "constituency": "Orléans",
+    "totalQ3": 104037,
+    "salaries": 80085,
+    "travel": 2559,
+    "hospitality": 1558,
+    "contracts": 19835,
+    "annualEstimate": 416148
+  },
+  "35079": {
+    "mpName": "Naqvi,  Yasir",
+    "constituency": "Ottawa Centre",
+    "totalQ3": 128513,
+    "salaries": 96244,
+    "travel": 822,
+    "hospitality": 2613,
+    "contracts": 28835,
+    "annualEstimate": 514052
+  },
+  "35080": {
+    "mpName": "McGuinty, Hon. David",
+    "constituency": "Ottawa South",
+    "totalQ3": 100834,
+    "salaries": 78185,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 22650,
+    "annualEstimate": 403336
+  },
+  "35082": {
+    "mpName": "Fortier, Hon. Mona",
+    "constituency": "Ottawa—Vanier—Gloucester",
+    "totalQ3": 114573,
+    "salaries": 101842,
+    "travel": 3502,
+    "hospitality": 999,
+    "contracts": 8229,
+    "annualEstimate": 458292
+  },
+  "35083": {
+    "mpName": "Khanna,  Arpan",
+    "constituency": "Oxford",
+    "totalQ3": 139448,
+    "salaries": 88640,
+    "travel": 13724,
+    "hospitality": 0,
+    "contracts": 37084,
+    "annualEstimate": 557792
+  },
+  "35084": {
+    "mpName": "Aitchison,  Scott",
+    "constituency": "Parry Sound—Muskoka",
+    "totalQ3": 162931,
+    "salaries": 98345,
+    "travel": 39071,
+    "hospitality": 1222,
+    "contracts": 24294,
+    "annualEstimate": 651724
+  },
+  "35085": {
+    "mpName": "Nater,  John",
+    "constituency": "Perth—Wellington",
+    "totalQ3": 127395,
+    "salaries": 95715,
+    "travel": 18650,
+    "hospitality": 0,
+    "contracts": 13030,
+    "annualEstimate": 509580
+  },
+  "35086": {
+    "mpName": "Harrison,  Emma",
+    "constituency": "Peterborough",
+    "totalQ3": 116169,
+    "salaries": 81436,
+    "travel": 16344,
+    "hospitality": 0,
+    "contracts": 18388,
+    "annualEstimate": 464676
+  },
+  "35087": {
+    "mpName": "Nathan,  Juanita",
+    "constituency": "Pickering—Brooklin",
+    "totalQ3": 147264,
+    "salaries": 69746,
+    "travel": 33908,
+    "hospitality": 1434,
+    "contracts": 42175,
+    "annualEstimate": 589056
+  },
+  "35090": {
+    "mpName": "Gladu,  Marilyn",
+    "constituency": "Sarnia—Lambton—Bkejwanong",
+    "totalQ3": 167134,
+    "salaries": 112460,
+    "travel": 26989,
+    "hospitality": 516,
+    "contracts": 27170,
+    "annualEstimate": 668536
+  },
+  "35091": {
+    "mpName": "Sheehan,  Terry",
+    "constituency": "Sault Ste. Marie—Algoma",
+    "totalQ3": 160616,
+    "salaries": 74496,
+    "travel": 46883,
+    "hospitality": 401,
+    "contracts": 38836,
+    "annualEstimate": 642464
+  },
+  "35092": {
+    "mpName": "Zahid,  Salma",
+    "constituency": "Scarborough Centre—Don Valley East",
+    "totalQ3": 137136,
+    "salaries": 87274,
+    "travel": 21952,
+    "hospitality": 3599,
+    "contracts": 24311,
+    "annualEstimate": 548544
+  },
+  "35093": {
+    "mpName": "Chen,  Shaun",
+    "constituency": "Scarborough North",
+    "totalQ3": 118062,
+    "salaries": 64400,
+    "travel": 17800,
+    "hospitality": 354,
+    "contracts": 35508,
+    "annualEstimate": 472248
+  },
+  "35094": {
+    "mpName": "Yip,  Jean",
+    "constituency": "Scarborough—Agincourt",
+    "totalQ3": 122629,
+    "salaries": 89497,
+    "travel": 4607,
+    "hospitality": 3041,
+    "contracts": 25485,
+    "annualEstimate": 490516
+  },
+  "35097": {
+    "mpName": "Chambers,  Adam",
+    "constituency": "Simcoe North",
+    "totalQ3": 127481,
+    "salaries": 75373,
+    "travel": 32106,
+    "hospitality": 435,
+    "contracts": 19567,
+    "annualEstimate": 509924
+  },
+  "35098": {
+    "mpName": "Dowdall,  Terry",
+    "constituency": "Simcoe—Grey",
+    "totalQ3": 136782,
+    "salaries": 73941,
+    "travel": 18303,
+    "hospitality": 0,
+    "contracts": 44538,
+    "annualEstimate": 547128
+  },
+  "35099": {
+    "mpName": "Vuong,  Kevin",
+    "constituency": "Spadina—Fort York",
+    "totalQ3": 7,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 7,
+    "annualEstimate": 28
+  },
+  "35100": {
+    "mpName": "Bittle,  Chris",
+    "constituency": "St. Catharines",
+    "totalQ3": 163859,
+    "salaries": 94181,
+    "travel": 46730,
+    "hospitality": 0,
+    "contracts": 22947,
+    "annualEstimate": 655436
+  },
+  "35101": {
+    "mpName": "Duncan,  Eric",
+    "constituency": "Stormont—Dundas—Glengarry",
+    "totalQ3": 118887,
+    "salaries": 80430,
+    "travel": 13093,
+    "hospitality": 269,
+    "contracts": 25095,
+    "annualEstimate": 475548
+  },
+  "35102": {
+    "mpName": "Lapointe,  Viviane",
+    "constituency": "Sudbury",
+    "totalQ3": 131947,
+    "salaries": 81731,
+    "travel": 24360,
+    "hospitality": 378,
+    "contracts": 25478,
+    "annualEstimate": 527788
+  },
+  "35103": {
+    "mpName": "Serré,  Marc",
+    "constituency": "Nickel Belt",
+    "totalQ3": 8007,
+    "salaries": 1797,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 6210,
+    "annualEstimate": 32028
+  },
+  "35104": {
+    "mpName": "Bardeesy,  Karim",
+    "constituency": "Taiaiako'n—Parkdale—High Park",
+    "totalQ3": 135548,
+    "salaries": 98574,
+    "travel": 18993,
+    "hospitality": 277,
+    "contracts": 17704,
+    "annualEstimate": 542192
+  },
+  "35106": {
+    "mpName": "Powlowski,  Marcus",
+    "constituency": "Thunder Bay—Rainy River",
+    "totalQ3": 130875,
+    "salaries": 78433,
+    "travel": 25957,
+    "hospitality": 461,
+    "contracts": 26025,
+    "annualEstimate": 523500
+  },
+  "35108": {
+    "mpName": "Ien, Hon. Marci",
+    "constituency": "Toronto Centre",
+    "totalQ3": 178349,
+    "salaries": 73579,
+    "travel": 21275,
+    "hospitality": 792,
+    "contracts": 82704,
+    "annualEstimate": 713396
+  },
+  "35109": {
+    "mpName": "Dabrusin, Hon. Julie",
+    "constituency": "Toronto—Danforth",
+    "totalQ3": 117435,
+    "salaries": 86061,
+    "travel": 11956,
+    "hospitality": 0,
+    "contracts": 19418,
+    "annualEstimate": 469740
+  },
+  "35111": {
+    "mpName": "Guglielmin,  Michael",
+    "constituency": "Vaughan—Woodbridge",
+    "totalQ3": 142971,
+    "salaries": 77860,
+    "travel": 14296,
+    "hospitality": 62,
+    "contracts": 50754,
+    "annualEstimate": 571884
+  },
+  "35112": {
+    "mpName": "Chagger, Hon. Bardish",
+    "constituency": "Waterloo",
+    "totalQ3": 113635,
+    "salaries": 66628,
+    "travel": 20384,
+    "hospitality": 3999,
+    "contracts": 22624,
+    "annualEstimate": 454540
+  },
+  "35113": {
+    "mpName": "Chong, Hon. Michael",
+    "constituency": "Wellington—Halton Hills North",
+    "totalQ3": 145021,
+    "salaries": 108724,
+    "travel": 22755,
+    "hospitality": 44,
+    "contracts": 13497,
+    "annualEstimate": 580084
+  },
+  "35114": {
+    "mpName": "Turnbull,  Ryan",
+    "constituency": "Whitby",
+    "totalQ3": 129701,
+    "salaries": 86104,
+    "travel": 16724,
+    "hospitality": 1660,
+    "contracts": 25214,
+    "annualEstimate": 518804
+  },
+  "35115": {
+    "mpName": "Ehsassi, Hon. Ali",
+    "constituency": "Willowdale",
+    "totalQ3": 116066,
+    "salaries": 72561,
+    "travel": 11760,
+    "hospitality": 56,
+    "contracts": 31689,
+    "annualEstimate": 464264
+  },
+  "35116": {
+    "mpName": "Gill,  Harb",
+    "constituency": "Windsor West",
+    "totalQ3": 70226,
+    "salaries": 48727,
+    "travel": 4616,
+    "hospitality": 656,
+    "contracts": 16226,
+    "annualEstimate": 280904
+  },
+  "35117": {
+    "mpName": "Kusmierczyk,  Irek",
+    "constituency": "Windsor—Tecumseh",
+    "totalQ3": 10316,
+    "salaries": 6265,
+    "travel": 2190,
+    "hospitality": 0,
+    "contracts": 1861,
+    "annualEstimate": 41264
+  },
+  "35118": {
+    "mpName": "Baber,  Roman",
+    "constituency": "York Centre",
+    "totalQ3": 125506,
+    "salaries": 70686,
+    "travel": 23036,
+    "hospitality": 155,
+    "contracts": 31628,
+    "annualEstimate": 502024
+  },
+  "35120": {
+    "mpName": "Wagantall,  Cathay",
+    "constituency": "Yorkton—Melville",
+    "totalQ3": 123470,
+    "salaries": 79016,
+    "travel": 15664,
+    "hospitality": 922,
+    "contracts": 27868,
+    "annualEstimate": 493880
+  },
+  "46001": {
+    "mpName": "Jackson,  Grant",
+    "constituency": "Brandon—Souris",
+    "totalQ3": 111225,
+    "salaries": 64127,
+    "travel": 26631,
+    "hospitality": 629,
+    "contracts": 19838,
+    "annualEstimate": 444900
+  },
+  "46002": {
+    "mpName": "Belanger, Hon. Buckley",
+    "constituency": "Desnethé—Missinippi—Churchill River",
+    "totalQ3": 152394,
+    "salaries": 84904,
+    "travel": 56017,
+    "hospitality": 552,
+    "contracts": 10921,
+    "annualEstimate": 609576
+  },
+  "46003": {
+    "mpName": "Reynolds,  Colin",
+    "constituency": "Elmwood—Transcona",
+    "totalQ3": 119887,
+    "salaries": 76130,
+    "travel": 15024,
+    "hospitality": 1308,
+    "contracts": 27425,
+    "annualEstimate": 479548
+  },
+  "46004": {
+    "mpName": "Dancho,  Raquel",
+    "constituency": "Kildonan—St. Paul",
+    "totalQ3": 130395,
+    "salaries": 83047,
+    "travel": 14547,
+    "hospitality": 444,
+    "contracts": 32356,
+    "annualEstimate": 521580
+  },
+  "46005": {
+    "mpName": "Leslie,  Branden",
+    "constituency": "Portage—Lisgar",
+    "totalQ3": 119242,
+    "salaries": 80971,
+    "travel": 15866,
+    "hospitality": 230,
+    "contracts": 22175,
+    "annualEstimate": 476968
+  },
+  "46006": {
+    "mpName": "Falk,  Ted",
+    "constituency": "Provencher",
+    "totalQ3": 172739,
+    "salaries": 83729,
+    "travel": 43016,
+    "hospitality": 1027,
+    "contracts": 44967,
+    "annualEstimate": 690956
+  },
+  "46007": {
+    "mpName": "Mazier,  Dan",
+    "constituency": "Riding Mountain",
+    "totalQ3": 144950,
+    "salaries": 94919,
+    "travel": 28048,
+    "hospitality": 290,
+    "contracts": 21692,
+    "annualEstimate": 579800
+  },
+  "46008": {
+    "mpName": "Bezan,  James",
+    "constituency": "Selkirk—Interlake—Eastman",
+    "totalQ3": 159553,
+    "salaries": 99608,
+    "travel": 20227,
+    "hospitality": 1968,
+    "contracts": 37750,
+    "annualEstimate": 638212
+  },
+  "46009": {
+    "mpName": "Lavack,  Ginette",
+    "constituency": "St. Boniface—St. Vital",
+    "totalQ3": 134654,
+    "salaries": 95028,
+    "travel": 12176,
+    "hospitality": 0,
+    "contracts": 27451,
+    "annualEstimate": 538616
+  },
+  "46010": {
+    "mpName": "Gazan,  Leah",
+    "constituency": "Winnipeg Centre",
+    "totalQ3": 126278,
+    "salaries": 87288,
+    "travel": 15719,
+    "hospitality": 1108,
+    "contracts": 22163,
+    "annualEstimate": 505112
+  },
+  "46011": {
+    "mpName": "Lamoureux, Hon. Kevin",
+    "constituency": "Winnipeg North",
+    "totalQ3": 135941,
+    "salaries": 73073,
+    "travel": 28080,
+    "hospitality": 236,
+    "contracts": 34552,
+    "annualEstimate": 543764
+  },
+  "46012": {
+    "mpName": "Duguid, Hon. Terry",
+    "constituency": "Winnipeg South",
+    "totalQ3": 180598,
+    "salaries": 93062,
+    "travel": 68494,
+    "hospitality": 38,
+    "contracts": 19004,
+    "annualEstimate": 722392
+  },
+  "46014": {
+    "mpName": "Eyolfson,  Doug",
+    "constituency": "Winnipeg West",
+    "totalQ3": 83883,
+    "salaries": 56540,
+    "travel": 9747,
+    "hospitality": 0,
+    "contracts": 17597,
+    "annualEstimate": 335532
+  },
+  "47001": {
+    "mpName": "Falk,  Rosemarie",
+    "constituency": "Battlefords—Lloydminster—Meadow Lake",
+    "totalQ3": 176161,
+    "salaries": 68191,
+    "travel": 47343,
+    "hospitality": 293,
+    "contracts": 60334,
+    "annualEstimate": 704644
+  },
+  "47002": {
+    "mpName": "Block,  Kelly",
+    "constituency": "Carlton Trail—Eagle Creek",
+    "totalQ3": 132187,
+    "salaries": 93242,
+    "travel": 16687,
+    "hospitality": 105,
+    "contracts": 22153,
+    "annualEstimate": 528748
+  },
+  "47004": {
+    "mpName": "Tolmie,  Fraser",
+    "constituency": "Moose Jaw—Lake Centre—Lanigan",
+    "totalQ3": 125138,
+    "salaries": 71778,
+    "travel": 14266,
+    "hospitality": 513,
+    "contracts": 38580,
+    "annualEstimate": 500552
+  },
+  "47005": {
+    "mpName": "Hoback,  Randy",
+    "constituency": "Prince Albert",
+    "totalQ3": 182600,
+    "salaries": 99011,
+    "travel": 56251,
+    "hospitality": 531,
+    "contracts": 26807,
+    "annualEstimate": 730400
+  },
+  "47006": {
+    "mpName": "Steinley,  Warren",
+    "constituency": "Regina—Lewvan",
+    "totalQ3": 93201,
+    "salaries": 49039,
+    "travel": 15508,
+    "hospitality": 435,
+    "contracts": 28219,
+    "annualEstimate": 372804
+  },
+  "47009": {
+    "mpName": "Waugh,  Kevin",
+    "constituency": "Saskatoon South",
+    "totalQ3": 119737,
+    "salaries": 76815,
+    "travel": 13753,
+    "hospitality": 477,
+    "contracts": 28691,
+    "annualEstimate": 478948
+  },
+  "47010": {
+    "mpName": "Redekopp,  Brad",
+    "constituency": "Saskatoon West",
+    "totalQ3": 162240,
+    "salaries": 77756,
+    "travel": 40553,
+    "hospitality": 2406,
+    "contracts": 41525,
+    "annualEstimate": 648960
+  },
+  "47011": {
+    "mpName": "Tochor,  Corey",
+    "constituency": "Saskatoon—University",
+    "totalQ3": 154344,
+    "salaries": 72974,
+    "travel": 40262,
+    "hospitality": 443,
+    "contracts": 40664,
+    "annualEstimate": 617376
+  },
+  "47012": {
+    "mpName": "Bonk,  Steven",
+    "constituency": "Souris—Moose Mountain",
+    "totalQ3": 128258,
+    "salaries": 61058,
+    "travel": 42029,
+    "hospitality": 185,
+    "contracts": 24987,
+    "annualEstimate": 513032
+  },
+  "47013": {
+    "mpName": "Patzer,  Jeremy",
+    "constituency": "Swift Current—Grasslands—Kindersley",
+    "totalQ3": 136312,
+    "salaries": 86736,
+    "travel": 14345,
+    "hospitality": 485,
+    "contracts": 34746,
+    "annualEstimate": 545248
+  },
+  "48001": {
+    "mpName": "Richards,  Blake",
+    "constituency": "Airdrie—Cochrane",
+    "totalQ3": 163464,
+    "salaries": 92341,
+    "travel": 47669,
+    "hospitality": 2782,
+    "contracts": 20671,
+    "annualEstimate": 653856
+  },
+  "48002": {
+    "mpName": "Vacant",
+    "constituency": "Battle River—Crowfoot",
+    "totalQ3": 80537,
+    "salaries": 42286,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 38251,
+    "annualEstimate": 322148
+  },
+  "48003": {
+    "mpName": "Bexte,  David",
+    "constituency": "Bow River",
+    "totalQ3": 181212,
+    "salaries": 69388,
+    "travel": 73250,
+    "hospitality": 288,
+    "contracts": 38287,
+    "annualEstimate": 724848
+  },
+  "48004": {
+    "mpName": "McLean,  Greg",
+    "constituency": "Calgary Centre",
+    "totalQ3": 151637,
+    "salaries": 86074,
+    "travel": 43794,
+    "hospitality": 1695,
+    "contracts": 20073,
+    "annualEstimate": 606548
+  },
+  "48005": {
+    "mpName": "Hogan,  Corey",
+    "constituency": "Calgary Confederation",
+    "totalQ3": 140671,
+    "salaries": 73112,
+    "travel": 8970,
+    "hospitality": 587,
+    "contracts": 58002,
+    "annualEstimate": 562684
+  },
+  "48006": {
+    "mpName": "Kelly,  Pat",
+    "constituency": "Calgary Crowfoot",
+    "totalQ3": 100316,
+    "salaries": 77073,
+    "travel": 9987,
+    "hospitality": 0,
+    "contracts": 13256,
+    "annualEstimate": 401264
+  },
+  "48007": {
+    "mpName": "Hallan,  Jasraj",
+    "constituency": "Calgary East",
+    "totalQ3": 170510,
+    "salaries": 93850,
+    "travel": 56481,
+    "hospitality": 208,
+    "contracts": 19970,
+    "annualEstimate": 682040
+  },
+  "48008": {
+    "mpName": "Majumdar,  Shuvaloy",
+    "constituency": "Calgary Heritage",
+    "totalQ3": 152113,
+    "salaries": 79432,
+    "travel": 41583,
+    "hospitality": 7,
+    "contracts": 31091,
+    "annualEstimate": 608452
+  },
+  "48009": {
+    "mpName": "Gill,  Dalwinder",
+    "constituency": "Calgary McKnight",
+    "totalQ3": 120026,
+    "salaries": 67562,
+    "travel": 0,
+    "hospitality": 1277,
+    "contracts": 51187,
+    "annualEstimate": 480104
+  },
+  "48010": {
+    "mpName": "Kusie,  Stephanie",
+    "constituency": "Calgary Midnapore",
+    "totalQ3": 140682,
+    "salaries": 86328,
+    "travel": 34434,
+    "hospitality": 3243,
+    "contracts": 16677,
+    "annualEstimate": 562728
+  },
+  "48011": {
+    "mpName": "Rempel Garner, Hon. Michelle",
+    "constituency": "Calgary Nose Hill",
+    "totalQ3": 117047,
+    "salaries": 87899,
+    "travel": 6300,
+    "hospitality": 454,
+    "contracts": 22393,
+    "annualEstimate": 468188
+  },
+  "48012": {
+    "mpName": "Kmiec,  Tom",
+    "constituency": "Calgary Shepard",
+    "totalQ3": 125164,
+    "salaries": 66271,
+    "travel": 38235,
+    "hospitality": 1511,
+    "contracts": 19147,
+    "annualEstimate": 500656
+  },
+  "48013": {
+    "mpName": "Liepert,  Ron",
+    "constituency": "Calgary Signal Hill",
+    "totalQ3": 122796,
+    "salaries": 79102,
+    "travel": 22029,
+    "hospitality": 244,
+    "contracts": 21421,
+    "annualEstimate": 491184
+  },
+  "48014": {
+    "mpName": "Gill,  Amanpreet",
+    "constituency": "Calgary Skyview",
+    "totalQ3": 128345,
+    "salaries": 65502,
+    "travel": 21742,
+    "hospitality": 0,
+    "contracts": 41101,
+    "annualEstimate": 513380
+  },
+  "48015": {
+    "mpName": "Boissonnault, Hon. Randy",
+    "constituency": "Edmonton Centre",
+    "totalQ3": 154851,
+    "salaries": 74474,
+    "travel": 44662,
+    "hospitality": 1081,
+    "contracts": 34633,
+    "annualEstimate": 619404
+  },
+  "48016": {
+    "mpName": "Uppal, Hon. Tim",
+    "constituency": "Edmonton Gateway",
+    "totalQ3": 126860,
+    "salaries": 94863,
+    "travel": 13209,
+    "hospitality": 1690,
+    "contracts": 17098,
+    "annualEstimate": 507440
+  },
+  "48017": {
+    "mpName": "Desjarlais,  Blake",
+    "constituency": "Edmonton Griesbach",
+    "totalQ3": 98035,
+    "salaries": 58403,
+    "travel": 16770,
+    "hospitality": 1233,
+    "contracts": 21629,
+    "annualEstimate": 392140
+  },
+  "48018": {
+    "mpName": "Aboultaif,  Ziad",
+    "constituency": "Edmonton Manning",
+    "totalQ3": 137952,
+    "salaries": 80960,
+    "travel": 35492,
+    "hospitality": 2751,
+    "contracts": 18749,
+    "annualEstimate": 551808
+  },
+  "48019": {
+    "mpName": "Morin,  Billy",
+    "constituency": "Edmonton Northwest",
+    "totalQ3": 85611,
+    "salaries": 59702,
+    "travel": 12209,
+    "hospitality": 715,
+    "contracts": 12985,
+    "annualEstimate": 342444
+  },
+  "48020": {
+    "mpName": "Jeneroux,  Matt",
+    "constituency": "Edmonton Riverbend",
+    "totalQ3": 161530,
+    "salaries": 68792,
+    "travel": 45919,
+    "hospitality": 1018,
+    "contracts": 45801,
+    "annualEstimate": 646120
+  },
+  "48021": {
+    "mpName": "Mahal,  Jagsharan Singh",
+    "constituency": "Edmonton Southeast",
+    "totalQ3": 110029,
+    "salaries": 57852,
+    "travel": 12315,
+    "hospitality": 617,
+    "contracts": 39245,
+    "annualEstimate": 440116
+  },
+  "48022": {
+    "mpName": "McPherson,  Heather",
+    "constituency": "Edmonton Strathcona",
+    "totalQ3": 136750,
+    "salaries": 99924,
+    "travel": 13774,
+    "hospitality": 289,
+    "contracts": 22763,
+    "annualEstimate": 547000
+  },
+  "48023": {
+    "mpName": "McCauley,  Kelly",
+    "constituency": "Edmonton West",
+    "totalQ3": 133202,
+    "salaries": 79316,
+    "travel": 23416,
+    "hospitality": 1405,
+    "contracts": 29065,
+    "annualEstimate": 532808
+  },
+  "48024": {
+    "mpName": "Barlow,  John",
+    "constituency": "Foothills",
+    "totalQ3": 169448,
+    "salaries": 107195,
+    "travel": 44091,
+    "hospitality": 266,
+    "contracts": 17896,
+    "annualEstimate": 677792
+  },
+  "48025": {
+    "mpName": "Goodridge,  Laila",
+    "constituency": "Fort McMurray—Cold Lake",
+    "totalQ3": 125319,
+    "salaries": 70642,
+    "travel": 41082,
+    "hospitality": 0,
+    "contracts": 13596,
+    "annualEstimate": 501276
+  },
+  "48026": {
+    "mpName": "Warkentin,  Chris",
+    "constituency": "Grande Prairie",
+    "totalQ3": 137476,
+    "salaries": 78601,
+    "travel": 34368,
+    "hospitality": 1816,
+    "contracts": 22692,
+    "annualEstimate": 549904
+  },
+  "48027": {
+    "mpName": "Stubbs,  Shannon",
+    "constituency": "Lakeland",
+    "totalQ3": 162568,
+    "salaries": 109424,
+    "travel": 25421,
+    "hospitality": 473,
+    "contracts": 27250,
+    "annualEstimate": 650272
+  },
+  "48028": {
+    "mpName": "Lake, Hon. Mike",
+    "constituency": "Leduc—Wetaskiwin",
+    "totalQ3": 180870,
+    "salaries": 102333,
+    "travel": 52967,
+    "hospitality": 1274,
+    "contracts": 24296,
+    "annualEstimate": 723480
+  },
+  "48029": {
+    "mpName": "Thomas,  Rachael",
+    "constituency": "Lethbridge",
+    "totalQ3": 148292,
+    "salaries": 81101,
+    "travel": 42233,
+    "hospitality": 1841,
+    "contracts": 23116,
+    "annualEstimate": 593168
+  },
+  "48030": {
+    "mpName": "Motz,  Glen",
+    "constituency": "Medicine Hat—Cardston—Warner",
+    "totalQ3": 106531,
+    "salaries": 73391,
+    "travel": 16040,
+    "hospitality": -72,
+    "contracts": 17171,
+    "annualEstimate": 426124
+  },
+  "48031": {
+    "mpName": "Lloyd,  Dane",
+    "constituency": "Parkland",
+    "totalQ3": 164427,
+    "salaries": 103202,
+    "travel": 29787,
+    "hospitality": 1032,
+    "contracts": 30406,
+    "annualEstimate": 657708
+  },
+  "48032": {
+    "mpName": "Zimmer,  Bob",
+    "constituency": "Prince George—Peace River—Northern Rockies",
+    "totalQ3": 143582,
+    "salaries": 79286,
+    "travel": 20783,
+    "hospitality": 2697,
+    "contracts": 40817,
+    "annualEstimate": 574328
+  },
+  "48033": {
+    "mpName": "Calkins,  Blaine",
+    "constituency": "Ponoka—Didsbury",
+    "totalQ3": 173076,
+    "salaries": 95553,
+    "travel": 60002,
+    "hospitality": 1473,
+    "contracts": 16048,
+    "annualEstimate": 692304
+  },
+  "48034": {
+    "mpName": "Dreeshen,  Earl",
+    "constituency": "Red Deer—Mountain View",
+    "totalQ3": 9,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 9,
+    "annualEstimate": 36
+  },
+  "48035": {
+    "mpName": "Genuis,  Garnett",
+    "constituency": "Sherwood Park—Fort Saskatchewan",
+    "totalQ3": 180685,
+    "salaries": 114488,
+    "travel": 48395,
+    "hospitality": 2966,
+    "contracts": 14836,
+    "annualEstimate": 722740
+  },
+  "48036": {
+    "mpName": "Cooper,  Michael",
+    "constituency": "St. Albert—Sturgeon River",
+    "totalQ3": 140296,
+    "salaries": 92414,
+    "travel": 13736,
+    "hospitality": 2582,
+    "contracts": 31563,
+    "annualEstimate": 561184
+  },
+  "48037": {
+    "mpName": "Stevenson,  William",
+    "constituency": "Yellowhead",
+    "totalQ3": 126398,
+    "salaries": 93726,
+    "travel": 11474,
+    "hospitality": 318,
+    "contracts": 20880,
+    "annualEstimate": 505592
+  },
+  "59001": {
+    "mpName": "Vis,  Brad",
+    "constituency": "Mission—Matsqui—Abbotsford",
+    "totalQ3": 143798,
+    "salaries": 76719,
+    "travel": 41388,
+    "hospitality": 1841,
+    "contracts": 23850,
+    "annualEstimate": 575192
+  },
+  "59002": {
+    "mpName": "Chang,  Wade",
+    "constituency": "Burnaby Central",
+    "totalQ3": 180893,
+    "salaries": 105758,
+    "travel": 44626,
+    "hospitality": 2214,
+    "contracts": 28294,
+    "annualEstimate": 723572
+  },
+  "59003": {
+    "mpName": "Beech, Hon. Terry",
+    "constituency": "Burnaby North—Seymour",
+    "totalQ3": 103401,
+    "salaries": 63416,
+    "travel": 17820,
+    "hospitality": 15,
+    "contracts": 22150,
+    "annualEstimate": 413604
+  },
+  "59004": {
+    "mpName": "Doherty,  Todd",
+    "constituency": "Cariboo—Prince George",
+    "totalQ3": 164754,
+    "salaries": 123666,
+    "travel": 24483,
+    "hospitality": 3747,
+    "contracts": 12858,
+    "annualEstimate": 659016
+  },
+  "59005": {
+    "mpName": "Strahl,  Mark",
+    "constituency": "Chilliwack—Hope",
+    "totalQ3": 154912,
+    "salaries": 90456,
+    "travel": 35811,
+    "hospitality": 937,
+    "contracts": 27709,
+    "annualEstimate": 619648
+  },
+  "59006": {
+    "mpName": "Jansen,  Tamara",
+    "constituency": "Cloverdale—Langley City",
+    "totalQ3": 209434,
+    "salaries": 81473,
+    "travel": 93569,
+    "hospitality": 130,
+    "contracts": 34263,
+    "annualEstimate": 837736
+  },
+  "59007": {
+    "mpName": "Morrison,  Rob",
+    "constituency": "Columbia—Kootenay—Southern Rockies",
+    "totalQ3": 151376,
+    "salaries": 101381,
+    "travel": 29333,
+    "hospitality": 0,
+    "contracts": 20661,
+    "annualEstimate": 605504
+  },
+  "59008": {
+    "mpName": "Royer,  Zoe",
+    "constituency": "Port Moody—Coquitlam",
+    "totalQ3": 141078,
+    "salaries": 81273,
+    "travel": 17968,
+    "hospitality": 2847,
+    "contracts": 38990,
+    "annualEstimate": 564312
+  },
+  "59009": {
+    "mpName": "Johns,  Gord",
+    "constituency": "Courtenay—Alberni",
+    "totalQ3": 196819,
+    "salaries": 117548,
+    "travel": 37217,
+    "hospitality": 1513,
+    "contracts": 40541,
+    "annualEstimate": 787276
+  },
+  "59010": {
+    "mpName": "Kibble,  Jeff",
+    "constituency": "Cowichan—Malahat—Langford",
+    "totalQ3": 130336,
+    "salaries": 76026,
+    "travel": 22016,
+    "hospitality": 126,
+    "contracts": 32168,
+    "annualEstimate": 521344
+  },
+  "59011": {
+    "mpName": "McKnight, Hon. Jill",
+    "constituency": "Delta",
+    "totalQ3": 126019,
+    "salaries": 62599,
+    "travel": 22505,
+    "hospitality": 1256,
+    "contracts": 39659,
+    "annualEstimate": 504076
+  },
+  "59012": {
+    "mpName": "McLean, Hon. Stephanie",
+    "constituency": "Esquimalt—Saanich—Sooke",
+    "totalQ3": 110977,
+    "salaries": 78376,
+    "travel": 16979,
+    "hospitality": 0,
+    "contracts": 15622,
+    "annualEstimate": 443908
+  },
+  "59013": {
+    "mpName": "Hardie,  Ken",
+    "constituency": "Fleetwood—Port Kells",
+    "totalQ3": 110529,
+    "salaries": 75328,
+    "travel": 12877,
+    "hospitality": 389,
+    "contracts": 21935,
+    "annualEstimate": 442116
+  },
+  "59014": {
+    "mpName": "Caputo,  Frank",
+    "constituency": "Kamloops—Thompson—Nicola",
+    "totalQ3": 130148,
+    "salaries": 108097,
+    "travel": 4015,
+    "hospitality": 141,
+    "contracts": 17895,
+    "annualEstimate": 520592
+  },
+  "59016": {
+    "mpName": "Gray,  Tracy",
+    "constituency": "Kelowna—Lake Country",
+    "totalQ3": 3310,
+    "salaries": 0,
+    "travel": 0,
+    "hospitality": 0,
+    "contracts": 3310,
+    "annualEstimate": 13240
+  },
+  "59017": {
+    "mpName": "Van Popta,  Tako",
+    "constituency": "Langley Township—Fraser Heights",
+    "totalQ3": 189739,
+    "salaries": 99285,
+    "travel": 60973,
+    "hospitality": 371,
+    "contracts": 29110,
+    "annualEstimate": 758956
+  },
+  "59019": {
+    "mpName": "Barron,  Lisa Marie",
+    "constituency": "Nanaimo—Ladysmith",
+    "totalQ3": 188692,
+    "salaries": 75482,
+    "travel": 31831,
+    "hospitality": 484,
+    "contracts": 80895,
+    "annualEstimate": 754768
+  },
+  "59020": {
+    "mpName": "Sawatzky,  Jake",
+    "constituency": "New Westminster—Burnaby—Maillardville",
+    "totalQ3": 110521,
+    "salaries": 42679,
+    "travel": 29532,
+    "hospitality": 1915,
+    "contracts": 36396,
+    "annualEstimate": 442084
+  },
+  "59021": {
+    "mpName": "Blaney,  Rachel",
+    "constituency": "North Island—Powell River",
+    "totalQ3": 132909,
+    "salaries": 60477,
+    "travel": 24063,
+    "hospitality": 0,
+    "contracts": 48370,
+    "annualEstimate": 531636
+  },
+  "59022": {
+    "mpName": "Wilkinson, Hon. Jonathan",
+    "constituency": "North Vancouver—Capilano",
+    "totalQ3": 148675,
+    "salaries": 87040,
+    "travel": 18345,
+    "hospitality": 43,
+    "contracts": 43247,
+    "annualEstimate": 594700
+  },
+  "59024": {
+    "mpName": "Dalton,  Marc",
+    "constituency": "Pitt Meadows—Maple Ridge",
+    "totalQ3": 124839,
+    "salaries": 67846,
+    "travel": 17126,
+    "hospitality": 2977,
+    "contracts": 36890,
+    "annualEstimate": 499356
+  },
+  "59029": {
+    "mpName": "May,  Elizabeth",
+    "constituency": "Saanich—Gulf Islands",
+    "totalQ3": 178800,
+    "salaries": 107132,
+    "travel": 42177,
+    "hospitality": 289,
+    "contracts": 29202,
+    "annualEstimate": 715200
+  },
+  "59030": {
+    "mpName": "Konanz,  Helena",
+    "constituency": "Similkameen—South Okanagan—West Kootenay",
+    "totalQ3": 139738,
+    "salaries": 85347,
+    "travel": 18092,
+    "hospitality": 1647,
+    "contracts": 34652,
+    "annualEstimate": 558952
+  },
+  "59031": {
+    "mpName": "Bachrach,  Taylor",
+    "constituency": "Skeena—Bulkley Valley",
+    "totalQ3": 100238,
+    "salaries": 55727,
+    "travel": 9684,
+    "hospitality": 435,
+    "contracts": 34391,
+    "annualEstimate": 400952
+  },
+  "59032": {
+    "mpName": "Findlay, Hon. Kerry-Lynne",
+    "constituency": "South Surrey—White Rock",
+    "totalQ3": 116910,
+    "salaries": 77399,
+    "travel": 14642,
+    "hospitality": 3482,
+    "contracts": 21388,
+    "annualEstimate": 467640
+  },
+  "59033": {
+    "mpName": "Sarai, Hon. Randeep",
+    "constituency": "Surrey Centre",
+    "totalQ3": 124857,
+    "salaries": 70034,
+    "travel": 15671,
+    "hospitality": 460,
+    "contracts": 38692,
+    "annualEstimate": 499428
+  },
+  "59034": {
+    "mpName": "Dhaliwal,  Sukh",
+    "constituency": "Surrey Newton",
+    "totalQ3": 147349,
+    "salaries": 81680,
+    "travel": 28597,
+    "hospitality": 1354,
+    "contracts": 35718,
+    "annualEstimate": 589396
+  },
+  "59035": {
+    "mpName": "Fry, Hon. Hedy",
+    "constituency": "Vancouver Centre",
+    "totalQ3": 200429,
+    "salaries": 73387,
+    "travel": 57975,
+    "hospitality": 4560,
+    "contracts": 64507,
+    "annualEstimate": 801716
+  },
+  "59036": {
+    "mpName": "Kwan,  Jenny",
+    "constituency": "Vancouver East",
+    "totalQ3": 143909,
+    "salaries": 71942,
+    "travel": 49391,
+    "hospitality": 128,
+    "contracts": 22447,
+    "annualEstimate": 575636
+  },
+  "59037": {
+    "mpName": "Robertson, Hon. Gregor",
+    "constituency": "Vancouver Fraserview—South Burnaby",
+    "totalQ3": 121210,
+    "salaries": 65521,
+    "travel": 20349,
+    "hospitality": 1467,
+    "contracts": 33874,
+    "annualEstimate": 484840
+  },
+  "59038": {
+    "mpName": "Noormohamed,  Taleeb",
+    "constituency": "Vancouver Granville",
+    "totalQ3": 140532,
+    "salaries": 85866,
+    "travel": 13499,
+    "hospitality": 3329,
+    "contracts": 37839,
+    "annualEstimate": 562128
+  },
+  "59040": {
+    "mpName": "Grant,  Wade",
+    "constituency": "Vancouver Quadra",
+    "totalQ3": 168793,
+    "salaries": 68701,
+    "travel": 64949,
+    "hospitality": 996,
+    "contracts": 34147,
+    "annualEstimate": 675172
+  },
+  "59041": {
+    "mpName": "Anderson,  Scott",
+    "constituency": "Vernon—Lake Country—Monashee",
+    "totalQ3": 166735,
+    "salaries": 101292,
+    "travel": 50811,
+    "hospitality": 218,
+    "contracts": 14414,
+    "annualEstimate": 666940
+  },
+  "59042": {
+    "mpName": "Collins,  Laurel",
+    "constituency": "Victoria",
+    "totalQ3": 182967,
+    "salaries": 119483,
+    "travel": 35800,
+    "hospitality": 4515,
+    "contracts": 23169,
+    "annualEstimate": 731868
+  },
+  "59043": {
+    "mpName": "Weiler,  Patrick",
+    "constituency": "West Vancouver—Sunshine Coast—Sea to Sky Country",
+    "totalQ3": 174739,
+    "salaries": 88298,
+    "travel": 65668,
+    "hospitality": 2944,
+    "contracts": 17830,
+    "annualEstimate": 698956
+  },
+  "60001": {
+    "mpName": "Hanley,  Brendan",
+    "constituency": "Yukon",
+    "totalQ3": 158534,
+    "salaries": 100829,
+    "travel": 19107,
+    "hospitality": 3575,
+    "contracts": 35024,
+    "annualEstimate": 634136
+  },
+  "61001": {
+    "mpName": "Alty, Hon. Rebecca",
+    "constituency": "Northwest Territories",
+    "totalQ3": 123921,
+    "salaries": 78363,
+    "travel": 30309,
+    "hospitality": 626,
+    "contracts": 14623,
+    "annualEstimate": 495684
+  },
+  "62001": {
+    "mpName": "Idlout,  Lori",
+    "constituency": "Nunavut",
+    "totalQ3": 147575,
+    "salaries": 81256,
+    "travel": 50229,
+    "hospitality": 690,
+    "contracts": 15401,
+    "annualEstimate": 590300
+  }
+}

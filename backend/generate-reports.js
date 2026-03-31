@@ -56,7 +56,7 @@ function drawScoreBar(doc, x, y, width, score, label) {
   }
 }
 
-function generateRidingPDF(riding, allRidings, outputPath) {
+function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendingData, expenseData } = {}) {
   const doc = new PDFDocument({ size: 'LETTER', margin: 50, bufferPages: true });
   const stream = fs.createWriteStream(outputPath);
   doc.pipe(stream);
@@ -183,7 +183,134 @@ function generateRidingPDF(riding, allRidings, outputPath) {
   doc.fontSize(8).fillColor(COLORS.muted)
      .text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
 
-  // ════════ PAGE 3: COMPARISON + QUESTIONS ═══════════════════════════════
+  // ════════ PAGE 3: HOW YOUR MP VOTED ════════════════════════════════════
+  if (voteRecords) {
+    const ridingKey = riding.name + '|' + riding.province;
+    const record = voteRecords[ridingKey];
+    if (record && record.votes) {
+      doc.addPage();
+      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+
+      doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('How Your MP Voted', 50, 30);
+      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
+         .text(`${riding.mpName}  |  ${record.voted} of ${record.total} key votes attended  |  ${record.absent} absent`, 50, 58);
+      doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
+
+      let vY = 90;
+      doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
+      doc.text('BILL', 50, vY); doc.text('DESCRIPTION', 100, vY); doc.text('STAGE', 370, vY); doc.text('VOTE', 470, vY);
+      vY += 14;
+
+      doc.font('Helvetica');
+      for (const v of record.votes) {
+        const ballotColor = v.ballot === 'Yes' ? COLORS.gradeA : v.ballot === 'No' ? COLORS.gradeF : v.ballot === 'Paired' ? COLORS.muted : '#CC8800';
+        doc.fontSize(9).fillColor(COLORS.text);
+        doc.text(v.bill || '—', 50, vY, { width: 45 });
+        doc.text(v.label, 100, vY, { width: 260 });
+        doc.fontSize(8).fillColor(COLORS.muted).text(v.stage, 370, vY, { width: 90 });
+        doc.fontSize(10).fillColor(ballotColor).font('Helvetica-Bold').text(v.ballot, 470, vY, { width: 80 });
+        doc.font('Helvetica');
+        vY += 18;
+      }
+
+      doc.fontSize(8).fillColor(COLORS.muted)
+         .text('Source: OpenParliament.ca  |  Session 45-1  |  Key votes selected by significance', 50, vY + 10, { width: W });
+      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+    }
+  }
+
+  // ════════ PAGE 4: FEDERAL SPENDING IN YOUR RIDING ════════════════════
+  if (spendingData) {
+    const rs = spendingData[riding.ridingCode];
+    if (rs && rs.totalFederal > 0) {
+      doc.addPage();
+      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+
+      doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('Federal Spending in Your Riding', 50, 30);
+      doc.fontSize(14).fillColor(COLORS.gradeA).font('Helvetica-Bold')
+         .text(`$${(rs.totalFederal / 1e6).toFixed(1)}M total federal investment`, 50, 58);
+      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
+         .text('Infrastructure Canada project data  |  All approved projects', 50, 78);
+      doc.moveTo(50, 96).lineTo(562, 96).stroke(COLORS.border);
+
+      let sY = 108;
+      doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
+      doc.text('PROJECT', 50, sY); doc.text('FEDERAL $', 390, sY); doc.text('PROGRAM', 460, sY);
+      sY += 14;
+
+      doc.font('Helvetica');
+      for (const p of rs.projects.slice(0, 8)) {
+        doc.fontSize(9).fillColor(COLORS.text);
+        doc.text(p.title.substring(0, 60), 50, sY, { width: 330 });
+        doc.fillColor(COLORS.gradeA).text('$' + (p.federal / 1e6).toFixed(1) + 'M', 390, sY, { width: 60 });
+        doc.fontSize(7).fillColor(COLORS.muted).text((p.program || '').substring(0, 30), 460, sY, { width: 100 });
+        const h = Math.max(14, doc.heightOfString(p.title.substring(0, 60), { width: 330, fontSize: 9 }));
+        sY += h + 4;
+      }
+
+      if (rs.projects.length > 8) {
+        doc.fontSize(9).fillColor(COLORS.muted).text(`+ ${rs.projects.length - 8} more projects`, 50, sY + 5);
+      }
+
+      doc.fontSize(8).fillColor(COLORS.muted)
+         .text('Source: Infrastructure Canada Open Data  |  infrastructure.gc.ca', 50, sY + 25, { width: W });
+      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+    }
+  }
+
+  // ════════ PAGE 5: MP EXPENSES ═════════════════════════════════════════
+  if (expenseData) {
+    const exp = expenseData[riding.ridingCode];
+    if (exp && exp.totalQ3 > 0) {
+      doc.addPage();
+      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+
+      doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('MP Expense Report', 50, 30);
+      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
+         .text(`${exp.mpName}  |  Q3 2025-26 (Oct-Dec 2025)  |  House of Commons Proactive Disclosure`, 50, 58);
+      doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
+
+      const expItems = [
+        { label: 'Staff Salaries',     amount: exp.salaries,     pct: exp.totalQ3 > 0 ? Math.round(exp.salaries / exp.totalQ3 * 100) : 0 },
+        { label: 'Travel',             amount: exp.travel,       pct: exp.totalQ3 > 0 ? Math.round(exp.travel / exp.totalQ3 * 100) : 0 },
+        { label: 'Hospitality',        amount: exp.hospitality,  pct: exp.totalQ3 > 0 ? Math.round(exp.hospitality / exp.totalQ3 * 100) : 0 },
+        { label: 'Contracts',          amount: exp.contracts,    pct: exp.totalQ3 > 0 ? Math.round(exp.contracts / exp.totalQ3 * 100) : 0 },
+      ];
+
+      let eY = 95;
+      for (const item of expItems) {
+        doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
+           .text(item.label, 50, eY);
+        doc.fontSize(12).fillColor(item.amount > 0 ? COLORS.text : COLORS.muted)
+           .text('$' + Math.abs(item.amount).toLocaleString('en-CA'), 300, eY, { width: 120, align: 'right' });
+        doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+           .text(item.pct + '% of total', 430, eY + 2);
+
+        // Bar
+        const barW = Math.max(0, (Math.abs(item.amount) / exp.totalQ3) * 400);
+        doc.roundedRect(50, eY + 20, 400, 10, 2).fill('#EEEBE5');
+        if (barW > 0) doc.roundedRect(50, eY + 20, barW, 10, 2).fill(COLORS.red);
+        eY += 42;
+      }
+
+      doc.moveTo(50, eY).lineTo(562, eY).stroke(COLORS.text);
+      eY += 8;
+      doc.fontSize(14).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('Q3 Total:', 50, eY);
+      doc.text('$' + exp.totalQ3.toLocaleString('en-CA'), 300, eY, { width: 120, align: 'right' });
+      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
+         .text('Annualized estimate: ~$' + exp.annualEstimate.toLocaleString('en-CA'), 50, eY + 22);
+
+      doc.fontSize(8).fillColor(COLORS.muted)
+         .text('Source: ourcommons.ca/ProactiveDisclosure  |  Q3 2025-26', 50, eY + 50, { width: W });
+      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+    }
+  }
+
+  // ════════ PAGE 6: COMPARISON + QUESTIONS ═══════════════════════════════
   doc.addPage();
   doc.rect(0, 0, 612, 8).fill(COLORS.red);
 
@@ -276,7 +403,13 @@ async function main() {
   console.log('[reports] Reading JSON data...');
   const mpsData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'mps.json'), 'utf8'));
   const ridings = mpsData.ridings;
-  console.log(`[reports] ${ridings.length} ridings loaded`);
+
+  let voteRecords = null, spendingData = null, expenseData = null;
+  try { voteRecords = JSON.parse(fs.readFileSync(path.join(API_DIR, 'vote-records.json'), 'utf8')); } catch {}
+  try { spendingData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'riding-spending.json'), 'utf8')); } catch {}
+  try { expenseData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'mp-expenses.json'), 'utf8')); } catch {}
+
+  console.log(`[reports] ${ridings.length} ridings | votes: ${voteRecords ? Object.keys(voteRecords).length : 0} | spending: ${spendingData ? Object.keys(spendingData).length : 0} | expenses: ${expenseData ? Object.keys(expenseData).length : 0}`);
 
   const ridingsDir = path.join(REPORTS_DIR, 'ridings');
   fs.mkdirSync(ridingsDir, { recursive: true });
@@ -286,7 +419,7 @@ async function main() {
   for (const riding of ridings) {
     const slug = riding.name.replace(/[^a-zA-Z0-9\u00C0-\u024F\u2014\u2013\- ]/g, '').replace(/\s+/g, '-').toLowerCase();
     const filename = `${riding.ridingCode}-${slug}.pdf`;
-    await generateRidingPDF(riding, ridings, path.join(ridingsDir, filename));
+    await generateRidingPDF(riding, ridings, path.join(ridingsDir, filename), { voteRecords, spendingData, expenseData });
     count++;
     if (count % 50 === 0) console.log(`  [${count}/${ridings.length}]`);
   }
