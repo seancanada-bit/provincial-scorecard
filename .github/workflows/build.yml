@@ -38,7 +38,7 @@ jobs:
         env:
           VITE_API_URL: ''
 
-      # ── Commit built files → cPanel Git auto-deploys ───────────────────
+      # ── Commit built files ────────────────────────────────────────────
       - name: Commit built files
         run: |
           git config user.name "github-actions[bot]"
@@ -47,3 +47,14 @@ jobs:
           git diff --staged --quiet && echo "No build changes" && exit 0
           git commit -m "chore: build frontends $(date -u +'%Y-%m-%d') [skip ci]"
           git push
+
+      # ── Trigger cPanel to pull + deploy ────────────────────────────────
+      - name: Deploy to cPanel
+        run: |
+          curl -s -u "${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://seanwood.com:2083/execute/VersionControl/update?repository_root=/home/seanw2/repositories/provincial-scorecard&branch=main" \
+            -o /dev/null -w "cPanel update: HTTP %{http_code}\n"
+          sleep 3
+          curl -s -u "${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://seanwood.com:2083/execute/VersionControl/deploy?repository_root=/home/seanw2/repositories/provincial-scorecard" \
+            -o /dev/null -w "cPanel deploy: HTTP %{http_code}\n"
