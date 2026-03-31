@@ -219,15 +219,16 @@ function scoreRiding(raw) {
   const transfersScore = transfersNorm; // single metric, no weighting needed
 
   // ─── COMPOSITE ─────────────────────────────────────────────────────────
-  // MP Performance 25% · Federal Investment 20% · Electoral Health 15%
-  // Demographics 15% · MP Expenses 15% · Federal Transfers 10% = 100%
+  // Value-first formula: 55% is dollars flowing back into the riding
+  // Federal Investment 35% · Federal Transfers 20% · MP Expenses 15%
+  // MP Performance 15% · Electoral Health 10% · Demographics 5% = 100%
   const composite = weightedScore([
-    { score: performanceScore,  weight: 0.25 },
-    { score: investmentScore,   weight: 0.20 },
-    { score: electoralScore,    weight: 0.15 },
-    { score: demographicScore,  weight: 0.15 },
+    { score: investmentScore,   weight: 0.35 },
+    { score: transfersScore,    weight: 0.20 },
     { score: expensesScore,     weight: 0.15 },
-    { score: transfersScore,    weight: 0.10 },
+    { score: performanceScore,  weight: 0.15 },
+    { score: electoralScore,    weight: 0.10 },
+    { score: demographicScore,  weight: 0.05 },
   ]) ?? 50;
 
   // ─── DUCK SCORE ────────────────────────────────────────────────────────
@@ -352,12 +353,12 @@ function scoreRiding(raw) {
 const CATEGORY_CEILING  = 82;
 const COMPOSITE_CATS    = ['performance', 'investment', 'electoral', 'demographics', 'expenses', 'transfers'];
 const COMPOSITE_WEIGHTS = {
-  performance:  0.25,
-  investment:   0.20,
-  electoral:    0.15,
-  demographics: 0.15,
+  investment:   0.35,
+  transfers:    0.20,
   expenses:     0.15,
-  transfers:    0.10,
+  performance:  0.15,
+  electoral:    0.10,
+  demographics: 0.05,
 };
 
 function normalizeRidingScores(scoredRidings) {
@@ -379,12 +380,12 @@ function normalizeRidingScores(scoredRidings) {
     }
 
     const composite = weightedScore([
-      { score: newCats.performance.score,  weight: COMPOSITE_WEIGHTS.performance  },
       { score: newCats.investment.score,   weight: COMPOSITE_WEIGHTS.investment   },
+      { score: newCats.transfers.score,    weight: COMPOSITE_WEIGHTS.transfers    },
+      { score: newCats.expenses.score,     weight: COMPOSITE_WEIGHTS.expenses     },
+      { score: newCats.performance.score,  weight: COMPOSITE_WEIGHTS.performance  },
       { score: newCats.electoral.score,    weight: COMPOSITE_WEIGHTS.electoral    },
       { score: newCats.demographics.score, weight: COMPOSITE_WEIGHTS.demographics },
-      { score: newCats.expenses.score,     weight: COMPOSITE_WEIGHTS.expenses     },
-      { score: newCats.transfers.score,    weight: COMPOSITE_WEIGHTS.transfers    },
     ]) ?? 50;
 
     // Recompute duck score with normalized composite
