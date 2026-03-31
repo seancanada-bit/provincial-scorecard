@@ -974,8 +974,53 @@ body {
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
+  /* Cards: prevent grade clipping */
   .ccard__main { padding: var(--space-sm) var(--space-md); }
-  .ccard__grade { font-size: 32px; }
+  .ccard__grade { font-size: 28px; }
+  .ccard__right { max-width: 90px; }
+  .ccard__right--tower { max-width: 110px; min-width: 80px; }
+  .ccard__tower-label { font-size: 5px; }
+  .ccard__value-tower { gap: 0; }
+  .ccard__name { font-size: 14px; }
+  .ccard__meta { font-size: 11px; }
+
+  /* Category pills: smaller on mobile */
+  .ccard__pill { font-size: 10px; padding: 3px 6px; }
+  .ccard__pill-icon { font-size: 10px; }
+
+  /* Search bar: slightly smaller */
+  .search-bar__input { font-size: 14px; padding: 10px 14px; }
+
+  /* Province filter: smaller pills */
+  .province-filter__tab { padding: 4px 8px; font-size: 11px; }
+
+  /* Party filter: tighter */
+  .party-filter { padding: 4px var(--space-sm); gap: 4px; }
+  .party-filter__pill { padding: 3px 8px; font-size: 11px; }
+
+  /* View switcher: compact */
+  .view-switcher { margin-top: var(--space-sm); }
+  .view-switcher__btn { padding: 6px 14px; font-size: 13px; }
+
+  /* Sort tabs: allow scroll, tighter */
+  .sort-tabs__tab { font-size: 12px; padding: 6px 10px; }
+
+  /* Header: compact */
+  .site-header__tagline { font-size: 13px; }
+  .site-header__scope { font-size: 11px; }
+  .site-header__brand { font-size: 22px; }
+  .site-header__duck-hero { font-size: 36px; }
+
+  /* Detail panel: full-screen overlay on mobile */
+  .city-detail-panel {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100vh;
+    z-index: 1000; overflow-y: auto;
+    border-radius: 0;
+  }
+  .dp-close {
+    position: sticky; top: 8px; right: 8px; z-index: 1001;
+  }
+
   .editorial-callout--divider { display: none; }
-  .city-detail-panel { width: 100%; }
 }
