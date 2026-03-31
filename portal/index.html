@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bang for Your Duck grades every Canadian province, city, and MP on value for your tax dollar. Free, nonpartisan, independent." />
+  <meta name="theme-color" content="#D52B1E" />
+  <title>Bang for Your Duck — Are you getting your money's worth?</title>
+
+  <meta property="og:title" content="Bang for Your Duck" />
+  <meta property="og:description" content="Grading every province, city, and MP on value for your tax dollar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bangforyourduck.ca" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F8F6F1;
+      --card-bg:     #FFFFFF;
+      --text:        #1A1A1A;
+      --text-sub:    #5C5C5C;
+      --text-muted:  #8C8C8C;
+      --border:      #E8E4DC;
+      --red:         #D52B1E;
+      --gold:        #FFD700;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Plus Jakarta Sans', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── RED STRIPE ─────────────────────────────────────────── */
+    .stripe { height: 5px; background: var(--red); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 85vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__starburst {
+      position: absolute;
+      width: 600px; height: 600px;
+      opacity: 0.04;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 120s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .hero__duck {
+      font-size: 80px;
+      margin-bottom: 24px;
+      animation: bob 3s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero__brand {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+    .hero__brand span { color: var(--red); font-style: italic; }
+
+    .hero__question {
+      font-family: var(--serif);
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      max-width: 800px;
+      margin: 24px auto 16px;
+      letter-spacing: -1px;
+      position: relative; z-index: 1;
+    }
+
+    .hero__sub {
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text-sub);
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      position: relative; z-index: 1;
+    }
+
+    .hero__scroll {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: pulse 2s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    .hero__scroll::after {
+      content: ''; display: block;
+      width: 1px; height: 40px;
+      background: var(--border);
+      margin: 12px auto 0;
+    }
+    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    /* ─── SECTIONS ───────────────────────────────────────────── */
+    .sections {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 768px) {
+      .sections { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      border: 1px solid var(--border);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .card__accent {
+      height: 6px;
+    }
+    .card--provinces .card__accent { background: linear-gradient(90deg, #1B5E20, #2E7D32, #4CAF50); }
+    .card--cities .card__accent    { background: linear-gradient(90deg, #0057A8, #1976D2, #42A5F5); }
+    .card--mps .card__accent       { background: linear-gradient(90deg, #D52B1E, #E53935, #EF5350); }
+
+    .card__body {
+      padding: 32px 28px;
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+
+    .card__icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .card__level {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .card__title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .card__question {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .card__stat {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .card__stat-grade {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 800;
+    }
+    .card__stat-grade--a { color: #1B5E20; }
+    .card__stat-grade--b { color: #2E7D32; }
+    .card__stat-grade--c { color: #B45309; }
+    .card__stat-grade--d { color: #C2410C; }
+
+    .card__stat-text {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+    .card__stat-text strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .card__cta {
+      display: inline-flex;
+      align-items: center; gap: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--red);
+      text-decoration: none;
+    }
+    .card__cta::after {
+      content: '→';
+      transition: transform 0.15s;
+    }
+    .card:hover .card__cta::after {
+      transform: translateX(4px);
+    }
+
+    /* ─── SCOPE BAR ──────────────────────────────────────────── */
+    .scope {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .scope__item {
+      text-align: center;
+    }
+    .scope__num {
+      font-family: var(--serif);
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+    .scope__label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+
+    /* ─── EDITORIAL FOOTER ───────────────────────────────────── */
+    .editorial {
+      background: #1C1917;
+      color: rgba(255,255,255,0.85);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .editorial__inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .editorial__headline {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: white;
+    }
+    .editorial__body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 32px;
+    }
+    .editorial__values {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .editorial__value {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.45);
+      position: relative;
+      padding-left: 16px;
+    }
+    .editorial__value::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .editorial__value:nth-child(1)::before { background: #4CAF50; }
+    .editorial__value:nth-child(2)::before { background: #42A5F5; }
+    .editorial__value:nth-child(3)::before { background: var(--red); }
+
+    .editorial__link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .editorial__link:hover { text-decoration: underline; }
+
+    /* ─── BOTTOM BAR ─────────────────────────────────────────── */
+    .bottom {
+      background: #0F0E0D;
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    .bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .bottom a:hover { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+  <div class="stripe"></div>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- Background starburst -->
+    <svg class="hero__starburst" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="16,2 18.2,9.3 24.2,4.7 21.7,11.9 29.3,11.7 23,16 29.3,20.3 21.7,20.1 24.2,27.3 18.2,22.7 16,30 13.8,22.7 7.8,27.3 10.3,20.1 2.7,20.3 9,16 2.7,11.7 10.3,11.9 7.8,4.7 13.8,9.3" fill="#1A1A1A"/>
+    </svg>
+
+    <div class="hero__duck" aria-hidden="true">🦆</div>
+    <div class="hero__brand">Bang for Your <span>Duck</span></div>
+    <h1 class="hero__question">Are you getting your money's worth?</h1>
+    <p class="hero__sub">
+      Grading every Canadian province, city, and federal MP on what they deliver for your tax dollar. Free. Nonpartisan. Independent.
+    </p>
+    <div class="hero__scroll" aria-hidden="true">Explore</div>
+  </section>
+
+  <!-- ═══ SCOPE BAR ══════════════════════════════════════════════════════ -->
+  <div class="scope">
+    <div class="scope__item">
+      <div class="scope__num">10</div>
+      <div class="scope__label">Provinces</div>
+    </div>
+    <div class="scope__item">
+      <div class="scope__num">42</div>
+      <div class="scope__label">Cities</div>
+    </div>
+    <div class="scope__item">
+      <div class="scope__num">340</div>
+      <div class="scope__label">MPs</div>
+    </div>
+    <div class="scope__item">
+      <div class="scope__num">50+</div>
+      <div class="scope__label">Data Points</div>
+    </div>
+  </div>
+
+  <!-- ═══ THREE SECTIONS ═════════════════════════════════════════════════ -->
+  <div class="sections">
+
+    <!-- Provinces -->
+    <a href="/provinces/" class="card card--provinces">
+      <div class="card__accent"></div>
+      <div class="card__body">
+        <div class="card__icon">🏛️</div>
+        <div class="card__level">Provincial</div>
+        <h2 class="card__title">Your Province</h2>
+        <p class="card__question">How does your province spend your tax dollars? Healthcare wait times, housing starts, credit ratings, education outcomes — graded head to head.</p>
+        <div class="card__stat">
+          <span class="card__stat-grade card__stat-grade--a">A-</span>
+          <span class="card__stat-text"><strong>Alberta leads on fiscal health</strong>Lowest net debt per capita in Canada</span>
+        </div>
+        <span class="card__cta">Explore 10 provinces</span>
+      </div>
+    </a>
+
+    <!-- Cities -->
+    <a href="/cities/" class="card card--cities">
+      <div class="card__accent"></div>
+      <div class="card__body">
+        <div class="card__icon">🏙️</div>
+        <div class="card__level">Municipal</div>
+        <h2 class="card__title">Your City</h2>
+        <p class="card__question">What do you get for your property tax? Safety, transit, housing affordability, infrastructure delivery — for every major metro area.</p>
+        <div class="card__stat">
+          <span class="card__stat-grade card__stat-grade--b">B+</span>
+          <span class="card__stat-text"><strong>Quebec City tops safety</strong>Lowest crime severity index of any CMA</span>
+        </div>
+        <span class="card__cta">Explore 42 cities</span>
+      </div>
+    </a>
+
+    <!-- MPs -->
+    <a href="/mps/" class="card card--mps">
+      <div class="card__accent"></div>
+      <div class="card__body">
+        <div class="card__icon">🗳️</div>
+        <div class="card__level">Federal</div>
+        <h2 class="card__title">Your MP</h2>
+        <p class="card__question">What has your Member of Parliament delivered for your riding? Federal investment, vote participation, electoral health — across all 343 ridings.</p>
+        <div class="card__stat">
+          <span class="card__stat-grade card__stat-grade--c">C</span>
+          <span class="card__stat-text"><strong>Average MP composite score</strong>3 of 6 data categories still filling</span>
+        </div>
+        <span class="card__cta">Explore 340 MPs</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ═══ EDITORIAL FOOTER ═══════════════════════════════════════════════ -->
+  <section class="editorial">
+    <div class="editorial__inner">
+      <h2 class="editorial__headline">Accountability shouldn't cost you extra.</h2>
+      <p class="editorial__body">
+        Bang for Your Duck is built on publicly available data, scored with transparent methodology, and offered completely free. No paywall. No ads. No partisan agenda. Just the numbers.
+      </p>
+      <div class="editorial__values">
+        <span class="editorial__value">Free forever</span>
+        <span class="editorial__value">Nonpartisan</span>
+        <span class="editorial__value">Open methodology</span>
+      </div>
+      <a href="/provinces/" class="editorial__link">Start exploring →</a>
+    </div>
+  </section>
+
+  <div class="bottom">
+    © 2026 Bang for Your Duck. <a href="/provinces/">Provinces</a> · <a href="/cities/">Cities</a> · <a href="/mps/">MPs</a>
+  </div>
+
+</body>
+</html>

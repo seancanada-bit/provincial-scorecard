@@ -2,8 +2,12 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/seanw2/public_html/bangforyourduck.ca
-    # Provinces (root)
-    - /bin/cp -R frontend/dist/* $DEPLOYPATH/
+    # Portal (root) — the landing page
+    - /bin/cp portal/index.html $DEPLOYPATH/
+    - /bin/cp portal/.htaccess $DEPLOYPATH/
+    # Provinces (now at /provinces/)
+    - /bin/mkdir -p $DEPLOYPATH/provinces
+    - /bin/cp -R frontend/dist/* $DEPLOYPATH/provinces/
     # Cities
     - /bin/mkdir -p $DEPLOYPATH/cities
     - /bin/cp -R cities/dist/* $DEPLOYPATH/cities/

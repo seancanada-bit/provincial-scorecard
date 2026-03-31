@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="site-footer__inner">
         <span>© {new Date().getFullYear()} Bang for Your Duck. Free, nonpartisan, independent.</span>
         <nav className="site-footer__links" aria-label="Footer navigation">
-          <a href="/" className="site-footer__link">← Provinces</a>
+          <a href="/provinces/" className="site-footer__link">← Provinces</a>
           <span className="site-footer__sep" aria-hidden="true">·</span>
           <a href="/cities/" className="site-footer__link">Cities</a>
           <span className="site-footer__sep" aria-hidden="true">·</span>

@@ -12,7 +12,7 @@ export default function Header({ lastUpdated }) {
               <span className="site-header__brand">Bang for Your <span>Duck</span></span>
             </a>
             <span className="site-header__sub-nav" aria-label="Current section">
-              <a href="/" className="site-header__sub-link">Provinces</a>
+              <a href="/provinces/" className="site-header__sub-link">Provinces</a>
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
               <span className="site-header__sub-current" aria-current="page">Cities</span>
               <span className="site-header__sub-sep" aria-hidden="true">·</span>

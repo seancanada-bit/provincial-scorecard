@@ -40,7 +40,7 @@ jobs:
         run: cd frontend && npm ci && npm run build
         env:
           VITE_API_URL: ''
-          VITE_BASE_PATH: /
+          VITE_BASE_PATH: /provinces/
 
       - name: Build cities
         run: cd cities && npm ci && npm run build
