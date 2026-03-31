@@ -154,9 +154,14 @@ const TAB_CONTENT = {
 };
 
 export default function RidingDetailPanel({ riding, onClose, sortKey, partyColors }) {
-  const [activeTab, setActiveTab] = useState(
-    TABS.find(t => t.key === sortKey)?.key ?? 'performance'
-  );
+  // Default to the sort tab if it has data, otherwise first tab with a score
+  const [activeTab, setActiveTab] = useState(() => {
+    const cats = riding.categories;
+    const sortTab = TABS.find(t => t.key === sortKey);
+    if (sortTab && cats[sortTab.key]?.score != null) return sortTab.key;
+    const firstWithData = TABS.find(t => cats[t.key]?.score != null);
+    return firstWithData?.key ?? 'electoral';
+  });
 
   const color      = partyColors[riding.mpParty] ?? '#555';
   const cats       = riding.categories;
