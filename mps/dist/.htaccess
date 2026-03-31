@@ -20,7 +20,7 @@ Header always unset X-Powered-By
 </FilesMatch>
 
 RewriteEngine On
-RewriteBase /cities/
+RewriteBase /mps/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /cities/index.html [L]
+RewriteRule . /mps/index.html [L]

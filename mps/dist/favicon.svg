@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Red rounded tile -->
+  <rect width="32" height="32" rx="7" fill="#D52B1E"/>
+  <!-- Batman-style BANG starburst: 10-point explosion, yellow on red -->
+  <polygon
+    points="
+      16,2
+      18.2,9.3
+      24.2,4.7
+      21.7,11.9
+      29.3,11.7
+      23,16
+      29.3,20.3
+      21.7,20.1
+      24.2,27.3
+      18.2,22.7
+      16,30
+      13.8,22.7
+      7.8,27.3
+      10.3,20.1
+      2.7,20.3
+      9,16
+      2.7,11.7
+      10.3,11.9
+      7.8,4.7
+      13.8,9.3
+    "
+    fill="#FFD700"
+  />
+</svg>
