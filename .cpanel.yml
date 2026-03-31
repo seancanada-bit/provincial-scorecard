@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/seanwood/public_html
+    - export DEPLOYPATH=/home/seanw2/public_html/bangforyourduck.ca
     # Provinces (root)
     - /bin/cp -R frontend/dist/* $DEPLOYPATH/
     # Cities
