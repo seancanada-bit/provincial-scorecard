@@ -15,6 +15,8 @@ export default function Header({ lastUpdated }) {
               <a href="/" className="site-header__sub-link">Provinces</a>
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
               <span className="site-header__sub-current" aria-current="page">Cities</span>
+              <span className="site-header__sub-sep" aria-hidden="true">·</span>
+              <a href="/mps/" className="site-header__sub-link">MPs</a>
             </span>
             {formatted && (
               <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>

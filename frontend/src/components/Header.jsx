@@ -11,6 +11,13 @@ export default function Header({ lastUpdated }) {
             <a href="/" className="site-header__wordmark" aria-label="Bang for Your Duck home">
               <span className="site-header__brand">Bang for Your <span>Duck</span></span>
             </a>
+            <span className="site-header__sub-nav" aria-label="Sections">
+              <span className="site-header__sub-current" aria-current="page">Provinces</span>
+              <span className="site-header__sub-sep" aria-hidden="true">·</span>
+              <a href="/cities/" className="site-header__sub-link">Cities</a>
+              <span className="site-header__sub-sep" aria-hidden="true">·</span>
+              <a href="/mps/" className="site-header__sub-link">MPs</a>
+            </span>
             {formatted && (
               <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
                 Updated {formatted}
