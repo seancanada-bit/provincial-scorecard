@@ -4,7 +4,7 @@ const PARTIES = [
   { key: 'Conservative',     label: 'Conservative',short: 'CPC' },
   { key: 'NDP',              label: 'NDP',         short: 'NDP' },
   { key: 'Bloc Québécois',   label: 'Bloc',        short: 'BQ'  },
-  { key: 'Green',            label: 'Green',       short: 'GPC' },
+  { key: 'Green Party',      label: 'Green',       short: 'GPC' },
   { key: 'Independent',      label: 'Ind.',        short: 'Ind' },
 ];
 

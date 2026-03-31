@@ -26,6 +26,7 @@ const PARTY_SHORT = {
   'NDP':            'NDP',
   'Bloc Québécois': 'BQ',
   'Green':          'GPC',
+  'Green Party':    'GPC',
   'Independent':    'Ind',
 };
 

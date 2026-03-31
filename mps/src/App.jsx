@@ -29,6 +29,7 @@ const PARTY_COLORS = {
   'NDP':           '#F58220',
   'Bloc Québécois':'#33B2CC',
   'Green':         '#3D9B35',
+  'Green Party':   '#3D9B35',
   'Independent':   '#888888',
 };
 
