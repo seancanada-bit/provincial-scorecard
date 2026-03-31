@@ -37,6 +37,15 @@ jobs:
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
+      # ── MPs ──────────────────────────────────────────────────────────────
+      - name: Install MPs dependencies
+        run: cd mps && npm ci
+
+      - name: Build MPs
+        run: cd mps && npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+
       # ── Deploy provinces to root (clean-slate first) ────────────────────
       - name: Deploy provinces to CWH via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -59,3 +68,14 @@ jobs:
           port: 21
           local-dir: ./cities/dist/
           server-dir: /cities/
+
+      # ── Deploy MPs to /mps/ ────────────────────────────────────────────
+      - name: Deploy MPs to CWH via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.seanwood.com
+          username: claudeauto@bangforyourduck.ca
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./mps/dist/
+          server-dir: /mps/
