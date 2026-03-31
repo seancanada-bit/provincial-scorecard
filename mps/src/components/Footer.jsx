@@ -1,4 +1,4 @@
-export default function Footer({ onMethodology }) {
+export default function Footer() {
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="site-footer__inner">
@@ -6,16 +6,10 @@ export default function Footer({ onMethodology }) {
         <nav className="site-footer__links" aria-label="Footer navigation">
           <a href="/" className="site-footer__link">← Provinces</a>
           <span className="site-footer__sep" aria-hidden="true">·</span>
-          <button
-            onClick={onMethodology}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.45)', fontSize: '13px', padding: 0 }}
-            aria-haspopup="dialog"
-          >
-            Methodology
-          </button>
+          <a href="/cities/" className="site-footer__link">Cities</a>
           <span className="site-footer__sep" aria-hidden="true">·</span>
           <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>
-            Covers 41 CMAs · pop. 100,000+
+            338 federal ridings · 44th Parliament
           </span>
         </nav>
       </div>

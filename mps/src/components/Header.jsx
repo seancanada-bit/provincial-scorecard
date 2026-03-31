@@ -14,7 +14,9 @@ export default function Header({ lastUpdated }) {
             <span className="site-header__sub-nav" aria-label="Current section">
               <a href="/" className="site-header__sub-link">Provinces</a>
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
-              <span className="site-header__sub-current" aria-current="page">Cities</span>
+              <a href="/cities/" className="site-header__sub-link">Cities</a>
+              <span className="site-header__sub-sep" aria-hidden="true">·</span>
+              <span className="site-header__sub-current" aria-current="page">MPs</span>
             </span>
             {formatted && (
               <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
@@ -22,8 +24,8 @@ export default function Header({ lastUpdated }) {
               </span>
             )}
           </div>
-          <p className="site-header__tagline">Which Canadian city gives you the most bang for your loonie in property tax?</p>
-          <p className="site-header__scope">Ranking all 41 Census Metropolitan Areas with core populations over 100,000.</p>
+          <p className="site-header__tagline">What does your MP deliver for the federal tax dollars your riding generates?</p>
+          <p className="site-header__scope">Grading all 338 federal electoral ridings on MP performance, investment, and outcomes.</p>
         </div>
         <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>
