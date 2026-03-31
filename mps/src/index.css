@@ -170,6 +170,62 @@ body {
   background: #fff0ef; font-weight: 600;
 }
 
+/* ─── FILTER ROW (province + party side by side) ───────────────────────── */
+.filter-row {
+  display: flex; flex-direction: column; gap: 0;
+}
+
+/* ─── PARTY FILTER ─────────────────────────────────────────────────────── */
+.party-filter {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 6px var(--space-md);
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+}
+.party-filter__pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 500; font-family: var(--font-sans);
+  border: 1.5px solid var(--border); background: var(--card-bg);
+  color: var(--text-secondary); cursor: pointer; transition: all 0.15s;
+}
+.party-filter__pill:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.party-filter__pill--active { font-weight: 600; color: var(--text-primary); }
+.party-filter__dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ─── SEARCH BAR (elevated, prominent for 338 ridings) ─────────────────── */
+.search-bar {
+  max-width: 1140px; margin: var(--space-md) auto 0;
+  padding: 0 var(--space-md);
+}
+.search-bar__input {
+  width: 100%; padding: 12px 16px;
+  font-size: 15px; font-family: var(--font-sans);
+  border: 2px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--card-bg); color: var(--text-primary);
+  outline: none; transition: border-color 0.15s;
+}
+.search-bar__input:focus {
+  border-color: var(--canada-red);
+  box-shadow: 0 0 0 3px rgba(213, 43, 30, 0.1);
+}
+.search-bar__input::placeholder { color: var(--text-muted); }
+.search-bar__count {
+  display: block; margin-top: 4px;
+  font-size: 12px; color: var(--text-muted); font-style: italic;
+  padding-left: 4px;
+}
+
+/* ─── FILTER LABEL ─────────────────────────────────────────────────────── */
+.filter-label {
+  max-width: 1140px; margin: var(--space-sm) auto 0;
+  padding: 0 var(--space-md);
+  font-size: 13px; color: var(--text-muted); font-style: italic;
+}
+
 /* ─── SORT TABS ─────────────────────────────────────────────────────────── */
 .sort-tabs {
   background: var(--card-bg);

@@ -112,18 +112,25 @@ export default function App() {
       <Header lastUpdated={data?.lastUpdated} />
       <NationalSummary national={national} ridings={ridings} />
       <main className="app-shell__main">
-        <div className="filter-row">
-          <ProvinceFilter active={provinceFilter} onChange={setProvinceFilter} />
-          <PartyFilter active={partyFilter} onChange={setPartyFilter} colors={PARTY_COLORS} />
-        </div>
+        {/* Search is priority #1 with 338 ridings */}
         <div className="search-bar">
           <input
             type="search"
-            placeholder="Search riding or MP name…"
+            placeholder="Search by riding name or MP name…"
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="search-bar__input"
+            aria-label="Search ridings"
           />
+          {search && (
+            <span className="search-bar__count">
+              {filteredRidings.length} result{filteredRidings.length !== 1 ? 's' : ''}
+            </span>
+          )}
+        </div>
+        <div className="filter-row">
+          <ProvinceFilter active={provinceFilter} onChange={setProvinceFilter} />
+          <PartyFilter active={partyFilter} onChange={setPartyFilter} colors={PARTY_COLORS} />
         </div>
         <SortTabs
           sortKey={sortKey}

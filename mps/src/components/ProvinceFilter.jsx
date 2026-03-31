@@ -1,6 +1,6 @@
 import { PROVINCE_NAMES } from '../utils/grading.js';
 
-const PROVINCES = ['BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL'];
+const PROVINCES = ['BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'YT', 'NT', 'NU'];
 
 export default function ProvinceFilter({ active, onChange }) {
   return (
@@ -12,7 +12,7 @@ export default function ProvinceFilter({ active, onChange }) {
           className={`province-filter__tab${active === 'ALL' ? ' province-filter__tab--active' : ''}`}
           onClick={() => onChange('ALL')}
         >
-          All Cities
+          All Ridings
         </button>
         {PROVINCES.map(abbr => (
           <button

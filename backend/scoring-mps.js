@@ -243,7 +243,7 @@ function scoreRiding(raw) {
   const taxIndex = estimatedFederalTaxPerCapita != null
     ? Math.sqrt(estimatedFederalTaxPerCapita / NATIONAL_MEDIAN_FEDERAL_TAX) * 100
     : 100;
-  const duckScore = Math.round(composite * 100 / taxIndex);
+  const duckScore = Math.min(100, Math.round(composite * 100 / taxIndex));
 
   return {
     ridingCode:    meta.riding_code,
@@ -396,7 +396,7 @@ function normalizeRidingScores(scoredRidings) {
     const taxIndex = estimatedFederalTaxPerCapita != null
       ? Math.sqrt(estimatedFederalTaxPerCapita / NATIONAL_MEDIAN_FEDERAL_TAX) * 100
       : 100;
-    const duckScore = Math.round(composite * 100 / taxIndex);
+    const duckScore = Math.min(100, Math.round(composite * 100 / taxIndex));
 
     return { ...r, categories: newCats, composite, grade: toGrade(composite), duckScore, duckGrade: toGrade(duckScore) };
   });

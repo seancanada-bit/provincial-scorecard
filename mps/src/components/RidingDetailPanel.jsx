@@ -175,12 +175,12 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
       <div className="dp-header" style={{ '--city-color': color }}>
         <button className="dp-close" onClick={onClose} aria-label="Close riding details">✕</button>
         <div className="dp-header__badge" style={{ background: color }} aria-hidden="true">
-          <span className="dp-header__abbr">{riding.province}</span>
+          <span className="dp-header__abbr">{riding.mpParty === 'Bloc Québécois' ? 'BQ' : riding.mpParty?.slice(0,3).toUpperCase() ?? '?'}</span>
         </div>
         <div className="dp-header__text">
           <h2 className="dp-header__name">{riding.name}</h2>
           <p className="dp-header__meta">
-            {riding.mpName ?? 'Vacant'} · {riding.mpParty}
+            {riding.mpName ?? 'Vacant'} · {riding.mpParty} · {riding.province}
             {riding.population && ` · Pop. ${riding.population.toLocaleString('en-CA')}`}
           </p>
         </div>
