@@ -19,3 +19,7 @@ deployment:
     - /bin/cp api/*.json $DEPLOYPATH/api/ 2>/dev/null; true
     - /bin/cp api/*.php $DEPLOYPATH/api/
     - /bin/cp api/.htaccess $DEPLOYPATH/api/
+    # Reports (PDF report cards)
+    - /bin/mkdir -p $DEPLOYPATH/reports/ridings
+    - /bin/cp reports/ridings/*.pdf $DEPLOYPATH/reports/ridings/ 2>/dev/null; true
+    - /bin/cp reports/index.json $DEPLOYPATH/reports/ 2>/dev/null; true
