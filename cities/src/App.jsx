@@ -32,6 +32,7 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [provinceFilter, setProvinceFilter] = useState('ALL');
   const [mapView, setMapView]         = useState(false);
+  const [search, setSearch]           = useState('');
   const [showMethodology, setShowMethodology] = useState(false);
 
   // Read ?province= from URL on load
@@ -81,8 +82,15 @@ export default function App() {
     if (provinceFilter !== 'ALL') {
       list = list.filter(c => c.provinceAbbr === provinceFilter);
     }
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      list = list.filter(c =>
+        c.name.toLowerCase().includes(q) ||
+        c.mayorName?.toLowerCase().includes(q)
+      );
+    }
     return list.sort((a, b) => sortScore(b) - sortScore(a));
-  }, [cities, provinceFilter, sortKey]);
+  }, [cities, provinceFilter, search, sortKey]);
 
   const rankedAll = useMemo(() =>
     [...cities].sort((a, b) => sortScore(b) - sortScore(a)),
@@ -94,19 +102,27 @@ export default function App() {
       <Header lastUpdated={data?.lastUpdated} />
       <NationalSummary national={national} cities={cities} provinceFilter={provinceFilter} filteredCities={filteredCities} />
       <main className="app-shell__main">
+        <div className="search-bar">
+          <input
+            type="search"
+            placeholder="Search by city or mayor name…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="search-bar__input"
+            aria-label="Search cities"
+          />
+        </div>
         <ProvinceFilter active={provinceFilter} onChange={setProvinceFilter} />
+        <div className="view-switcher">
+          <button className={`view-switcher__btn${!mapView ? ' view-switcher__btn--active' : ''}`} onClick={() => setMapView(false)}>List</button>
+          <button className={`view-switcher__btn${mapView ? ' view-switcher__btn--active' : ''}`} onClick={() => setMapView(true)}>Map</button>
+          <span className="view-switcher__count">{filteredCities.length} cities</span>
+        </div>
         <SortTabs
           sortKey={sortKey}
           onChange={setSortKey}
           tabs={SORT_KEYS}
-          mapView={mapView}
-          onToggleMap={() => setMapView(v => !v)}
         />
-        {provinceFilter !== 'ALL' && (
-          <p className="province-filter-label">
-            Viewing {filteredCities.length} {filteredCities.length === 1 ? 'city' : 'cities'} in {provinceFilter}
-          </p>
-        )}
         {mapView ? (
           <MapView cities={filteredCities} onSelect={setSelectedCity} sortKey={sortKey} />
         ) : (

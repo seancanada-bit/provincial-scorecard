@@ -133,6 +133,23 @@ body {
   flex-shrink: 0;
 }
 .site-header__brand span { color: var(--canada-red); }
+
+/* Section nav pills (Provinces · Cities · MPs) */
+.site-header__sub-nav {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 13px; font-family: var(--font-sans);
+  background: var(--bg); border-radius: 20px;
+  padding: 3px 12px;
+}
+.site-header__sub-link {
+  color: var(--text-muted); text-decoration: none; font-weight: 400;
+}
+.site-header__sub-link:hover { color: var(--text-primary); }
+.site-header__sub-current {
+  color: var(--text-primary); font-weight: 600;
+}
+.site-header__sub-sep { color: var(--text-muted); font-size: 10px; }
+
 .site-header__tagline {
   font-family: var(--font-sans);
   font-size: clamp(12px, 1.6vw, 14px);
