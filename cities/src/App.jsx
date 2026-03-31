@@ -6,7 +6,6 @@ import SortTabs from './components/SortTabs.jsx';
 import CityGrid from './components/CityGrid.jsx';
 import CityDetailPanel from './components/CityDetailPanel.jsx';
 import MapView from './components/MapView.jsx';
-import SupportSection from './components/SupportSection.jsx';
 import DataSources from './components/DataSources.jsx';
 import Footer from './components/Footer.jsx';
 import MethodologyModal from './components/MethodologyModal.jsx';
@@ -130,7 +129,6 @@ export default function App() {
           </div>
         )}
       </main>
-      <SupportSection />
       <DataSources />
       <Footer onMethodology={() => setShowMethodology(true)} />
       {showMethodology && (

@@ -7,7 +7,6 @@ import SortTabs from './components/SortTabs.jsx';
 import RidingGrid from './components/RidingGrid.jsx';
 import RidingDetailPanel from './components/RidingDetailPanel.jsx';
 import MapView from './components/MapView.jsx';
-import SupportSection from './components/SupportSection.jsx';
 import Footer from './components/Footer.jsx';
 
 const API = import.meta.env.VITE_API_URL || '';
@@ -179,7 +178,6 @@ export default function App() {
           </div>
         )}
       </main>
-      <SupportSection />
       <Footer />
     </div>
   );

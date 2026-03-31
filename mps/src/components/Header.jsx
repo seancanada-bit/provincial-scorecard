@@ -18,11 +18,14 @@ export default function Header({ lastUpdated }) {
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
               <span className="site-header__sub-current" aria-current="page">MPs</span>
             </span>
-            {formatted && (
-              <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
-                Updated {formatted}
-              </span>
-            )}
+            <div className="site-header__actions">
+              {formatted && (
+                <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
+                  Updated {formatted}
+                </span>
+              )}
+              <a href="/#support" className="site-header__support-btn">Support this project</a>
+            </div>
           </div>
           <p className="site-header__tagline">What does your MP deliver for the federal tax dollars your riding generates?</p>
           <p className="site-header__scope">Grading all 343 federal electoral ridings on MP performance, investment, and outcomes.</p>

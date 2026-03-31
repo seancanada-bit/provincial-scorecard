@@ -18,11 +18,14 @@ export default function Header({ lastUpdated }) {
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
               <a href="/mps/" className="site-header__sub-link">MPs</a>
             </span>
-            {formatted && (
-              <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
-                Updated {formatted}
-              </span>
-            )}
+            <div className="site-header__actions">
+              {formatted && (
+                <span className="site-header__updated" aria-label={`Data last updated ${formatted}`}>
+                  Updated {formatted}
+                </span>
+              )}
+              <a href="/#support" className="site-header__support-btn">Support this project</a>
+            </div>
           </div>
           <p className="site-header__tagline">Which Canadian city gives you the most bang for your loonie in property tax?</p>
           <p className="site-header__scope">Ranking all 41 Census Metropolitan Areas with core populations over 100,000.</p>

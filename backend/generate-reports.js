@@ -114,7 +114,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
      .text(`Report generated ${new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}`, 50, gradeY + 250, { align: 'center', width: W });
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
 
   // ════════ PAGE 2: SCORE BREAKDOWN ═════════════════════════════════════
   doc.addPage();
@@ -181,7 +181,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   }
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
 
   // ════════ PAGE 3: HOW YOUR MP VOTED ════════════════════════════════════
   if (voteRecords) {
@@ -216,7 +216,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: OpenParliament.ca  |  Session 45-1  |  Key votes selected by significance', 50, vY + 10, { width: W });
-      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -256,7 +256,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: Infrastructure Canada Open Data  |  infrastructure.gc.ca', 50, sY + 25, { width: W });
-      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -306,7 +306,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: ourcommons.ca/ProactiveDisclosure  |  Q3 2025-26', 50, eY + 50, { width: W });
-      doc.text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -393,7 +393,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   }
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Free  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
 
   doc.end();
   return new Promise(resolve => stream.on('finish', resolve));
