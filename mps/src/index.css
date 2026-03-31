@@ -219,6 +219,28 @@ body {
   padding-left: 4px;
 }
 
+/* ─── VIEW SWITCHER (List / Map toggle) ─────────────────────────────────── */
+.view-switcher {
+  max-width: 1140px; margin: var(--space-md) auto 0;
+  padding: 0 var(--space-md);
+  display: flex; align-items: center; gap: 8px;
+}
+.view-switcher__btn {
+  padding: 8px 18px; border-radius: var(--radius-lg);
+  font-size: 14px; font-weight: 500; font-family: var(--font-sans);
+  border: 2px solid var(--border); background: var(--card-bg);
+  color: var(--text-secondary); cursor: pointer; transition: all 0.15s;
+}
+.view-switcher__btn:hover { border-color: var(--text-secondary); }
+.view-switcher__btn--active {
+  background: var(--canada-red); color: white;
+  border-color: var(--canada-red); font-weight: 600;
+}
+.view-switcher__count {
+  margin-left: auto;
+  font-size: 13px; color: var(--text-muted); font-style: italic;
+}
+
 /* ─── FILTER LABEL ─────────────────────────────────────────────────────── */
 .filter-label {
   max-width: 1140px; margin: var(--space-sm) auto 0;

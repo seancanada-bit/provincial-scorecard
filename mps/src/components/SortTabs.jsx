@@ -1,6 +1,6 @@
-export default function SortTabs({ sortKey, onChange, tabs, mapView, onToggleMap }) {
+export default function SortTabs({ sortKey, onChange, tabs }) {
   return (
-    <nav className="sort-tabs" aria-label="Sort cities by category">
+    <nav className="sort-tabs" aria-label="Sort ridings by category">
       <div className="sort-tabs__inner" role="tablist">
         {tabs.map(tab => (
           <button
@@ -14,14 +14,6 @@ export default function SortTabs({ sortKey, onChange, tabs, mapView, onToggleMap
           </button>
         ))}
       </div>
-      <button
-        className={`sort-tabs__map-toggle${mapView ? ' sort-tabs__map-toggle--active' : ''}`}
-        onClick={onToggleMap}
-        aria-pressed={mapView}
-        title={mapView ? 'Switch to list view' : 'Switch to map view'}
-      >
-        {mapView ? '📋 List' : '🗺️ Map'}
-      </button>
     </nav>
   );
 }

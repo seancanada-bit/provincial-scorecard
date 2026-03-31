@@ -132,20 +132,28 @@ export default function App() {
           <ProvinceFilter active={provinceFilter} onChange={setProvinceFilter} />
           <PartyFilter active={partyFilter} onChange={setPartyFilter} colors={PARTY_COLORS} />
         </div>
+        {/* View switcher — prominent, not hidden in tab row */}
+        <div className="view-switcher">
+          <button
+            className={`view-switcher__btn${!mapView ? ' view-switcher__btn--active' : ''}`}
+            onClick={() => setMapView(false)}
+          >
+            📋 List
+          </button>
+          <button
+            className={`view-switcher__btn${mapView ? ' view-switcher__btn--active' : ''}`}
+            onClick={() => setMapView(true)}
+          >
+            🗺️ Map
+          </button>
+          <span className="view-switcher__count">{filteredRidings.length} ridings</span>
+        </div>
         <SortTabs
           sortKey={sortKey}
           onChange={setSortKey}
           tabs={SORT_KEYS}
-          mapView={mapView}
-          onToggleMap={() => setMapView(v => !v)}
         />
-        {(provinceFilter !== 'ALL' || partyFilter !== 'ALL') && (
-          <p className="filter-label">
-            Viewing {filteredRidings.length} {filteredRidings.length === 1 ? 'riding' : 'ridings'}
-            {provinceFilter !== 'ALL' ? ` in ${provinceFilter}` : ''}
-            {partyFilter !== 'ALL' ? ` · ${partyFilter}` : ''}
-          </p>
-        )}
+        {/* Filter label removed — count is now in view-switcher */}
         {mapView ? (
           <MapView cities={filteredRidings} onSelect={setSelectedRiding} sortKey={sortKey} />
         ) : (
