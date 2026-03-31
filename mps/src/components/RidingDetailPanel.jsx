@@ -71,6 +71,9 @@ function InvestmentTab({ c }) {
         <MetricRow label="Federal facilities" score={inv.facilitiesScore} rawDisplay={inv.federalFacilitiesCount != null ? `${inv.federalFacilitiesCount}` : '—'} compareDisplay="Buildings, bases, labs" />
       </div>
       <p className="dp-source">Source: GC InfoBase · Infrastructure Canada · {inv.dataDate ?? '2023'}</p>
+      <p className="dp-planned">
+        <strong>Coming soon:</strong> Coverage Score — measuring how equitably federal grants are distributed across all communities within the riding, not just the population centre. Based on Infrastructure Canada project locations geocoded against riding boundaries.
+      </p>
     </div>
   );
 }
