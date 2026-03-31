@@ -20,11 +20,7 @@ Header always unset X-Powered-By
 </FilesMatch>
 
 RewriteEngine On
-RewriteBase /
-# Pass /cities/*, /mps/*, /api/* through to their own index + .htaccess
-RewriteRule ^cities(/.*)?$ - [L]
-RewriteRule ^mps(/.*)?$ - [L]
-RewriteRule ^api(/.*)?$ - [L]
+RewriteBase /provinces/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule . /provinces/index.html [L]
