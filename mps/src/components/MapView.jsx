@@ -1,18 +1,18 @@
 import { useEffect, useRef } from 'react';
-import { gradeFill, toGrade, PROVINCE_COLORS } from '../utils/grading.js';
+import { gradeFill, toGrade } from '../utils/grading.js';
 
-function getScore(city, sortKey) {
-  if (sortKey === 'duck')      return city.duckScore ?? city.composite;
-  if (sortKey === 'composite') return city.composite;
-  return city.categories?.[sortKey]?.score ?? city.composite;
+function getScore(riding, sortKey) {
+  if (sortKey === 'duck')      return riding.duckScore ?? riding.composite;
+  if (sortKey === 'composite') return riding.composite;
+  return riding.categories?.[sortKey]?.score ?? riding.composite;
 }
 
-export default function MapView({ cities, onSelect, sortKey }) {
+export default function MapView({ cities: ridings, onSelect, sortKey }) {
   const containerRef = useRef(null);
   const mapRef       = useRef(null);
-  const markersRef   = useRef([]);
+  const markersRef   = useRef({ cluster: null, items: [] });
 
-  // ── Init map once (tiles only, no markers) ──────────────────────────────
+  // ── Init map once ──────────────────────────────────────────────────────
   useEffect(() => {
     if (!containerRef.current) return;
     let mounted = true;
@@ -22,7 +22,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
       const L = leaflet.default;
 
       const map = L.map(containerRef.current, {
-        center:  [55, -95],
+        center:  [56, -96],
         zoom:    4,
         minZoom: 3,
         maxZoom: 13,
@@ -30,7 +30,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
       mapRef.current = map;
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© OpenStreetMap · © CARTO',
+        attribution: '&copy; OpenStreetMap &middot; CARTO',
         subdomains: 'abcd',
         maxZoom: 19,
       }).addTo(map);
@@ -38,52 +38,51 @@ export default function MapView({ cities, onSelect, sortKey }) {
 
     return () => {
       mounted = false;
-      if (mapRef.current) {
-        mapRef.current.remove();
-        mapRef.current = null;
-      }
-      markersRef.current = [];
-      delete window.__citySelectFromMap__;
+      if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; }
+      markersRef.current = { cluster: null, items: [] };
+      delete window.__ridingSelectFromMap__;
     };
-  }, []); // map initialised once
+  }, []);
 
-  // ── Create / refresh markers whenever cities or sortKey changes ──────────
+  // ── Create markers when ridings or sortKey changes ─────────────────────
   useEffect(() => {
-    if (!cities.length) return;
+    if (!ridings.length) return;
 
     Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([leafletModule]) => {
       if (!mapRef.current) return;
       const L = leafletModule.default;
 
-      // Clear old cluster layer
+      // Clear old
       if (markersRef.current.cluster) {
         mapRef.current.removeLayer(markersRef.current.cluster);
       }
       markersRef.current = { cluster: null, items: [] };
 
       const cluster = L.markerClusterGroup({
-        maxClusterRadius: 40,
+        maxClusterRadius: 60,  // more aggressive clustering for 340 points
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: false,
+        disableClusteringAtZoom: 8,
         iconCreateFunction: (c) => {
           const count = c.getChildCount();
+          const size = count > 50 ? 48 : count > 20 ? 40 : 34;
           return L.divIcon({
             className: '',
             html: `<div style="
-              background:#1A1A1A;border:2px solid white;border-radius:50%;
-              width:34px;height:34px;display:flex;align-items:center;justify-content:center;
-              font-size:11px;font-weight:700;color:white;
-              box-shadow:0 2px 8px rgba(0,0,0,0.4);font-family:system-ui,sans-serif;">${count}</div>`,
-            iconSize:   [34, 34],
-            iconAnchor: [17, 17],
+              background:#D52B1E;border:3px solid white;border-radius:50%;
+              width:${size}px;height:${size}px;display:flex;align-items:center;justify-content:center;
+              font-size:${size > 40 ? 13 : 11}px;font-weight:700;color:white;
+              box-shadow:0 3px 10px rgba(0,0,0,0.4);font-family:system-ui,sans-serif;">${count}</div>`,
+            iconSize:   [size, size],
+            iconAnchor: [size/2, size/2],
           });
         },
       });
 
-      cities.forEach(city => {
-        if (!city.lat || !city.lng) return;
+      ridings.forEach(riding => {
+        if (!riding.lat || !riding.lng) return;
 
-        const score = getScore(city, sortKey);
+        const score = getScore(riding, sortKey);
         const grade = toGrade(score);
         const fill  = gradeFill(grade);
 
@@ -91,54 +90,61 @@ export default function MapView({ cities, onSelect, sortKey }) {
           className: '',
           html: `<div style="
             background:${fill};border:2px solid white;border-radius:50%;
-            width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+            width:30px;height:30px;display:flex;align-items:center;justify-content:center;
             font-size:10px;font-weight:700;color:white;
-            box-shadow:0 2px 6px rgba(0,0,0,0.35);cursor:pointer;
+            box-shadow:0 2px 8px rgba(0,0,0,0.35);cursor:pointer;
             font-family:system-ui,sans-serif;">${grade}</div>`,
-          iconSize:   [28, 28],
-          iconAnchor: [14, 14],
+          iconSize:   [30, 30],
+          iconAnchor: [15, 15],
         });
 
-        const marker = L.marker([city.lat, city.lng], { icon })
+        const mpParty = riding.mpParty || '';
+        const marker = L.marker([riding.lat, riding.lng], { icon })
           .bindPopup(`
-            <div style="font-family:system-ui,sans-serif;min-width:140px;">
-              <strong style="font-size:13px;">${city.name}</strong>
-              <div style="font-size:11px;color:#666;margin-bottom:4px;">${city.province ?? ''}</div>
+            <div style="font-family:system-ui,sans-serif;min-width:160px;">
+              <strong style="font-size:13px;">${riding.name}</strong>
+              <div style="font-size:11px;color:#666;margin-bottom:4px;">${riding.mpName || 'Vacant'} · ${mpParty} · ${riding.province}</div>
               <div style="font-size:12px;">
-                Performance: <strong style="color:${gradeFill(city.grade)}">${city.grade} · ${city.composite}/100</strong>
+                Performance: <strong style="color:${gradeFill(riding.grade)}">${riding.grade} · ${riding.composite}/100</strong>
               </div>
-              ${city.duckScore != null
-                ? `<div style="font-size:12px;">🦆 Value: <strong style="color:${gradeFill(toGrade(city.duckScore))}">${toGrade(city.duckScore)} · ${city.duckScore}/100</strong></div>`
+              ${riding.duckScore != null
+                ? `<div style="font-size:12px;">🦆 Value: <strong style="color:${gradeFill(toGrade(riding.duckScore))}">${toGrade(riding.duckScore)} · ${riding.duckScore}/100</strong></div>`
                 : ''}
-              <button onclick="window.__citySelectFromMap__('${city.cmaCode}')" style="
-                margin-top:6px;font-size:11px;padding:3px 8px;
-                background:#1A1A1A;color:white;border:none;border-radius:4px;cursor:pointer;">
+              <button onclick="window.__ridingSelectFromMap__('${riding.ridingCode}')" style="
+                margin-top:6px;font-size:11px;padding:4px 10px;
+                background:#D52B1E;color:white;border:none;border-radius:4px;cursor:pointer;">
                 View details →
               </button>
             </div>
           `);
 
         cluster.addLayer(marker);
-        markersRef.current.items.push({ cmaCode: city.cmaCode, marker });
+        markersRef.current.items.push({ code: riding.ridingCode, marker });
       });
 
       mapRef.current.addLayer(cluster);
       markersRef.current.cluster = cluster;
 
-      // Global bridge for popup button clicks
-      window.__citySelectFromMap__ = cmaCode => {
-        const city = cities.find(c => c.cmaCode === cmaCode);
-        if (city) { onSelect(city); mapRef.current?.closePopup(); }
+      // Fit map to show all markers
+      const bounds = cluster.getBounds();
+      if (bounds.isValid()) {
+        mapRef.current.fitBounds(bounds, { padding: [30, 30], maxZoom: 5 });
+      }
+
+      // Bridge for popup clicks
+      window.__ridingSelectFromMap__ = code => {
+        const riding = ridings.find(r => r.ridingCode === code);
+        if (riding) { onSelect(riding); mapRef.current?.closePopup(); }
       };
     });
-  }, [cities, sortKey]); // re-run whenever data or sort changes
+  }, [ridings, sortKey]);
 
   return (
     <div className="map-view">
-      <div ref={containerRef} className="map-view__container" style={{ height: '520px', width: '100%' }} />
+      <div ref={containerRef} className="map-view__container" style={{ height: '560px', width: '100%' }} />
       <p className="map-view__legend">
         Markers coloured by <strong>{sortKey === 'duck' ? '🦆 Value' : sortKey}</strong> grade.
-        Click a city to see its popup, then "View details" for the full breakdown.
+        Click a riding to see its popup, then "View details" for the full breakdown.
       </p>
     </div>
   );
