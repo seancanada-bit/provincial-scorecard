@@ -48,6 +48,17 @@ jobs:
           git commit -m "chore: build frontends $(date -u +'%Y-%m-%d') [skip ci]"
           git push
 
+      # ── Deploy reports via FTP (cPanel Git struggles with 340 binary PDFs) ──
+      - name: Deploy reports via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.seanwood.com
+          username: claudeauto@bangforyourduck.ca
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./reports/
+          server-dir: /reports/
+
       # ── Trigger cPanel to pull + deploy ────────────────────────────────
       - name: Deploy to cPanel
         run: |
