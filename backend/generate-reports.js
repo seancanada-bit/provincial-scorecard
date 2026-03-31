@@ -109,12 +109,15 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
        .text(`Population: ${riding.population.toLocaleString('en-CA')}`, 50, gradeY + 218, { align: 'center', width: W });
   }
 
-  // Report generated date
+  // Report meta + sources
   doc.fontSize(9).fillColor(COLORS.muted)
-     .text(`Report generated ${new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}`, 50, gradeY + 250, { align: 'center', width: W });
+     .text(`Report generated ${new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}`, 50, gradeY + 240, { align: 'center', width: W });
+  doc.fontSize(7).fillColor(COLORS.muted)
+     .text('Sources: Elections Canada | OpenParliament.ca | Infrastructure Canada | House of Commons Disclosure | StatsCan Census 2021', 50, gradeY + 260, { align: 'center', width: W })
+     .text('Governments publish the data. We collect it, score it, and present it in one place.', 50, gradeY + 274, { align: 'center', width: W });
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca | Where does your tax loonie go?', 50, 720, { align: 'center', width: W });
 
   // ════════ PAGE 2: SCORE BREAKDOWN ═════════════════════════════════════
   doc.addPage();
@@ -181,7 +184,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   }
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
 
   // ════════ PAGE 3: HOW YOUR MP VOTED ════════════════════════════════════
   if (voteRecords) {
@@ -216,7 +219,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: OpenParliament.ca  |  Session 45-1  |  Key votes selected by significance', 50, vY + 10, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -256,7 +259,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: Infrastructure Canada Open Data  |  infrastructure.gc.ca', 50, sY + 25, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -306,7 +309,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
       doc.fontSize(8).fillColor(COLORS.muted)
          .text('Source: ourcommons.ca/ProactiveDisclosure  |  Q3 2025-26', 50, eY + 50, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
     }
   }
 
@@ -393,7 +396,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   }
 
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Community-supported  |  Nonpartisan  |  Independent', 50, 720, { align: 'center', width: W });
+     .text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
 
   doc.end();
   return new Promise(resolve => stream.on('finish', resolve));

@@ -27,7 +27,7 @@ export default function Header({ lastUpdated }) {
               <a href="/#support" className="site-header__support-btn">Support this project</a>
             </div>
           </div>
-          <p className="site-header__tagline">What does your MP deliver for the federal tax dollars your riding generates?</p>
+          <p className="site-header__tagline">What does your MP deliver for your federal tax loonie?</p>
           <p className="site-header__scope">Grading all 343 federal electoral ridings on MP performance, investment, and outcomes.</p>
         </div>
         <span className="site-header__duck-hero" aria-hidden="true">🦆</span>

@@ -27,7 +27,7 @@ export default function Header({ lastUpdated }) {
               <a href="/#support" className="site-header__support-btn">Support this project</a>
             </div>
           </div>
-          <p className="site-header__tagline">Which province gives you the most for your loonie?</p>
+          <p className="site-header__tagline">Which province gives you the most bang for your tax loonie?</p>
         </div>
         <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>

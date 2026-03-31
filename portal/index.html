@@ -107,6 +107,16 @@
       position: relative; z-index: 1;
     }
 
+    .hero__explainer {
+      font-size: clamp(11px, 1.4vw, 13px);
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 440px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      position: relative; z-index: 1;
+    }
+
     .hero__scroll {
       font-size: 13px;
       color: var(--text-muted);
@@ -351,9 +361,12 @@
 
     <div class="hero__duck" aria-hidden="true">🦆</div>
     <div class="hero__brand">Bang for Your <span>Duck</span></div>
-    <h1 class="hero__question">Are you getting your money's worth?</h1>
+    <h1 class="hero__question">Where does your tax loonie go?</h1>
     <p class="hero__sub">
-      Grading every Canadian province, city, and federal MP on what they deliver for your tax dollar. Free. Nonpartisan. Independent.
+      Governments publish the data. We collect it, score it, and grade every province, city, and MP — so you can see what you're actually getting for your tax loonie. All public sources. One place. No spin.
+    </p>
+    <p class="hero__explainer">
+      Why "duck"? The loon on Canada's dollar coin. Your loonie. Your duck. We track the bang you get for it.
     </p>
     <div class="hero__scroll" aria-hidden="true">Explore</div>
   </section>
@@ -388,7 +401,7 @@
         <div class="card__icon">🏛️</div>
         <div class="card__level">Provincial</div>
         <h2 class="card__title">Your Province</h2>
-        <p class="card__question">How does your province spend your tax dollars? Healthcare wait times, housing starts, credit ratings, education outcomes — graded head to head.</p>
+        <p class="card__question">How does your province spend your tax loonie? Healthcare wait times, housing starts, credit ratings, education outcomes — graded head to head.</p>
         <div class="card__stat">
           <span class="card__stat-grade card__stat-grade--a">A-</span>
           <span class="card__stat-text"><strong>Alberta leads on fiscal health</strong>Lowest net debt per capita in Canada</span>
@@ -404,7 +417,7 @@
         <div class="card__icon">🏙️</div>
         <div class="card__level">Municipal</div>
         <h2 class="card__title">Your City</h2>
-        <p class="card__question">What do you get for your property tax? Safety, transit, housing affordability, infrastructure delivery — for every major metro area.</p>
+        <p class="card__question">What do you get for your property tax loonie? Safety, transit, housing affordability, infrastructure delivery — for every major metro area.</p>
         <div class="card__stat">
           <span class="card__stat-grade card__stat-grade--b">B+</span>
           <span class="card__stat-text"><strong>Quebec City tops safety</strong>Lowest crime severity index of any CMA</span>
@@ -420,7 +433,7 @@
         <div class="card__icon">🗳️</div>
         <div class="card__level">Federal</div>
         <h2 class="card__title">Your MP</h2>
-        <p class="card__question">What has your Member of Parliament delivered for your riding? Federal investment, vote participation, electoral health — across all 343 ridings.</p>
+        <p class="card__question">What has your MP delivered for your federal tax loonie? Investment, vote record, expenses, electoral health — across all 343 ridings.</p>
         <div class="card__stat">
           <span class="card__stat-grade card__stat-grade--c">C</span>
           <span class="card__stat-text"><strong>Average MP composite score</strong>3 of 6 data categories still filling</span>
