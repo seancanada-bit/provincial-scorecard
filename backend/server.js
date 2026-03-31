@@ -10,9 +10,10 @@ const cors      = require('cors');
 const path      = require('path');
 const fs        = require('fs');
 
-const { fetchAllSupabaseData, fetchAllCitiesData, getSupabaseClient } = require('./supabase');
+const { fetchAllSupabaseData, fetchAllCitiesData, fetchAllRidingsData, getSupabaseClient } = require('./supabase');
 const { scoreProvince, normalizeCategoryScores, buildNationalSummary } = require('./scoring');
 const { scoreCity, normalizeCityScores, buildCitiesSummary } = require('./scoring-cities');
+const { scoreRiding, normalizeRidingScores, buildRidingsSummary } = require('./scoring-mps');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -49,6 +50,10 @@ let refreshRunning = false;
 let citiesCache = null;  // cities payload
 let citiesCacheTs = 0;
 let citiesRefreshRunning = false;
+
+let mpsCache = null;     // MPs/ridings payload
+let mpsCacheTs = 0;
+let mpsRefreshRunning = false;
 
 // Stats cache (5-minute TTL — light queries, no need to hit DB every request)
 let statsCache = null;
@@ -169,6 +174,45 @@ async function refreshCities() {
   }
 }
 
+// ─── MPS/RIDINGS REFRESH ─────────────────────────────────────────────────────
+async function refreshMps() {
+  if (mpsRefreshRunning) return;
+  mpsRefreshRunning = true;
+  console.log('[mps] Starting refresh at', new Date().toISOString());
+
+  try {
+    const supa = await fetchAllRidingsData().catch(() => null);
+    if (!supa) {
+      console.warn('[mps] Fetch failed — serving stale cache');
+      return;
+    }
+
+    const rawScored = supa.meta.map(meta => {
+      const code = meta.riding_code;
+      return scoreRiding({
+        meta,
+        performance:  supa.performance[code]  ?? null,
+        investment:   supa.investment[code]   ?? null,
+        electoral:    supa.electoral[code]    ?? null,
+        demographics: supa.demographics[code] ?? null,
+        expenses:     supa.expenses[code]     ?? null,
+        transfers:    supa.transfers[code]    ?? null,
+      });
+    });
+
+    const scoredRidings = normalizeRidingScores(rawScored);
+    const national      = buildRidingsSummary(scoredRidings);
+
+    mpsCache = { lastUpdated: new Date().toISOString(), national, ridings: scoredRidings };
+    mpsCacheTs = Date.now();
+    console.log(`[mps] Done. ${scoredRidings.length} ridings scored.`);
+  } catch (err) {
+    console.error('[mps] Unexpected error:', err.message);
+  } finally {
+    mpsRefreshRunning = false;
+  }
+}
+
 // ─── ROUTES ──────────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ ok: true }));
 
@@ -237,6 +281,15 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
+app.get('/api/mps', async (req, res) => {
+  if (!mpsCache || Date.now() - mpsCacheTs > CACHE_TTL_MS) {
+    await refreshMps();
+  }
+  if (!mpsCache) return res.status(503).json({ error: 'MPs data not yet available.' });
+  res.setHeader('Cache-Control', 'private, max-age=3600');
+  res.json(mpsCache);
+});
+
 app.get('/api/cities', async (req, res) => {
   if (!citiesCache || Date.now() - citiesCacheTs > CACHE_TTL_MS) {
     await refreshCities();
@@ -266,8 +319,10 @@ app.listen(PORT, () => {
   // Prime the caches on startup (non-blocking)
   refresh();
   refreshCities();
+  refreshMps();
 
   // Schedule 24h refreshes
   setInterval(refresh, CACHE_TTL_MS);
   setInterval(refreshCities, CACHE_TTL_MS);
+  setInterval(refreshMps, CACHE_TTL_MS);
 });

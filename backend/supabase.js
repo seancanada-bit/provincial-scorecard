@@ -119,4 +119,32 @@ async function fetchAllCitiesData() {
   };
 }
 
-module.exports = { fetchAllSupabaseData, fetchAllCitiesData, getSupabaseClient: getClient };
+async function fetchAllRidingsData() {
+  const sb = getClient();
+
+  const [meta, performance, investment, electoral, demographics, expenses, transfers] = await Promise.all([
+    sb.from('ridings_meta').select('*'),
+    sb.from('ridings_mp_performance').select('*'),
+    sb.from('ridings_federal_investment').select('*'),
+    sb.from('ridings_electoral').select('*'),
+    sb.from('ridings_demographics').select('*'),
+    sb.from('ridings_mp_expenses').select('*'),
+    sb.from('ridings_federal_transfers').select('*'),
+  ]);
+
+  if (meta.error) throw new Error(`Supabase error on ridings_meta: ${meta.error.message}`);
+
+  const byCode = key => arr => (arr ?? []).reduce((acc, row) => { acc[row[key]] = row; return acc; }, {});
+
+  return {
+    meta:         meta.data,
+    performance:  performance.data  ? byCode('riding_code')(performance.data)  : {},
+    investment:   investment.data   ? byCode('riding_code')(investment.data)   : {},
+    electoral:    electoral.data    ? byCode('riding_code')(electoral.data)    : {},
+    demographics: demographics.data ? byCode('riding_code')(demographics.data) : {},
+    expenses:     expenses.data     ? byCode('riding_code')(expenses.data)     : {},
+    transfers:    transfers.data    ? byCode('riding_code')(transfers.data)    : {},
+  };
+}
+
+module.exports = { fetchAllSupabaseData, fetchAllCitiesData, fetchAllRidingsData, getSupabaseClient: getClient };
