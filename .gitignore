@@ -5,3 +5,4 @@ backend/.env
 .DS_Store
 *.rtf
 *.RTF
+api/db-config.php

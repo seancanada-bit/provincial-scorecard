@@ -19,41 +19,48 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: |
-            backend/package-lock.json
-            frontend/package-lock.json
 
-      # ── 1. Generate fresh data ──────────────────────────────────────────────
+      # ── 1. Install backend deps (includes mysql2) ──────────────────────────
       - name: Install backend deps
         run: npm ci
         working-directory: backend
 
-      - name: Generate data
-        run: node generate.js
+      # ── 2. Generate all scored JSON from MySQL ─────────────────────────────
+      - name: Generate all data
+        run: node generate-all.js
         working-directory: backend
         env:
-          SUPABASE_URL:      ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          MYSQL_HOST:     ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER:     ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
-      # ── 2. Build frontend with fresh data bundled ───────────────────────────
-      - name: Install frontend deps
-        run: npm ci
-        working-directory: frontend
+      # ── 3. Build all three frontends ───────────────────────────────────────
+      - name: Build provinces
+        run: cd frontend && npm ci && npm run build
+        env:
+          VITE_API_URL: ''
+          VITE_BASE_PATH: /
 
-      - name: Build frontend
-        run: npm run build
-        working-directory: frontend
+      - name: Build cities
+        run: cd cities && npm ci && npm run build
+        env:
+          VITE_API_URL: ''
 
-      # ── 3. Deploy to GitHub Pages (docs/) ───────────────────────────────────
-      - name: Deploy to docs/
+      - name: Build MPs
+        run: cd mps && npm ci && npm run build
+        env:
+          VITE_API_URL: ''
+
+      # ── 4. Commit everything → cPanel Git auto-deploys ────────────────────
+      - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
-          rm -rf docs
-          cp -r frontend/dist docs
-          git add frontend/src/data/fallback.json docs/
+          git add -f api/data.json api/cities.json api/mps.json
+          git add -f frontend/dist/ cities/dist/ mps/dist/
+          git add -f frontend/src/data/fallback.json
           git diff --staged --quiet && echo "No data changes — skipping commit" && exit 0
           git commit -m "chore: refresh data $(date -u +'%Y-%m-%d') [skip ci]"
           git push

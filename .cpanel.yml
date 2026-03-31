@@ -1,0 +1,17 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/seanwood/public_html
+    # Provinces (root)
+    - /bin/cp -R frontend/dist/* $DEPLOYPATH/
+    # Cities
+    - /bin/mkdir -p $DEPLOYPATH/cities
+    - /bin/cp -R cities/dist/* $DEPLOYPATH/cities/
+    # MPs
+    - /bin/mkdir -p $DEPLOYPATH/mps
+    - /bin/cp -R mps/dist/* $DEPLOYPATH/mps/
+    # API (PHP + JSON files)
+    - /bin/mkdir -p $DEPLOYPATH/api
+    - /bin/cp api/*.json $DEPLOYPATH/api/ 2>/dev/null; true
+    - /bin/cp api/*.php $DEPLOYPATH/api/
+    - /bin/cp api/.htaccess $DEPLOYPATH/api/

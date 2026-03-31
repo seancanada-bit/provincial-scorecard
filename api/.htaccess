@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Route all /api/* requests through index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Security: block direct access to config
+<Files "db-config.php">
+  Order Deny,Allow
+  Deny from all
+</Files>
+
+# Headers
+Header set Content-Type "application/json; charset=utf-8"
+Header set Cache-Control "public, max-age=3600, must-revalidate"
