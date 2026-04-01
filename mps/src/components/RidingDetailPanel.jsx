@@ -248,7 +248,7 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
               <span className="dp-formula__contrib">= {cat?.score != null ? Math.round(cat.score * weight) : '—'}</span>
             </div>
             <div className="dp-formula__bar-track">
-              <span className="dp-formula__bar-fill" style={{ width: `${cat?.score ?? 0}%`, background: scoreFillBright(cat?.score) }} />
+              <div className="dp-formula__bar-fill" style={{ width: `${Math.max(cat?.score ?? 0, 5)}%`, backgroundColor: scoreFillBright(cat?.score) }}></div>
             </div>
           </div>
         ))}

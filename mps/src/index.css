@@ -1100,8 +1100,10 @@ body {
   border-radius: 4px; overflow: hidden;
 }
 .dp-formula__bar-fill {
+  display: block;
   height: 100%; border-radius: 4px;
   min-width: 14px;
+  background: #FF0000;  /* fallback red — should be overridden by inline style */
   transition: width 0.4s ease;
 }
 .dp-formula__score {
