@@ -34,6 +34,7 @@ async function getDB() {
     password: process.env.MYSQL_PASSWORD || '',
     database: process.env.MYSQL_DATABASE || 'bangforyourduck',
     charset:  'utf8mb4',
+    decimalNumbers: true,
   });
   return conn;
 }
