@@ -2,6 +2,16 @@ import { useState } from 'react';
 import { gradeFill, gradeColorClass, scoreFill, toGrade, PROVINCE_NAMES } from '../utils/grading.js';
 import { track } from '../utils/track.js';
 
+// Format ISO dates or date strings to human-readable
+function fmtDate(d) {
+  if (!d) return '';
+  try {
+    const date = new Date(d);
+    if (isNaN(date)) return String(d);
+    return date.toLocaleDateString('en-CA', { year: 'numeric', month: 'short' });
+  } catch { return String(d); }
+}
+
 const TABS = [
   { key: 'performance',  label: 'MP Work',    icon: '🏛️' },
   { key: 'investment',   label: 'Investment',  icon: '💰' },
@@ -54,7 +64,7 @@ function PerformanceTab({ c }) {
         <MetricRow label="Speeches / interventions" score={p.speechScore} rawDisplay={p.speechesCount != null ? `${p.speechesCount}` : '—'} compareDisplay="Higher = more engaged" />
       </div>
       {p.isOpposition && <p className="dp-note">+5 fairness bonus (opposition MP)</p>}
-      <p className="dp-source">Source: OpenParliament.ca · {p.dataDate ?? '2024'}</p>
+      <p className="dp-source">Source: OpenParliament.ca · Session 45-1 · {fmtDate(p.dataDate)}</p>
     </div>
   );
 }
@@ -70,7 +80,7 @@ function InvestmentTab({ c }) {
         <MetricRow label="Federal contracts/capita" score={inv.contractsScore} rawDisplay={inv.federalContractsPerCapita != null ? `$${inv.federalContractsPerCapita}` : '—'} compareDisplay="Higher = more activity" />
         <MetricRow label="Federal facilities" score={inv.facilitiesScore} rawDisplay={inv.federalFacilitiesCount != null ? `${inv.federalFacilitiesCount}` : '—'} compareDisplay="Buildings, bases, labs" />
       </div>
-      <p className="dp-source">Source: GC InfoBase · Infrastructure Canada · {inv.dataDate ?? '2023'}</p>
+      <p className="dp-source">Source: Infrastructure Canada Open Data · {fmtDate(inv.dataDate)}</p>
       <p className="dp-planned">
         <strong>Coming soon:</strong> Coverage Score — measuring how equitably federal grants are distributed across all communities within the riding, not just the population centre. Based on Infrastructure Canada project locations geocoded against riding boundaries.
       </p>
@@ -90,7 +100,7 @@ function ElectoralTab({ c }) {
         <MetricRow label="Margin of victory" score={e.marginScore} rawDisplay={e.marginOfVictoryPct != null ? `${e.marginOfVictoryPct}%` : '—'} compareDisplay="Closer = more competitive" />
         <MetricRow label="Candidates" score={e.candidateScore} rawDisplay={e.candidatesCount != null ? `${e.candidatesCount}` : '—'} compareDisplay="More = healthier democracy" />
       </div>
-      <p className="dp-source">Source: Elections Canada · {e.dataDate ?? '2025'}</p>
+      <p className="dp-source">Source: Elections Canada · 45th General Election · {fmtDate(e.dataDate)}</p>
       <p className="dp-planned">
         <strong>Coming soon:</strong> Competitiveness Index — a composite of margin of victory, 2nd/3rd place viability, turnout trend vs previous election, and incumbency streak. Research shows MPs in competitive ridings deliver 12-18% more discretionary federal spending per capita. Competitiveness is a proxy for accountability pressure.
       </p>
@@ -110,7 +120,7 @@ function DemographicsTab({ c }) {
         <MetricRow label="Post-secondary education" score={d.educationScore} rawDisplay={d.postsecondaryRate != null ? `${d.postsecondaryRate}%` : '—'} compareDisplay="Higher = more educated" />
         <MetricRow label="Immigration rate" score={d.immigrationScore} rawDisplay={d.immigrationPct != null ? `${d.immigrationPct}%` : '—'} compareDisplay="Proxy for attractiveness" />
       </div>
-      <p className="dp-source">Source: Statistics Canada Census 2021</p>
+      <p className="dp-source">Source: Statistics Canada · 2021 Census</p>
     </div>
   );
 }
@@ -127,7 +137,7 @@ function ExpensesTab({ c }) {
         <MetricRow label="Hospitality spending" score={ex.hospitalityScore} rawDisplay={ex.hospitalityExpenses != null ? `$${ex.hospitalityExpenses.toLocaleString('en-CA')}` : '—'} compareDisplay="Lower = better" />
       </div>
       {ex.distanceFromOttawaKm && <p className="dp-note">{ex.distanceFromOttawaKm} km from Ottawa</p>}
-      <p className="dp-source">Source: House of Commons Disclosure · {ex.dataDate ?? '2024'}</p>
+      <p className="dp-source">Source: House of Commons Proactive Disclosure · {fmtDate(ex.dataDate)}</p>
     </div>
   );
 }
@@ -145,7 +155,7 @@ function TransfersTab({ c }) {
         {t.gasTaxPerCapita != null && <MetricRow label="Gas tax transfer" score={null} rawDisplay={`$${t.gasTaxPerCapita}/person`} />}
       </div>
       <p className="dp-note">Provincial-level data allocated per capita — all ridings in the same province receive the same transfer score.</p>
-      <p className="dp-source">Source: Dept of Finance · {t.dataDate ?? '2023'}</p>
+      <p className="dp-source">Source: Department of Finance · Federal Transfers · {fmtDate(t.dataDate)}</p>
     </div>
   );
 }
