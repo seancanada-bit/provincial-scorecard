@@ -39,6 +39,10 @@ if (preg_match('#/api/data#', $uri)) {
     readfile(jsonPath('mps.json'));
 } elseif (preg_match('#/api/health#', $uri)) {
     echo json_encode(['ok' => true, 'generated' => filemtime(__DIR__ . '/data.json') ?: null]);
+} elseif (preg_match('#/api/download#', $uri)) {
+    // PDF report download — delegate to download.php
+    require __DIR__ . '/download.php';
+    exit;
 } elseif (preg_match('#/api/event#', $uri)) {
     // Event tracking — delegate to event.php
     require __DIR__ . '/event.php';
