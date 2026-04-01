@@ -88,10 +88,14 @@ export default function MapView({ cities: ridings, onSelect, sortKey }) {
       group.addTo(map);
       layerRef.current = group;
 
-      // Fit bounds
-      if (count > 0) {
-        map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 6 });
-      }
+      // Force map to recalculate size, then fit bounds
+      // (container may have 0 height at initial render)
+      setTimeout(() => {
+        map.invalidateSize();
+        if (count > 0) {
+          map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 6 });
+        }
+      }, 200);
 
       // Popup click bridge
       window.__ridingSelect__ = code => {
