@@ -230,36 +230,78 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
       doc.addPage();
       doc.rect(0, 0, 612, 8).fill(COLORS.red);
 
+      // Per-capita ranking
+      const allSpending = Object.entries(spendingData)
+        .filter(([,v]) => v.totalFederal > 0)
+        .map(([code, v]) => {
+          const r = allRidings.find(r => r.ridingCode === code);
+          const pop = r?.population || 100000;
+          return { code, perCapita: v.totalFederal / pop };
+        })
+        .sort((a, b) => b.perCapita - a.perCapita);
+      const spendRank = allSpending.findIndex(s => s.code === riding.ridingCode) + 1;
+
       doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
          .text('Federal Spending in Your Riding', 50, 30);
       doc.fontSize(14).fillColor(COLORS.gradeA).font('Helvetica-Bold')
          .text(`$${(rs.totalFederal / 1e6).toFixed(1)}M total federal investment`, 50, 58);
       doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-         .text('Infrastructure Canada project data  |  All approved projects', 50, 78);
+         .text(`Ranked #${spendRank} of ${allSpending.length} ridings by per-capita investment  |  Infrastructure Canada`, 50, 78);
       doc.moveTo(50, 96).lineTo(562, 96).stroke(COLORS.border);
 
-      let sY = 108;
-      doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
-      doc.text('PROJECT', 50, sY); doc.text('FEDERAL $', 390, sY); doc.text('PROGRAM', 460, sY);
-      sY += 14;
+      // Category breakdown
+      if (rs.byCategory && Object.keys(rs.byCategory).length > 0) {
+        let cY = 108;
+        doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
+           .text('Spending by Category', 50, cY);
+        cY += 20;
 
-      doc.font('Helvetica');
-      for (const p of rs.projects.slice(0, 8)) {
-        doc.fontSize(9).fillColor(COLORS.text);
-        doc.text(p.title.substring(0, 60), 50, sY, { width: 330 });
-        doc.fillColor(COLORS.gradeA).text('$' + (p.federal / 1e6).toFixed(1) + 'M', 390, sY, { width: 60 });
-        doc.fontSize(7).fillColor(COLORS.muted).text((p.program || '').substring(0, 30), 460, sY, { width: 100 });
-        const h = Math.max(14, doc.heightOfString(p.title.substring(0, 60), { width: 330, fontSize: 9 }));
-        sY += h + 4;
+        const sortedCats = Object.entries(rs.byCategory)
+          .filter(([,v]) => v > 0)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 8);
+
+        for (const [cat, amount] of sortedCats) {
+          const barW = Math.max(4, (amount / rs.totalFederal) * 350);
+          const pct = Math.round(amount / rs.totalFederal * 100);
+          doc.roundedRect(50, cY, 350, 12, 2).fill('#EEEBE5');
+          doc.roundedRect(50, cY, barW, 12, 2).fill(COLORS.red);
+          doc.fontSize(8).fillColor(COLORS.text).font('Helvetica')
+             .text(cat, 410, cY + 1, { width: 120 });
+          doc.text('$' + (amount / 1e6).toFixed(1) + 'M (' + pct + '%)', 530, cY + 1, { width: 50 });
+          cY += 17;
+        }
+        cY += 10;
+        doc.moveTo(50, cY).lineTo(562, cY).stroke('#F0EDE8');
+        cY += 12;
+
+        // Project list
+        doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
+           .text('Largest Projects', 50, cY);
+        cY += 18;
+
+        doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
+        doc.text('PROJECT', 50, cY); doc.text('FEDERAL $', 380, cY); doc.text('CATEGORY', 450, cY);
+        cY += 14;
+
+        doc.font('Helvetica');
+        for (const p of rs.projects.slice(0, 6)) {
+          doc.fontSize(8).fillColor(COLORS.text);
+          doc.text(p.title.substring(0, 55), 50, cY, { width: 320 });
+          doc.fillColor(COLORS.gradeA).text('$' + (p.federal / 1e6).toFixed(1) + 'M', 380, cY, { width: 60 });
+          doc.fontSize(7).fillColor(COLORS.muted).text((p.category || '').substring(0, 25), 450, cY, { width: 110 });
+          cY += 16;
+        }
+
+        if (rs.projects.length > 6) {
+          doc.fontSize(8).fillColor(COLORS.muted).text('+ ' + (rs.projects.length - 6) + ' more projects', 50, cY + 5);
+        }
       }
 
-      if (rs.projects.length > 8) {
-        doc.fontSize(9).fillColor(COLORS.muted).text(`+ ${rs.projects.length - 8} more projects`, 50, sY + 5);
-      }
-
+      doc.fontSize(7).fillColor(COLORS.muted)
+         .text('Source: Infrastructure Canada Open Data (infrastructure.gc.ca) | All federally funded projects', 50, 700, { width: W });
       doc.fontSize(8).fillColor(COLORS.muted)
-         .text('Source: Infrastructure Canada Open Data  |  infrastructure.gc.ca', 50, sY + 25, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
+         .text('bangforyourduck.ca | Where does your tax loonie go?', 50, 720, { align: 'center', width: W });
     }
   }
 
