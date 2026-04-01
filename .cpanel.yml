@@ -8,12 +8,15 @@ deployment:
     # Provinces (now at /provinces/)
     - /bin/mkdir -p $DEPLOYPATH/provinces
     - /bin/cp -R frontend/dist/* $DEPLOYPATH/provinces/
+    - /bin/cp frontend/dist/.htaccess $DEPLOYPATH/provinces/ 2>/dev/null; true
     # Cities
     - /bin/mkdir -p $DEPLOYPATH/cities
     - /bin/cp -R cities/dist/* $DEPLOYPATH/cities/
+    - /bin/cp cities/dist/.htaccess $DEPLOYPATH/cities/ 2>/dev/null; true
     # MPs
     - /bin/mkdir -p $DEPLOYPATH/mps
     - /bin/cp -R mps/dist/* $DEPLOYPATH/mps/
+    - /bin/cp mps/dist/.htaccess $DEPLOYPATH/mps/ 2>/dev/null; true
     # API (PHP + JSON files)
     - /bin/mkdir -p $DEPLOYPATH/api
     - /bin/cp api/*.json $DEPLOYPATH/api/ 2>/dev/null; true
