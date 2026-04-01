@@ -1,15 +1,15 @@
 const TABS = [
-  { key: 'overall',        label: 'Performance',    title: 'Overall composite score across all 9 categories' },
-  { key: 'value',          label: '🦆 Value',        title: 'Bang for your duck — performance relative to tax burden' },
-  { key: 'healthcare',     label: 'Healthcare' },
-  { key: 'housing',        label: 'Housing' },
-  { key: 'fiscal',         label: 'Fiscal' },
-  { key: 'infrastructure', label: 'Infrastructure' },
-  { key: 'economy',        label: 'Economy' },
-  { key: 'education',      label: 'Education' },
-  { key: 'safety',         label: 'Safety' },
-  { key: 'mentalhealth',   label: 'Mental Health' },
-  { key: 'ltc',            label: 'Long-Term Care' },
+  { key: 'value',          label: 'Value',          icon: '🦆' },
+  { key: 'overall',        label: 'Overall',        icon: '🏆' },
+  { key: 'healthcare',     label: 'Healthcare',     icon: '🏥' },
+  { key: 'housing',        label: 'Housing',        icon: '🏠' },
+  { key: 'fiscal',         label: 'Fiscal',         icon: '💰' },
+  { key: 'infrastructure', label: 'Infrastructure', icon: '🏗️' },
+  { key: 'economy',        label: 'Economy',        icon: '📈' },
+  { key: 'education',      label: 'Education',      icon: '🎓' },
+  { key: 'safety',         label: 'Safety',         icon: '🛡️' },
+  { key: 'mentalhealth',   label: 'Mental Health',  icon: '🧠' },
+  { key: 'ltc',            label: 'Long-Term Care', icon: '🏡' },
 ];
 
 export default function SortTabs({ active, onChange }) {
@@ -23,9 +23,8 @@ export default function SortTabs({ active, onChange }) {
             aria-selected={active === tab.key}
             className={`sort-tabs__tab${active === tab.key ? ' sort-tabs__tab--active' : ''}`}
             onClick={() => onChange(tab.key)}
-            title={tab.title}
           >
-            {tab.label}
+            {tab.icon} {tab.label}
           </button>
         ))}
       </div>
