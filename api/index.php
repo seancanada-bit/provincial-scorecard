@@ -21,13 +21,22 @@ header('Cache-Control: public, max-age=3600, must-revalidate');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+// JSON source: try repo directory first (always fresh after git pull), fall back to local copy
+$repoApi = '/home/seanw2/repositories/provincial-scorecard/api/';
+$localApi = __DIR__ . '/';
+function jsonPath($name) {
+    global $repoApi, $localApi;
+    $repo = $repoApi . $name;
+    return file_exists($repo) ? $repo : $localApi . $name;
+}
+
 // Route
 if (preg_match('#/api/data#', $uri)) {
-    readfile(__DIR__ . '/data.json');
+    readfile(jsonPath('data.json'));
 } elseif (preg_match('#/api/cities#', $uri)) {
-    readfile(__DIR__ . '/cities.json');
+    readfile(jsonPath('cities.json'));
 } elseif (preg_match('#/api/mps#', $uri)) {
-    readfile(__DIR__ . '/mps.json');
+    readfile(jsonPath('mps.json'));
 } elseif (preg_match('#/api/health#', $uri)) {
     echo json_encode(['ok' => true, 'generated' => filemtime(__DIR__ . '/data.json') ?: null]);
 } elseif (preg_match('#/api/event#', $uri)) {
