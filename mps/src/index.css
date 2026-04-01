@@ -1141,3 +1141,15 @@ body {
   .dp-formula__weight { display: none; }
   .dp-formula__contrib { display: none; }
 }
+
+/* Formula context callout (MP Work explanation) */
+.dp-formula__context {
+  font-size: 11px; color: var(--text-secondary);
+  margin-top: 10px; padding: 10px 12px;
+  background: #FFF8F0; border-left: 3px solid #B45309;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.5;
+}
+.dp-formula__context strong {
+  color: var(--text-primary); display: block; margin-bottom: 2px;
+}

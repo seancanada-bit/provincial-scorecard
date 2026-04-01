@@ -257,8 +257,13 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
           <span className="dp-formula__total-score">{riding.composite}/100</span>
         </div>
         <div className="dp-formula__note">
-          Grade = dollars flowing into your riding vs what your MP costs. Demographics, electoral health, and MP work are shown below as context but don't affect the grade.
+          The grade is based entirely on dollars: what flows into your riding vs what your MP costs to run.
         </div>
+        {cats.performance?.score > 0 && (
+          <div className="dp-formula__context">
+            <strong>What about MP Work ({cats.performance.grade} · {cats.performance.score}/100)?</strong> Votes, bills, and speeches show initiative — but if that work isn't turning into investment for your riding, it doesn't change your bang for your duck score. Activity without results is effort, not value.
+          </div>
+        )}
       </div>
 
       {/* Category chips */}
