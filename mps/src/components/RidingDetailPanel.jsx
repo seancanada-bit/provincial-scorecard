@@ -12,6 +12,16 @@ function fmtDate(d) {
   } catch { return String(d); }
 }
 
+// Bright saturated colors for formula bars (higher contrast than gradeFill)
+function scoreFillBright(score) {
+  if (score == null) return '#ccc';
+  if (score >= 80) return '#22C55E';  // bright green
+  if (score >= 60) return '#3B82F6';  // bright blue
+  if (score >= 40) return '#F59E0B';  // bright amber
+  if (score >= 20) return '#F97316';  // bright orange
+  return '#EF4444';                    // bright red
+}
+
 const TABS = [
   { key: 'performance',  label: 'MP Work',    icon: '🏛️' },
   { key: 'investment',   label: 'Investment',  icon: '💰' },
@@ -228,7 +238,7 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         <div className="dp-formula__row">
           <span className="dp-formula__label">Federal Investment</span>
           <span className="dp-formula__bar-track">
-            <span className="dp-formula__bar-fill" style={{ width: `${cats.investment?.score ?? 0}%`, background: gradeFill(cats.investment?.grade) }} />
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.investment?.score ?? 0}%`, background: scoreFillBright(cats.investment?.score) }} />
           </span>
           <span className="dp-formula__score" style={{ color: gradeFill(cats.investment?.grade) }}>{cats.investment?.score ?? '—'}</span>
           <span className="dp-formula__weight">× 50%</span>
@@ -237,7 +247,7 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         <div className="dp-formula__row">
           <span className="dp-formula__label">Federal Transfers</span>
           <span className="dp-formula__bar-track">
-            <span className="dp-formula__bar-fill" style={{ width: `${cats.transfers?.score ?? 0}%`, background: gradeFill(cats.transfers?.grade) }} />
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.transfers?.score ?? 0}%`, background: scoreFillBright(cats.transfers?.score) }} />
           </span>
           <span className="dp-formula__score" style={{ color: gradeFill(cats.transfers?.grade) }}>{cats.transfers?.score ?? '—'}</span>
           <span className="dp-formula__weight">× 35%</span>
@@ -246,7 +256,7 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         <div className="dp-formula__row">
           <span className="dp-formula__label">MP Expenses</span>
           <span className="dp-formula__bar-track">
-            <span className="dp-formula__bar-fill" style={{ width: `${cats.expenses?.score ?? 0}%`, background: gradeFill(cats.expenses?.grade) }} />
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.expenses?.score ?? 0}%`, background: scoreFillBright(cats.expenses?.score) }} />
           </span>
           <span className="dp-formula__score" style={{ color: gradeFill(cats.expenses?.grade) }}>{cats.expenses?.score ?? '—'}</span>
           <span className="dp-formula__weight">× 15%</span>
