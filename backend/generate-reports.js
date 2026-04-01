@@ -37,8 +37,8 @@ const CAT_LABELS = {
   transfers:    'Federal Transfers',
 };
 const CAT_WEIGHTS = {
-  performance: '25%', investment: '20%', electoral: '15%',
-  demographics: '15%', expenses: '15%', transfers: '10%',
+  investment: '50%', transfers: '35%', expenses: '15%',
+  performance: 'Context', electoral: 'Context', demographics: 'Context',
 };
 
 function drawScoreBar(doc, x, y, width, score, label) {
@@ -130,7 +130,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
   doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
 
-  const categories = ['performance', 'investment', 'electoral', 'demographics', 'expenses', 'transfers'];
+  const categories = ['investment', 'transfers', 'expenses', 'performance', 'electoral', 'demographics'];
   let catY = 95;
 
   for (const key of categories) {
