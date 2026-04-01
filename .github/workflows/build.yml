@@ -65,3 +65,7 @@ jobs:
           curl -s -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://seanwood.com:2083/execute/VersionControl/update?repository_root=/home/seanw2/repositories/provincial-scorecard&branch=main" \
             -o /dev/null -w "cPanel update: HTTP %{http_code}\n"
+          sleep 5
+          curl -s -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://seanwood.com:2083/execute/VersionControlDeployment/create?repository_root=/home/seanw2/repositories/provincial-scorecard" \
+            -o /dev/null -w "cPanel update: HTTP %{http_code}\n"
