@@ -197,29 +197,50 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
       doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
          .text('How Your MP Voted', 50, 30);
       doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-         .text(`${riding.mpName}  |  ${record.voted} of ${record.total} key votes attended  |  ${record.absent} absent`, 50, 58);
+         .text(`${riding.mpName}  |  ${record.voted} of ${record.totalVotes || record.total || 94} votes attended  |  ${record.participationPct || Math.round(record.voted / (record.totalVotes || record.total || 94) * 100)}% participation`, 50, 58);
       doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
 
       let vY = 90;
-      doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
-      doc.text('BILL', 50, vY); doc.text('DESCRIPTION', 100, vY); doc.text('STAGE', 370, vY); doc.text('VOTE', 470, vY);
-      vY += 14;
+      const pageBottom = 700;
 
-      doc.font('Helvetica');
-      for (const v of record.votes) {
-        const ballotColor = v.ballot === 'Yes' ? COLORS.gradeA : v.ballot === 'No' ? COLORS.gradeF : v.ballot === 'Paired' ? COLORS.muted : '#CC8800';
-        doc.fontSize(9).fillColor(COLORS.text);
-        doc.text(v.bill || '—', 50, vY, { width: 45 });
-        doc.text(v.label, 100, vY, { width: 260 });
-        doc.fontSize(8).fillColor(COLORS.muted).text(v.stage, 370, vY, { width: 90 });
-        doc.fontSize(10).fillColor(ballotColor).font('Helvetica-Bold').text(v.ballot, 470, vY, { width: 80 });
+      // Table header
+      function drawVoteHeader() {
+        doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
+        doc.text('#', 50, vY); doc.text('DATE', 70, vY); doc.text('BILL', 135, vY); doc.text('DESCRIPTION', 185, vY); doc.text('RESULT', 420, vY); doc.text('VOTE', 490, vY);
+        vY += 14;
         doc.font('Helvetica');
-        vY += 18;
+      }
+      drawVoteHeader();
+
+      for (const v of record.votes) {
+        // Page break if needed
+        if (vY > pageBottom) {
+          doc.fontSize(8).fillColor(COLORS.muted)
+             .text('bangforyourduck.ca  |  Community-supported · Nonpartisan', 50, 720, { align: 'center', width: W });
+          doc.addPage();
+          doc.rect(0, 0, 612, 8).fill(COLORS.red);
+          doc.fontSize(14).fillColor(COLORS.text).font('Helvetica-Bold')
+             .text('How Your MP Voted (continued)', 50, 25);
+          vY = 50;
+          drawVoteHeader();
+        }
+
+        const ballotColor = v.ballot === 'Yes' ? COLORS.gradeA : v.ballot === 'No' ? COLORS.gradeF : v.ballot === 'Paired' ? COLORS.muted : '#CC8800';
+        const desc = v.description || v.label || '';
+        doc.fontSize(8).fillColor(COLORS.muted);
+        doc.text(String(v.number || ''), 50, vY, { width: 18 });
+        doc.text(v.date ? v.date.substring(5) : '', 70, vY, { width: 60 }); // MM-DD
+        doc.fillColor(COLORS.text).text(v.bill || '—', 135, vY, { width: 45 });
+        doc.fontSize(7).fillColor(COLORS.sub).text(desc.substring(0, 40), 185, vY, { width: 230 });
+        doc.fontSize(7).fillColor(COLORS.muted).text(v.result || '', 420, vY, { width: 60 });
+        doc.fontSize(9).fillColor(ballotColor).font('Helvetica-Bold').text(v.ballot, 490, vY, { width: 60 });
+        doc.font('Helvetica');
+        vY += 14;
       }
 
       doc.fontSize(8).fillColor(COLORS.muted)
-         .text('Source: OpenParliament.ca  |  Session 45-1  |  Key votes selected by significance', 50, vY + 10, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
+         .text(`Source: OpenParliament.ca  |  Session 45-1  |  All ${record.totalVotes || record.total || 94} recorded votes`, 50, vY + 10, { width: W });
+      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan', 50, 720, { align: 'center', width: W });
     }
   }
 
