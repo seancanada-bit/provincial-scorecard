@@ -1096,7 +1096,7 @@ body {
   flex: 1; font-weight: 500; color: var(--text-secondary);
 }
 .dp-formula__bar-track {
-  width: 100%; height: 16px; background: #E0DCD4;
+  width: 100%; height: 18px; background: #D0CBC2;
   border-radius: 8px; overflow: hidden;
 }
 .dp-formula__bar-fill {
