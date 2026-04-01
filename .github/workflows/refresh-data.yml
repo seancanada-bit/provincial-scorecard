@@ -35,6 +35,11 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
+      # ── 2b. Generate PDF report cards ────────────────────────────────────
+      - name: Generate PDF reports
+        run: node generate-reports.js
+        working-directory: backend
+
       # ── 3. Build all three frontends ───────────────────────────────────────
       - name: Build provinces
         run: cd frontend && npm ci && npm run build
@@ -61,6 +66,7 @@ jobs:
           git add -f api/data.json api/cities.json api/mps.json
           git add -f frontend/dist/ cities/dist/ mps/dist/
           git add -f frontend/src/data/fallback.json
+          git add -f reports/
           git diff --staged --quiet && echo "No data changes — skipping commit" && exit 0
           git commit -m "chore: refresh data $(date -u +'%Y-%m-%d') [skip ci]"
           git push
