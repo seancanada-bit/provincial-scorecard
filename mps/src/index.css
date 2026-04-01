@@ -1087,29 +1087,27 @@ body {
   font-size: 11px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px;
 }
-.dp-formula__row {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 6px; font-size: 12px;
+.dp-formula__item { margin-bottom: 12px; }
+.dp-formula__item-header {
+  display: flex; align-items: baseline; gap: 6px;
+  margin-bottom: 5px; font-size: 12px;
 }
 .dp-formula__label {
-  width: 120px; flex-shrink: 0;
-  font-weight: 500; color: var(--text-secondary);
+  flex: 1; font-weight: 500; color: var(--text-secondary);
 }
 .dp-formula__bar-track {
-  flex: 1; height: 12px; background: #EEEBE5;
-  border-radius: 6px; overflow: hidden;
+  width: 100%; height: 16px; background: #E0DCD4;
+  border-radius: 8px; overflow: hidden;
 }
 .dp-formula__bar-fill {
-  height: 100%; border-radius: 6px;
-  min-width: 4px;
-  transition: width 0.3s ease;
+  height: 100%; border-radius: 8px;
+  min-width: 10px;
+  transition: width 0.4s ease;
 }
 .dp-formula__score {
-  width: 28px; text-align: right; font-weight: 700;
-  font-family: var(--font-mono); font-size: 12px;
+  font-weight: 700; font-family: var(--font-mono); font-size: 13px;
 }
 .dp-formula__weight {
-  width: 40px; text-align: right;
   font-family: var(--font-mono); font-size: 10px;
   color: var(--text-muted);
 }
