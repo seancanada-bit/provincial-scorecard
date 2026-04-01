@@ -221,6 +221,46 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         </div>
       </div>
 
+      {/* Formula breakdown */}
+      <div className="dp-formula">
+        <div className="dp-formula__title">How this grade is calculated</div>
+        <div className="dp-formula__row">
+          <span className="dp-formula__label">Federal Investment</span>
+          <span className="dp-formula__bar-track">
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.investment?.score ?? 0}%`, background: gradeFill(cats.investment?.grade) }} />
+          </span>
+          <span className="dp-formula__score" style={{ color: gradeFill(cats.investment?.grade) }}>{cats.investment?.score ?? '—'}</span>
+          <span className="dp-formula__weight">× 50%</span>
+          <span className="dp-formula__contrib">= {cats.investment?.score != null ? Math.round(cats.investment.score * 0.5) : '—'}</span>
+        </div>
+        <div className="dp-formula__row">
+          <span className="dp-formula__label">Federal Transfers</span>
+          <span className="dp-formula__bar-track">
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.transfers?.score ?? 0}%`, background: gradeFill(cats.transfers?.grade) }} />
+          </span>
+          <span className="dp-formula__score" style={{ color: gradeFill(cats.transfers?.grade) }}>{cats.transfers?.score ?? '—'}</span>
+          <span className="dp-formula__weight">× 35%</span>
+          <span className="dp-formula__contrib">= {cats.transfers?.score != null ? Math.round(cats.transfers.score * 0.35) : '—'}</span>
+        </div>
+        <div className="dp-formula__row">
+          <span className="dp-formula__label">MP Expenses</span>
+          <span className="dp-formula__bar-track">
+            <span className="dp-formula__bar-fill" style={{ width: `${cats.expenses?.score ?? 0}%`, background: gradeFill(cats.expenses?.grade) }} />
+          </span>
+          <span className="dp-formula__score" style={{ color: gradeFill(cats.expenses?.grade) }}>{cats.expenses?.score ?? '—'}</span>
+          <span className="dp-formula__weight">× 15%</span>
+          <span className="dp-formula__contrib">= {cats.expenses?.score != null ? Math.round(cats.expenses.score * 0.15) : '—'}</span>
+        </div>
+        <div className="dp-formula__total">
+          <span className="dp-formula__label">Composite</span>
+          <span className={`dp-formula__grade ${gradeColorClass(riding.grade)}`}>{riding.grade}</span>
+          <span className="dp-formula__total-score">{riding.composite}/100</span>
+        </div>
+        <div className="dp-formula__note">
+          Grade = dollars flowing into your riding vs what your MP costs. Demographics, electoral health, and MP work are shown below as context but don't affect the grade.
+        </div>
+      </div>
+
       {/* Category chips */}
       <div className="dp-cat-scroll-wrap">
         <div className="dp-cat-row" role="list" aria-label="Category scores">

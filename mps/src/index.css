@@ -1061,3 +1061,83 @@ body {
 @media (max-width: 600px) {
   .site-header__support-btn { font-size: 10px; padding: 4px 10px; }
 }
+
+/* Formula summary on cards */
+.ccard__formula {
+  padding: 4px var(--space-md) 0;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.ccard__formula-label { font-weight: 600; color: var(--text-secondary); }
+.ccard__formula-part { font-weight: 600; }
+.ccard__formula-op { color: var(--text-muted); }
+@media (max-width: 600px) {
+  .ccard__formula { font-size: 9px; }
+}
+
+/* Formula breakdown in detail panel */
+.dp-formula {
+  padding: var(--space-md);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.dp-formula__title {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px;
+}
+.dp-formula__row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 6px; font-size: 12px;
+}
+.dp-formula__label {
+  width: 120px; flex-shrink: 0;
+  font-weight: 500; color: var(--text-secondary);
+}
+.dp-formula__bar-track {
+  flex: 1; height: 8px; background: var(--border);
+  border-radius: 4px; overflow: hidden;
+}
+.dp-formula__bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.dp-formula__score {
+  width: 28px; text-align: right; font-weight: 700;
+  font-family: var(--font-mono); font-size: 12px;
+}
+.dp-formula__weight {
+  width: 40px; text-align: right;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-muted);
+}
+.dp-formula__contrib {
+  width: 32px; text-align: right;
+  font-family: var(--font-mono); font-size: 11px;
+  font-weight: 600; color: var(--text-secondary);
+}
+.dp-formula__total {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 10px; padding-top: 8px;
+  border-top: 1.5px solid var(--text-primary);
+  font-size: 13px;
+}
+.dp-formula__total .dp-formula__label { font-weight: 700; color: var(--text-primary); }
+.dp-formula__grade {
+  font-family: var(--font-serif); font-size: 22px; font-weight: 800;
+}
+.dp-formula__total-score {
+  font-family: var(--font-mono); font-weight: 600;
+  color: var(--text-secondary);
+}
+.dp-formula__note {
+  font-size: 10px; color: var(--text-muted);
+  margin-top: 8px; line-height: 1.4;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .dp-formula__label { width: 90px; font-size: 11px; }
+  .dp-formula__weight { display: none; }
+  .dp-formula__contrib { display: none; }
+}
