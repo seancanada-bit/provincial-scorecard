@@ -9,7 +9,7 @@ export default function Footer() {
           <a href="/cities/" className="site-footer__link">Cities</a>
           <span className="site-footer__sep" aria-hidden="true">·</span>
           <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>
-            338 federal ridings · 44th Parliament
+            343 federal ridings · 45th Parliament
           </span>
         </nav>
       </div>
