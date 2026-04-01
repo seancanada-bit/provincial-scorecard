@@ -336,6 +336,88 @@
     }
     .editorial__link:hover { text-decoration: underline; }
 
+    /* ─── SUPPORT SECTION ─────────────────────────────────── */
+    .support {
+      background: var(--bg);
+      padding: 64px 24px;
+    }
+    .support__inner {
+      max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .support__headline {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 12px;
+    }
+    .support__body {
+      font-size: 15px; line-height: 1.7;
+      color: var(--text-sub); max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .support__tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px; max-width: 780px; margin: 0 auto;
+    }
+    .support__tier {
+      background: white; border-radius: 12px;
+      border: 1.5px solid var(--border);
+      padding: 28px 24px; text-align: center;
+      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .support__tier:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .support__tier--featured {
+      border-color: var(--red);
+      box-shadow: 0 0 0 1px var(--red);
+    }
+    .support__tier-badge {
+      position: absolute; top: -11px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--red); color: white;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 3px 12px; border-radius: 10px;
+    }
+    .support__tier-name {
+      font-family: var(--serif);
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .support__tier-price {
+      font-size: 32px; font-weight: 800;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .support__tier-price span {
+      font-size: 14px; font-weight: 400;
+      color: var(--text-muted);
+    }
+    .support__tier-desc {
+      font-size: 13px; color: var(--text-sub);
+      line-height: 1.5; margin-bottom: 16px;
+    }
+    .support__tier-btn {
+      display: inline-block;
+      padding: 10px 24px; border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none;
+      background: var(--text); color: white;
+      transition: background 0.15s;
+    }
+    .support__tier-btn:hover { background: #333; }
+    .support__tier-btn--featured {
+      background: var(--red);
+    }
+    .support__tier-btn--featured:hover { background: #B22318; }
+    .support__note {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 24px;
+    }
+
     /* ─── BOTTOM BAR ─────────────────────────────────────────── */
     .bottom {
       background: #0F0E0D;
@@ -443,12 +525,51 @@
     </a>
   </div>
 
+  <!-- ═══ SUPPORT SECTION ═════════════════════════════════════════════════ -->
+  <section class="support" id="support">
+    <div class="support__inner">
+      <h2 class="support__headline">Keep the data flowing.</h2>
+      <p class="support__body">
+        Bang for Your Duck is free to access — always. No paywall. No ads. No partisan agenda.
+        But data costs money: hosting, subscriptions, and hundreds of hours tracking down numbers
+        that governments don't make easy to find. If you've ever shared it, argued about it, or
+        used it to form an opinion — consider chipping in.
+      </p>
+
+      <div class="support__tiers">
+        <div class="support__tier">
+          <div class="support__tier-name">Toss a Loonie</div>
+          <div class="support__tier-price">$5 <span>one-time</span></div>
+          <p class="support__tier-desc">Keeps the server running. Every one counts.</p>
+          <a href="#" class="support__tier-btn">Chip in $5 →</a>
+        </div>
+
+        <div class="support__tier support__tier--featured">
+          <div class="support__tier-badge">Most Popular</div>
+          <div class="support__tier-name">Fund the Research</div>
+          <div class="support__tier-price">$20 <span>one-time</span></div>
+          <p class="support__tier-desc">Directly pays for data, hosting, and the hours behind the numbers.</p>
+          <a href="#" class="support__tier-btn support__tier-btn--featured">Fund it →</a>
+        </div>
+
+        <div class="support__tier">
+          <div class="support__tier-name">Loonie Keeper</div>
+          <div class="support__tier-price">$6 <span>/month</span></div>
+          <p class="support__tier-desc">Your name on the site + a note when scores update.</p>
+          <a href="#" class="support__tier-btn">Become a Keeper →</a>
+        </div>
+      </div>
+
+      <p class="support__note">Payments processed securely by Stripe. Cancel monthly support any time.</p>
+    </div>
+  </section>
+
   <!-- ═══ EDITORIAL FOOTER ═══════════════════════════════════════════════ -->
-  <section class="editorial" id="support">
+  <section class="editorial">
     <div class="editorial__inner">
       <h2 class="editorial__headline">Accountability shouldn't cost you extra.</h2>
       <p class="editorial__body">
-        Bang for Your Duck is built on publicly available data, scored with transparent methodology, and free to access — always. No paywall. No ads. No partisan agenda. Supported by Canadians who believe in government accountability.
+        Built on publicly available data, scored with transparent methodology, and supported by Canadians who believe in government accountability.
       </p>
       <div class="editorial__values">
         <span class="editorial__value">Free to access</span>
