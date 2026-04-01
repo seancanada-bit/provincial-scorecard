@@ -88,14 +88,18 @@ export default function MapView({ cities: ridings, onSelect, sortKey }) {
       group.addTo(map);
       layerRef.current = group;
 
-      // Force map to recalculate size, then fit bounds
-      // (container may have 0 height at initial render)
-      setTimeout(() => {
+      // Force map to recalculate size repeatedly until markers are visible
+      // The container may have 0/wrong height during React's initial render
+      const fixMap = (attempts) => {
+        if (attempts <= 0) return;
         map.invalidateSize();
         if (count > 0) {
           map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 6 });
         }
-      }, 200);
+        setTimeout(() => fixMap(attempts - 1), 500);
+      };
+      // Run immediately, then retry 5 more times over 2.5 seconds
+      fixMap(6);
 
       // Popup click bridge
       window.__ridingSelect__ = code => {
