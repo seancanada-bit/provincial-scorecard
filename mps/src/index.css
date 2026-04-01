@@ -1096,11 +1096,12 @@ body {
   font-weight: 500; color: var(--text-secondary);
 }
 .dp-formula__bar-track {
-  flex: 1; height: 8px; background: var(--border);
-  border-radius: 4px; overflow: hidden;
+  flex: 1; height: 12px; background: #EEEBE5;
+  border-radius: 6px; overflow: hidden;
 }
 .dp-formula__bar-fill {
-  height: 100%; border-radius: 4px;
+  height: 100%; border-radius: 6px;
+  min-width: 4px;
   transition: width 0.3s ease;
 }
 .dp-formula__score {
@@ -1162,3 +1163,19 @@ body {
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   line-height: 1.5; font-style: italic;
 }
+
+/* Prominent download CTA (after formula, before category chips) */
+.dp-download--prominent {
+  background: #FFF0EF;
+  border-bottom: 1px solid var(--border);
+}
+.dp-download--prominent .dp-download__btn {
+  width: 100%; text-align: center;
+  padding: 14px 24px; font-size: 15px;
+}
+.dp-download__btn--secondary {
+  background: var(--text-secondary) !important;
+  font-size: 12px !important;
+  padding: 8px 16px !important;
+}
+.dp-download__btn--secondary:hover { background: #333 !important; }

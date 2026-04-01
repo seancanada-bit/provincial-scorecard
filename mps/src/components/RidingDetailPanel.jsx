@@ -267,6 +267,17 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         )}
       </div>
 
+      {/* Download Report Card — primary CTA */}
+      <div className="dp-download dp-download--prominent">
+        <a
+          href={`/api/download?riding=${riding.ridingCode}`}
+          className="dp-download__btn"
+        >
+          Download Full Report Card (PDF)
+        </a>
+        <p className="dp-download__note">6 pages · Vote record · Federal spending · MP expenses · Free</p>
+      </div>
+
       {/* Category chips */}
       <div className="dp-cat-scroll-wrap">
         <div className="dp-cat-row" role="list" aria-label="Category scores">
@@ -313,15 +324,11 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         </div>
       )}
 
-      {/* Download Report Card */}
+      {/* Second CTA at bottom for scrollers */}
       <div className="dp-download">
-        <a
-          href={`/api/download?riding=${riding.ridingCode}`}
-          className="dp-download__btn"
-        >
+        <a href={`/api/download?riding=${riding.ridingCode}`} className="dp-download__btn dp-download__btn--secondary">
           Download Report Card (PDF)
         </a>
-        <p className="dp-download__note">6 pages · Vote record · Federal spending · MP expenses</p>
       </div>
     </aside>
   );
