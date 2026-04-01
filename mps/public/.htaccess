@@ -1,4 +1,4 @@
-DirectoryIndex index.html
+DirectoryIndex index.php index.html
 Options -MultiViews
 
 # Security headers
@@ -23,4 +23,4 @@ RewriteEngine On
 RewriteBase /mps/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /mps/index.html [L]
+RewriteRule . /mps/index.php [L]
