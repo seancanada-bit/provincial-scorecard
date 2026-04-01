@@ -13,6 +13,19 @@ import fallback from './data/fallback.json';
 
 const API = import.meta.env.VITE_API_URL || '';
 
+function toSlug(name) {
+  return name.toLowerCase().replace(/[—–]/g, '-').replace(/[^a-z0-9\- ]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+}
+
+function getDeepLinkSlug() {
+  return window.location.pathname.replace(/^\/cities\/?/, '').replace(/\/$/, '') || null;
+}
+
+function findCityBySlug(cities, slug) {
+  if (!slug) return null;
+  return cities.find(c => toSlug(c.name) === slug) || cities.find(c => toSlug(c.name).includes(slug));
+}
+
 const SORT_KEYS = [
   { key: 'duck',           label: 'Value',          icon: '🦆' },
   { key: 'composite',      label: 'Overall',        icon: '🏆' },
@@ -59,7 +72,12 @@ export default function App() {
       .then(d => {
         setData(d);
         setLoading(false);
-        // Auto-select top city on desktop so panel is immediately visible
+        // Deep link
+        const slug = getDeepLinkSlug();
+        if (slug && d?.cities?.length) {
+          const linked = findCityBySlug(d.cities, slug);
+          if (linked) { setSelectedCity(linked); return; }
+        }
         if (window.innerWidth >= 900 && d?.cities?.length) {
           const sorted = [...d.cities].sort((a, b) => (b.duckScore ?? 0) - (a.duckScore ?? 0));
           setSelectedCity(sorted[0]);
@@ -70,6 +88,17 @@ export default function App() {
 
   const cities = data?.cities ?? [];
   const national = data?.national ?? {};
+
+  const selectCity = (city) => {
+    setSelectedCity(city);
+    if (city) {
+      window.history.replaceState({}, '', `/cities/${toSlug(city.name)}`);
+      document.title = `${city.name} — Bang for Your Duck: Cities`;
+    } else {
+      window.history.replaceState({}, '', '/cities/');
+      document.title = 'Bang for Your Duck: Cities';
+    }
+  };
 
   const sortScore = city => {
     if (sortKey === 'duck')      return city.duckScore ?? 0;
@@ -124,21 +153,21 @@ export default function App() {
           tabs={SORT_KEYS}
         />
         {mapView ? (
-          <MapView cities={filteredCities} onSelect={setSelectedCity} sortKey={sortKey} />
+          <MapView cities={filteredCities} onSelect={selectCity} sortKey={sortKey} />
         ) : (
           <div className="app-shell__columns">
             <CityGrid
               cities={filteredCities}
               allCities={rankedAll}
               selectedCity={selectedCity}
-              onSelect={setSelectedCity}
+              onSelect={selectCity}
               sortKey={sortKey}
               loading={loading}
             />
             {selectedCity && (
               <CityDetailPanel
                 city={selectedCity}
-                onClose={() => setSelectedCity(null)}
+                onClose={() => selectCity(null)}
                 sortKey={sortKey}
               />
             )}

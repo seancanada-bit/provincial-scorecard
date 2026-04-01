@@ -11,6 +11,33 @@ import Footer from './components/Footer.jsx';
 
 const API = import.meta.env.VITE_API_URL || '';
 
+// Deep link helpers
+function toSlug(name) {
+  return name.toLowerCase()
+    .replace(/[—–]/g, '-')
+    .replace(/[^a-z0-9\u00C0-\u024F\- ]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
+function getDeepLinkSlug() {
+  const path = window.location.pathname.replace(/^\/mps\/?/, '').replace(/\/$/, '');
+  return path || null;
+}
+
+function findRidingBySlug(ridings, slug) {
+  if (!slug) return null;
+  // Try riding code first (5 digits)
+  if (/^\d{5}$/.test(slug)) {
+    return ridings.find(r => r.ridingCode === slug);
+  }
+  // Try exact slug match
+  const match = ridings.find(r => toSlug(r.name) === slug);
+  if (match) return match;
+  // Try partial match
+  return ridings.find(r => toSlug(r.name).includes(slug) || slug.includes(toSlug(r.name).split('-')[0]));
+}
+
 const SORT_KEYS = [
   { key: 'duck',         label: 'Value',       icon: '🦆' },
   { key: 'composite',    label: 'Overall',     icon: '🏆' },
@@ -67,6 +94,17 @@ export default function App() {
       .then(d => {
         setData(d);
         setLoading(false);
+
+        // Deep link: check URL path for riding slug
+        const slug = getDeepLinkSlug();
+        if (slug && d?.ridings?.length) {
+          const linked = findRidingBySlug(d.ridings, slug);
+          if (linked) {
+            setSelectedRiding(linked);
+            return;
+          }
+        }
+        // Default: auto-select top riding on desktop
         if (window.innerWidth >= 900 && d?.ridings?.length) {
           const sorted = [...d.ridings].sort((a, b) => (b.duckScore ?? 0) - (a.duckScore ?? 0));
           setSelectedRiding(sorted[0]);
@@ -77,6 +115,20 @@ export default function App() {
 
   const ridings = data?.ridings ?? [];
   const national = data?.national ?? {};
+
+  // Update URL when riding is selected/deselected
+  const selectRiding = (riding) => {
+    setSelectedRiding(riding);
+    if (riding) {
+      const slug = toSlug(riding.name);
+      window.history.replaceState({}, '', `/mps/${slug}`);
+      // Update page title
+      document.title = `${riding.name} — ${riding.mpName} — Bang for Your Duck: MPs`;
+    } else {
+      window.history.replaceState({}, '', '/mps/');
+      document.title = 'Bang for Your Duck: MPs — What does your MP deliver for your tax loonie?';
+    }
+  };
 
   const sortScore = riding => {
     if (sortKey === 'duck')      return riding.duckScore ?? 0;
@@ -155,14 +207,14 @@ export default function App() {
         />
         {/* Filter label removed — count is now in view-switcher */}
         {mapView ? (
-          <MapView cities={filteredRidings} onSelect={setSelectedRiding} sortKey={sortKey} />
+          <MapView cities={filteredRidings} onSelect={selectRiding} sortKey={sortKey} />
         ) : (
           <div className="app-shell__columns">
             <RidingGrid
               ridings={filteredRidings}
               allRidings={rankedAll}
               selectedRiding={selectedRiding}
-              onSelect={setSelectedRiding}
+              onSelect={selectRiding}
               sortKey={sortKey}
               loading={loading}
               partyColors={PARTY_COLORS}
@@ -170,7 +222,7 @@ export default function App() {
             {selectedRiding && (
               <RidingDetailPanel
                 riding={selectedRiding}
-                onClose={() => setSelectedRiding(null)}
+                onClose={() => selectRiding(null)}
                 sortKey={sortKey}
                 partyColors={PARTY_COLORS}
               />
