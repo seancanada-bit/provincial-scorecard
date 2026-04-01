@@ -1153,3 +1153,12 @@ body {
 .dp-formula__context strong {
   color: var(--text-primary); display: block; margin-bottom: 2px;
 }
+
+/* Context note (travel expenses, etc.) */
+.dp-context {
+  font-size: 11px; color: var(--text-secondary);
+  margin-top: var(--space-sm); padding: 8px 12px;
+  background: #F0F4FF; border-left: 3px solid #6880B0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.5; font-style: italic;
+}

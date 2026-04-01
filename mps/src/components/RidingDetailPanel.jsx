@@ -137,6 +137,7 @@ function ExpensesTab({ c }) {
         <MetricRow label="Hospitality spending" score={ex.hospitalityScore} rawDisplay={ex.hospitalityExpenses != null ? `$${ex.hospitalityExpenses.toLocaleString('en-CA')}` : '—'} compareDisplay="Lower = better" />
       </div>
       {ex.distanceFromOttawaKm && <p className="dp-note">{ex.distanceFromOttawaKm} km from Ottawa</p>}
+      <p className="dp-context">Travel expenses are typically higher for MPs whose ridings are farther from Ottawa. An MP from British Columbia or Newfoundland will naturally spend more on travel than one from eastern Ontario — this reflects geography, not waste.</p>
       <p className="dp-source">Source: House of Commons Proactive Disclosure · {fmtDate(ex.dataDate)}</p>
     </div>
   );
