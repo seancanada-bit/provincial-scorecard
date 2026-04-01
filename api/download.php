@@ -14,15 +14,8 @@ if (strpos($origin, 'bangforyourduck.ca') !== false || strpos($origin, 'localhos
     header("Access-Control-Allow-Origin: $origin");
 }
 
-// PDF storage paths in priority order
-$paths = [
-    '/home/seanw2/bangforyourduck.ca/reports/ridings/',
-    '/home/seanw2/repositories/provincial-scorecard/reports/ridings/',
-    '/home/seanw2/reports/ridings/',
-];
-$reportsDir = '';
-foreach ($paths as $p) { if (is_dir($p)) { $reportsDir = $p; break; } }
-define('REPORTS_DIR', $reportsDir);
+// PDF storage — use document root to find reports directory
+define('REPORTS_DIR', $_SERVER['DOCUMENT_ROOT'] . '/reports/ridings/');
 
 $ridingCode = $_GET['riding'] ?? '';
 
