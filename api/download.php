@@ -14,8 +14,10 @@ if (strpos($origin, 'bangforyourduck.ca') !== false || strpos($origin, 'localhos
     header("Access-Control-Allow-Origin: $origin");
 }
 
-// PDF storage path — OUTSIDE public_html, not directly accessible via URL
-define('REPORTS_DIR', '/home/seanw2/reports/ridings/');
+// PDF storage: try repo directory first (always fresh after git pull), fall back to deployed copy
+$repoPDFs = '/home/seanw2/repositories/provincial-scorecard/reports/ridings/';
+$localPDFs = '/home/seanw2/reports/ridings/';
+define('REPORTS_DIR', is_dir($repoPDFs) ? $repoPDFs : $localPDFs);
 
 $ridingCode = $_GET['riding'] ?? '';
 
