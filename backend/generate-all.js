@@ -241,6 +241,68 @@ async function main() {
     generateMPs(db),
   ]);
 
+  // ── Add trend data from snapshots ──────────────────────────────────────
+  try {
+    // Get the most recent snapshot that's older than today
+    const today = new Date().toISOString().split('T')[0];
+    const [prevSnaps] = await db.query(
+      'SELECT DISTINCT snapshot_date FROM score_snapshots_ridings WHERE snapshot_date < ? ORDER BY snapshot_date DESC LIMIT 1',
+      [today]
+    );
+
+    if (prevSnaps.length > 0) {
+      const prevDate = prevSnaps[0].snapshot_date;
+      const prevDateStr = new Date(prevDate).toISOString().split('T')[0];
+      console.log(`[trends] Previous snapshot: ${prevDateStr}`);
+
+      // Ridings trends
+      const [ridingSnaps] = await db.query(
+        'SELECT riding_code, composite, duck_score FROM score_snapshots_ridings WHERE snapshot_date = ?',
+        [prevDate]
+      );
+      const ridingPrev = {};
+      for (const s of ridingSnaps) ridingPrev[s.riding_code] = s;
+
+      for (const r of mps.ridings) {
+        const prev = ridingPrev[r.ridingCode];
+        if (prev) {
+          r.trend = {
+            prevComposite: prev.composite,
+            compositeDelta: r.composite - prev.composite,
+            prevDuckScore: prev.duck_score,
+            duckDelta: r.duckScore != null && prev.duck_score != null ? r.duckScore - prev.duck_score : null,
+            prevDate: prevDateStr,
+          };
+        }
+      }
+
+      // Cities trends
+      const [citySnaps] = await db.query(
+        'SELECT cma_code, composite, duck_score FROM score_snapshots_cities WHERE snapshot_date = ?',
+        [prevDate]
+      );
+      const cityPrev = {};
+      for (const s of citySnaps) cityPrev[s.cma_code] = s;
+
+      for (const c of cities.cities) {
+        const prev = cityPrev[c.cmaCode];
+        if (prev) {
+          c.trend = {
+            prevComposite: prev.composite,
+            compositeDelta: c.composite - prev.composite,
+            prevDate: prevDateStr,
+          };
+        }
+      }
+
+      console.log(`[trends] Added trends for ${Object.keys(ridingPrev).length} ridings, ${Object.keys(cityPrev).length} cities`);
+    } else {
+      console.log('[trends] No previous snapshot found — trends will appear after second daily refresh');
+    }
+  } catch (e) {
+    console.log('[trends] Snapshot tables not found, skipping trends:', e.message);
+  }
+
   // Write API JSON files
   const apiDir = path.join(__dirname, '..', 'api');
   fs.mkdirSync(apiDir, { recursive: true });

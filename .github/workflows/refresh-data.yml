@@ -35,7 +35,17 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
-      # ── 2b. Generate PDF report cards ────────────────────────────────────
+      # ── 2b. Save score snapshot for historical tracking ──────────────────
+      - name: Save score snapshot
+        run: node save-snapshot.js
+        working-directory: backend
+        env:
+          MYSQL_HOST:     ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER:     ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+
+      # ── 2c. Generate PDF report cards ────────────────────────────────────
       - name: Generate PDF reports
         run: node generate-reports.js
         working-directory: backend
