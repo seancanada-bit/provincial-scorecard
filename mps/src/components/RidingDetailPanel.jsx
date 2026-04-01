@@ -12,14 +12,14 @@ function fmtDate(d) {
   } catch { return String(d); }
 }
 
-// Bright saturated colors for formula bars (higher contrast than gradeFill)
+// Vivid neon colors for formula bars — must be unmistakable against any track
 function scoreFillBright(score) {
-  if (score == null) return '#ccc';
-  if (score >= 80) return '#22C55E';  // bright green
-  if (score >= 60) return '#3B82F6';  // bright blue
-  if (score >= 40) return '#F59E0B';  // bright amber
-  if (score >= 20) return '#F97316';  // bright orange
-  return '#EF4444';                    // bright red
+  if (score == null) return '#999';
+  if (score >= 80) return '#00CC44';  // vivid green
+  if (score >= 60) return '#0088FF';  // vivid blue
+  if (score >= 40) return '#FF9900';  // vivid orange
+  if (score >= 20) return '#FF5500';  // vivid red-orange
+  return '#FF0033';                    // vivid red
 }
 
 const TABS = [
