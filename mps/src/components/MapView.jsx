@@ -48,9 +48,12 @@ export default function MapView({ cities: ridings, onSelect, sortKey }) {
   useEffect(() => {
     if (!ridings.length) return;
 
-    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([leafletModule]) => {
-      if (!mapRef.current) return;
+    import('leaflet').then(leafletModule => {
       const L = leafletModule.default;
+      window.L = L; // markercluster expects L on window
+      return import('leaflet.markercluster').then(() => L);
+    }).then(L => {
+      if (!mapRef.current) return;
 
       // Clear old
       if (markersRef.current.cluster) {
