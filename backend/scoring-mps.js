@@ -219,16 +219,16 @@ function scoreRiding(raw) {
   const transfersScore = transfersNorm; // single metric, no weighting needed
 
   // ─── COMPOSITE ─────────────────────────────────────────────────────────
-  // Value-first formula: 55% is dollars flowing back into the riding
-  // Federal Investment 35% · Federal Transfers 20% · MP Expenses 15%
-  // MP Performance 15% · Electoral Health 10% · Demographics 5% = 100%
+  // Value = dollars in. 75% of score is money flowing back to the riding.
+  // Federal Investment 45% · Federal Transfers 30% · MP Expenses 10%
+  // MP Performance 8% · Electoral Health 5% · Demographics 2% = 100%
   const composite = weightedScore([
-    { score: investmentScore,   weight: 0.35 },
-    { score: transfersScore,    weight: 0.20 },
-    { score: expensesScore,     weight: 0.15 },
-    { score: performanceScore,  weight: 0.15 },
-    { score: electoralScore,    weight: 0.10 },
-    { score: demographicScore,  weight: 0.05 },
+    { score: investmentScore,   weight: 0.45 },
+    { score: transfersScore,    weight: 0.30 },
+    { score: expensesScore,     weight: 0.10 },
+    { score: performanceScore,  weight: 0.08 },
+    { score: electoralScore,    weight: 0.05 },
+    { score: demographicScore,  weight: 0.02 },
   ]) ?? 50;
 
   // ─── DUCK SCORE ────────────────────────────────────────────────────────
@@ -353,12 +353,12 @@ function scoreRiding(raw) {
 const CATEGORY_CEILING  = 82;
 const COMPOSITE_CATS    = ['performance', 'investment', 'electoral', 'demographics', 'expenses', 'transfers'];
 const COMPOSITE_WEIGHTS = {
-  investment:   0.35,
-  transfers:    0.20,
-  expenses:     0.15,
-  performance:  0.15,
-  electoral:    0.10,
-  demographics: 0.05,
+  investment:   0.45,
+  transfers:    0.30,
+  expenses:     0.10,
+  performance:  0.08,
+  electoral:    0.05,
+  demographics: 0.02,
 };
 
 function normalizeRidingScores(scoredRidings) {
