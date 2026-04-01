@@ -14,10 +14,15 @@ if (strpos($origin, 'bangforyourduck.ca') !== false || strpos($origin, 'localhos
     header("Access-Control-Allow-Origin: $origin");
 }
 
-// PDF storage: try repo directory first (always fresh after git pull), fall back to deployed copy
-$repoPDFs = '/home/seanw2/repositories/provincial-scorecard/reports/ridings/';
-$localPDFs = '/home/seanw2/reports/ridings/';
-define('REPORTS_DIR', is_dir($repoPDFs) ? $repoPDFs : $localPDFs);
+// PDF storage paths in priority order
+$paths = [
+    '/home/seanw2/bangforyourduck.ca/reports/ridings/',
+    '/home/seanw2/repositories/provincial-scorecard/reports/ridings/',
+    '/home/seanw2/reports/ridings/',
+];
+$reportsDir = '';
+foreach ($paths as $p) { if (is_dir($p)) { $reportsDir = $p; break; } }
+define('REPORTS_DIR', $reportsDir);
 
 $ridingCode = $_GET['riding'] ?? '';
 
