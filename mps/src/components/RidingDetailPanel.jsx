@@ -260,13 +260,12 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
       {/* Download Report Card */}
       <div className="dp-download">
         <a
-          href={`/reports/ridings/${riding.ridingCode}-${riding.name.replace(/[^a-zA-Z0-9\u00C0-\u024F\u2014\u2013\- ]/g, '').replace(/\s+/g, '-').toLowerCase()}.pdf`}
+          href={`/api/download?riding=${riding.ridingCode}`}
           className="dp-download__btn"
-          download
         >
           Download Report Card (PDF)
         </a>
-        <p className="dp-download__note">Free · 3 pages · Print it, share it, bring it to a town hall</p>
+        <p className="dp-download__note">6 pages · Vote record · Federal spending · MP expenses</p>
       </div>
     </aside>
   );

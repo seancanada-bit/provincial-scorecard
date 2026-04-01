@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./reports/
-          server-dir: /reports/
+          server-dir: /../reports/
 
       # ── Trigger cPanel to pull + deploy ────────────────────────────────
       - name: Deploy to cPanel

@@ -19,5 +19,6 @@ deployment:
     - /bin/cp api/*.json $DEPLOYPATH/api/ 2>/dev/null; true
     - /bin/cp api/*.php $DEPLOYPATH/api/
     - /bin/cp api/.htaccess $DEPLOYPATH/api/
-    # Reports (PDF report cards)
-    - /bin/cp -R reports $DEPLOYPATH/
+    # Reports (PDFs stored OUTSIDE public_html — served via api/download.php)
+    - /bin/mkdir -p /home/seanw2/reports/ridings
+    - /bin/cp -R reports/ridings/* /home/seanw2/reports/ridings/ 2>/dev/null; true

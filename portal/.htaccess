@@ -23,7 +23,6 @@ RewriteRule ^provinces(/.*)?$ - [L]
 RewriteRule ^cities(/.*)?$ - [L]
 RewriteRule ^mps(/.*)?$ - [L]
 RewriteRule ^api(/.*)?$ - [L]
-RewriteRule ^reports(/.*)?$ - [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
