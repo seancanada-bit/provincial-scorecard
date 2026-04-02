@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "lastUpdated": "2026-04-01T20:21:53.422Z",
+=======
+  "lastUpdated": "2026-04-02T02:45:45.570Z",
+>>>>>>> Stashed changes
   "national": {
     "avgComposite": 61,
     "avgHealthcare": 66,
@@ -33,7 +37,7 @@
           "erBenchmarkMetPct": 57,
           "erBenchmarkScore": 18,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 71,
@@ -48,7 +52,7 @@
           "coreHousingNeedPct": 16.8,
           "coreHousingNeedScore": 73,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 27,
@@ -164,7 +168,7 @@
           "homicideRatePer100k": 2.42,
           "homicideScore": 66,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 87,
@@ -182,7 +186,7 @@
           "oatAccessIndex": 90,
           "oatAccessScore": 86,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 73,
@@ -194,7 +198,7 @@
           "homeCareRecipientsPer1k": 72,
           "homeCareScore": 63,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -221,14 +225,14 @@
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -249,7 +253,7 @@
           "erBenchmarkMetPct": 62,
           "erBenchmarkScore": 30,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 87,
@@ -264,7 +268,7 @@
           "coreHousingNeedPct": 10.8,
           "coreHousingNeedScore": 23,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 40,
@@ -380,7 +384,7 @@
           "homicideRatePer100k": 2.76,
           "homicideScore": 60,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 48,
@@ -398,7 +402,7 @@
           "oatAccessIndex": 72,
           "oatAccessScore": 60,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 64,
@@ -410,7 +414,7 @@
           "homeCareRecipientsPer1k": 68,
           "homeCareScore": 57,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -437,14 +441,14 @@
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -465,7 +469,7 @@
           "erBenchmarkMetPct": 72,
           "erBenchmarkScore": 55,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 68,
@@ -480,7 +484,7 @@
           "coreHousingNeedPct": 11.5,
           "coreHousingNeedScore": 29,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 30,
@@ -585,7 +589,7 @@
           "homicideRatePer100k": 4.85,
           "homicideScore": 27,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 40,
@@ -603,7 +607,7 @@
           "oatAccessIndex": 52,
           "oatAccessScore": 31,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 85,
@@ -615,7 +619,7 @@
           "homeCareRecipientsPer1k": 58,
           "homeCareScore": 44,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -642,14 +646,14 @@
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -670,7 +674,7 @@
           "erBenchmarkMetPct": 58,
           "erBenchmarkScore": 20,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 66,
@@ -685,7 +689,7 @@
           "coreHousingNeedPct": 14.2,
           "coreHousingNeedScore": 52,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 51,
@@ -790,7 +794,7 @@
           "homicideRatePer100k": 5.24,
           "homicideScore": 20,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 50,
@@ -808,7 +812,7 @@
           "oatAccessIndex": 65,
           "oatAccessScore": 50,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 76,
@@ -820,7 +824,7 @@
           "homeCareRecipientsPer1k": 62,
           "homeCareScore": 49,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -847,14 +851,14 @@
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -875,7 +879,7 @@
           "erBenchmarkMetPct": 60,
           "erBenchmarkScore": 25,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 56,
@@ -890,7 +894,7 @@
           "coreHousingNeedPct": 13.6,
           "coreHousingNeedScore": 47,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 49,
@@ -1006,7 +1010,7 @@
           "homicideRatePer100k": 1.55,
           "homicideScore": 80,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 39,
@@ -1024,7 +1028,7 @@
           "oatAccessIndex": 80,
           "oatAccessScore": 71,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 69,
@@ -1036,7 +1040,7 @@
           "homeCareRecipientsPer1k": 65,
           "homeCareScore": 53,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -1063,14 +1067,14 @@
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -1091,7 +1095,7 @@
           "erBenchmarkMetPct": 68,
           "erBenchmarkScore": 45,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 62,
@@ -1106,7 +1110,7 @@
           "coreHousingNeedPct": 12.4,
           "coreHousingNeedScore": 37,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 51,
@@ -1211,7 +1215,7 @@
           "homicideRatePer100k": 1.38,
           "homicideScore": 83,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 71,
@@ -1229,7 +1233,7 @@
           "oatAccessIndex": 68,
           "oatAccessScore": 54,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 87,
@@ -1241,7 +1245,7 @@
           "homeCareRecipientsPer1k": 82,
           "homeCareScore": 76,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -1268,14 +1272,14 @@
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -1296,7 +1300,7 @@
           "erBenchmarkMetPct": 74,
           "erBenchmarkScore": 60,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 83,
@@ -1311,7 +1315,7 @@
           "coreHousingNeedPct": 10.2,
           "coreHousingNeedScore": 18,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 50,
@@ -1416,7 +1420,7 @@
           "homicideRatePer100k": 1.48,
           "homicideScore": 81,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 32,
@@ -1434,7 +1438,7 @@
           "oatAccessIndex": 48,
           "oatAccessScore": 26,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 84,
@@ -1446,7 +1450,7 @@
           "homeCareRecipientsPer1k": 55,
           "homeCareScore": 40,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -1473,14 +1477,14 @@
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -1501,7 +1505,7 @@
           "erBenchmarkMetPct": 70,
           "erBenchmarkScore": 50,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 81,
@@ -1516,7 +1520,7 @@
           "coreHousingNeedPct": 13.8,
           "coreHousingNeedScore": 48,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 44,
@@ -1621,7 +1625,7 @@
           "homicideRatePer100k": 2.21,
           "homicideScore": 69,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 45,
@@ -1639,7 +1643,7 @@
           "oatAccessIndex": 62,
           "oatAccessScore": 46,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 82,
@@ -1651,7 +1655,7 @@
           "homeCareRecipientsPer1k": 60,
           "homeCareScore": 47,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -1678,14 +1682,14 @@
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -1706,7 +1710,7 @@
           "erBenchmarkMetPct": 82,
           "erBenchmarkScore": 80,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 86,
@@ -1721,7 +1725,7 @@
           "coreHousingNeedPct": 13.1,
           "coreHousingNeedScore": 43,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 35,
@@ -1826,7 +1830,7 @@
           "homicideRatePer100k": 0.58,
           "homicideScore": 95,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 21,
@@ -1844,7 +1848,7 @@
           "oatAccessIndex": 44,
           "oatAccessScore": 20,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 84,
@@ -1856,7 +1860,7 @@
           "homeCareRecipientsPer1k": 65,
           "homeCareScore": 53,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -1883,14 +1887,14 @@
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     },
     {
@@ -1911,7 +1915,7 @@
           "erBenchmarkMetPct": 68,
           "erBenchmarkScore": 45,
           "sourceNotes": "Fraser Institute Waiting Your Turn 2025; CIHI 2024",
-          "dataDate": "2025-01-01T08:00:00.000Z"
+          "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
           "score": 33,
@@ -1926,7 +1930,7 @@
           "coreHousingNeedPct": 9.8,
           "coreHousingNeedScore": 15,
           "sourceNotes": "CREA MLS HPI Feb 2026; CMHC 2025; Stats Can CPI",
-          "dataDate": "2026-02-01T08:00:00.000Z"
+          "dataDate": "2026-02-01T00:00:00.000Z"
         },
         "fiscal": {
           "score": 87,
@@ -2031,7 +2035,7 @@
           "homicideRatePer100k": 1.91,
           "homicideScore": 74,
           "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 37,
@@ -2049,7 +2053,7 @@
           "oatAccessIndex": 55,
           "oatAccessScore": 36,
           "sourceNotes": "PHAC 2022; CIHI 2023",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         },
         "ltc": {
           "score": 66,
@@ -2061,7 +2065,7 @@
           "homeCareRecipientsPer1k": 48,
           "homeCareScore": 31,
           "sourceNotes": "CIHI LTC Homes 2023; CIHI DAD; CIHI HCRS 2022",
-          "dataDate": "2023-01-01T08:00:00.000Z"
+          "dataDate": "2023-01-01T00:00:00.000Z"
         }
       },
       "taxes": {
@@ -2088,14 +2092,14 @@
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
         "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T08:00:00.000Z"
+        "dataDate": "2024-01-01T00:00:00.000Z"
       },
       "lastUpdated": {
-        "healthcare": "2025-01-01T08:00:00.000Z",
-        "housing": "2026-02-01T08:00:00.000Z",
-        "credit": "2025-10-01T07:00:00.000Z",
-        "polling": "2026-02-01T08:00:00.000Z",
-        "infrastructure": "2026-01-01T08:00:00.000Z"
+        "healthcare": "2025-01-01T00:00:00.000Z",
+        "housing": "2026-02-01T00:00:00.000Z",
+        "credit": "2025-10-01T00:00:00.000Z",
+        "polling": "2026-02-01T00:00:00.000Z",
+        "infrastructure": "2026-01-01T00:00:00.000Z"
       }
     }
   ],
