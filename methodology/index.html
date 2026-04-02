@@ -76,7 +76,7 @@
     main {
       max-width: 740px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 40px 24px clamp(48px, 8vw, 80px);
     }
 
     .page-title {
@@ -85,17 +85,19 @@
       font-weight: 900;
       line-height: 1.15;
       margin-bottom: 8px;
+      text-wrap: balance;
     }
     .page-subtitle {
       font-size: 16px;
       color: var(--text-sub);
       line-height: 1.6;
       margin-bottom: 40px;
+      text-wrap: pretty;
     }
 
     /* ─── SECTIONS ───────────────────────────────────────────── */
     .section {
-      margin-bottom: 48px;
+      margin-bottom: clamp(32px, 6vw, 48px);
     }
     .section__heading {
       font-family: var(--serif);
@@ -104,6 +106,7 @@
       margin-bottom: 16px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--border);
+      text-wrap: balance;
     }
     .section p, .section li {
       font-size: 15px;
@@ -112,10 +115,10 @@
     }
     .section p + p { margin-top: 12px; }
     .section ul {
-      margin: 12px 0;
+      margin: 16px 0;
       padding-left: 24px;
     }
-    .section li { margin-bottom: 6px; }
+    .section li { margin-bottom: 10px; line-height: 1.6; }
 
     /* ─── FORMULA CARD ───────────────────────────────────────── */
     .formula-card {
@@ -129,7 +132,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 8px 0;
+      padding: 12px 0;
       border-bottom: 1px solid #F0EDE7;
     }
     .formula-row:last-child { border-bottom: none; }
@@ -259,9 +262,14 @@
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 600px) {
+      main { padding: 28px 16px clamp(36px, 8vw, 60px); }
+      .page-title { margin-bottom: 4px; }
+      .section__heading { font-size: 19px; }
       .source-table { font-size: 12px; }
       .source-table th, .source-table td { padding: 8px 6px; }
       .formula-bar { width: 60px; }
+      .formula-card { padding: 16px; }
+      .callout { padding: 16px 18px; }
     }
   </style>
 </head>

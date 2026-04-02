@@ -39,6 +39,7 @@
       font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -95,6 +96,7 @@
       max-width: 800px;
       margin: 24px auto 16px;
       letter-spacing: -1px;
+      text-wrap: balance;
       position: relative; z-index: 1;
     }
 
@@ -103,16 +105,19 @@
       color: var(--text-sub);
       max-width: 540px;
       line-height: 1.6;
-      margin-bottom: 40px;
+      text-wrap: balance;
+      margin-bottom: 48px;
       position: relative; z-index: 1;
     }
 
     .hero__explainer {
-      font-size: clamp(11px, 1.4vw, 13px);
+      font-size: clamp(12px, 1.5vw, 14px);
       color: var(--text-muted);
       font-style: italic;
       max-width: 440px;
-      line-height: 1.5;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+      text-wrap: balance;
       margin-bottom: 32px;
       position: relative; z-index: 1;
     }
@@ -201,6 +206,7 @@
       font-size: 15px;
       color: var(--text-sub);
       line-height: 1.6;
+      text-wrap: balance;
       margin-bottom: 20px;
       flex: 1;
     }
@@ -225,7 +231,7 @@
     .card__stat-text {
       font-size: 13px;
       color: var(--text-sub);
-      line-height: 1.4;
+      line-height: 1.5;
     }
     .card__stat-text strong {
       display: block;
@@ -281,7 +287,7 @@
     .editorial {
       background: #1C1917;
       color: rgba(255,255,255,0.85);
-      padding: 64px 24px;
+      padding: clamp(40px, 8vw, 64px) 24px;
       text-align: center;
     }
     .editorial__inner {
@@ -294,12 +300,14 @@
       font-weight: 700;
       margin-bottom: 16px;
       color: white;
+      text-wrap: balance;
     }
     .editorial__body {
       font-size: 15px;
       line-height: 1.7;
       color: rgba(255,255,255,0.65);
       margin-bottom: 32px;
+      text-wrap: pretty;
     }
     .editorial__values {
       display: flex;
@@ -349,11 +357,12 @@
       font-size: clamp(24px, 3vw, 36px);
       font-weight: 800; color: var(--text);
       margin-bottom: 12px;
+      text-wrap: balance;
     }
     .support__body {
       font-size: 15px; line-height: 1.7;
       color: var(--text-sub); max-width: 600px;
-      margin: 0 auto 40px;
+      margin: 0 auto 40px; text-wrap: pretty;
     }
     .support__tiers {
       display: grid;
@@ -428,6 +437,19 @@
     }
     .bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
     .bottom a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ─── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero { min-height: 70vh; padding: 32px 20px; }
+      .hero__question { letter-spacing: -0.5px; }
+      .sections { padding: 0 16px 48px; gap: 16px; }
+      .card__body { padding: 24px 20px; }
+      .scope { gap: 20px; }
+      .scope__num { font-size: 32px; }
+      .support { padding: 40px 16px; }
+      .support__tiers { gap: 14px; }
+      .support__tier { padding: 24px 20px; }
+    }
   </style>
 </head>
 <body>
