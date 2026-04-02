@@ -183,6 +183,24 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     doc.moveTo(50, catY - 6).lineTo(562, catY - 6).stroke('#F0EDE8');
   }
 
+  // Formula arithmetic
+  const invS = cats.investment?.score ?? 0;
+  const traS = cats.transfers?.score ?? 0;
+  const expS = cats.expenses?.score ?? 0;
+  const invC = Math.round(invS * 0.50);
+  const traC = Math.round(traS * 0.35);
+  const expC = Math.round(expS * 0.15);
+  catY += 4;
+  doc.moveTo(50, catY).lineTo(562, catY).lineWidth(1.5).stroke(COLORS.text);
+  catY += 10;
+  doc.fontSize(10).fillColor(COLORS.text).font('Helvetica-Bold')
+     .text('Grade Calculation:', 50, catY);
+  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
+     .text(`(${invS} x 0.50) + (${traS} x 0.35) + (${expS} x 0.15) = ${invC} + ${traC} + ${expC} = ${riding.composite}/100`, 180, catY + 1);
+  catY += 16;
+  doc.fontSize(8).fillColor(COLORS.muted)
+     .text('Grade = dollars flowing into your riding vs what your MP costs. Performance, electoral, and demographics are shown as context only.', 50, catY, { width: W });
+
   doc.fontSize(8).fillColor(COLORS.muted)
      .text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
 
@@ -227,9 +245,10 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
 
         const ballotColor = v.ballot === 'Yes' ? COLORS.gradeA : v.ballot === 'No' ? COLORS.gradeF : v.ballot === 'Paired' ? COLORS.muted : '#CC8800';
         const desc = v.description || v.label || '';
-        doc.fontSize(8).fillColor(COLORS.muted);
-        doc.text(String(v.number || ''), 50, vY, { width: 18 });
-        doc.text(v.date ? v.date.substring(5) : '', 70, vY, { width: 60 }); // MM-DD
+        const voteLink = v.number ? `https://openparliament.ca/votes/45-1/${v.number}/` : null;
+        doc.fontSize(8).fillColor('#1565C0');
+        doc.text(String(v.number || ''), 50, vY, { width: 18, link: voteLink }); // clickable link
+        doc.fillColor(COLORS.muted).text(v.date ? v.date.substring(5) : '', 70, vY, { width: 60 });
         doc.fillColor(COLORS.text).text(v.bill || '—', 135, vY, { width: 45 });
         doc.fontSize(7).fillColor(COLORS.sub).text(desc.substring(0, 40), 185, vY, { width: 230 });
         doc.fontSize(7).fillColor(COLORS.muted).text(v.result || '', 420, vY, { width: 60 });
@@ -311,7 +330,13 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
           doc.text(p.title.substring(0, 55), 50, cY, { width: 320 });
           doc.fillColor(COLORS.gradeA).text('$' + (p.federal / 1e6).toFixed(1) + 'M', 380, cY, { width: 60 });
           doc.fontSize(7).fillColor(COLORS.muted).text((p.category || '').substring(0, 25), 450, cY, { width: 110 });
-          cY += 16;
+          cY += 12;
+          // Recipient line
+          if (p.recipient) {
+            doc.fontSize(6).fillColor(COLORS.muted).text('Recipient: ' + p.recipient.substring(0, 60), 60, cY);
+            cY += 10;
+          }
+          cY += 4;
         }
 
         if (rs.projects.length > 6) {
