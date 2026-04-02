@@ -335,12 +335,6 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         <p>If any data about this riding is inaccurate, we want to know. <a href="/methodology/#for-mps">Request a review &rarr;</a></p>
       </div>
 
-      {/* Second CTA at bottom for scrollers */}
-      <div className="dp-download">
-        <a href={`/api/download?riding=${riding.ridingCode}`} className="dp-download__btn dp-download__btn--secondary">
-          Download Report Card (PDF)
-        </a>
-      </div>
     </aside>
   );
 }
