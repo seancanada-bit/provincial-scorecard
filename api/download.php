@@ -14,8 +14,10 @@ if (strpos($origin, 'bangforyourduck.ca') !== false || strpos($origin, 'localhos
     header("Access-Control-Allow-Origin: $origin");
 }
 
-// PDF storage — use document root to find reports directory
-define('REPORTS_DIR', $_SERVER['DOCUMENT_ROOT'] . '/reports/ridings/');
+// PDF storage — repo dir has the freshest PDFs (updated on every git pull)
+$repoReports = '/home/seanw2/repositories/provincial-scorecard/reports/ridings/';
+$webReports = $_SERVER['DOCUMENT_ROOT'] . '/reports/ridings/';
+define('REPORTS_DIR', is_dir($repoReports) ? $repoReports : $webReports);
 
 $ridingCode = $_GET['riding'] ?? '';
 
