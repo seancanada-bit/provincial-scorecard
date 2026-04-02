@@ -7,6 +7,10 @@ deployment:
     - /bin/cp portal/.htaccess $DEPLOYPATH/
     - /bin/cp portal/sitemap.xml $DEPLOYPATH/ 2>/dev/null; true
     - /bin/cp portal/robots.txt $DEPLOYPATH/ 2>/dev/null; true
+    # Methodology (static page at /methodology/)
+    - /bin/mkdir -p $DEPLOYPATH/methodology
+    - /bin/cp methodology/index.html $DEPLOYPATH/methodology/
+    - /bin/cp methodology/.htaccess $DEPLOYPATH/methodology/ 2>/dev/null; true
     # Provinces (now at /provinces/)
     - /bin/mkdir -p $DEPLOYPATH/provinces
     - /bin/cp -R frontend/dist/* $DEPLOYPATH/provinces/

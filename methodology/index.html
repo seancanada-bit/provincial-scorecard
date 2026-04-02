@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How Bang for Your Duck grades Canadian ridings — methodology, data sources, structural factors, and terms of use." />
+  <meta name="theme-color" content="#D52B1E" />
+  <title>Methodology — Bang for Your Duck</title>
+
+  <meta property="og:title" content="Methodology — Bang for Your Duck" />
+  <meta property="og:description" content="How we grade Canadian ridings on value for your tax loonie. Data sources, formula, and terms." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bangforyourduck.ca/methodology/" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F8F6F1;
+      --card-bg:     #FFFFFF;
+      --text:        #1A1A1A;
+      --text-sub:    #5C5C5C;
+      --text-muted:  #8C8C8C;
+      --border:      #E8E4DC;
+      --red:         #D52B1E;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Plus Jakarta Sans', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stripe { height: 5px; background: var(--red); }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    .site-header {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .site-header__brand {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .site-header__brand span { color: var(--red); font-style: italic; }
+    .site-header__nav {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .site-header__nav a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    .site-header__nav a:hover { color: var(--red); }
+
+    /* ─── MAIN ───────────────────────────────────────────────── */
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────────── */
+    .section {
+      margin-bottom: 48px;
+    }
+    .section__heading {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section p, .section li {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+    .section p + p { margin-top: 12px; }
+    .section ul {
+      margin: 12px 0;
+      padding-left: 24px;
+    }
+    .section li { margin-bottom: 6px; }
+
+    /* ─── FORMULA CARD ───────────────────────────────────────── */
+    .formula-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .formula-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #F0EDE7;
+    }
+    .formula-row:last-child { border-bottom: none; }
+    .formula-label {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .formula-weight {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--red);
+      min-width: 50px;
+      text-align: right;
+    }
+    .formula-bar {
+      width: 120px;
+      height: 8px;
+      background: #E8E4DC;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .formula-bar__fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--red);
+    }
+    .formula-context {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      opacity: 0.5;
+    }
+    .formula-context .formula-label {
+      font-weight: 400;
+      font-size: 13px;
+    }
+    .formula-context .formula-weight {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ─── DATA SOURCE TABLE ──────────────────────────────────── */
+    .source-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .source-table th {
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--border);
+    }
+    .source-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #F0EDE7;
+      color: var(--text-sub);
+      vertical-align: top;
+    }
+    .source-table a {
+      color: var(--red);
+      text-decoration: none;
+    }
+    .source-table a:hover { text-decoration: underline; }
+
+    /* ─── CALLOUT BOX ────────────────────────────────────────── */
+    .callout {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .callout__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .callout p {
+      font-size: 14px;
+    }
+    .callout a {
+      color: var(--red);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .callout a:hover { text-decoration: underline; }
+
+    /* ─── EDITORIAL FOOTER ───────────────────────────────────── */
+    .editorial {
+      background: #1C1917;
+      color: rgba(255,255,255,0.85);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .editorial__inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .editorial a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .editorial a:hover { text-decoration: underline; }
+
+    .bottom {
+      background: #1C1917;
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+      text-align: center;
+      padding: 0 24px 24px;
+    }
+    .bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .bottom a:hover { color: white; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .source-table { font-size: 12px; }
+      .source-table th, .source-table td { padding: 8px 6px; }
+      .formula-bar { width: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stripe"></div>
+
+  <header class="site-header">
+    <a href="/" class="site-header__brand">Bang for Your <span>Duck</span></a>
+    <nav class="site-header__nav">
+      <a href="/provinces/">Provinces</a> ·
+      <a href="/cities/">Cities</a> ·
+      <a href="/mps/">MPs</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Methodology</h1>
+    <p class="page-subtitle">
+      How we grade Canadian ridings on value for your federal tax loonie — and what our scores can and cannot tell you.
+    </p>
+
+    <!-- ═══ MISSION ═══════════════════════════════════════════════ -->
+    <section class="section" id="mission">
+      <h2 class="section__heading">Our Mission</h2>
+      <p>
+        Bang for Your Duck is an independent, nonpartisan civic transparency project.
+        We measure a simple question: <strong>how much value does your riding get back for the federal tax dollars you send to Ottawa?</strong>
+      </p>
+      <p>
+        We grade <strong>ridings, not MPs personally</strong>. An MP inherits their riding's infrastructure history, provincial transfer formulas, and geographic realities.
+        A low score is not an indictment of character — it's a signal that measurable dollar flows into that riding are below average relative to the cost of federal representation.
+      </p>
+      <p>
+        Our goal is to give Canadians a starting point for asking informed questions about how federal money reaches their community.
+      </p>
+    </section>
+
+    <!-- ═══ HOW WE GRADE ═════════════════════════════════════════ -->
+    <section class="section" id="how-we-grade">
+      <h2 class="section__heading">How We Grade</h2>
+      <p>
+        Each riding receives a composite score from 0 to 100 based on three weighted categories that measure dollars flowing in and out:
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-row">
+          <span class="formula-label">Federal Investment</span>
+          <span class="formula-weight">50%</span>
+          <div class="formula-bar"><div class="formula-bar__fill" style="width: 100%"></div></div>
+        </div>
+        <div class="formula-row">
+          <span class="formula-label">Federal Transfers</span>
+          <span class="formula-weight">35%</span>
+          <div class="formula-bar"><div class="formula-bar__fill" style="width: 70%"></div></div>
+        </div>
+        <div class="formula-row">
+          <span class="formula-label">MP Expenses</span>
+          <span class="formula-weight">15%</span>
+          <div class="formula-bar"><div class="formula-bar__fill" style="width: 30%"></div></div>
+        </div>
+      </div>
+
+      <p>
+        <strong>Federal Investment (50%)</strong> measures Infrastructure Canada project funding per capita in the riding — the largest single indicator of federal dollars reaching a community.
+      </p>
+      <p>
+        <strong>Federal Transfers (35%)</strong> captures provincial-level transfer payments (health, social, equalization) allocated per capita. All ridings in the same province receive the same transfer score.
+      </p>
+      <p>
+        <strong>MP Expenses (15%)</strong> measures the cost of federal representation — office budgets, travel, hospitality, and contracts. Lower expenses relative to peers improve the score.
+      </p>
+
+      <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+        Three additional categories are displayed as <strong>context</strong> but do not affect the composite grade:
+      </p>
+      <div class="formula-card" style="opacity: 0.65;">
+        <div class="formula-context">
+          <span class="formula-label">MP Work (votes, bills, committees)</span>
+          <span class="formula-weight">Context</span>
+        </div>
+        <div class="formula-context">
+          <span class="formula-label">Electoral Health (turnout, competition)</span>
+          <span class="formula-weight">Context</span>
+        </div>
+        <div class="formula-context">
+          <span class="formula-label">Demographics (income, education, employment)</span>
+          <span class="formula-weight">Context</span>
+        </div>
+      </div>
+      <p>
+        These categories provide important background but are not measures of value delivered. A riding's demographic profile or electoral competitiveness is not something an MP controls.
+      </p>
+    </section>
+
+    <!-- ═══ DATA SOURCES ═════════════════════════════════════════ -->
+    <section class="section" id="data-sources">
+      <h2 class="section__heading">Data Sources</h2>
+      <p>Every data point comes from a publicly available government or parliamentary source. We do not use proprietary data.</p>
+
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Source</th>
+            <th>Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Federal Investment</td>
+            <td><a href="https://www.infrastructure.gc.ca/gmap-gcarte/index-eng.html">Infrastructure Canada Open Data</a></td>
+            <td>20,474 projects matched to ridings</td>
+          </tr>
+          <tr>
+            <td>MP Votes</td>
+            <td><a href="https://openparliament.ca/">OpenParliament.ca</a></td>
+            <td>94 recorded votes, Session 45-1</td>
+          </tr>
+          <tr>
+            <td>Electoral</td>
+            <td><a href="https://www.elections.ca/content.aspx?section=ele&dir=pas&document=index&lang=e">Elections Canada</a></td>
+            <td>45th General Election (2025)</td>
+          </tr>
+          <tr>
+            <td>MP Expenses</td>
+            <td><a href="https://www.ourcommons.ca/ProactiveDisclosure/en/members">House of Commons Proactive Disclosure</a></td>
+            <td>Q3 2025-26</td>
+          </tr>
+          <tr>
+            <td>Demographics</td>
+            <td><a href="https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E">Statistics Canada</a></td>
+            <td>2021 Census of Population</td>
+          </tr>
+          <tr>
+            <td>Federal Transfers</td>
+            <td><a href="https://www.canada.ca/en/department-finance/programs/federal-transfers.html">Department of Finance</a></td>
+            <td>2023-24 Major Federal Transfers</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Scores are updated daily via automated data pipeline. Data accuracy depends on these source institutions. If a source contains errors, those may propagate into our scores until corrected.
+      </p>
+    </section>
+
+    <!-- ═══ WHAT WE DON'T MEASURE ════════════════════════════════ -->
+    <section class="section" id="what-we-dont-measure">
+      <h2 class="section__heading">What We Don't Measure</h2>
+      <p>
+        No quantitative model captures the full picture of parliamentary representation. We acknowledge several important aspects of an MP's work that are not reflected in our scores:
+      </p>
+      <ul>
+        <li><strong>Constituency casework</strong> — helping constituents navigate federal services (immigration, CRA, passports, veterans' affairs)</li>
+        <li><strong>Committee influence</strong> — the quality and impact of an MP's committee work, beyond simple membership counts</li>
+        <li><strong>Speech and debate quality</strong> — parliamentary speeches are counted but not evaluated for substance</li>
+        <li><strong>Legislative amendments</strong> — proposed changes to bills that may significantly shape policy outcomes</li>
+        <li><strong>Caucus and party influence</strong> — behind-the-scenes advocacy within government</li>
+        <li><strong>Riding-level service delivery</strong> — local office responsiveness and community engagement</li>
+      </ul>
+      <p>
+        These matter. They are simply not quantifiable from publicly available data at scale. Our scores should be a starting point for conversation, not the final word.
+      </p>
+    </section>
+
+    <!-- ═══ STRUCTURAL FACTORS ═══════════════════════════════════ -->
+    <section class="section" id="structural-factors">
+      <h2 class="section__heading">Structural Factors That Affect Scores</h2>
+      <p>Several factors outside any individual MP's control can significantly affect a riding's score:</p>
+      <ul>
+        <li><strong>Geography and travel costs.</strong> MPs representing remote or northern ridings face inherently higher travel expenses. A high expense score for a Yukon or Nunavut MP reflects geography, not wastefulness.</li>
+        <li><strong>Government vs. opposition.</strong> Governing-party MPs have more influence over where federal investment dollars flow. Opposition MPs may advocate effectively but have less direct control over spending decisions.</li>
+        <li><strong>Provincial transfer formulas.</strong> Federal transfers are allocated at the provincial level using equalization and program-specific formulas. All ridings in the same province receive the same transfer score — this reflects the province's fiscal relationship with Ottawa, not the individual MP's advocacy.</li>
+        <li><strong>Population density.</strong> Per-capita calculations can disadvantage very small or very large ridings in different ways. A single large infrastructure project can dramatically shift a small riding's score.</li>
+        <li><strong>Urban vs. rural characteristics.</strong> Urban ridings tend to have different infrastructure investment patterns than rural ones. Neither is inherently better.</li>
+        <li><strong>Historical investment.</strong> MPs inherit their riding's infrastructure history. A new MP in a riding with decades of federal underinvestment starts at a disadvantage through no fault of their own.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="callout__title">A note on fairness</div>
+        <p>
+          We recognize these structural factors create an uneven playing field. Our scores measure outcomes, not effort.
+          An MP working tirelessly in a structurally disadvantaged riding may still score below average — and that is a statement about federal spending patterns, not about the MP's dedication.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ FOR MPs ══════════════════════════════════════════════ -->
+    <section class="section" id="for-mps">
+      <h2 class="section__heading">For MPs and Staff</h2>
+      <p>
+        We grade ridings, not individuals. If you believe any data about your riding is inaccurate, incomplete, or missing important context, we genuinely want to hear from you.
+      </p>
+
+      <div class="callout">
+        <div class="callout__title">Request a data review</div>
+        <p>Email <a href="mailto:corrections@bangforyourduck.ca">corrections@bangforyourduck.ca</a> with:</p>
+        <ul style="margin: 8px 0 0 20px; font-size: 14px;">
+          <li>The riding name and code</li>
+          <li>Which data point you believe is inaccurate</li>
+          <li>The correct figure and its source</li>
+        </ul>
+        <p style="margin-top: 12px;">
+          We review all correction requests and will update scores if warranted. Corrections are typically reflected within 48 hours.
+        </p>
+      </div>
+
+      <p>
+        We also welcome suggestions for additional public data sources that could improve our model. Our goal is accuracy and fairness, not gotcha journalism.
+      </p>
+    </section>
+
+    <!-- ═══ TERMS ════════════════════════════════════════════════ -->
+    <section class="section" id="terms">
+      <h2 class="section__heading">Terms of Use</h2>
+      <p>
+        Bang for Your Duck is an independent editorial project. The scores, grades, and commentary on this website represent <strong>opinions based on publicly available government data</strong>. They constitute fair comment on matters of public interest under Canadian law.
+      </p>
+      <p>
+        This website is <strong>not legal, financial, or political advice</strong>. Scores represent a weighted composite model and are not absolute measures of MP quality, riding health, or government performance.
+      </p>
+      <p>
+        We are <strong>not affiliated</strong> with any political party, government body, lobby group, or elected official. No MP, party, or government agency has editorial input into our methodology or scores.
+      </p>
+      <p>
+        Data accuracy depends on the source institutions listed above. Errors in source data may propagate into our scores until corrected. We make reasonable efforts to verify data accuracy but cannot guarantee it.
+      </p>
+      <p>
+        All content on this website is protected by copyright. You may share and reference our scores with attribution. Bulk redistribution or commercial use of our data requires written permission.
+      </p>
+    </section>
+
+  </main>
+
+  <section class="editorial">
+    <div class="editorial__inner">
+      <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">
+        Independent. Nonpartisan. Community-supported.<br>
+        Built on public data. Scored with transparent methodology.
+      </p>
+      <p style="margin-top: 16px;">
+        <a href="/">Home</a> · <a href="/provinces/">Provinces</a> · <a href="/cities/">Cities</a> · <a href="/mps/">MPs</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="bottom">
+    &copy; 2026 Bang for Your Duck. <a href="/provinces/">Provinces</a> &middot; <a href="/cities/">Cities</a> &middot; <a href="/mps/">MPs</a> &middot; <a href="/methodology/">Methodology</a>
+  </div>
+
+</body>
+</html>

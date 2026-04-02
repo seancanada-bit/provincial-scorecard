@@ -232,6 +232,11 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         </div>
       </div>
 
+      {/* Context disclaimer */}
+      <div className="dp-context-banner">
+        <strong>Context matters.</strong> This scorecard grades your riding on measurable dollar flows — federal investment in, transfers through, and the cost of representation out. It does not capture constituency work, committee influence, or legislative quality. Structural factors like geography and government vs. opposition status also affect scores. <a href="/methodology/#structural-factors">Learn more</a>
+      </div>
+
       {/* Formula breakdown */}
       <div className="dp-formula">
         <div className="dp-formula__title">How this grade is calculated</div>
@@ -258,11 +263,11 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
           <span className="dp-formula__total-score">{riding.composite}/100</span>
         </div>
         <div className="dp-formula__note">
-          The grade is based entirely on dollars: what flows into your riding vs what your MP costs to run.
+          This riding's grade is based entirely on dollars: what flows in from the federal government vs the cost of representation.
         </div>
         {cats.performance?.score > 0 && (
           <div className="dp-formula__context">
-            <strong>What about MP Work ({cats.performance.grade} · {cats.performance.score}/100)?</strong> Votes, bills, and speeches show initiative — but if that work isn't turning into investment for your riding, it doesn't change your bang for your duck score. Activity without results is effort, not value.
+            <strong>What about MP Work ({cats.performance.grade} · {cats.performance.score}/100)?</strong> Votes, bills, and speeches show initiative — but if that work isn't turning into investment for your riding, it doesn't change the value score. Activity without measurable investment outcomes doesn't affect the grade — but it still matters.
           </div>
         )}
       </div>
@@ -275,7 +280,7 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
         >
           Download Full Report Card (PDF)
         </a>
-        <p className="dp-download__note">6 pages · Vote record · Federal spending · MP expenses · Free</p>
+        <p className="dp-download__note">7 pages · Vote record · Federal spending · MP expenses · Free</p>
       </div>
 
       {/* Category chips */}
@@ -323,6 +328,12 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
           </div>
         </div>
       )}
+
+      {/* MP correction/contact link */}
+      <div className="dp-mp-contact">
+        <strong>Are you an MP or staff member?</strong>
+        <p>If any data about this riding is inaccurate, we want to know. <a href="/methodology/#for-mps">Request a review &rarr;</a></p>
+      </div>
 
       {/* Second CTA at bottom for scrollers */}
       <div className="dp-download">

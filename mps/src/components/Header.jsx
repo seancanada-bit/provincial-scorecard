@@ -17,6 +17,8 @@ export default function Header({ lastUpdated }) {
               <a href="/cities/" className="site-header__sub-link">Cities</a>
               <span className="site-header__sub-sep" aria-hidden="true">·</span>
               <span className="site-header__sub-current" aria-current="page">MPs</span>
+              <span className="site-header__sub-sep" aria-hidden="true">·</span>
+              <a href="/methodology/" className="site-header__sub-link">Methodology</a>
             </span>
             <div className="site-header__actions">
               {formatted && (
@@ -27,8 +29,8 @@ export default function Header({ lastUpdated }) {
               <a href="/#support" className="site-header__support-btn">Support this project</a>
             </div>
           </div>
-          <p className="site-header__tagline">What does your MP deliver for your federal tax loonie?</p>
-          <p className="site-header__scope">Grading all 343 federal electoral ridings on MP performance, investment, and outcomes.</p>
+          <p className="site-header__tagline">What does your riding receive for your federal tax loonie?</p>
+          <p className="site-header__scope">Grading all 343 federal ridings on federal investment, transfers, and the cost of representation.</p>
         </div>
         <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>
