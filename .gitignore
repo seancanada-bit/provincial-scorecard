@@ -6,3 +6,4 @@ backend/.env
 *.rtf
 *.RTF
 api/db-config.php
+backend/data/infrastructure-projects.csv
