@@ -25,6 +25,11 @@ jobs:
         run: npm ci
         working-directory: backend
 
+      # ── 1b. Import Infrastructure Canada projects → riding-spending.json ──
+      - name: Import infrastructure data
+        run: node import-infrastructure.js --download
+        working-directory: backend
+
       # ── 2. Generate all scored JSON from MySQL ─────────────────────────────
       - name: Generate all data
         run: node generate-all.js
@@ -79,7 +84,7 @@ jobs:
             git checkout -- .
             exit 1
           fi
-          git add -f api/data.json api/cities.json api/mps.json
+          git add -f api/data.json api/cities.json api/mps.json api/riding-spending.json
           git add -f frontend/dist/ cities/dist/ mps/dist/
           git add -f frontend/src/data/fallback.json
           git add -f reports/
