@@ -79,7 +79,7 @@ function drawSourceButton(doc, y, label, url, W) {
   return y + btnH + 4;
 }
 
-function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendingData, expenseData } = {}) {
+function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendingData, expenseData, expenseHistory } = {}) {
   const doc = new PDFDocument({ size: 'LETTER', margin: 50, bufferPages: true });
   const stream = fs.createWriteStream(outputPath);
   doc.pipe(stream);
@@ -511,46 +511,50 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
       doc.addPage();
       doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
-      doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
-         .text('MP Expense Report', 50, 30);
-      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-         .text(`${exp.mpName}  |  Q3 2025-26 (Oct-Dec 2025)  |  House of Commons Proactive Disclosure`, 50, 58);
-      doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
+      doc.fontSize(20).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('MP Expense Report', 50, 40);
+      doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+         .text(`${exp.mpName}  \u00b7  House of Commons Proactive Disclosure`, 50, 64);
+      doc.moveTo(50, 80).lineTo(562, 80).lineWidth(0.5).stroke('#D0CBC2');
+
+      // ── Current quarter breakdown (bars) ──
+      doc.fontSize(11).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('Current Quarter (Q3 2025-26)', 50, 92);
 
       const expItems = [
-        { label: 'Staff Salaries',     amount: exp.salaries,     pct: exp.totalQ3 > 0 ? Math.round(exp.salaries / exp.totalQ3 * 100) : 0 },
-        { label: 'Travel',             amount: exp.travel,       pct: exp.totalQ3 > 0 ? Math.round(exp.travel / exp.totalQ3 * 100) : 0 },
-        { label: 'Hospitality',        amount: exp.hospitality,  pct: exp.totalQ3 > 0 ? Math.round(exp.hospitality / exp.totalQ3 * 100) : 0 },
-        { label: 'Contracts',          amount: exp.contracts,    pct: exp.totalQ3 > 0 ? Math.round(exp.contracts / exp.totalQ3 * 100) : 0 },
+        { label: 'Staff Salaries', amount: exp.salaries,    pct: Math.round(exp.salaries / exp.totalQ3 * 100) },
+        { label: 'Travel',         amount: exp.travel,       pct: Math.round(exp.travel / exp.totalQ3 * 100) },
+        { label: 'Hospitality',    amount: exp.hospitality,  pct: Math.round(exp.hospitality / exp.totalQ3 * 100) },
+        { label: 'Contracts',      amount: exp.contracts,    pct: Math.round(exp.contracts / exp.totalQ3 * 100) },
       ];
 
-      let eY = 95;
+      let eY = 110;
       for (const item of expItems) {
-        doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
+        doc.fontSize(10).fillColor(COLORS.text).font('Helvetica-Bold')
            .text(item.label, 50, eY);
-        doc.fontSize(12).fillColor(item.amount > 0 ? COLORS.text : COLORS.muted)
-           .text('$' + Math.abs(item.amount).toLocaleString('en-CA'), 300, eY, { width: 120, align: 'right' });
-        doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
-           .text(item.pct + '% of total', 430, eY + 2);
+        doc.fontSize(10).fillColor(item.amount > 0 ? COLORS.text : COLORS.muted)
+           .text('$' + Math.abs(item.amount).toLocaleString('en-CA'), 280, eY, { width: 100, align: 'right' });
+        doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica')
+           .text(item.pct + '% of total', 390, eY + 1);
 
-        // Bar
-        const barW = Math.max(0, (Math.abs(item.amount) / exp.totalQ3) * 400);
-        doc.roundedRect(50, eY + 20, 400, 10, 2).fill('#EEEBE5');
-        if (barW > 0) doc.roundedRect(50, eY + 20, barW, 10, 2).fill(COLORS.red);
-        eY += 42;
+        const barW = Math.max(0, (Math.abs(item.amount) / exp.totalQ3) * 360);
+        doc.roundedRect(50, eY + 16, 360, 8, 2).fill('#ECEAE4');
+        if (barW > 0) doc.roundedRect(50, eY + 16, barW, 8, 2).fill(COLORS.red);
+        eY += 34;
       }
 
-      doc.moveTo(50, eY).lineTo(562, eY).stroke(COLORS.text);
+      doc.moveTo(50, eY).lineTo(562, eY).lineWidth(0.5).stroke(COLORS.text);
       eY += 8;
-      doc.fontSize(14).fillColor(COLORS.text).font('Helvetica-Bold')
+      doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
          .text('Q3 Total:', 50, eY);
-      doc.text('$' + exp.totalQ3.toLocaleString('en-CA'), 300, eY, { width: 120, align: 'right' });
-      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-         .text('Annualized estimate: ~$' + exp.annualEstimate.toLocaleString('en-CA'), 50, eY + 22);
+      doc.text('$' + exp.totalQ3.toLocaleString('en-CA'), 280, eY, { width: 100, align: 'right' });
+      eY += 20;
+      doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+         .text('Annualized estimate: ~$' + exp.annualEstimate.toLocaleString('en-CA'), 50, eY);
 
       doc.fontSize(7.5).fillColor('#A9A49C')
-         .text('Source: House of Commons Proactive Disclosure  \u00b7  Q3 2025-26 (Oct\u2013Dec 2025)', 50, eY + 50, { align: 'center', width: W });
-      drawSourceButton(doc, eY + 66, 'View Q3 2025-26 MP expenses on ourcommons.ca \u2192', 'https://www.ourcommons.ca/ProactiveDisclosure/en/members/2b0d1a58-f2f2-46c1-bdcd-c6076f38a32e', W);
+         .text('Source: House of Commons Proactive Disclosure  \u00b7  ourcommons.ca', 50, 676, { align: 'center', width: W });
+      drawSourceButton(doc, 690, 'View Q3 2025-26 MP expenses on ourcommons.ca \u2192', 'https://www.ourcommons.ca/ProactiveDisclosure/en/members/2b0d1a58-f2f2-46c1-bdcd-c6076f38a32e', W);
       drawPageFooter(doc, W);
     }
   }
@@ -658,10 +662,26 @@ async function main() {
   const mpsData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'mps.json'), 'utf8'));
   const ridings = mpsData.ridings;
 
-  let voteRecords = null, spendingData = null, expenseData = null;
+  let voteRecords = null, spendingData = null, expenseData = null, expenseHistory = null;
   try { voteRecords = JSON.parse(fs.readFileSync(path.join(API_DIR, 'vote-records.json'), 'utf8')); } catch {}
   try { spendingData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'riding-spending.json'), 'utf8')); } catch {}
   try { expenseData = JSON.parse(fs.readFileSync(path.join(API_DIR, 'mp-expenses.json'), 'utf8')); } catch {}
+
+  // Load historical expenses and re-key from riding names to 5-digit codes
+  try {
+    const histRaw = JSON.parse(fs.readFileSync(path.join(API_DIR, 'mp-expenses-historical.json'), 'utf8'));
+    const nameToCode = {};
+    const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    for (const r of ridings) nameToCode[norm(r.name)] = r.ridingCode;
+
+    expenseHistory = {};
+    for (const [rawName, data] of Object.entries(histRaw)) {
+      const decoded = rawName.replace(/&#x([0-9A-Fa-f]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16))).replace(/&amp;/g, '&');
+      const code = nameToCode[norm(decoded)];
+      if (code) expenseHistory[code] = data;
+    }
+    console.log(`[reports] Historical expenses: ${Object.keys(expenseHistory).length} ridings matched`);
+  } catch {}
 
   console.log(`[reports] ${ridings.length} ridings | votes: ${voteRecords ? Object.keys(voteRecords).length : 0} | spending: ${spendingData ? Object.keys(spendingData).length : 0} | expenses: ${expenseData ? Object.keys(expenseData).length : 0}`);
 
@@ -673,7 +693,7 @@ async function main() {
   for (const riding of ridings) {
     const slug = riding.name.replace(/[^a-zA-Z0-9\u00C0-\u024F\u2014\u2013\- ]/g, '').replace(/\s+/g, '-').toLowerCase();
     const filename = `${riding.ridingCode}-${slug}.pdf`;
-    await generateRidingPDF(riding, ridings, path.join(ridingsDir, filename), { voteRecords, spendingData, expenseData });
+    await generateRidingPDF(riding, ridings, path.join(ridingsDir, filename), { voteRecords, spendingData, expenseData, expenseHistory });
     count++;
     if (count % 50 === 0) console.log(`  [${count}/${ridings.length}]`);
   }
