@@ -42,18 +42,41 @@ const CAT_WEIGHTS = {
 };
 
 function drawScoreBar(doc, x, y, width, score, label) {
-  const barH = 16;
-  doc.roundedRect(x, y, width, barH, 3).fill('#EEEBE5');
+  const barH = 20;
+  const textY = y + (barH - 8.5) / 2;  // vertically center 8.5px text in bar
+  doc.roundedRect(x, y, width, barH, 4).fill('#ECEAE4');
   if (score != null && score > 0) {
-    const fillW = Math.max(6, (score / 100) * width);
+    const fillW = Math.max(8, (score / 100) * width);
     const color = score >= 80 ? COLORS.gradeA : score >= 60 ? COLORS.gradeB : score >= 40 ? COLORS.gradeC : score >= 20 ? COLORS.gradeD : COLORS.gradeF;
-    doc.roundedRect(x, y, fillW, barH, 3).fill(color);
+    doc.roundedRect(x, y, fillW, barH, 4).fill(color);
   }
-  doc.fontSize(9).fillColor(COLORS.white).font('Helvetica-Bold')
-     .text(label, x + 6, y + 3, { width: width - 40 });
+  doc.fontSize(8.5).fillColor(COLORS.white).font('Helvetica-Bold')
+     .text(label, x + 8, textY, { width: width - 44 });
   if (score != null) {
-    doc.fontSize(9).fillColor(COLORS.text).text(`${score}`, x + width - 30, y + 3, { width: 26, align: 'right' });
+    doc.fontSize(9).fillColor(COLORS.text).font('Helvetica-Bold')
+       .text(`${score}`, x + width - 32, textY, { width: 28, align: 'right' });
   }
+}
+
+// Standard page footer
+function drawPageFooter(doc, W) {
+  doc.moveTo(180, 710).lineTo(432, 710).lineWidth(0.5).stroke('#D0CBC2');
+  doc.fontSize(7).fillColor('#A9A49C').font('Helvetica')
+     .text('bangforyourduck.ca  \u00b7  Independent  \u00b7  Nonpartisan  \u00b7  Community-supported', 50, 720, { align: 'center', width: W });
+}
+
+// Source verification button — styled CTA that links to the original data
+function drawSourceButton(doc, y, label, url, W) {
+  const btnW = Math.min(doc.font('Helvetica-Bold').fontSize(8).widthOfString(label) + 32, 320);
+  const btnX = 306 - btnW / 2;
+  const btnH = 22;
+  // Rounded pill background
+  doc.roundedRect(btnX, y, btnW, btnH, btnH / 2).fill('#D52B1E');
+  // White text centered in pill
+  doc.fontSize(8).fillColor('#FFFFFF').font('Helvetica-Bold')
+     .text(label, btnX, y + 6, { width: btnW, align: 'center', link: url });
+  doc.font('Helvetica');
+  return y + btnH + 4;
 }
 
 function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendingData, expenseData } = {}) {
@@ -65,119 +88,140 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   const cats = riding.categories;
 
   // ════════ PAGE 1: COVER ════════════════════════════════════════════════
-  doc.rect(0, 0, 612, 8).fill(COLORS.red);
+  // Red stripe
+  doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
-  // Brand wordmark
-  doc.fontSize(12).fillColor(COLORS.muted).font('Helvetica')
-     .text('BANG FOR YOUR DUCK', 50, 50, { align: 'center', width: W, characterSpacing: 3 });
+  // Brand wordmark — generous top margin, refined tracking
+  doc.fontSize(11).fillColor(COLORS.muted).font('Helvetica')
+     .text('BANG FOR YOUR DUCK', 50, 72, { align: 'center', width: W, characterSpacing: 4 });
 
-  // Horizontal rule
-  doc.moveTo(230, 72).lineTo(382, 72).stroke(COLORS.border);
+  // Thin decorative rule
+  doc.moveTo(250, 96).lineTo(362, 96).lineWidth(0.5).stroke('#D0CBC2');
 
-  // Riding name
-  doc.fontSize(32).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text(riding.name, 50, 88, { align: 'center', width: W });
+  // Riding name — large, bold, centered with breathing room
+  const nameSize = riding.name.length > 28 ? 26 : riding.name.length > 20 ? 30 : 34;
+  doc.fontSize(nameSize).fillColor(COLORS.text).font('Helvetica-Bold')
+     .text(riding.name, 50, 116, { align: 'center', width: W, lineGap: 4 });
 
-  // MP + party + province
-  const mpLine = `${riding.mpName || 'Vacant'}  |  ${riding.mpParty || ''}  |  ${riding.province}`;
-  doc.fontSize(13).fillColor(COLORS.sub).font('Helvetica')
-     .text(mpLine, 50, 135, { align: 'center', width: W });
+  // Calculate where the name ends for dynamic spacing
+  const nameBottom = 116 + doc.heightOfString(riding.name, { width: W, fontSize: nameSize }) + 12;
 
-  // Grade circle
-  const gradeY = 175;
-  doc.circle(306, gradeY + 50, 55).fill(gradeColor(riding.grade));
-  doc.fontSize(52).fillColor(COLORS.white).font('Helvetica-Bold')
-     .text(riding.grade, 251, gradeY + 20, { width: 110, align: 'center' });
+  // MP + party + province — lighter weight, spaced pipes
+  const mpLine = `${riding.mpName || 'Vacant'}  \u00b7  ${riding.mpParty || ''}  \u00b7  ${riding.province}`;
+  doc.fontSize(12).fillColor(COLORS.sub).font('Helvetica')
+     .text(mpLine, 50, nameBottom, { align: 'center', width: W });
 
-  doc.fontSize(14).fillColor(COLORS.text).font('Helvetica')
-     .text(`${riding.composite} / 100`, 50, gradeY + 115, { align: 'center', width: W });
-  doc.fontSize(10).fillColor(COLORS.muted)
-     .text('PERFORMANCE COMPOSITE', 50, gradeY + 135, { align: 'center', width: W, characterSpacing: 2 });
+  // ── Grade circle — vertically centered on remaining space ──
+  const circleR = 60;
+  const circleY = nameBottom + 80;
+  const cx = 306;
 
-  // Duck score
+  // Outer subtle shadow ring
+  doc.circle(cx, circleY, circleR + 2).fill('#E8E4DC');
+  // Main grade circle
+  doc.circle(cx, circleY, circleR).fill(gradeColor(riding.grade));
+
+  // Grade letter — precisely centered using font metrics
+  // PDFKit text y is the baseline-top, so we offset to visually center
+  const gradeText = riding.grade;
+  const gradeFontSize = gradeText.length > 1 ? 44 : 52;
+  const gradeTextW = doc.font('Helvetica-Bold').fontSize(gradeFontSize).widthOfString(gradeText);
+  const gradeTextX = cx - gradeTextW / 2;
+  // Vertical center: circle center - half of cap height (approx 0.35 * fontSize)
+  const gradeTextY = circleY - gradeFontSize * 0.38;
+  doc.fontSize(gradeFontSize).fillColor(COLORS.white).font('Helvetica-Bold')
+     .text(gradeText, gradeTextX, gradeTextY, { lineBreak: false });
+
+  // Score below circle
+  const belowCircle = circleY + circleR + 16;
+  // Score: "33 / 100" — single centered line, mixed weight
+  doc.fontSize(18).fillColor(COLORS.text).font('Helvetica-Bold')
+     .text(`${riding.composite} / 100`, 50, belowCircle, { align: 'center', width: W });
+
+  doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+     .text('COMPOSITE SCORE', 50, belowCircle + 24, { align: 'center', width: W, characterSpacing: 2.5 });
+
+  // Duck score — elegant secondary metric
+  const duckY = belowCircle + 56;
   if (riding.duckScore != null) {
-    doc.moveTo(230, gradeY + 160).lineTo(382, gradeY + 160).stroke(COLORS.border);
-    doc.fontSize(11).fillColor(COLORS.sub)
-       .text(`Bang for Your Duck:  ${riding.duckGrade}  |  ${riding.duckScore}/100`, 50, gradeY + 172, { align: 'center', width: W });
-    doc.fontSize(9).fillColor(COLORS.muted)
-       .text('Value for federal tax dollars generated by this riding', 50, gradeY + 190, { align: 'center', width: W });
+    doc.moveTo(240, duckY).lineTo(372, duckY).lineWidth(0.5).stroke('#D0CBC2');
+    doc.fontSize(10).fillColor(COLORS.sub).font('Helvetica')
+       .text(`Bang for Your Duck:  ${riding.duckGrade}  \u00b7  ${riding.duckScore}/100`, 50, duckY + 12, { align: 'center', width: W });
+    doc.fontSize(8).fillColor(COLORS.muted)
+       .text('Value for federal tax dollars flowing into this riding', 50, duckY + 28, { align: 'center', width: W });
   }
 
+  // ── Footer zone — pinned to bottom ──
   // Population
   if (riding.population) {
-    doc.fontSize(10).fillColor(COLORS.muted)
-       .text(`Population: ${riding.population.toLocaleString('en-CA')}`, 50, gradeY + 218, { align: 'center', width: W });
+    doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+       .text(`Population: ${riding.population.toLocaleString('en-CA')}`, 50, 620, { align: 'center', width: W });
   }
 
-  // Report meta + sources
-  doc.fontSize(9).fillColor(COLORS.muted)
-     .text(`Report generated ${new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}`, 50, gradeY + 240, { align: 'center', width: W });
-  doc.fontSize(7).fillColor(COLORS.muted)
-     .text('Sources: Elections Canada | OpenParliament.ca | Infrastructure Canada | House of Commons Disclosure | StatsCan Census 2021', 50, gradeY + 260, { align: 'center', width: W })
-     .text('Governments publish the data. We collect it, score it, and present it in one place.', 50, gradeY + 274, { align: 'center', width: W });
-
+  // Report date
   doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca | Where does your tax loonie go?', 50, 720, { align: 'center', width: W });
-  doc.fontSize(7).fillColor(COLORS.muted)
-     .text('Full methodology & terms: bangforyourduck.ca/methodology', 50, 735, { align: 'center', width: W });
+     .text(`Report generated ${new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}`, 50, 642, { align: 'center', width: W });
+
+  // Sources — two lines, tighter
+  doc.fontSize(6.5).fillColor('#A9A49C')
+     .text('Sources: Elections Canada \u00b7 OpenParliament.ca \u00b7 Infrastructure Canada \u00b7 Open Canada Grants & Contributions \u00b7 House of Commons \u00b7 StatsCan 2021', 50, 664, { align: 'center', width: W })
+     .text('Governments publish the data. We collect it, score it, and present it in one place.', 50, 676, { align: 'center', width: W });
+
+  // Bottom bar
+  doc.moveTo(180, 700).lineTo(432, 700).lineWidth(0.5).stroke('#D0CBC2');
+  doc.fontSize(7.5).fillColor(COLORS.muted)
+     .text('bangforyourduck.ca', 50, 710, { align: 'center', width: W, link: 'https://bangforyourduck.ca', characterSpacing: 1 });
+  doc.fontSize(6.5).fillColor('#A9A49C')
+     .text('Full methodology & terms: bangforyourduck.ca/methodology', 50, 726, { align: 'center', width: W });
 
   // ════════ PAGE 2: ABOUT THIS REPORT ═══════════════════════════════════
   doc.addPage();
-  doc.rect(0, 0, 612, 8).fill(COLORS.red);
+  doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
-  doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('About This Report', 50, 30);
-  doc.moveTo(50, 58).lineTo(562, 58).stroke(COLORS.border);
+  doc.fontSize(20).fillColor(COLORS.text).font('Helvetica-Bold')
+     .text('About This Report', 50, 40);
+  doc.moveTo(50, 66).lineTo(562, 66).lineWidth(0.5).stroke('#D0CBC2');
 
-  let mY = 70;
+  let mY = 82;
+  const sectionGap = 10;   // between sections
+  const headGap = 14;      // heading → body
+  const bodyOpts = { width: W, lineGap: 3 };
 
-  // Editorial disclaimer
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('Editorial Disclaimer', 50, mY);
-  mY += 18;
-  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
-     .text('Bang for Your Duck is an independent, nonpartisan editorial project. Scores and grades represent opinions based on publicly available government data. This report is not legal, financial, or political advice. We are not affiliated with any political party, government body, or lobby group.', 50, mY, { width: W });
-  mY += 50;
+  // Helper: draw a section with heading + body
+  function aboutSection(heading, body) {
+    doc.fontSize(11).fillColor(COLORS.text).font('Helvetica-Bold')
+       .text(heading, 50, mY);
+    mY += headGap;
+    doc.fontSize(8.5).fillColor(COLORS.sub).font('Helvetica')
+       .text(body, 50, mY, bodyOpts);
+    mY += doc.heightOfString(body, { ...bodyOpts, fontSize: 8.5 }) + sectionGap;
+    doc.moveTo(50, mY).lineTo(562, mY).lineWidth(0.25).stroke('#E8E4DC');
+    mY += sectionGap;
+  }
 
-  // How we grade
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('How We Grade', 50, mY);
-  mY += 18;
-  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
-     .text('This report grades your riding \u2014 not your MP personally \u2014 on measurable dollar flows: federal investment received (50%), federal transfers allocated (35%), and the cost of representation (15%). Context categories like MP Work, Electoral Health, and Demographics are shown but do not factor into the composite grade.', 50, mY, { width: W });
-  mY += 55;
+  aboutSection('Editorial Disclaimer',
+    'Bang for Your Duck is an independent, nonpartisan editorial project. Scores and grades represent opinions based on publicly available government data. This report is not legal, financial, or political advice. We are not affiliated with any political party, government body, or lobby group.');
 
-  // What we don't measure
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('What We Don\u2019t Measure', 50, mY);
-  mY += 18;
-  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
-     .text('No model captures the full picture of parliamentary representation. Constituency casework, committee influence, speech quality, legislative amendments, caucus advocacy, and riding-level service delivery are important but not quantifiable from publicly available data at scale. Our scores are a starting point for conversation, not the final word.', 50, mY, { width: W });
-  mY += 55;
+  aboutSection('How We Grade',
+    'This report grades your riding \u2014 not your MP personally \u2014 on measurable dollar flows: federal investment received (50%), federal transfers allocated (35%), and the cost of representation (15%). Context categories like MP Work, Electoral Health, and Demographics are shown but do not factor into the composite grade.');
 
-  // Structural factors
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('Structural Factors', 50, mY);
-  mY += 18;
-  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
-     .text('Scores are affected by factors outside any MP\u2019s direct control: geography (travel costs are higher for remote ridings), government vs. opposition status (governing MPs have more influence over spending), provincial transfer formulas (all ridings in a province share the same transfer score), population density, and urban vs. rural characteristics. A low score is a statement about federal spending patterns, not about any MP\u2019s dedication.', 50, mY, { width: W });
-  mY += 70;
+  aboutSection('What We Don\u2019t Measure',
+    'No model captures the full picture of parliamentary representation. Constituency casework, committee influence, speech quality, legislative amendments, caucus advocacy, and riding-level service delivery are important but not quantifiable from publicly available data at scale. Our scores are a starting point for conversation, not the final word.');
 
-  // For MPs
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('For MPs and Staff', 50, mY);
-  mY += 18;
-  doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
-     .text('We grade ridings, not individuals. If any data in this report is inaccurate, we want to know. Email corrections@bangforyourduck.ca with the riding name, the data point in question, the correct figure, and supporting documentation. We review all correction requests and will update scores if warranted.', 50, mY, { width: W });
-  mY += 50;
+  aboutSection('Structural Factors',
+    'Scores are affected by factors outside any MP\u2019s direct control: geography (travel costs are higher for remote ridings), government vs. opposition status (governing MPs have more influence over spending), provincial transfer formulas (all ridings in a province share the same transfer score), population density, and urban vs. rural characteristics. A low score reflects federal spending patterns, not an MP\u2019s dedication.');
 
-  // Data sources
-  doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
+  aboutSection('For MPs and Staff',
+    'We grade ridings, not individuals. If any data in this report is inaccurate, we want to know. Email corrections@bangforyourduck.ca with the riding name, the data point in question, the correct figure, and supporting documentation. We review all correction requests and will update scores if warranted.');
+
+  // Data sources — styled as a compact list
+  doc.fontSize(11).fillColor(COLORS.text).font('Helvetica-Bold')
      .text('Data Sources', 50, mY);
-  mY += 18;
-  doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica');
+  mY += headGap;
+  doc.fontSize(7.5).fillColor(COLORS.muted).font('Helvetica');
   const aboutSources = [
     'Infrastructure Canada Open Data (infrastructure.gc.ca)',
+    'Open Canada Grants & Contributions (open.canada.ca)',
     'OpenParliament.ca \u2014 Session 45-1',
     'Elections Canada \u2014 45th General Election',
     'House of Commons Proactive Disclosure (ourcommons.ca)',
@@ -185,28 +229,30 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     'Department of Finance \u2014 Major Federal Transfers 2023-24',
   ];
   for (const src of aboutSources) {
-    doc.text('  \u2022  ' + src, 50, mY, { width: W });
-    mY += 13;
+    doc.text('  \u2022  ' + src, 58, mY, { width: W - 8 });
+    mY += 12;
   }
 
-  // Full methodology link
-  mY += 12;
-  doc.fontSize(10).fillColor(COLORS.red).font('Helvetica-Bold')
+  // Methodology link
+  mY += 14;
+  doc.fontSize(9).fillColor(COLORS.red).font('Helvetica-Bold')
      .text('Full methodology: bangforyourduck.ca/methodology', 50, mY, { align: 'center', width: W, link: 'https://bangforyourduck.ca/methodology/' });
 
-  doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica')
-     .text('bangforyourduck.ca  |  Independent \u00b7 Nonpartisan \u00b7 Community-supported', 50, 720, { align: 'center', width: W });
+  // Page footer
+  doc.moveTo(180, 710).lineTo(432, 710).lineWidth(0.5).stroke('#D0CBC2');
+  doc.fontSize(7).fillColor('#A9A49C').font('Helvetica')
+     .text('bangforyourduck.ca  \u00b7  Independent  \u00b7  Nonpartisan  \u00b7  Community-supported', 50, 720, { align: 'center', width: W });
 
   // ════════ PAGE 3: SCORE BREAKDOWN ═════════════════════════════════════
   doc.addPage();
-  doc.rect(0, 0, 612, 8).fill(COLORS.red);
+  doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
-  doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
-     .text('Score Breakdown', 50, 30);
-  doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-     .text(`${riding.name}  |  ${riding.mpName || 'Vacant'}`, 50, 58);
+  doc.fontSize(20).fillColor(COLORS.text).font('Helvetica-Bold')
+     .text('Score Breakdown', 50, 40);
+  doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+     .text(`${riding.name}  \u00b7  ${riding.mpName || 'Vacant'}`, 50, 64);
 
-  doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
+  doc.moveTo(50, 80).lineTo(562, 80).lineWidth(0.5).stroke('#D0CBC2');
 
   const categories = ['investment', 'transfers', 'expenses', 'performance', 'electoral', 'demographics'];
   let catY = 95;
@@ -216,15 +262,16 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     const score = data?.score;
     const grade = data?.grade || 'N/A';
 
-    doc.fontSize(13).fillColor(COLORS.text).font('Helvetica-Bold')
+    doc.fontSize(12).fillColor(COLORS.text).font('Helvetica-Bold')
        .text(CAT_LABELS[key], 50, catY);
-    doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-       .text(`Weight: ${CAT_WEIGHTS[key]}`, 400, catY + 2, { width: 162, align: 'right' });
+    doc.fontSize(8).fillColor('#A9A49C').font('Helvetica')
+       .text(`Weight: ${CAT_WEIGHTS[key]}`, 400, catY + 3, { width: 162, align: 'right' });
 
-    drawScoreBar(doc, 50, catY + 22, W, score, `${grade}  |  ${score != null ? score + '/100' : 'No data'}`);
+    drawScoreBar(doc, 50, catY + 20, W, score, `${grade}  \u00b7  ${score != null ? score + '/100' : 'No data'}`);
 
     let metricsY = catY + 46;
-    doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica');
+    const sep = '   \u00b7   ';
+    doc.fontSize(8).fillColor(COLORS.sub).font('Helvetica');
 
     if (key === 'performance' && data) {
       const parts = [];
@@ -232,33 +279,33 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
       if (data.billsIntroduced != null) parts.push(`Bills: ${data.billsIntroduced}`);
       if (data.speechesCount != null) parts.push(`Speeches: ${data.speechesCount}`);
       if (data.isOpposition) parts.push('(+5 opposition bonus)');
-      if (parts.length) doc.text(parts.join('   |   '), 60, metricsY);
+      if (parts.length) doc.text(parts.join(sep), 58, metricsY);
       metricsY += parts.length ? 14 : 0;
     } else if (key === 'electoral' && data) {
       const parts = [];
       if (data.voterTurnoutPct != null) parts.push(`Turnout: ${data.voterTurnoutPct}%`);
       if (data.marginOfVictoryPct != null) parts.push(`Margin: ${data.marginOfVictoryPct}%`);
       if (data.candidatesCount != null) parts.push(`Candidates: ${data.candidatesCount}`);
-      if (parts.length) doc.text(parts.join('   |   '), 60, metricsY);
+      if (parts.length) doc.text(parts.join(sep), 58, metricsY);
       metricsY += parts.length ? 14 : 0;
     } else if (key === 'demographics' && data) {
       const parts = [];
       if (data.medianHouseholdIncome != null) parts.push(`Income: $${data.medianHouseholdIncome.toLocaleString('en-CA')}`);
       if (data.unemploymentRate != null) parts.push(`Unemployment: ${data.unemploymentRate}%`);
       if (data.postsecondaryRate != null) parts.push(`Post-secondary: ${data.postsecondaryRate}%`);
-      if (parts.length) doc.text(parts.join('   |   '), 60, metricsY);
+      if (parts.length) doc.text(parts.join(sep), 58, metricsY);
       metricsY += parts.length ? 14 : 0;
     } else if (key === 'transfers' && data) {
       const parts = [];
       if (data.totalTransfersPerCapita != null) parts.push(`Total: $${data.totalTransfersPerCapita}/person`);
       if (data.chtPerCapita != null) parts.push(`CHT: $${data.chtPerCapita}`);
       if (data.equalizationPerCapita != null) parts.push(data.equalizationPerCapita > 0 ? `Equalization: $${data.equalizationPerCapita}` : 'No equalization');
-      if (parts.length) doc.text(parts.join('   |   '), 60, metricsY);
+      if (parts.length) doc.text(parts.join(sep), 58, metricsY);
       metricsY += parts.length ? 14 : 0;
     }
 
-    catY = metricsY + 16;
-    doc.moveTo(50, catY - 6).lineTo(562, catY - 6).stroke('#F0EDE8');
+    catY = metricsY + 18;
+    doc.moveTo(50, catY - 6).lineTo(562, catY - 6).lineWidth(0.25).stroke('#E8E4DC');
   }
 
   // Formula arithmetic
@@ -279,8 +326,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   doc.fontSize(8).fillColor(COLORS.muted)
      .text('Grade = dollars flowing into your riding vs the cost of representation. Performance, electoral, and demographics are shown as context only.', 50, catY, { width: W });
 
-  doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
+  drawPageFooter(doc, W);
 
   // ════════ PAGE 3: HOW YOUR MP VOTED ════════════════════════════════════
   if (voteRecords) {
@@ -288,56 +334,85 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     const record = voteRecords[ridingKey];
     if (record && record.votes) {
       doc.addPage();
-      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+      doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
-      doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
-         .text('How Your MP Voted', 50, 30);
-      doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
-         .text(`${riding.mpName}  |  ${record.voted} of ${record.totalVotes || record.total || 94} votes attended  |  ${record.participationPct || Math.round(record.voted / (record.totalVotes || record.total || 94) * 100)}% participation`, 50, 58);
-      doc.moveTo(50, 78).lineTo(562, 78).stroke(COLORS.border);
+      doc.fontSize(20).fillColor(COLORS.text).font('Helvetica-Bold')
+         .text('How Your MP Voted', 50, 40);
+      doc.fontSize(9).fillColor(COLORS.muted).font('Helvetica')
+         .text(`${riding.mpName}  \u00b7  ${record.voted} of ${record.totalVotes || record.total || 94} votes attended  \u00b7  ${record.participationPct || Math.round(record.voted / (record.totalVotes || record.total || 94) * 100)}% participation`, 50, 64);
+      doc.moveTo(50, 80).lineTo(562, 80).lineWidth(0.5).stroke('#D0CBC2');
 
-      let vY = 90;
+      // Clickable hint
+      doc.fontSize(7).fillColor('#1565C0').font('Helvetica')
+         .text('Vote numbers are clickable \u2014 click any # to view the full vote on OpenParliament.ca', 50, 84, { align: 'right', width: W });
+
+      let vY = 96;
       const pageBottom = 700;
+      const rowH = 15;
+      let rowIndex = 0;
 
       // Table header
       function drawVoteHeader() {
-        doc.fontSize(8).fillColor(COLORS.muted).font('Helvetica-Bold');
-        doc.text('#', 50, vY); doc.text('DATE', 70, vY); doc.text('BILL', 135, vY); doc.text('DESCRIPTION', 185, vY); doc.text('RESULT', 420, vY); doc.text('VOTE', 490, vY);
-        vY += 14;
+        doc.rect(46, vY - 2, W + 8, 14).fill('#F5F3EE');
+        doc.fontSize(7).fillColor('#A9A49C').font('Helvetica-Bold');
+        doc.text('#', 50, vY); doc.text('DATE', 72, vY); doc.text('BILL', 130, vY); doc.text('DESCRIPTION', 185, vY); doc.text('RESULT', 420, vY); doc.text('VOTE', 495, vY);
+        vY += 16;
         doc.font('Helvetica');
+        rowIndex = 0;
       }
       drawVoteHeader();
+
+      let firstVoteOnPage = true;  // draw callout on first vote of each page
 
       for (const v of record.votes) {
         // Page break if needed
         if (vY > pageBottom) {
-          doc.fontSize(8).fillColor(COLORS.muted)
-             .text('bangforyourduck.ca  |  Community-supported · Nonpartisan', 50, 720, { align: 'center', width: W });
+          drawPageFooter(doc, W);
           doc.addPage();
-          doc.rect(0, 0, 612, 8).fill(COLORS.red);
+          doc.rect(0, 0, 612, 6).fill(COLORS.red);
           doc.fontSize(14).fillColor(COLORS.text).font('Helvetica-Bold')
              .text('How Your MP Voted (continued)', 50, 25);
           vY = 50;
           drawVoteHeader();
+          firstVoteOnPage = true;
         }
+
+        // Zebra stripe — subtle alternating row background
+        if (rowIndex % 2 === 0) {
+          doc.rect(46, vY - 2, W + 8, rowH).fill('#FAFAF8');
+        }
+        rowIndex++;
 
         const ballotColor = v.ballot === 'Yes' ? COLORS.gradeA : v.ballot === 'No' ? COLORS.gradeF : v.ballot === 'Paired' ? COLORS.muted : '#CC8800';
         const desc = v.description || v.label || '';
         const voteLink = v.number ? `https://openparliament.ca/votes/45-1/${v.number}/` : null;
         doc.fontSize(8).fillColor('#1565C0');
-        doc.text(String(v.number || ''), 50, vY, { width: 18, link: voteLink }); // clickable link
-        doc.fillColor(COLORS.muted).text(v.date ? v.date.substring(5) : '', 70, vY, { width: 60 });
-        doc.fillColor(COLORS.text).text(v.bill || '—', 135, vY, { width: 45 });
-        doc.fontSize(7).fillColor(COLORS.sub).text(desc.substring(0, 40), 185, vY, { width: 230 });
-        doc.fontSize(7).fillColor(COLORS.muted).text(v.result || '', 420, vY, { width: 60 });
-        doc.fontSize(9).fillColor(ballotColor).font('Helvetica-Bold').text(v.ballot, 490, vY, { width: 60 });
+        doc.text(String(v.number || ''), 50, vY, { width: 20, link: voteLink });
+
+        // Callout on first vote: circle around number only (hint text at top of page does the explaining)
+        if (firstVoteOnPage && v.number) {
+          firstVoteOnPage = false;
+          doc.save();
+          doc.circle(57, vY + 4, 10).lineWidth(1.2).strokeColor('#1565C0').stroke();
+          doc.restore();
+        }
+        doc.fillColor(COLORS.muted).text(v.date ? v.date.substring(5) : '', 72, vY, { width: 55 });
+        doc.fillColor(COLORS.text).font('Helvetica-Bold').text(v.bill || '\u2014', 130, vY, { width: 50 });
+        doc.fontSize(7).fillColor(COLORS.sub).font('Helvetica').text(desc.substring(0, 42), 185, vY, { width: 230 });
+        doc.fontSize(7).fillColor(COLORS.muted).text(v.result || '', 420, vY, { width: 65 });
+        doc.fontSize(9).fillColor(ballotColor).font('Helvetica-Bold').text(v.ballot, 495, vY - 1, { width: 55 });
         doc.font('Helvetica');
-        vY += 14;
+        vY += rowH;
       }
 
-      doc.fontSize(8).fillColor(COLORS.muted)
-         .text(`Source: OpenParliament.ca  |  Session 45-1  |  All ${record.totalVotes || record.total || 94} recorded votes`, 50, vY + 10, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan', 50, 720, { align: 'center', width: W });
+      // Source attribution + verification button
+      const mpSlug = (riding.mpName || '').toLowerCase().replace(/[^a-z\s-]/g, '').trim().replace(/\s+/g, '-');
+      vY += 12;
+      doc.fontSize(7.5).fillColor('#A9A49C').font('Helvetica')
+         .text(`Source: OpenParliament.ca  \u00b7  Session 45-1  \u00b7  All ${record.totalVotes || record.total || 94} recorded votes`, 50, vY, { align: 'center', width: W });
+      vY += 14;
+      drawSourceButton(doc, vY, 'Verify votes on OpenParliament.ca \u2192', `https://openparliament.ca/politicians/${mpSlug}/`, W);
+      drawPageFooter(doc, W);
     }
   }
 
@@ -346,7 +421,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     const rs = spendingData[riding.ridingCode];
     if (rs && rs.totalFederal > 0) {
       doc.addPage();
-      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+      doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
       // Per-capita ranking
       const allSpending = Object.entries(spendingData)
@@ -422,10 +497,10 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
         }
       }
 
-      doc.fontSize(7).fillColor(COLORS.muted)
-         .text('Source: Infrastructure Canada Open Data (infrastructure.gc.ca) | All federally funded projects', 50, 700, { width: W });
-      doc.fontSize(8).fillColor(COLORS.muted)
-         .text('bangforyourduck.ca | Where does your tax loonie go?', 50, 720, { align: 'center', width: W });
+      doc.fontSize(7.5).fillColor('#A9A49C')
+         .text('Source: Infrastructure Canada Open Data \u00b7 Open Canada Grants & Contributions', 50, 676, { align: 'center', width: W });
+      drawSourceButton(doc, 690, 'View Infrastructure Canada project map \u2192', 'https://www.infrastructure.gc.ca/gmap-gcarte/index-eng.html', W);
+      drawPageFooter(doc, W);
     }
   }
 
@@ -434,7 +509,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
     const exp = expenseData[riding.ridingCode];
     if (exp && exp.totalQ3 > 0) {
       doc.addPage();
-      doc.rect(0, 0, 612, 8).fill(COLORS.red);
+      doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
       doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
          .text('MP Expense Report', 50, 30);
@@ -473,15 +548,16 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
       doc.fontSize(10).fillColor(COLORS.muted).font('Helvetica')
          .text('Annualized estimate: ~$' + exp.annualEstimate.toLocaleString('en-CA'), 50, eY + 22);
 
-      doc.fontSize(8).fillColor(COLORS.muted)
-         .text('Source: ourcommons.ca/ProactiveDisclosure  |  Q3 2025-26', 50, eY + 50, { width: W });
-      doc.text('bangforyourduck.ca  |  Community-supported · Nonpartisan · bangforyourduck.ca', 50, 720, { align: 'center', width: W });
+      doc.fontSize(7.5).fillColor('#A9A49C')
+         .text('Source: House of Commons Proactive Disclosure  \u00b7  Q3 2025-26 (Oct\u2013Dec 2025)', 50, eY + 50, { align: 'center', width: W });
+      drawSourceButton(doc, eY + 66, 'View Q3 2025-26 MP expenses on ourcommons.ca \u2192', 'https://www.ourcommons.ca/ProactiveDisclosure/en/members/2b0d1a58-f2f2-46c1-bdcd-c6076f38a32e', W);
+      drawPageFooter(doc, W);
     }
   }
 
   // ════════ PAGE 6: COMPARISON + QUESTIONS ═══════════════════════════════
   doc.addPage();
-  doc.rect(0, 0, 612, 8).fill(COLORS.red);
+  doc.rect(0, 0, 612, 6).fill(COLORS.red);
 
   doc.fontSize(22).fillColor(COLORS.text).font('Helvetica-Bold')
      .text('How You Compare', 50, 30);
@@ -571,8 +647,7 @@ function generateRidingPDF(riding, allRidings, outputPath, { voteRecords, spendi
   doc.fontSize(9).fillColor(COLORS.sub).font('Helvetica')
      .text('If any data in this report is inaccurate, visit bangforyourduck.ca/methodology or email corrections@bangforyourduck.ca with the riding name, the data point in question, and supporting documentation.', 50, tY, { width: W });
 
-  doc.fontSize(8).fillColor(COLORS.muted)
-     .text('bangforyourduck.ca  |  Independent \u00b7 Nonpartisan \u00b7 Community-supported', 50, 720, { align: 'center', width: W });
+  drawPageFooter(doc, W);
 
   doc.end();
   return new Promise(resolve => stream.on('finish', resolve));
