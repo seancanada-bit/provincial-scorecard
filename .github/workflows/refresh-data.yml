@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       # ── 1. Install backend deps (includes mysql2) ──────────────────────────
       - name: Install backend deps
@@ -27,8 +27,9 @@ jobs:
 
       # ── 1b. Import Infrastructure Canada projects → riding-spending.json ──
       - name: Import infrastructure data
-        run: node import-infrastructure.js --download
+        run: node import-infrastructure.js --download || echo "Infrastructure import failed — using existing data"
         working-directory: backend
+        continue-on-error: true
 
       # ── 2. Generate all scored JSON from MySQL ─────────────────────────────
       - name: Generate all data
