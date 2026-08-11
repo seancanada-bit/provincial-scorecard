@@ -131,14 +131,18 @@ export default function RidingCard({ riding, rank, globalRank, selected, onSelec
       {/* Formula summary */}
       <div className="ccard__formula">
         <span className="ccard__formula-label">Grade = </span>
+        <span className="ccard__formula-part" style={{ color: gradeFill(cats.performance?.grade) }}>
+          MP Work {cats.performance?.score ?? '—'}
+        </span>
+        <span className="ccard__formula-op"> × 25% + </span>
         <span className="ccard__formula-part" style={{ color: gradeFill(cats.investment?.grade) }}>
           Investment {cats.investment?.score ?? '—'}
         </span>
-        <span className="ccard__formula-op"> × 50% + </span>
+        <span className="ccard__formula-op"> × 35% + </span>
         <span className="ccard__formula-part" style={{ color: gradeFill(cats.transfers?.grade) }}>
           Transfers {cats.transfers?.score ?? '—'}
         </span>
-        <span className="ccard__formula-op"> × 35% + </span>
+        <span className="ccard__formula-op"> × 25% + </span>
         <span className="ccard__formula-part" style={{ color: gradeFill(cats.expenses?.grade) }}>
           Expenses {cats.expenses?.score ?? '—'}
         </span>

@@ -319,19 +319,19 @@ function scoreProvince(prov) {
     return Math.round(parts.reduce((a, b) => a + b, 0) / tw);
   })();
 
-  // ─── COMPOSITE (9 categories) ────────────────────────────────────
-  // healthcare 16% + housing 13% + fiscal 13% + infrastructure 9% +
-  // economy 13% + education 11% + safety 9% + mentalHealth 8% + ltc 8% = 100%
+  // ─── COMPOSITE (9 categories, voter-priority weighted) ────────────
+  // healthcare 22% + housing 16% + safety 12% + economy 12% +
+  // education 10% + fiscal 8% + infrastructure 7% + mentalHealth 7% + ltc 6% = 100%
   const composite = Math.round(
-    healthcareScore     * 0.16 +
-    housingScore        * 0.13 +
-    fiscalScore         * 0.13 +
-    infrastructureScore * 0.09 +
-    economyScore        * 0.13 +
-    educationScore      * 0.11 +
-    safetyScore         * 0.09 +
-    mentalHealthScore   * 0.08 +
-    ltcScore            * 0.08
+    healthcareScore     * 0.22 +
+    housingScore        * 0.16 +
+    safetyScore         * 0.12 +
+    economyScore        * 0.12 +
+    educationScore      * 0.10 +
+    fiscalScore         * 0.08 +
+    infrastructureScore * 0.07 +
+    mentalHealthScore   * 0.07 +
+    ltcScore            * 0.06
   );
 
   // ─── VALUE SCORE ────────────────────────────────────────────────────
@@ -529,7 +529,7 @@ function scoreProvince(prov) {
 const CATEGORY_CEILING = 87;
 
 const COMPOSITE_CATS    = ['healthcare', 'housing', 'fiscal', 'infrastructure', 'economy', 'education', 'safety', 'mentalhealth', 'ltc'];
-const COMPOSITE_WEIGHTS = { healthcare: 0.16, housing: 0.13, fiscal: 0.13, infrastructure: 0.09, economy: 0.13, education: 0.11, safety: 0.09, mentalhealth: 0.08, ltc: 0.08 };
+const COMPOSITE_WEIGHTS = { healthcare: 0.22, housing: 0.16, safety: 0.12, economy: 0.12, education: 0.10, fiscal: 0.08, infrastructure: 0.07, mentalhealth: 0.07, ltc: 0.06 };
 
 function normalizeCategoryScores(scoredProvinces) {
   // 1. Find the maximum raw score per category across all provinces
@@ -555,11 +555,11 @@ function normalizeCategoryScores(scoredProvinces) {
     const composite = Math.round(
       newCats.healthcare.score     * COMPOSITE_WEIGHTS.healthcare     +
       newCats.housing.score        * COMPOSITE_WEIGHTS.housing        +
-      newCats.fiscal.score         * COMPOSITE_WEIGHTS.fiscal         +
-      newCats.infrastructure.score * COMPOSITE_WEIGHTS.infrastructure +
+      newCats.safety.score         * COMPOSITE_WEIGHTS.safety         +
       newCats.economy.score        * COMPOSITE_WEIGHTS.economy        +
       newCats.education.score      * COMPOSITE_WEIGHTS.education      +
-      newCats.safety.score         * COMPOSITE_WEIGHTS.safety         +
+      newCats.fiscal.score         * COMPOSITE_WEIGHTS.fiscal         +
+      newCats.infrastructure.score * COMPOSITE_WEIGHTS.infrastructure +
       newCats.mentalhealth.score   * COMPOSITE_WEIGHTS.mentalhealth   +
       newCats.ltc.score            * COMPOSITE_WEIGHTS.ltc
     );

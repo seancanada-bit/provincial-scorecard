@@ -697,7 +697,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
       <div className="dp-composite">
         <div className="dp-section-label" style={{ marginBottom: 10 }}>Score breakdown (weighted)</div>
         {TABS.filter(tab => tab.key !== 'purchasing').map(tab => {
-          const WEIGHTS = { healthcare: 16, housing: 13, fiscal: 13, infrastructure: 9, economy: 13, education: 11, safety: 9, mentalhealth: 8, ltc: 8 };
+          const WEIGHTS = { healthcare: 22, housing: 16, safety: 12, economy: 12, education: 10, fiscal: 8, infrastructure: 7, mentalhealth: 7, ltc: 6 };
           const score = tabScore(tab.key);
           const grade = tabGrade(tab.key);
           return (

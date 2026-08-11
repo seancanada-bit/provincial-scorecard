@@ -234,16 +234,17 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
 
       {/* Context disclaimer */}
       <div className="dp-context-banner">
-        <strong>Context matters.</strong> This scorecard grades your riding on measurable dollar flows — federal investment in, transfers through, and the cost of representation out. It does not capture constituency work, committee influence, or legislative quality. Structural factors like geography and government vs. opposition status also affect scores. <a href="/methodology/#structural-factors">Learn more</a>
+        <strong>Context matters.</strong> This scorecard grades your riding on parliamentary activity and measurable dollar flows — MP work in Ottawa, federal investment in, transfers through, and the cost of representation out. It does not capture committee influence or legislative quality beyond what's countable. Structural factors like geography and government vs. opposition status also affect scores. <a href="/methodology/#structural-factors">Learn more</a>
       </div>
 
       {/* Formula breakdown */}
       <div className="dp-formula">
         <div className="dp-formula__title">How this grade is calculated</div>
         {[
-          { label: 'Federal Investment', cat: cats.investment, weight: 0.50, pct: '50%' },
-          { label: 'Federal Transfers',  cat: cats.transfers,  weight: 0.35, pct: '35%' },
-          { label: 'MP Expenses',        cat: cats.expenses,   weight: 0.15, pct: '15%' },
+          { label: 'MP Work',            cat: cats.performance, weight: 0.25, pct: '25%' },
+          { label: 'Federal Investment', cat: cats.investment,  weight: 0.35, pct: '35%' },
+          { label: 'Federal Transfers',  cat: cats.transfers,   weight: 0.25, pct: '25%' },
+          { label: 'MP Expenses',        cat: cats.expenses,    weight: 0.15, pct: '15%' },
         ].map(({ label, cat, weight, pct }) => (
           <div key={label} className="dp-formula__item">
             <div className="dp-formula__item-header">
@@ -263,13 +264,8 @@ export default function RidingDetailPanel({ riding, onClose, sortKey, partyColor
           <span className="dp-formula__total-score">{riding.composite}/100</span>
         </div>
         <div className="dp-formula__note">
-          This riding's grade is based entirely on dollars: what flows in from the federal government vs the cost of representation.
+          This riding's grade blends parliamentary activity with dollars: what the MP does in Ottawa, what flows in from the federal government, and the cost of representation.
         </div>
-        {cats.performance?.score > 0 && (
-          <div className="dp-formula__context">
-            <strong>What about MP Work ({cats.performance.grade} · {cats.performance.score}/100)?</strong> Votes, bills, and speeches show initiative — but if that work isn't turning into investment for your riding, it doesn't change the value score. Activity without measurable investment outcomes doesn't affect the grade — but it still matters.
-          </div>
-        )}
       </div>
 
       {/* Download Report Card — primary CTA */}

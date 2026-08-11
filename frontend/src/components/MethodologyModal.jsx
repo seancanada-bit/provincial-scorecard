@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const CATEGORIES = [
   {
-    key: 'healthcare', label: 'Healthcare', weight: 16,
+    key: 'healthcare', label: 'Healthcare', weight: 22,
     why: 'Whether you can get a family doctor and how long you wait for surgery are the most visceral ways most Canadians experience their provincial government.',
     metrics: [
       { name: 'Surgical wait time',       weight: '⅓', direction: 'lower ↓', best: '19 wks',  worst: '61 wks',  source: 'CIHI' },
@@ -11,7 +11,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'housing', label: 'Housing', weight: 13,
+    key: 'housing', label: 'Housing', weight: 16,
     why: 'Whether you can afford a home or rent is the defining quality-of-life question for many Canadians, and housing supply is primarily a provincial responsibility.',
     metrics: [
       { name: 'Housing starts per 1k pop. growth', weight: '30%', direction: 'higher ↑', best: '300',  worst: '50',   source: 'CMHC / Stats Can' },
@@ -21,7 +21,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'fiscal', label: 'Fiscal', weight: 13,
+    key: 'fiscal', label: 'Fiscal', weight: 8,
     why: 'A province spending heavily on debt interest has less money for services. Fiscal health today determines service quality tomorrow.',
     metrics: [
       { name: 'Budget balance % of GDP',         weight: '⅓', direction: 'higher ↑', best: '+1.5%',  worst: '−5%',     source: 'Provincial budgets' },
@@ -31,7 +31,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'infrastructure', label: 'Infrastructure', weight: 9,
+    key: 'infrastructure', label: 'Infrastructure', weight: 7,
     why: 'Whether big capital projects come in on time and on budget tells you a lot about government execution. Major overruns crowd out other priorities.',
     metrics: [
       { name: 'Avg project cost overrun', weight: '60%', direction: 'lower ↓', best: '0%',   worst: '100%',  source: 'Project disclosures' },
@@ -39,7 +39,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'economy', label: 'Economy', weight: 13,
+    key: 'economy', label: 'Economy', weight: 12,
     why: 'Employment, economic growth, credit health, governance quality, workplace safety, and childcare affordability all reflect conditions that are substantially under provincial influence.',
     metrics: [
       { name: 'Employment vs. national (unemp. + GDP avg.)', weight: '25%', direction: 'lower unemp. ↓ / higher GDP ↑', best: '−3pp / +3pp', worst: '+3pp / −3pp', source: 'Stats Can LFS + GDP' },
@@ -50,7 +50,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'education', label: 'Education', weight: 11,
+    key: 'education', label: 'Education', weight: 10,
     why: 'Literacy, numeracy, and the cost of higher education shape long-term economic mobility. Outcomes, not just spending, are what matter.',
     metrics: [
       { name: 'PCAP math + reading avg.',   weight: '60%', direction: 'higher ↑', best: '540', worst: '440',     source: 'PCAP (Council of Ministers)' },
@@ -59,7 +59,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'safety', label: 'Safety', weight: 9,
+    key: 'safety', label: 'Safety', weight: 12,
     why: 'Survey-based victimization avoids reporting-confidence bias that plagues police-reported crime stats. Homicides are always counted.',
     metrics: [
       { name: 'GSS victimization rate',  weight: '50%', direction: 'lower ↓', best: '55 / 1k', worst: '175 / 1k', source: 'Stats Can GSS Cycle 36 (2019)' },
@@ -67,7 +67,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'ltc', label: 'Long-Term Care', weight: 8,
+    key: 'ltc', label: 'Long-Term Care', weight: 6,
     why: 'As the population ages, how provinces fund and staff long-term care — and whether they invest in home care to reduce institutional demand — directly affects quality of life for hundreds of thousands of seniors.',
     metrics: [
       { name: 'LTC beds per 1,000 residents 75+',       weight: '40%', direction: 'higher ↑', best: '80',      worst: '35',     source: 'CIHI Long-Term Care Homes in Canada 2023' },
@@ -76,7 +76,7 @@ const CATEGORIES = [
     ],
   },
   {
-    key: 'mentalhealth', label: 'Mental Health, Addictions & Homelessness', weight: 8,
+    key: 'mentalhealth', label: 'Mental Health, Addictions & Homelessness', weight: 7,
     why: 'Six metrics spanning crisis outcomes, system capacity, treatment access, and homelessness infrastructure — measuring what provinces actually control across the full continuum from harm reduction to housing.',
     metrics: [
       { name: 'Drug toxicity death rate',       weight: '28%', direction: 'lower ↓',  best: '1.0 / 100k',  worst: '45.0 / 100k', source: 'PHAC (2022)' },
