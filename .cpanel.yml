@@ -2,7 +2,30 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/seanw2/public_html/nonpartisangovernance.ca
-    # API (JSON data files only — frontends deployed separately via SSH)
+    # Portal (root) — the landing page
+    - /bin/cp portal/index.html $DEPLOYPATH/
+    - /bin/cp portal/.htaccess $DEPLOYPATH/ 2>/dev/null; true
+    - /bin/cp portal/sitemap.xml $DEPLOYPATH/ 2>/dev/null; true
+    - /bin/cp portal/robots.txt $DEPLOYPATH/ 2>/dev/null; true
+    - /bin/cp portal/favicon.svg $DEPLOYPATH/ 2>/dev/null; true
+    # Methodology (static page at /methodology/)
+    - /bin/mkdir -p $DEPLOYPATH/methodology
+    - /bin/cp methodology/index.html $DEPLOYPATH/methodology/
+    - /bin/cp methodology/.htaccess $DEPLOYPATH/methodology/ 2>/dev/null; true
+    # Provinces (at /provinces/)
+    - /bin/mkdir -p $DEPLOYPATH/provinces
+    - /bin/cp -R frontend/dist/* $DEPLOYPATH/provinces/
+    - /bin/cp frontend/dist/.htaccess $DEPLOYPATH/provinces/ 2>/dev/null; true
+    # Cities
+    - /bin/mkdir -p $DEPLOYPATH/cities
+    - /bin/cp -R cities/dist/* $DEPLOYPATH/cities/
+    - /bin/cp cities/dist/.htaccess $DEPLOYPATH/cities/ 2>/dev/null; true
+    # MPs
+    - /bin/mkdir -p $DEPLOYPATH/mps
+    - /bin/cp -R mps/dist/* $DEPLOYPATH/mps/
+    - /bin/cp mps/dist/.htaccess $DEPLOYPATH/mps/ 2>/dev/null; true
+    - /bin/cp mps/dist/index.php $DEPLOYPATH/mps/ 2>/dev/null; true
+    # API (PHP + JSON files)
     - /bin/mkdir -p $DEPLOYPATH/api
     - /bin/cp api/*.json $DEPLOYPATH/api/ 2>/dev/null; true
     - /bin/cp api/*.php $DEPLOYPATH/api/
