@@ -227,6 +227,11 @@ export default function ProvinceCard({
                   <span className="pcard__score" aria-label={`${displayScore} out of 100`}>
                     {displayScore}<span className="pcard__score-denom">/100</span>
                   </span>
+                  {province.trend?.compositeDelta != null && province.trend.compositeDelta !== 0 && (
+                    <span className="pcard__trend" style={{ color: province.trend.compositeDelta > 0 ? '#2E7D32' : '#B71C1C' }}>
+                      {province.trend.compositeDelta > 0 ? '▲' : '▼'} {Math.abs(province.trend.compositeDelta)}
+                    </span>
+                  )}
 
                   {duckGrade && (
                     <span

@@ -206,6 +206,11 @@ export default function CityCard({ city, rank, globalRank, selected, onSelect, s
               <span className="ccard__score" aria-label={`${displayScore} out of 100`}>
                 {displayScore}<span className="ccard__score-denom">/100</span>
               </span>
+              {city.trend?.compositeDelta != null && city.trend.compositeDelta !== 0 && (
+                <span className="ccard__trend" style={{ color: city.trend.compositeDelta > 0 ? '#2E7D32' : '#B71C1C' }}>
+                  {city.trend.compositeDelta > 0 ? '▲' : '▼'} {Math.abs(city.trend.compositeDelta)}
+                </span>
+              )}
               {duckGrade && (
                 <span className="ccard__duck-row" aria-label={`Value score: ${duckGrade}, ${city.duckScore}/100`}>
                   <span className="ccard__value-divider" aria-hidden="true" />

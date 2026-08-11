@@ -111,6 +111,11 @@ export default function RidingCard({ riding, rank, globalRank, selected, onSelec
               <span className="ccard__score">
                 {displayScore}<span className="ccard__score-denom">/100</span>
               </span>
+              {riding.trend?.compositeDelta != null && riding.trend.compositeDelta !== 0 && (
+                <span className="ccard__trend" style={{ color: riding.trend.compositeDelta > 0 ? '#2E7D32' : '#B71C1C' }}>
+                  {riding.trend.compositeDelta > 0 ? '▲' : '▼'} {Math.abs(riding.trend.compositeDelta)}
+                </span>
+              )}
               {duckGrade && (
                 <span className="ccard__duck-row">
                   <span className="ccard__value-divider" aria-hidden="true" />

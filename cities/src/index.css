@@ -368,6 +368,12 @@ body {
   font-size: 16px; font-weight: 700; color: var(--text-secondary);
 }
 .ccard__score-denom { font-size: 11px; opacity: 0.6; font-weight: 400; }
+.ccard__trend {
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+}
 
 /* Duck row (performance mode) */
 .ccard__duck-row {

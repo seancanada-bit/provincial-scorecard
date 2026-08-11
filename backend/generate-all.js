@@ -295,7 +295,28 @@ async function main() {
         }
       }
 
-      console.log(`[trends] Added trends for ${Object.keys(ridingPrev).length} ridings, ${Object.keys(cityPrev).length} cities`);
+      // Provinces trends
+      const [provinceSnaps] = await db.query(
+        'SELECT province_code, composite, duck_score FROM score_snapshots_provinces WHERE snapshot_date = ?',
+        [prevDate]
+      );
+      const provincePrev = {};
+      for (const s of provinceSnaps) provincePrev[s.province_code] = s;
+
+      for (const p of provinces.provinces) {
+        const prev = provincePrev[p.code];
+        if (prev) {
+          p.trend = {
+            prevComposite: prev.composite,
+            compositeDelta: p.composite - prev.composite,
+            prevDuckScore: prev.duck_score,
+            duckDelta: p.valueScore != null && prev.duck_score != null ? p.valueScore - prev.duck_score : null,
+            prevDate: prevDateStr,
+          };
+        }
+      }
+
+      console.log(`[trends] Added trends for ${Object.keys(provincePrev).length} provinces, ${Object.keys(ridingPrev).length} ridings, ${Object.keys(cityPrev).length} cities`);
     } else {
       console.log('[trends] No previous snapshot found — trends will appear after second daily refresh');
     }
