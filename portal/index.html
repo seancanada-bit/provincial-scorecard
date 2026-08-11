@@ -138,6 +138,156 @@
     }
     @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
+    /* ─── LOOKUP ─────────────────────────────────────────────── */
+    .lookup {
+      max-width: 600px;
+      margin: -40px auto 40px;
+      padding: 0 24px;
+      position: relative; z-index: 2;
+    }
+    .lookup__box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .lookup__heading {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .lookup__form {
+      display: flex;
+      gap: 8px;
+    }
+    .lookup__input {
+      flex: 1;
+      font-family: var(--sans);
+      font-size: 16px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .lookup__input::placeholder { text-transform: none; letter-spacing: 0; color: var(--text-muted); }
+    .lookup__input:focus { border-color: var(--red); box-shadow: 0 0 0 2px rgba(213,43,30,0.15); }
+    .lookup__btn {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: var(--red);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .lookup__btn:hover { background: #b82318; }
+    .lookup__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .lookup__results {
+      margin-top: 20px;
+      display: none;
+    }
+    .lookup__results.active { display: block; }
+
+    .lookup__error {
+      color: var(--red);
+      font-size: 13px;
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+    }
+    .lookup__error.active { display: block; }
+
+    .lookup__cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 600px) {
+      .lookup__cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .lcard {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .lcard:hover {
+      border-color: var(--red);
+      box-shadow: 0 2px 8px rgba(213,43,30,0.1);
+    }
+    .lcard__level {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .lcard__name {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lcard__sub {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lcard__scores {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .lcard__grade {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .lcard__grade--a { color: #1B5E20; }
+    .lcard__grade--b { color: #33691E; }
+    .lcard__grade--c { color: #8D6E13; }
+    .lcard__grade--d { color: #BF360C; }
+    .lcard__grade--f { color: #B71C1C; }
+    .lcard__num {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .lcard__label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .lcard--empty {
+      border-style: dashed;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      padding: 20px 16px;
+    }
+
     /* ─── SECTIONS ───────────────────────────────────────────── */
     .sections {
       max-width: 1200px;
@@ -470,6 +620,131 @@
     </p>
     <div class="hero__scroll" aria-hidden="true">Explore</div>
   </section>
+
+  <!-- ═══ POSTAL CODE LOOKUP ═══════════════════════════════════════════ -->
+  <div class="lookup">
+    <div class="lookup__box">
+      <div class="lookup__heading">What's your government's score?</div>
+      <form class="lookup__form" id="lookupForm" autocomplete="off">
+        <input class="lookup__input" id="lookupInput" type="text" placeholder="Enter your postal code" maxlength="7" aria-label="Canadian postal code" />
+        <button class="lookup__btn" type="submit" id="lookupBtn">Look up</button>
+      </form>
+      <div class="lookup__error" id="lookupError"></div>
+      <div class="lookup__results" id="lookupResults">
+        <div class="lookup__cards" id="lookupCards"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    var form  = document.getElementById('lookupForm');
+    var input = document.getElementById('lookupInput');
+    var btn   = document.getElementById('lookupBtn');
+    var err   = document.getElementById('lookupError');
+    var res   = document.getElementById('lookupResults');
+    var cards = document.getElementById('lookupCards');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var pc = input.value.replace(/\s+/g, '').toUpperCase();
+      if (!/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(pc)) {
+        showError('Enter a valid Canadian postal code (e.g. K1A 0A6)');
+        return;
+      }
+      lookup(pc);
+    });
+
+    function showError(msg) {
+      err.textContent = msg;
+      err.classList.add('active');
+      res.classList.remove('active');
+    }
+
+    function gradeClass(g) {
+      if (!g) return '';
+      var c = g.charAt(0);
+      if (c === 'A') return 'lcard__grade--a';
+      if (c === 'B') return 'lcard__grade--b';
+      if (c === 'C') return 'lcard__grade--c';
+      if (c === 'D') return 'lcard__grade--d';
+      return 'lcard__grade--f';
+    }
+
+    function makeCard(level, name, sub, grade, score, label, url) {
+      return '<a href="' + url + '" class="lcard">' +
+        '<div class="lcard__level">' + level + '</div>' +
+        '<div class="lcard__name">' + name + '</div>' +
+        '<div class="lcard__sub">' + sub + '</div>' +
+        '<div class="lcard__scores">' +
+          '<span class="lcard__grade ' + gradeClass(grade) + '">' + grade + '</span>' +
+          '<span class="lcard__num">' + score + '/100</span>' +
+        '</div>' +
+        '<div class="lcard__label">' + label + '</div>' +
+      '</a>';
+    }
+
+    function emptyCard(level, msg) {
+      return '<div class="lcard lcard--empty">' +
+        '<div class="lcard__level">' + level + '</div>' +
+        '<div style="margin-top:8px">' + msg + '</div>' +
+      '</div>';
+    }
+
+    function lookup(pc) {
+      btn.disabled = true;
+      btn.textContent = '…';
+      err.classList.remove('active');
+      res.classList.remove('active');
+
+      fetch('/api/lookup?pc=' + pc)
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          btn.disabled = false;
+          btn.textContent = 'Look up';
+
+          if (d.error) { showError(d.error); return; }
+
+          var html = '';
+
+          // Province card
+          if (d.province) {
+            var p = d.province;
+            html += makeCard('Provincial', p.name, p.premier ? 'Premier ' + p.premier : '',
+              p.valueGrade || p.grade, p.valueScore || p.composite, 'value score', p.url);
+          } else {
+            html += emptyCard('Provincial', 'Province not scored');
+          }
+
+          // City card
+          if (d.municipal) {
+            var c = d.municipal;
+            html += makeCard('Municipal', c.name, c.mayor ? 'Mayor ' + c.mayor : '',
+              c.valueGrade || c.grade, c.valueScore || c.composite, 'value score', c.url);
+          } else {
+            html += emptyCard('Municipal', d.city ? d.city + ' not yet scored' : 'City not found');
+          }
+
+          // MP card
+          if (d.riding) {
+            var r = d.riding;
+            html += makeCard('Federal', r.name, r.mpName + (r.party ? ' · ' + r.party : ''),
+              r.valueGrade || r.grade, r.valueScore || r.composite, 'value score', r.url);
+          } else {
+            html += emptyCard('Federal', 'Riding not matched');
+          }
+
+          cards.innerHTML = html;
+          res.classList.add('active');
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = 'Look up';
+          showError('Something went wrong. Please try again.');
+        });
+    }
+  })();
+  </script>
 
   <!-- ═══ SCOPE BAR ══════════════════════════════════════════════════════ -->
   <div class="scope">
