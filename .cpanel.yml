@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/seanw2/public_html/bangforyourduck.ca
+    - export DEPLOYPATH=/home/seanw2/public_html/nonpartisangovernance.ca
     # Portal (root) — the landing page
     - /bin/cp portal/index.html $DEPLOYPATH/
     - /bin/cp portal/.htaccess $DEPLOYPATH/
@@ -30,5 +30,5 @@ deployment:
     - /bin/cp api/*.php $DEPLOYPATH/api/
     - /bin/cp api/.htaccess $DEPLOYPATH/api/
     # Reports (PDFs — served via api/download.php)
-    - /bin/mkdir -p /home/seanw2/bangforyourduck.ca/reports/ridings
-    - /bin/cp -R reports/ridings/* /home/seanw2/bangforyourduck.ca/reports/ridings/ 2>/dev/null; true
+    - /bin/mkdir -p /home/seanw2/nonpartisangovernance.ca/reports/ridings
+    - /bin/cp -R reports/ridings/* /home/seanw2/nonpartisangovernance.ca/reports/ridings/ 2>/dev/null; true
