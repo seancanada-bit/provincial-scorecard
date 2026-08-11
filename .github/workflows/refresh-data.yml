@@ -31,6 +31,17 @@ jobs:
         working-directory: backend
         continue-on-error: true
 
+      # ── 1c. Refresh StatsCan data (unemployment, GDP, population) → MySQL ──
+      - name: Refresh StatsCan data
+        run: node refresh-statscan.js
+        working-directory: backend
+        env:
+          MYSQL_HOST:     ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER:     ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        continue-on-error: true
+
       # ── 2. Generate all scored JSON from MySQL ─────────────────────────────
       - name: Generate all data
         run: node generate-all.js
