@@ -697,7 +697,7 @@
       err.classList.remove('active');
       res.classList.remove('active');
 
-      fetch('/api/lookup?pc=' + pc)
+      fetch('/api/lookup.php?pc=' + pc)
         .then(function(r) { return r.json(); })
         .then(function(d) {
           btn.disabled = false;
