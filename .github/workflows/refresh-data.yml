@@ -89,19 +89,21 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
-          # Abort if any conflict markers slipped in
-          if grep -rl '<<<<<<< ' api/ frontend/src/data/ 2>/dev/null; then
-            echo "ERROR: merge conflict markers detected — aborting"
-            git checkout -- .
-            exit 1
-          fi
+          # Stage everything BEFORE pulling so rebase doesn't choke on unstaged changes
           git add -f api/data.json api/cities.json api/mps.json api/riding-spending.json
           git add -f frontend/dist/ cities/dist/ mps/dist/
           git add -f frontend/src/data/fallback.json
           git add -f reports/
           git diff --staged --quiet && echo "No data changes — skipping commit" && exit 0
           git commit -m "chore: refresh data $(date -u +'%Y-%m-%d') [skip ci]"
+          # Pull with rebase (autostash handles any remaining uncommitted files)
+          git pull --rebase --autostash origin main || true
+          # Abort if conflict markers slipped in
+          if grep -rl '<<<<<<< ' api/ frontend/src/data/ 2>/dev/null; then
+            echo "ERROR: merge conflict markers detected — aborting"
+            git rebase --abort 2>/dev/null
+            exit 1
+          fi
           git push
 
       # ── 5. Trigger cPanel to pull + deploy ─────────────────────────────────
