@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-08-11T20:26:39.029Z",
+  "lastUpdated": "2026-08-11T23:53:26.653Z",
   "national": {
-    "avgComposite": 61,
+    "avgComposite": 63,
     "avgHealthcare": 66,
     "avgHousing": 69,
     "avgFiscal": 46,
     "avgInfrastructure": 41,
     "avgEconomy": 76,
-    "avgSafety": 61,
+    "avgSafety": 67,
     "avgMentalHealth": 47,
     "avgLtc": 77,
     "topProvince": "QC",
@@ -19,9 +19,9 @@
       "code": "BC",
       "name": "British Columbia",
       "premierName": "David Eby",
-      "composite": 58,
-      "grade": "C-",
-      "valueScore": 62,
+      "composite": 61,
+      "grade": "C",
+      "valueScore": 65,
       "categories": {
         "healthcare": {
           "score": 51,
@@ -157,14 +157,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 56,
-          "grade": "D",
-          "victimizationRatePer1000": 118,
-          "victimizationScore": 48,
-          "homicideRatePer100k": 2.42,
-          "homicideScore": 66,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 69,
+          "grade": "C+",
+          "victimizationRatePer1000": 92.37,
+          "victimizationScore": 69,
+          "homicideRatePer100k": 1.81,
+          "homicideScore": 76,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 92.37 (2025-01-01); Homicide rate 1.81/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 87,
@@ -208,20 +208,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 59,
-        "grade": "C-",
+        "score": 52,
+        "grade": "D",
         "rentToIncomePct": 27.5,
         "rentScore": 86,
-        "groceryIndex": 102,
-        "groceryScore": 36,
+        "groceryIndex": 96,
+        "groceryScore": 9,
         "annualEnergyCost": 2085,
         "energyScore": 24,
         "autoInsuranceAnnual": 1832,
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 96 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -229,15 +229,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 57,
+        "compositeDelta": 4,
+        "prevDuckScore": 61,
+        "duckDelta": 4,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "AB",
       "name": "Alberta",
       "premierName": "Danielle Smith",
-      "composite": 63,
-      "grade": "C",
-      "valueScore": 90,
+      "composite": 67,
+      "grade": "C+",
+      "valueScore": 96,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -373,14 +380,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 55,
-          "grade": "D",
-          "victimizationRatePer1000": 113,
-          "victimizationScore": 52,
-          "homicideRatePer100k": 2.76,
-          "homicideScore": 60,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 69,
+          "grade": "C+",
+          "victimizationRatePer1000": 90.62,
+          "victimizationScore": 70,
+          "homicideRatePer100k": 1.77,
+          "homicideScore": 76,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 90.62 (2025-01-01); Homicide rate 1.77/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 48,
@@ -424,20 +431,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 47,
+        "score": 45,
         "grade": "D",
         "rentToIncomePct": 18.9,
         "rentScore": 38,
-        "groceryIndex": 101,
-        "groceryScore": 32,
+        "groceryIndex": 98.8,
+        "groceryScore": 22,
         "annualEnergyCost": 2552,
         "energyScore": 41,
         "autoInsuranceAnnual": 1952,
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 98.8 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -445,15 +452,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 63,
+        "compositeDelta": 4,
+        "prevDuckScore": 90,
+        "duckDelta": 6,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 60,
-      "grade": "C",
-      "valueScore": 71,
+      "composite": 59,
+      "grade": "C-",
+      "valueScore": 69,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -578,14 +592,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 28,
+          "score": 22,
           "grade": "F",
-          "victimizationRatePer1000": 140,
-          "victimizationScore": 29,
-          "homicideRatePer100k": 4.85,
-          "homicideScore": 27,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "victimizationRatePer1000": 146.64,
+          "victimizationScore": 24,
+          "homicideRatePer100k": 5.21,
+          "homicideScore": 21,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 146.64 (2025-01-01); Homicide rate 5.21/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 40,
@@ -629,20 +643,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 29,
+        "score": 32,
         "grade": "F",
         "rentToIncomePct": 15.3,
         "rentScore": 18,
-        "groceryIndex": 99,
-        "groceryScore": 23,
+        "groceryIndex": 101.8,
+        "groceryScore": 35,
         "annualEnergyCost": 2702,
         "energyScore": 47,
         "autoInsuranceAnnual": 1071,
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 101.8 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -650,15 +664,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 59,
+        "compositeDelta": 0,
+        "prevDuckScore": 69,
+        "duckDelta": 0,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 51,
+      "composite": 53,
       "grade": "D",
-      "valueScore": 55,
+      "valueScore": 58,
       "categories": {
         "healthcare": {
           "score": 57,
@@ -783,14 +804,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 29,
-          "grade": "F",
-          "victimizationRatePer1000": 131,
+          "score": 40,
+          "grade": "D",
+          "victimizationRatePer1000": 130.04,
           "victimizationScore": 37,
-          "homicideRatePer100k": 5.24,
-          "homicideScore": 20,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "homicideRatePer100k": 3.64,
+          "homicideScore": 46,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 130.04 (2025-01-01); Homicide rate 3.64/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 50,
@@ -834,20 +855,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 25,
+        "score": 26,
         "grade": "F",
         "rentToIncomePct": 16.9,
         "rentScore": 27,
-        "groceryIndex": 98,
-        "groceryScore": 18,
+        "groceryIndex": 98.9,
+        "groceryScore": 22,
         "annualEnergyCost": 2013,
         "energyScore": 22,
         "autoInsuranceAnnual": 1060,
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 98.9 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -855,15 +876,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 50,
+        "compositeDelta": 3,
+        "prevDuckScore": 54,
+        "duckDelta": 4,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "ON",
       "name": "Ontario",
       "premierName": "Doug Ford",
-      "composite": 65,
+      "composite": 66,
       "grade": "C",
-      "valueScore": 67,
+      "valueScore": 68,
       "categories": {
         "healthcare": {
           "score": 49,
@@ -999,14 +1027,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 72,
-          "grade": "B-",
-          "victimizationRatePer1000": 97,
-          "victimizationScore": 65,
-          "homicideRatePer100k": 1.55,
-          "homicideScore": 80,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 86,
+          "grade": "A-",
+          "victimizationRatePer1000": 57.17,
+          "victimizationScore": 98,
+          "homicideRatePer100k": 1.27,
+          "homicideScore": 84,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 57.17 (2025-01-01); Homicide rate 1.27/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 39,
@@ -1050,20 +1078,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 55,
-        "grade": "D",
+        "score": 57,
+        "grade": "C-",
         "rentToIncomePct": 25.1,
         "rentScore": 73,
-        "groceryIndex": 100,
-        "groceryScore": 27,
+        "groceryIndex": 101.6,
+        "groceryScore": 35,
         "annualEnergyCost": 2365,
         "energyScore": 34,
         "autoInsuranceAnnual": 1754,
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 101.6 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1071,15 +1099,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 64,
+        "compositeDelta": 2,
+        "prevDuckScore": 66,
+        "duckDelta": 2,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "QC",
       "name": "Quebec",
       "premierName": "François Legault",
-      "composite": 72,
-      "grade": "B-",
-      "valueScore": 56,
+      "composite": 74,
+      "grade": "B",
+      "valueScore": 58,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1204,14 +1239,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 80,
-          "grade": "A-",
-          "victimizationRatePer1000": 82,
-          "victimizationScore": 78,
-          "homicideRatePer100k": 1.38,
-          "homicideScore": 83,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 87,
+          "grade": "A",
+          "victimizationRatePer1000": 61.55,
+          "victimizationScore": 95,
+          "homicideRatePer100k": 0.97,
+          "homicideScore": 89,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 61.55 (2025-01-01); Homicide rate 0.97/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 71,
@@ -1255,20 +1290,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 22,
+        "score": 24,
         "grade": "F",
         "rentToIncomePct": 19.5,
         "rentScore": 42,
-        "groceryIndex": 98,
-        "groceryScore": 18,
+        "groceryIndex": 99.9,
+        "groceryScore": 27,
         "annualEnergyCost": 1626,
         "energyScore": 8,
         "autoInsuranceAnnual": 717,
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 99.9 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1276,15 +1311,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 71,
+        "compositeDelta": 3,
+        "prevDuckScore": 55,
+        "duckDelta": 3,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "NB",
       "name": "New Brunswick",
       "premierName": "Susan Holt",
-      "composite": 61,
+      "composite": 64,
       "grade": "C",
-      "valueScore": 61,
+      "valueScore": 64,
       "categories": {
         "healthcare": {
           "score": 70,
@@ -1409,14 +1451,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 71,
+          "score": 70,
           "grade": "B-",
-          "victimizationRatePer1000": 99,
-          "victimizationScore": 63,
-          "homicideRatePer100k": 1.48,
-          "homicideScore": 81,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "victimizationRatePer1000": 90.36,
+          "victimizationScore": 71,
+          "homicideRatePer100k": 1.72,
+          "homicideScore": 77,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 90.36 (2025-01-01); Homicide rate 1.72/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 32,
@@ -1464,16 +1506,16 @@
         "grade": "D",
         "rentToIncomePct": 18.2,
         "rentScore": 34,
-        "groceryIndex": 106,
-        "groceryScore": 55,
+        "groceryIndex": 105.7,
+        "groceryScore": 53,
         "annualEnergyCost": 3143,
         "energyScore": 62,
         "autoInsuranceAnnual": 847,
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 105.7 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1481,15 +1523,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 61,
+        "compositeDelta": 3,
+        "prevDuckScore": 61,
+        "duckDelta": 3,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 61,
+      "composite": 65,
       "grade": "C",
-      "valueScore": 54,
+      "valueScore": 58,
       "categories": {
         "healthcare": {
           "score": 70,
@@ -1614,14 +1663,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 62,
-          "grade": "C",
-          "victimizationRatePer1000": 107,
-          "victimizationScore": 57,
-          "homicideRatePer100k": 2.21,
-          "homicideScore": 69,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 77,
+          "grade": "B+",
+          "victimizationRatePer1000": 72.96,
+          "victimizationScore": 85,
+          "homicideRatePer100k": 1.74,
+          "homicideScore": 77,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 72.96 (2025-01-01); Homicide rate 1.74/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 45,
@@ -1665,20 +1714,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 58,
-        "grade": "C-",
+        "score": 51,
+        "grade": "D",
         "rentToIncomePct": 21.8,
         "rentScore": 54,
-        "groceryIndex": 108,
-        "groceryScore": 64,
+        "groceryIndex": 102.4,
+        "groceryScore": 38,
         "annualEnergyCost": 3926,
         "energyScore": 90,
         "autoInsuranceAnnual": 905,
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 102.4 (relative food CPI, 2026-05-01); Food CPI change -0.8%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1686,15 +1735,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 61,
+        "compositeDelta": 4,
+        "prevDuckScore": 54,
+        "duckDelta": 4,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "PE",
       "name": "Prince Edward Island",
       "premierName": "Dennis King",
-      "composite": 62,
+      "composite": 66,
       "grade": "C",
-      "valueScore": 57,
+      "valueScore": 61,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1819,14 +1875,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 87,
-          "grade": "A",
-          "victimizationRatePer1000": 78,
-          "victimizationScore": 81,
-          "homicideRatePer100k": 0.58,
-          "homicideScore": 95,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 79,
+          "grade": "B+",
+          "victimizationRatePer1000": 68.4,
+          "victimizationScore": 89,
+          "homicideRatePer100k": 1.64,
+          "homicideScore": 78,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 68.4 (2025-01-01); Homicide rate 1.64/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 21,
@@ -1870,20 +1926,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 54,
+        "score": 48,
         "grade": "D",
         "rentToIncomePct": 20.3,
         "rentScore": 46,
-        "groceryIndex": 110,
-        "groceryScore": 73,
+        "groceryIndex": 105.2,
+        "groceryScore": 51,
         "annualEnergyCost": 3726,
         "energyScore": 83,
         "autoInsuranceAnnual": 780,
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 105.2 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1891,15 +1947,22 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 62,
+        "compositeDelta": 4,
+        "prevDuckScore": 57,
+        "duckDelta": 4,
+        "prevDate": "2026-08-10"
       }
     },
     {
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 61,
-      "grade": "C",
-      "valueScore": 55,
+      "composite": 59,
+      "grade": "C-",
+      "valueScore": 54,
       "categories": {
         "healthcare": {
           "score": 68,
@@ -2024,14 +2087,14 @@
           "sourceNotes": "CMEC PCAP 2022; Stats Canada Education Indicators 2023-24; CAUBO"
         },
         "safety": {
-          "score": 71,
-          "grade": "B-",
-          "victimizationRatePer1000": 91,
-          "victimizationScore": 70,
-          "homicideRatePer100k": 1.91,
-          "homicideScore": 74,
-          "sourceNotes": "Stats Canada GSS Cycle 36 (2019); Stats Canada Homicide Survey 2023",
-          "dataDate": "2023-01-01T00:00:00.000Z"
+          "score": 67,
+          "grade": "C+",
+          "victimizationRatePer1000": 88.74,
+          "victimizationScore": 72,
+          "homicideRatePer100k": 2.18,
+          "homicideScore": 70,
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Crime Severity Index 88.74 (2025-01-01); Homicide rate 2.18/100k (2025-01-01)",
+          "dataDate": "2026-08-11T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 37,
@@ -2075,20 +2138,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 45,
-        "grade": "D",
+        "score": 29,
+        "grade": "F",
         "rentToIncomePct": 15.4,
         "rentScore": 19,
-        "groceryIndex": 112,
-        "groceryScore": 82,
+        "groceryIndex": 98,
+        "groceryScore": 18,
         "annualEnergyCost": 2979,
         "energyScore": 56,
         "autoInsuranceAnnual": 1128,
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "CMHC 2024; Stats Can wages; NRCan electricity; IBC 2024",
-        "dataDate": "2024-01-01T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-11. Grocery index 98 (relative food CPI, 2026-05-01); Food CPI change -1.1%",
+        "dataDate": "2026-08-11T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2096,6 +2159,13 @@
         "credit": "2025-10-01T00:00:00.000Z",
         "polling": "2026-02-01T00:00:00.000Z",
         "infrastructure": "2026-01-01T00:00:00.000Z"
+      },
+      "trend": {
+        "prevComposite": 61,
+        "compositeDelta": -2,
+        "prevDuckScore": 55,
+        "duckDelta": -1,
+        "prevDate": "2026-08-10"
       }
     }
   ],
