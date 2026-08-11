@@ -5,7 +5,7 @@ const STRIPE_KEEPER  = 'https://buy.stripe.com/cNicN62opfNqcCKebsfUQ04'; // $6/m
 const TIERS = [
   {
     id: 'loonie',
-    emoji: '🦆',
+    emoji: '',
     name: 'Toss a Loonie',
     price: '$5',
     cadence: 'one-time',

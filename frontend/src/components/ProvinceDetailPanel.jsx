@@ -623,13 +623,12 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
                 role="button"
                 tabIndex={0}
                 aria-expanded={showValueTip}
-                aria-label={`Duck Score: ${duckGrade}. Click for explanation.`}
+                aria-label={`Value score: ${duckGrade}. Click for explanation.`}
               >
                 <span className="dp-header__value-divider" aria-hidden="true" />
                 <span className="dp-header__duck-row">
-                  <span className="dp-header__duck-emoji" aria-hidden="true">🦆</span>
                   <span className="dp-header__duck-words" aria-hidden="true">
-                    <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                    <span>VALUE</span><span>SCORE</span>
                   </span>
                   <span className="dp-header__duck-scores">
                     <span className="dp-header__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
@@ -645,7 +644,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
       {/* Value score explanation bar */}
       {showValueTip && (
         <div className="dp-value-tip" role="status">
-          <span><strong>🦆 Duck Score: {toGrade(province.valueScore)}</strong> — how much government performance you get per tax dollar paid. Grade uses the same A–F scale as the composite score.</span>
+          <span><strong>Value Score: {toGrade(province.valueScore)}</strong> — how much government performance you get per tax dollar paid. Grade uses the same A–F scale as the composite score.</span>
           <button className="dp-value-tip__close" onClick={() => setShowValueTip(false)} aria-label="Close">✕</button>
         </div>
       )}
@@ -713,7 +712,7 @@ export default function ProvinceDetailPanel({ province, onMethodology, initialTa
         })}
         {province.valueScore != null && (
           <div className="dp-composite__value-row">
-            <span>🦆 Duck Score <span className="dp-composite__weight">(score ÷ tax burden)</span></span>
+            <span>Value Score <span className="dp-composite__weight">(score ÷ tax burden)</span></span>
             <span className="dp-composite__score dp-composite__score--value">{province.valueScore}</span>
           </div>
         )}

@@ -442,7 +442,7 @@ export default function CityDetailPanel({ city, onClose, sortKey }) {
           </div>
           {duckGrade && (
             <div className="dp-header__score-block dp-header__score-block--duck">
-              <span className="dp-header__score-label">🦆 value</span>
+              <span className="dp-header__score-label">value</span>
               <span className={`dp-header__grade ${gradeColorClass(duckGrade)}`}>{duckGrade}</span>
               <span className="dp-header__num">{city.duckScore}/100</span>
             </div>
@@ -482,12 +482,11 @@ export default function CityDetailPanel({ city, onClose, sortKey }) {
         <TabComponent c={cats} />
       </div>
 
-      {/* Duck score callout */}
+      {/* Value score callout */}
       {duckGrade && (
         <div className="dp-duck-callout">
-          <span className="dp-duck-callout__emoji" aria-hidden="true">🦆</span>
           <div className="dp-duck-callout__text">
-            <strong>Bang for Your Duck: {duckGrade} · {city.duckScore}/100</strong>
+            <strong>Value Score: {duckGrade} · {city.duckScore}/100</strong>
             <p>
               Property tax rate of {cats.fiscal?.propertyTaxRate ?? '—'}% — {
                 city.duckScore >= 87 ? 'exceptional value for municipal services delivered.' :

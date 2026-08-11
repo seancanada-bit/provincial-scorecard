@@ -109,6 +109,7 @@ body {
   color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0;
 }
 .site-header__brand span { color: var(--canada-red); }
+.site-header__wordmark-accent { color: var(--canada-red); }
 
 .site-header__sub-nav {
   display: flex; align-items: center; gap: 6px;

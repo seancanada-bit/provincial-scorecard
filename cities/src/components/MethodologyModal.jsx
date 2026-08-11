@@ -208,11 +208,11 @@ export default function MethodologyModal({ onClose }) {
           </div>
         </section>
 
-        {/* DUCK SCORE */}
+        {/* VALUE SCORE */}
         <section className="modal-section">
-          <h3>🦆 Duck Score — bang for your property tax dollar</h3>
+          <h3>Value Score — value for your property tax dollar</h3>
           <p>
-            The <strong>Duck Score</strong> answers the core question: <em>are you getting what you pay for?</em>
+            The <strong>Value Score</strong> answers the core question: <em>are you getting what you pay for?</em>
             It's not enough to ask what your property tax <em>rate</em> is — a 0.3% rate on a $1.2M home
             generates a substantial bill. So we calculate the actual <strong>annual property tax on a benchmark
             home</strong> in each city.
@@ -226,7 +226,7 @@ export default function MethodologyModal({ onClose }) {
           </div>
           <p>
             The $4,500 figure is the approximate national median annual property tax bill on a benchmark home.
-            A city at exactly $4,500/year gets a Duck Score equal to its composite score. Cities with lower
+            A city at exactly $4,500/year gets a Value Score equal to its composite score. Cities with lower
             annual bills punch above their composite; cities with higher bills are penalized. The square-root
             curve moderates extreme outliers without eliminating the signal.
           </p>
@@ -256,7 +256,7 @@ export default function MethodologyModal({ onClose }) {
               Manitoba residential property is assessed at 45% of market value; Saskatchewan at 80%.
               Nominal mill rates in these provinces look much higher than Ontario or BC — but the actual
               tax bill is comparable once portioning is applied. We apply these adjustments before calculating
-              Duck Scores.
+              Value Scores.
             </p>
           </div>
 
@@ -265,7 +265,7 @@ export default function MethodologyModal({ onClose }) {
             <p>
               Cities like Red Deer and Lethbridge benefit from Alberta's high property tax revenue base
               and no provincial sales tax — structural advantages not directly attributable to city
-              government decisions. Their strong Duck Scores partly reflect provincial fiscal context.
+              government decisions. Their strong Value Scores partly reflect provincial fiscal context.
             </p>
           </div>
 
@@ -292,7 +292,7 @@ export default function MethodologyModal({ onClose }) {
         <section className="modal-section">
           <h3>About this project</h3>
           <p>
-            Bang for Your Duck is maintained by a single individual based in British Columbia,
+            Nonpartisan Governance Ledger is maintained by a single individual based in British Columbia,
             not affiliated with any government, political party, or advocacy organization.
             It was built out of genuine frustration at not being able to find a clear, nonpartisan
             comparison of how Canadian cities spend your property tax. Data is updated as new figures

@@ -1,5 +1,5 @@
 const TABS = [
-  { key: 'value',          label: 'Value',          icon: '🦆' },
+  { key: 'value',          label: 'Value',          icon: '📊' },
   { key: 'overall',        label: 'Overall',        icon: '🏆' },
   { key: 'healthcare',     label: 'Healthcare',     icon: '🏥' },
   { key: 'housing',        label: 'Housing',        icon: '🏠' },

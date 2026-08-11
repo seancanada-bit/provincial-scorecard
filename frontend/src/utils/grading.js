@@ -143,5 +143,5 @@ export const CATEGORY_LABELS = {
   safety:         'Safety',
   mentalhealth:   'Mental Health',
   ltc:            'Long-Term Care',
-  value:          '🦆 Duck Score',
+  value:          'Value Score',
 };

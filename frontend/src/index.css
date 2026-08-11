@@ -133,6 +133,7 @@ body {
   flex-shrink: 0;
 }
 .site-header__brand span { color: var(--canada-red); }
+.site-header__wordmark-accent { color: var(--canada-red); }
 
 /* Section nav pills (Provinces · Cities · MPs) */
 .site-header__sub-nav {

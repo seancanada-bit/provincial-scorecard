@@ -23,14 +23,13 @@ export default function NationalSummary({ national, provinces }) {
     <div className="editorial-summary">
       <div className="editorial-summary__inner">
         <p className="editorial-summary__headline">
-          Getting value for your loonie?<br/>The gap across Canada is wider than you think.
+          Getting value for your tax dollar?<br/>The gap across Canada is wider than you think.
         </p>
         <div className="editorial-summary__callouts">
           <div className="editorial-callout">
-            <span className="editorial-callout__label">Best bang for your duck</span>
+            <span className="editorial-callout__label">Best value</span>
             <span className="editorial-callout__province-row">
               <span className="editorial-callout__province">{bestValue?.name}</span>
-              <span className="editorial-callout__duck-accent" aria-hidden="true">🦆</span>
             </span>
             <span className="editorial-callout__grade" style={{ color: gradeFillDark(bestValueGrade) }}>
               {bestValueGrade} · {bestValue?.valueScore}/100
@@ -38,7 +37,7 @@ export default function NationalSummary({ national, provinces }) {
           </div>
           <div className="editorial-callout editorial-callout--divider" />
           <div className="editorial-callout">
-            <span className="editorial-callout__label">Worst bang for your duck</span>
+            <span className="editorial-callout__label">Worst value</span>
             <span className="editorial-callout__province">{worstValue?.name}</span>
             <span className="editorial-callout__grade" style={{ color: gradeFillDark(worstValueGrade) }}>
               {worstValueGrade} · {worstValue?.valueScore}/100

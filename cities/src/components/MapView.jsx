@@ -108,7 +108,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
                 Performance: <strong style="color:${gradeFill(city.grade)}">${city.grade} · ${city.composite}/100</strong>
               </div>
               ${city.duckScore != null
-                ? `<div style="font-size:12px;">🦆 Value: <strong style="color:${gradeFill(toGrade(city.duckScore))}">${toGrade(city.duckScore)} · ${city.duckScore}/100</strong></div>`
+                ? `<div style="font-size:12px;">Value: <strong style="color:${gradeFill(toGrade(city.duckScore))}">${toGrade(city.duckScore)} · ${city.duckScore}/100</strong></div>`
                 : ''}
               <button onclick="window.__citySelectFromMap__('${city.cmaCode}')" style="
                 margin-top:6px;font-size:11px;padding:3px 8px;
@@ -137,7 +137,7 @@ export default function MapView({ cities, onSelect, sortKey }) {
     <div className="map-view">
       <div ref={containerRef} className="map-view__container" style={{ height: '520px', width: '100%' }} />
       <p className="map-view__legend">
-        Markers coloured by <strong>{sortKey === 'duck' ? '🦆 Value' : sortKey}</strong> grade.
+        Markers coloured by <strong>{sortKey === 'duck' ? 'Value' : sortKey}</strong> grade.
         Click a city to see its popup, then "View details" for the full breakdown.
       </p>
     </div>

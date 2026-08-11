@@ -8,8 +8,9 @@ export default function Header({ lastUpdated }) {
       <div className="site-header__inner">
         <div className="site-header__text">
           <div className="site-header__top">
-            <a href="/" className="site-header__wordmark" aria-label="Bang for Your Duck home">
-              <span className="site-header__brand">Bang for Your <span>Duck</span></span>
+            <a href="/" className="site-header__wordmark" aria-label="Nonpartisan Governance Ledger home">
+              <span className="site-header__wordmark-line1">Nonpartisan Governance</span>{' '}
+              <span className="site-header__wordmark-accent">Ledger</span>
             </a>
             <span className="site-header__sub-nav" aria-label="Current section">
               <a href="/provinces/" className="site-header__sub-link">Provinces</a>
@@ -29,10 +30,9 @@ export default function Header({ lastUpdated }) {
               <a href="/#support" className="site-header__support-btn">Support this project</a>
             </div>
           </div>
-          <p className="site-header__tagline">What does your riding receive for your federal tax loonie?</p>
+          <p className="site-header__tagline">What does your riding receive for your federal tax dollar?</p>
           <p className="site-header__scope">Grading all 343 federal ridings on federal investment, transfers, and the cost of representation.</p>
         </div>
-        <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>
     </header>
   );

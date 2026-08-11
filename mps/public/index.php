@@ -43,17 +43,17 @@ if ($slug && $slug !== 'index.html' && !str_contains($slug, '.')) {
         $duckGrade = $riding['duckGrade'] ?? '';
         $duckScore = $riding['duckScore'] ?? '';
 
-        $title = "{$name} — {$grade} ({$score}/100) — Bang for Your Duck: MPs";
-        $desc = "{$mp} ({$party}) represents {$name}. Performance: {$grade} {$score}/100. Value: {$duckGrade} {$duckScore}/100. See the full breakdown at bangforyourduck.ca";
-        $url = "https://bangforyourduck.ca/mps/" . urlencode($slug);
+        $title = "{$name} — {$grade} ({$score}/100) — Nonpartisan Governance Ledger: MPs";
+        $desc = "{$mp} ({$party}) represents {$name}. Performance: {$grade} {$score}/100. Value: {$duckGrade} {$duckScore}/100. See the full breakdown at nonpartisangovernance.ca";
+        $url = "https://nonpartisangovernance.ca/mps/" . urlencode($slug);
     }
 }
 
 // Default meta if no riding matched
 if (!isset($title)) {
-    $title = "Bang for Your Duck: MPs — What does your MP deliver for your tax loonie?";
+    $title = "Nonpartisan Governance Ledger: MPs — What does your MP deliver for your tax dollar?";
     $desc = "Grading all 343 federal electoral ridings on federal investment, transfers, and MP expenses. Free, nonpartisan, independent.";
-    $url = "https://bangforyourduck.ca/mps/";
+    $url = "https://nonpartisangovernance.ca/mps/";
 }
 
 // Read the built index.html and inject meta tags
@@ -62,9 +62,9 @@ if (!$html) $html = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/mps/index.ht
 
 // Replace default meta tags with riding-specific ones
 $html = preg_replace('/<title>.*?<\/title>/', "<title>{$title}</title>", $html);
-$html = preg_replace('/content="Bang for Your Duck: MPs[^"]*"/', 'content="' . $title . '"', $html, 1);
+$html = preg_replace('/content="Nonpartisan Governance Ledger: MPs[^"]*"/', 'content="' . $title . '"', $html, 1);
 $html = preg_replace('/content="Grading all[^"]*"/', 'content="' . $desc . '"', $html, 1);
-$html = preg_replace('/content="https:\/\/bangforyourduck\.ca\/mps[^"]*"/', 'content="' . $url . '"', $html, 1);
+$html = preg_replace('/content="https:\/\/nonpartisangovernance\.ca\/mps[^"]*"/', 'content="' . $url . '"', $html, 1);
 $html = preg_replace('/<meta name="description"[^>]*>/', '<meta name="description" content="' . $desc . '" />', $html);
 
 echo $html;

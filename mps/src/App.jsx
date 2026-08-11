@@ -39,7 +39,7 @@ function findRidingBySlug(ridings, slug) {
 }
 
 const SORT_KEYS = [
-  { key: 'duck',         label: 'Value',       icon: '🦆' },
+  { key: 'duck',         label: 'Value',       icon: '📊' },
   { key: 'composite',    label: 'Overall',     icon: '🏆' },
   { key: 'performance',  label: 'MP Work',     icon: '🏛️' },
   { key: 'investment',   label: 'Investment',  icon: '💰' },
@@ -123,10 +123,10 @@ export default function App() {
       const slug = toSlug(riding.name);
       window.history.replaceState({}, '', `/mps/${slug}`);
       // Update page title
-      document.title = `${riding.name} — ${riding.mpName} — Bang for Your Duck: MPs`;
+      document.title = `${riding.name} — ${riding.mpName} — Nonpartisan Governance Ledger: MPs`;
     } else {
       window.history.replaceState({}, '', '/mps/');
-      document.title = 'Bang for Your Duck: MPs — What does your MP deliver for your tax loonie?';
+      document.title = 'Nonpartisan Governance Ledger: MPs — What does your MP deliver for your tax dollar?';
     }
   };
 

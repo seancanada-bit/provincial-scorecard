@@ -8,8 +8,9 @@ export default function Header({ lastUpdated }) {
       <div className="site-header__inner">
         <div className="site-header__text">
           <div className="site-header__top">
-            <a href="/" className="site-header__wordmark" aria-label="Bang for Your Duck home">
-              <span className="site-header__brand">Bang for Your <span>Duck</span></span>
+            <a href="/" className="site-header__wordmark" aria-label="Nonpartisan Governance Ledger home">
+              <span className="site-header__wordmark-line1">Nonpartisan Governance</span>{' '}
+              <span className="site-header__wordmark-accent">Ledger</span>
             </a>
             <span className="site-header__sub-nav" aria-label="Sections">
               <span className="site-header__sub-current" aria-current="page">Provinces</span>
@@ -27,9 +28,8 @@ export default function Header({ lastUpdated }) {
               <a href="/#support" className="site-header__support-btn">Support this project</a>
             </div>
           </div>
-          <p className="site-header__tagline">Which province gives you the most bang for your tax loonie?</p>
+          <p className="site-header__tagline">Which province delivers the best value for your tax dollar?</p>
         </div>
-        <span className="site-header__duck-hero" aria-hidden="true">🦆</span>
       </div>
     </header>
   );

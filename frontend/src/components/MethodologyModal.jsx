@@ -231,22 +231,22 @@ export default function MethodologyModal({ onClose }) {
           </div>
         </section>
 
-        {/* DUCK SCORE */}
+        {/* VALUE SCORE */}
         <section className="modal-section">
-          <h3>🦆 Duck Score — bang for your loonie</h3>
+          <h3>Value Score — value for your tax dollar</h3>
           <p>
-            The <strong>Duck Score</strong> is the core question this site exists to answer: <em>are you getting what you pay for?</em>
+            The <strong>Value Score</strong> is the core question this site exists to answer: <em>are you getting what you pay for?</em>
             It's calculated as <em>composite score ÷ tax burden index</em>, where a tax burden index of 100 equals the national average.
           </p>
           <p>
-            A province scoring 70 composite with a below-average tax burden (index 90) earns a Duck Score of 78 —
-            better bang for your loonie than a province scoring 80 composite but taxing you 20% more than average (index 120),
+            A province scoring 70 composite with a below-average tax burden (index 90) earns a Value Score of 78 —
+            better value for your tax dollar than a province scoring 80 composite but taxing you 20% more than average (index 120),
             which earns only 67. You're paying more and getting less.
           </p>
           <p>
-            The Duck Score is shown as a badge on every province card and is available as a sort option.
+            The Value Score is shown as a badge on every province card and is available as a sort option.
             It's deliberately separate from the composite — a province can deliver excellent services but still score
-            poorly on Duck Score if it taxes heavily to do so. Conversely, a lean-taxing province delivering decent
+            poorly on Value Score if it taxes heavily to do so. Conversely, a lean-taxing province delivering decent
             services can punch above its weight.
           </p>
         </section>

@@ -94,8 +94,7 @@ export default function RidingCard({ riding, rank, globalRank, selected, onSelec
 
           {isDuckSort && duckGrade ? (
             <div className="ccard__value-tower">
-              <span className="ccard__tower-duck" aria-hidden="true">🦆</span>
-              <span className="ccard__tower-label" aria-hidden="true">BANG FOR YOUR DUCK</span>
+              <span className="ccard__tower-label" aria-hidden="true">VALUE SCORE</span>
               <span className={`ccard__grade ${gradeColorClass(duckGrade)}`}>{duckGrade}</span>
               <span className="ccard__score">
                 {riding.duckScore}<span className="ccard__score-denom">/100</span>
@@ -115,9 +114,8 @@ export default function RidingCard({ riding, rank, globalRank, selected, onSelec
               {duckGrade && (
                 <span className="ccard__duck-row">
                   <span className="ccard__value-divider" aria-hidden="true" />
-                  <span className="ccard__duck-emoji" aria-hidden="true">🦆</span>
                   <span className="ccard__duck-words" aria-hidden="true">
-                    <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                    <span>VALUE</span><span>SCORE</span>
                   </span>
                   <span className="ccard__duck-scores">
                     <span className="ccard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>

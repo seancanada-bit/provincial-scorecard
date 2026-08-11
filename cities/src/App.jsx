@@ -27,7 +27,7 @@ function findCityBySlug(cities, slug) {
 }
 
 const SORT_KEYS = [
-  { key: 'duck',           label: 'Value',          icon: '🦆' },
+  { key: 'duck',           label: 'Value',          icon: '📊' },
   { key: 'composite',      label: 'Overall',        icon: '🏆' },
   { key: 'housing',        label: 'Housing',        icon: '🏠' },
   { key: 'safety',         label: 'Safety',         icon: '🛡️' },
@@ -93,10 +93,10 @@ export default function App() {
     setSelectedCity(city);
     if (city) {
       window.history.replaceState({}, '', `/cities/${toSlug(city.name)}`);
-      document.title = `${city.name} — Bang for Your Duck: Cities`;
+      document.title = `${city.name} — Nonpartisan Governance Ledger: Cities`;
     } else {
       window.history.replaceState({}, '', '/cities/');
-      document.title = 'Bang for Your Duck: Cities';
+      document.title = 'Nonpartisan Governance Ledger: Cities';
     }
   };
 

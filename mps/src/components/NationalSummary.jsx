@@ -42,10 +42,9 @@ export default function NationalSummary({ national, cities, provinceFilter, filt
         </p>
         <div className="editorial-summary__callouts">
           <div className="editorial-callout">
-            <span className="editorial-callout__label">Best bang for your duck</span>
+            <span className="editorial-callout__label">Best value</span>
             <span className="editorial-callout__province-row">
               <span className="editorial-callout__province">{bestDuck?.name}</span>
-              <span className="editorial-callout__duck-accent" aria-hidden="true">🦆</span>
             </span>
             <span className="editorial-callout__grade" style={{ color: gradeFillDark(bestGrade) }}>
               {bestGrade} · {bestDuck?.duckScore}/100

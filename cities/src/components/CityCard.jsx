@@ -184,10 +184,9 @@ export default function CityCard({ city, rank, globalRank, selected, onSelect, s
             /* Value mode: typographic tower */
             <div
               className="ccard__value-tower"
-              aria-label={`Duck grade ${duckGrade}, ${city.duckScore} out of 100. Performance: ${city.grade}, ${displayScore} out of 100`}
+              aria-label={`Value grade ${duckGrade}, ${city.duckScore} out of 100. Performance: ${city.grade}, ${displayScore} out of 100`}
             >
-              <span className="ccard__tower-duck" aria-hidden="true">🦆</span>
-              <span className="ccard__tower-label" aria-hidden="true">BANG FOR YOUR DUCK</span>
+              <span className="ccard__tower-label" aria-hidden="true">VALUE SCORE</span>
               <span className={`ccard__grade ${gradeColorClass(duckGrade)}`} aria-hidden="true">{duckGrade}</span>
               <span className="ccard__score" aria-hidden="true">
                 {city.duckScore}<span className="ccard__score-denom">/100</span>
@@ -208,11 +207,10 @@ export default function CityCard({ city, rank, globalRank, selected, onSelect, s
                 {displayScore}<span className="ccard__score-denom">/100</span>
               </span>
               {duckGrade && (
-                <span className="ccard__duck-row" aria-label={`Duck score: ${duckGrade}, ${city.duckScore}/100`}>
+                <span className="ccard__duck-row" aria-label={`Value score: ${duckGrade}, ${city.duckScore}/100`}>
                   <span className="ccard__value-divider" aria-hidden="true" />
-                  <span className="ccard__duck-emoji" aria-hidden="true">🦆</span>
                   <span className="ccard__duck-words" aria-hidden="true">
-                    <span>BANG</span><span>FOR</span><span>YOUR</span><span>DUCK</span>
+                    <span>VALUE</span><span>SCORE</span>
                   </span>
                   <span className="ccard__duck-scores">
                     <span className="ccard__value-grade" style={{ color: gradeFill(duckGrade) }}>{duckGrade}</span>
