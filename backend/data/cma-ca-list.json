@@ -1,0 +1,646 @@
+{
+  "cmas": [
+    {
+      "id": 1,
+      "name": "St. John's (CMA), Newfoundland and Labrador"
+    },
+    {
+      "id": 8,
+      "name": "Halifax (CMA), Nova Scotia"
+    },
+    {
+      "id": 13,
+      "name": "Moncton (CMA), New Brunswick"
+    },
+    {
+      "id": 14,
+      "name": "Saint John (CMA), New Brunswick"
+    },
+    {
+      "id": 26,
+      "name": "Saguenay (CMA), Quebec"
+    },
+    {
+      "id": 30,
+      "name": "Qu\u00e9bec (CMA), Quebec"
+    },
+    {
+      "id": 34,
+      "name": "Sherbrooke (CMA), Quebec"
+    },
+    {
+      "id": 37,
+      "name": "Trois-Rivi\u00e8res (CMA), Quebec"
+    },
+    {
+      "id": 44,
+      "name": "Montr\u00e9al (CMA), Quebec"
+    },
+    {
+      "id": 52,
+      "name": "Ottawa - Gatineau (CMA), Ontario/Quebec"
+    },
+    {
+      "id": 53,
+      "name": "Ottawa - Gatineau (CMA), Ontario part, Ontario"
+    },
+    {
+      "id": 54,
+      "name": "Ottawa - Gatineau (CMA), Quebec part, Quebec"
+    },
+    {
+      "id": 61,
+      "name": "Kingston (CMA), Ontario"
+    },
+    {
+      "id": 62,
+      "name": "Belleville (CMA), Ontario"
+    },
+    {
+      "id": 65,
+      "name": "Peterborough (CMA), Ontario"
+    },
+    {
+      "id": 68,
+      "name": "Oshawa (CMA), Ontario"
+    },
+    {
+      "id": 70,
+      "name": "Toronto (CMA), Ontario"
+    },
+    {
+      "id": 71,
+      "name": "Hamilton (CMA), Ontario"
+    },
+    {
+      "id": 72,
+      "name": "St. Catharines - Niagara (CMA), Ontario"
+    },
+    {
+      "id": 73,
+      "name": "Kitchener - Cambridge - Waterloo (CMA), Ontario"
+    },
+    {
+      "id": 74,
+      "name": "Brantford (CMA), Ontario"
+    },
+    {
+      "id": 78,
+      "name": "Guelph (CMA), Ontario"
+    },
+    {
+      "id": 80,
+      "name": "London (CMA), Ontario"
+    },
+    {
+      "id": 83,
+      "name": "Windsor (CMA), Ontario"
+    },
+    {
+      "id": 88,
+      "name": "Barrie (CMA), Ontario"
+    },
+    {
+      "id": 92,
+      "name": "Greater Sudbury (CMA), Ontario"
+    },
+    {
+      "id": 96,
+      "name": "Thunder Bay (CMA), Ontario"
+    },
+    {
+      "id": 98,
+      "name": "Winnipeg (CMA), Manitoba"
+    },
+    {
+      "id": 104,
+      "name": "Regina (CMA), Saskatchewan"
+    },
+    {
+      "id": 108,
+      "name": "Saskatoon (CMA), Saskatchewan"
+    },
+    {
+      "id": 118,
+      "name": "Lethbridge (CMA), Alberta"
+    },
+    {
+      "id": 121,
+      "name": "Calgary (CMA), Alberta"
+    },
+    {
+      "id": 128,
+      "name": "Edmonton (CMA), Alberta"
+    },
+    {
+      "id": 136,
+      "name": "Kelowna (CMA), British Columbia"
+    },
+    {
+      "id": 141,
+      "name": "Abbotsford - Mission (CMA), British Columbia"
+    },
+    {
+      "id": 142,
+      "name": "Vancouver (CMA), British Columbia"
+    },
+    {
+      "id": 144,
+      "name": "Victoria (CMA), British Columbia"
+    }
+  ],
+  "cas": [
+    {
+      "id": 2,
+      "name": "Bay Roberts (CA), Newfoundland and Labrador"
+    },
+    {
+      "id": 3,
+      "name": "Grand Falls-Windsor (CA), Newfoundland and Labrador"
+    },
+    {
+      "id": 4,
+      "name": "Gander (CA), Newfoundland and Labrador"
+    },
+    {
+      "id": 5,
+      "name": "Corner Brook (CA), Newfoundland and Labrador"
+    },
+    {
+      "id": 6,
+      "name": "Charlottetown (CA), Prince Edward Island"
+    },
+    {
+      "id": 7,
+      "name": "Summerside (CA), Prince Edward Island"
+    },
+    {
+      "id": 9,
+      "name": "Kentville (CA), Nova Scotia"
+    },
+    {
+      "id": 10,
+      "name": "Truro (CA), Nova Scotia"
+    },
+    {
+      "id": 11,
+      "name": "New Glasgow (CA), Nova Scotia"
+    },
+    {
+      "id": 12,
+      "name": "Cape Breton (CA), Nova Scotia"
+    },
+    {
+      "id": 15,
+      "name": "Fredericton (CA), New Brunswick"
+    },
+    {
+      "id": 16,
+      "name": "Bathurst (CA), New Brunswick"
+    },
+    {
+      "id": 17,
+      "name": "Miramichi (CA), New Brunswick"
+    },
+    {
+      "id": 18,
+      "name": "Edmundston (CA), New Brunswick"
+    },
+    {
+      "id": 19,
+      "name": "Campbellton (CA), New Brunswick/Quebec"
+    },
+    {
+      "id": 20,
+      "name": "Campbellton (CA), New Brunswick part, New Brunswick"
+    },
+    {
+      "id": 21,
+      "name": "Campbellton (CA), Quebec part, Quebec"
+    },
+    {
+      "id": 22,
+      "name": "Matane (CA), Quebec"
+    },
+    {
+      "id": 23,
+      "name": "Rimouski (CA), Quebec"
+    },
+    {
+      "id": 24,
+      "name": "Rivi\u00e8re-du-Loup (CA), Quebec"
+    },
+    {
+      "id": 25,
+      "name": "Baie-Comeau (CA), Quebec"
+    },
+    {
+      "id": 27,
+      "name": "Alma (CA), Quebec"
+    },
+    {
+      "id": 28,
+      "name": "Dolbeau-Mistassini (CA), Quebec"
+    },
+    {
+      "id": 29,
+      "name": "Sept-\u00celes (CA), Quebec"
+    },
+    {
+      "id": 31,
+      "name": "Sainte-Marie (CA), Quebec"
+    },
+    {
+      "id": 32,
+      "name": "Saint-Georges (CA), Quebec"
+    },
+    {
+      "id": 33,
+      "name": "Thetford Mines (CA), Quebec"
+    },
+    {
+      "id": 35,
+      "name": "Cowansville (CA), Quebec"
+    },
+    {
+      "id": 36,
+      "name": "Victoriaville (CA), Quebec"
+    },
+    {
+      "id": 38,
+      "name": "Shawinigan (CA), Quebec"
+    },
+    {
+      "id": 39,
+      "name": "Drummondville (CA), Quebec"
+    },
+    {
+      "id": 40,
+      "name": "Granby (CA), Quebec"
+    },
+    {
+      "id": 41,
+      "name": "Saint-Hyacinthe (CA), Quebec"
+    },
+    {
+      "id": 42,
+      "name": "Sorel-Tracy (CA), Quebec"
+    },
+    {
+      "id": 43,
+      "name": "Joliette (CA), Quebec"
+    },
+    {
+      "id": 45,
+      "name": "Salaberry-de-Valleyfield (CA), Quebec"
+    },
+    {
+      "id": 46,
+      "name": "Lachute (CA), Quebec"
+    },
+    {
+      "id": 47,
+      "name": "Val-d'Or (CA), Quebec"
+    },
+    {
+      "id": 48,
+      "name": "Rouyn-Noranda (CA), Quebec"
+    },
+    {
+      "id": 49,
+      "name": "Hawkesbury (CA), Ontario/Quebec"
+    },
+    {
+      "id": 50,
+      "name": "Hawkesbury (CA), Ontario part, Ontario"
+    },
+    {
+      "id": 51,
+      "name": "Hawkesbury (CA), Quebec part, Quebec"
+    },
+    {
+      "id": 55,
+      "name": "Cornwall (CA), Ontario"
+    },
+    {
+      "id": 56,
+      "name": "Arnprior (CA), Ontario"
+    },
+    {
+      "id": 57,
+      "name": "Carleton Place (CA), Ontario"
+    },
+    {
+      "id": 58,
+      "name": "Brockville (CA), Ontario"
+    },
+    {
+      "id": 59,
+      "name": "Pembroke (CA), Ontario"
+    },
+    {
+      "id": 60,
+      "name": "Petawawa (CA), Ontario"
+    },
+    {
+      "id": 63,
+      "name": "Cobourg (CA), Ontario"
+    },
+    {
+      "id": 64,
+      "name": "Port Hope (CA), Ontario"
+    },
+    {
+      "id": 66,
+      "name": "Kawartha Lakes (CA), Ontario"
+    },
+    {
+      "id": 67,
+      "name": "Centre Wellington (CA), Ontario"
+    },
+    {
+      "id": 69,
+      "name": "Ingersoll (CA), Ontario"
+    },
+    {
+      "id": 75,
+      "name": "Woodstock (CA), Ontario"
+    },
+    {
+      "id": 76,
+      "name": "Tillsonburg (CA), Ontario"
+    },
+    {
+      "id": 77,
+      "name": "Norfolk (CA), Ontario"
+    },
+    {
+      "id": 79,
+      "name": "Stratford (CA), Ontario"
+    },
+    {
+      "id": 81,
+      "name": "Chatham-Kent (CA), Ontario"
+    },
+    {
+      "id": 82,
+      "name": "Leamington (CA), Ontario"
+    },
+    {
+      "id": 84,
+      "name": "Sarnia (CA), Ontario"
+    },
+    {
+      "id": 85,
+      "name": "Wasaga Beach (CA), Ontario"
+    },
+    {
+      "id": 86,
+      "name": "Owen Sound (CA), Ontario"
+    },
+    {
+      "id": 87,
+      "name": "Collingwood (CA), Ontario"
+    },
+    {
+      "id": 89,
+      "name": "Orillia (CA), Ontario"
+    },
+    {
+      "id": 90,
+      "name": "Midland (CA), Ontario"
+    },
+    {
+      "id": 91,
+      "name": "North Bay (CA), Ontario"
+    },
+    {
+      "id": 93,
+      "name": "Elliot Lake (CA), Ontario"
+    },
+    {
+      "id": 94,
+      "name": "Timmins (CA), Ontario"
+    },
+    {
+      "id": 95,
+      "name": "Sault Ste. Marie (CA), Ontario"
+    },
+    {
+      "id": 97,
+      "name": "Kenora (CA), Ontario"
+    },
+    {
+      "id": 99,
+      "name": "Winkler (CA), Manitoba"
+    },
+    {
+      "id": 100,
+      "name": "Steinbach (CA), Manitoba"
+    },
+    {
+      "id": 101,
+      "name": "Portage la Prairie (CA), Manitoba"
+    },
+    {
+      "id": 102,
+      "name": "Brandon (CA), Manitoba"
+    },
+    {
+      "id": 103,
+      "name": "Thompson (CA), Manitoba"
+    },
+    {
+      "id": 105,
+      "name": "Yorkton (CA), Saskatchewan"
+    },
+    {
+      "id": 106,
+      "name": "Moose Jaw (CA), Saskatchewan"
+    },
+    {
+      "id": 107,
+      "name": "Swift Current (CA), Saskatchewan"
+    },
+    {
+      "id": 109,
+      "name": "North Battleford (CA), Saskatchewan"
+    },
+    {
+      "id": 110,
+      "name": "Prince Albert (CA), Saskatchewan"
+    },
+    {
+      "id": 111,
+      "name": "Estevan (CA), Saskatchewan"
+    },
+    {
+      "id": 112,
+      "name": "Weyburn (CA), Saskatchewan"
+    },
+    {
+      "id": 113,
+      "name": "Lloydminster (CA), Alberta/Saskatchewan"
+    },
+    {
+      "id": 114,
+      "name": "Lloydminster (CA), Alberta part, Alberta"
+    },
+    {
+      "id": 115,
+      "name": "Lloydminster (CA), Saskatchewan part, Saskatchewan"
+    },
+    {
+      "id": 116,
+      "name": "Medicine Hat (CA), Alberta"
+    },
+    {
+      "id": 117,
+      "name": "Brooks (CA), Alberta"
+    },
+    {
+      "id": 119,
+      "name": "Okotoks (CA), Alberta"
+    },
+    {
+      "id": 120,
+      "name": "High River (CA), Alberta"
+    },
+    {
+      "id": 122,
+      "name": "Strathmore (CA), Alberta"
+    },
+    {
+      "id": 123,
+      "name": "Canmore (CA), Alberta"
+    },
+    {
+      "id": 124,
+      "name": "Red Deer (CA), Alberta"
+    },
+    {
+      "id": 125,
+      "name": "Sylvan Lake (CA), Alberta"
+    },
+    {
+      "id": 126,
+      "name": "Lacombe (CA), Alberta"
+    },
+    {
+      "id": 127,
+      "name": "Camrose (CA), Alberta"
+    },
+    {
+      "id": 129,
+      "name": "Cold Lake (CA), Alberta"
+    },
+    {
+      "id": 130,
+      "name": "Grande Prairie (CA), Alberta"
+    },
+    {
+      "id": 131,
+      "name": "Wood Buffalo (CA), Alberta"
+    },
+    {
+      "id": 132,
+      "name": "Wetaskiwin (CA), Alberta"
+    },
+    {
+      "id": 133,
+      "name": "Cranbrook (CA), British Columbia"
+    },
+    {
+      "id": 134,
+      "name": "Nelson (CA), British Columbia"
+    },
+    {
+      "id": 135,
+      "name": "Penticton (CA), British Columbia"
+    },
+    {
+      "id": 137,
+      "name": "Vernon (CA), British Columbia"
+    },
+    {
+      "id": 138,
+      "name": "Salmon Arm (CA), British Columbia"
+    },
+    {
+      "id": 139,
+      "name": "Kamloops (CA), British Columbia"
+    },
+    {
+      "id": 140,
+      "name": "Chilliwack (CA), British Columbia"
+    },
+    {
+      "id": 143,
+      "name": "Squamish (CA), British Columbia"
+    },
+    {
+      "id": 145,
+      "name": "Duncan (CA), British Columbia"
+    },
+    {
+      "id": 146,
+      "name": "Nanaimo (CA), British Columbia"
+    },
+    {
+      "id": 147,
+      "name": "Parksville (CA), British Columbia"
+    },
+    {
+      "id": 148,
+      "name": "Port Alberni (CA), British Columbia"
+    },
+    {
+      "id": 149,
+      "name": "Courtenay (CA), British Columbia"
+    },
+    {
+      "id": 150,
+      "name": "Campbell River (CA), British Columbia"
+    },
+    {
+      "id": 151,
+      "name": "Powell River (CA), British Columbia"
+    },
+    {
+      "id": 152,
+      "name": "Williams Lake (CA), British Columbia"
+    },
+    {
+      "id": 153,
+      "name": "Quesnel (CA), British Columbia"
+    },
+    {
+      "id": 154,
+      "name": "Prince Rupert (CA), British Columbia"
+    },
+    {
+      "id": 155,
+      "name": "Terrace (CA), British Columbia"
+    },
+    {
+      "id": 156,
+      "name": "Prince George (CA), British Columbia"
+    },
+    {
+      "id": 157,
+      "name": "Dawson Creek (CA), British Columbia"
+    },
+    {
+      "id": 158,
+      "name": "Fort St. John (CA), British Columbia"
+    },
+    {
+      "id": 159,
+      "name": "Whitehorse (CA), Yukon"
+    },
+    {
+      "id": 160,
+      "name": "Yellowknife (CA), Northwest Territories"
+    }
+  ]
+}
