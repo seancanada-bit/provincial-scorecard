@@ -26,8 +26,13 @@
  * Gracefully degrades: if any StatsCan fetch fails, it logs a warning and
  * continues — the pipeline never breaks because StatsCan is down.
  *
+ * Frequency:
+ *   Daily:  unemployment, CPI food, rent CPI, housing starts (monthly releases)
+ *   Monday: GDP, population, CSI, homicide, fiscal, NHPI (annual/quarterly)
+ *
  * Usage:
- *   node refresh-statscan.js              # upsert into MySQL
+ *   node refresh-statscan.js              # upsert into MySQL (daily tables only)
+ *   node refresh-statscan.js --full       # upsert all tables (same as Monday)
  *   node refresh-statscan.js --dry-run    # print what would be written
  */
 
@@ -37,6 +42,7 @@ try { require('dotenv').config({ path: path.join(__dirname, '.env') }); } catch 
 const axios = require('axios');
 
 const DRY_RUN = process.argv.includes('--dry-run');
+const FULL_RUN = process.argv.includes('--full') || new Date().getDay() === 1; // Mondays or --full flag
 
 // ─── StatsCan WDS API ────────────────────────────────────────────────────────
 const WDS_BASE = 'https://www150.statcan.gc.ca/t1/wds/rest';
@@ -975,24 +981,35 @@ async function safeFetch(label, fn) {
 // ─── Main ───────────────────────────────────────────────────────────────────
 async function main() {
   console.log('=== StatsCan Data Refresh ===');
-  console.log(`Mode: ${DRY_RUN ? 'DRY RUN (no DB writes)' : 'LIVE (writing to MySQL)'}\n`);
+  console.log(`Mode: ${DRY_RUN ? 'DRY RUN (no DB writes)' : 'LIVE (writing to MySQL)'}`);
+  console.log(`Scope: ${FULL_RUN ? 'FULL (all tables — Monday or --full)' : 'DAILY (monthly-release tables only)'}\n`);
 
-  // Fetch all data in parallel
-  const [
-    unemployment, gdp, population, csi, homicide, cpi,
-    fiscal, housingStarts, nhpi, rentCpi,
-  ] = await Promise.all([
+  // Daily fetches: tables with monthly releases (change frequently)
+  const dailyFetches = [
     fetchUnemployment(),
+    safeFetch('CPI', fetchCPI),
+    safeFetch('Rent CPI', fetchRentCPI),
+    safeFetch('Housing starts', fetchHousingStarts),
+  ];
+
+  // Weekly fetches: tables with annual/quarterly releases (Mondays or --full)
+  const weeklyFetches = FULL_RUN ? [
     fetchGDP(),
     fetchPopulation(),
     safeFetch('CSI', fetchCSI),
     safeFetch('Homicide', fetchHomicide),
-    safeFetch('CPI', fetchCPI),
     safeFetch('Fiscal', fetchFiscal),
-    safeFetch('Housing starts', fetchHousingStarts),
     safeFetch('NHPI', fetchNHPI),
-    safeFetch('Rent CPI', fetchRentCPI),
-  ]);
+  ] : [
+    // Return empty objects so the merge still works
+    Promise.resolve({}), Promise.resolve({}), Promise.resolve({}),
+    Promise.resolve({}), Promise.resolve({}), Promise.resolve({}),
+  ];
+
+  const [
+    unemployment, cpi, rentCpi, housingStarts,
+    gdp, population, csi, homicide, fiscal, nhpi,
+  ] = await Promise.all([...dailyFetches, ...weeklyFetches]);
 
   // Merge into per-province objects
   const merged = {};

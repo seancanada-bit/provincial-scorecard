@@ -20,18 +20,20 @@ jobs:
         with:
           node-version: '22'
 
-      # ── 1. Install backend deps (includes mysql2) ──────────────────────────
+      # ── 1. Install backend deps (cached) ──────────────────────────────────
+      - name: Cache backend node_modules
+        uses: actions/cache@v4
+        with:
+          path: backend/node_modules
+          key: backend-deps-${{ hashFiles('backend/package-lock.json') }}
+
       - name: Install backend deps
         run: npm ci
         working-directory: backend
 
-      # ── 1b. Import Infrastructure Canada projects → riding-spending.json ──
-      - name: Import infrastructure data
-        run: node import-infrastructure.js --download || echo "Infrastructure import failed — using existing data"
-        working-directory: backend
-        continue-on-error: true
-
-      # ── 1c. Refresh StatsCan data (unemployment, GDP, population) → MySQL ──
+      # ── 2. Refresh StatsCan data → MySQL ───────────────────────────────────
+      # Daily: unemployment, CPI food, rent CPI, housing starts (monthly releases)
+      # Monday only: GDP, population, CSI, homicide, fiscal, NHPI (annual/quarterly)
       - name: Refresh StatsCan data
         run: node refresh-statscan.js
         working-directory: backend
@@ -42,7 +44,13 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         continue-on-error: true
 
-      # ── 2. Generate all scored JSON from MySQL ─────────────────────────────
+      # ── 3. Generate scored JSON from MySQL ─────────────────────────────────
+      - name: Snapshot data before generation
+        run: |
+          cp api/data.json /tmp/data-before.json 2>/dev/null || true
+          cp api/cities.json /tmp/cities-before.json 2>/dev/null || true
+          cp api/mps.json /tmp/mps-before.json 2>/dev/null || true
+
       - name: Generate all data
         run: node generate-all.js
         working-directory: backend
@@ -52,8 +60,33 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
-      # ── 2b. Save score snapshot for historical tracking ──────────────────
+      # ── 4. Detect if scores actually changed ──────────────────────────────
+      - name: Check for score changes
+        id: changes
+        run: |
+          # Compare scores (ignore lastUpdated timestamp which always changes)
+          changed=false
+          for f in data.json cities.json mps.json; do
+            if [ -f "/tmp/${f%.*}-before.${f##*.}" ]; then
+              # Strip lastUpdated and compare
+              before=$(cat "/tmp/${f%.*}-before.${f##*.}" | python3 -c "import json,sys; d=json.load(sys.stdin); d.pop('lastUpdated',None); print(json.dumps(d,sort_keys=True))" 2>/dev/null | md5sum)
+              after=$(cat "api/$f" | python3 -c "import json,sys; d=json.load(sys.stdin); d.pop('lastUpdated',None); print(json.dumps(d,sort_keys=True))" 2>/dev/null | md5sum)
+              if [ "$before" != "$after" ]; then
+                echo "✓ $f: scores changed"
+                changed=true
+              else
+                echo "· $f: unchanged"
+              fi
+            else
+              echo "✓ $f: no baseline (first run)"
+              changed=true
+            fi
+          done
+          echo "data_changed=$changed" >> $GITHUB_OUTPUT
+
+      # ── 5. Conditional: only run expensive steps if scores changed ────────
       - name: Save score snapshot
+        if: steps.changes.outputs.data_changed == 'true'
         run: node save-snapshot.js
         working-directory: backend
         env:
@@ -62,58 +95,68 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
-      # ── 2c. Generate PDF report cards ────────────────────────────────────
       - name: Generate PDF reports
+        if: steps.changes.outputs.data_changed == 'true'
         run: node generate-reports.js
         working-directory: backend
 
-      # ── 2d. Generate sitemap ────────────────────────────────────────────
       - name: Generate sitemap
+        if: steps.changes.outputs.data_changed == 'true'
         run: node generate-sitemap.js
         working-directory: backend
 
-      # ── 3. Build all three frontends ───────────────────────────────────────
+      # ── 6. Build frontends (only if scores changed) ───────────────────────
+      - name: Cache frontend node_modules
+        if: steps.changes.outputs.data_changed == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            frontend/node_modules
+            cities/node_modules
+            mps/node_modules
+          key: frontend-deps-${{ hashFiles('frontend/package-lock.json', 'cities/package-lock.json', 'mps/package-lock.json') }}
+
       - name: Build provinces
+        if: steps.changes.outputs.data_changed == 'true'
         run: cd frontend && npm ci && npm run build
         env:
           VITE_API_URL: ''
           VITE_BASE_PATH: /provinces/
 
       - name: Build cities
+        if: steps.changes.outputs.data_changed == 'true'
         run: cd cities && npm ci && npm run build
         env:
           VITE_API_URL: ''
 
       - name: Build MPs
+        if: steps.changes.outputs.data_changed == 'true'
         run: cd mps && npm ci && npm run build
         env:
           VITE_API_URL: ''
 
-      # ── 4. Commit everything → cPanel Git auto-deploys ────────────────────
+      # ── 7. Commit and deploy ──────────────────────────────────────────────
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Stage everything BEFORE pulling so rebase doesn't choke on unstaged changes
           git add -f api/data.json api/cities.json api/mps.json api/riding-spending.json
           git add -f portal/sitemap.xml portal/robots.txt
           git add -f frontend/dist/ cities/dist/ mps/dist/
           git add -f frontend/src/data/fallback.json
           git add -f reports/
-          git diff --staged --quiet && echo "No data changes — skipping commit" && exit 0
+          git diff --staged --quiet && echo "No changes — skipping commit" && exit 0
           git commit -m "chore: refresh data $(date -u +'%Y-%m-%d') [skip ci]"
-          # Pull with rebase (autostash handles any remaining uncommitted files)
           git pull --rebase --autostash origin main || true
-          # Abort if conflict markers slipped in
           if grep -rl '<<<<<<< ' api/ frontend/src/data/ 2>/dev/null; then
-            echo "ERROR: merge conflict markers detected — aborting"
+            echo "ERROR: merge conflict markers — aborting"
             git rebase --abort 2>/dev/null
             exit 1
           fi
           git push
 
-      # ── 5. Trigger cPanel to pull + deploy ─────────────────────────────────
       - name: Deploy to cPanel
+        if: steps.changes.outputs.data_changed == 'true'
         run: |
           curl -s -H "Authorization: cpanel ${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://seanwood.com:2083/execute/VersionControl/update?repository_root=/home/seanw2/repositories/provincial-scorecard&branch=main" \
