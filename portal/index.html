@@ -7,6 +7,30 @@
   <meta name="theme-color" content="#D52B1E" />
   <title>Nonpartisan Governance Ledger — Are you getting your money's worth?</title>
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nonpartisan Governance Ledger",
+    "url": "https://nonpartisangovernance.ca",
+    "description": "Free, nonpartisan scorecards grading every Canadian province, city, and MP on value for your tax dollar.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://nonpartisangovernance.ca/api/lookup.php?pc={postal_code}",
+      "query-input": "required name=postal_code"
+    }
+  }
+  </script>
+
   <meta property="og:title" content="Nonpartisan Governance Ledger" />
   <meta property="og:description" content="Grading every province, city, and MP on value for your tax dollar." />
   <meta property="og:type" content="website" />
@@ -704,6 +728,24 @@
           btn.textContent = 'Look up';
 
           if (d.error) { showError(d.error); return; }
+
+          // After a successful lookup
+          if (typeof gtag === 'function') {
+            gtag('event', 'postal_lookup', {
+              postal_prefix: pc.substring(0, 3),
+              province: d.province?.code || 'unknown',
+              city_matched: !!d.municipal,
+              riding_matched: !!d.riding
+            });
+
+            // Track unmatched cities (for expansion prioritization)
+            if (d.city && !d.municipal) {
+              gtag('event', 'city_not_scored', {
+                city_name: d.city,
+                province: d.province?.code || 'unknown'
+              });
+            }
+          }
 
           var html = '';
 
