@@ -67,6 +67,11 @@ jobs:
         run: node generate-reports.js
         working-directory: backend
 
+      # ── 2d. Generate sitemap ────────────────────────────────────────────
+      - name: Generate sitemap
+        run: node generate-sitemap.js
+        working-directory: backend
+
       # ── 3. Build all three frontends ───────────────────────────────────────
       - name: Build provinces
         run: cd frontend && npm ci && npm run build
@@ -91,6 +96,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Stage everything BEFORE pulling so rebase doesn't choke on unstaged changes
           git add -f api/data.json api/cities.json api/mps.json api/riding-spending.json
+          git add -f portal/sitemap.xml portal/robots.txt
           git add -f frontend/dist/ cities/dist/ mps/dist/
           git add -f frontend/src/data/fallback.json
           git add -f reports/
