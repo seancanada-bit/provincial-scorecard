@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-12T00:48:29.883Z",
+  "lastUpdated": "2026-08-12T01:00:08.664Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -47,7 +47,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 16.8,
           "coreHousingNeedScore": 73,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9997 units/qtr (2026-01-01); NHPI YoY 3.2% (2025-06-01); Rent CPI YoY -4.3% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9997 units/qtr (2026-01-01); Rent CPI YoY -4.3% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -270,7 +270,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 10.8,
           "coreHousingNeedScore": 23,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9908 units/qtr (2026-01-01); NHPI YoY 1.1% (2025-06-01); Rent CPI YoY -0.8% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9908 units/qtr (2026-01-01); Rent CPI YoY -0.8% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -493,7 +493,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 11.5,
           "coreHousingNeedScore": 29,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 781 units/qtr (2026-01-01); NHPI YoY -2.4% (2025-06-01); Rent CPI YoY -4.9% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 781 units/qtr (2026-01-01); Rent CPI YoY -4.9% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -705,7 +705,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 14.2,
           "coreHousingNeedScore": 52,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1741 units/qtr (2026-01-01); NHPI YoY -2.4% (2025-06-01); Rent CPI YoY -2.3% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1741 units/qtr (2026-01-01); Rent CPI YoY -2.3% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -917,7 +917,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.6,
           "coreHousingNeedScore": 47,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 13993 units/qtr (2026-01-01); NHPI YoY 3.6% (2025-06-01); Rent CPI YoY -2.2% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 13993 units/qtr (2026-01-01); Rent CPI YoY -2.2% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -1140,7 +1140,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 12.4,
           "coreHousingNeedScore": 37,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 11413 units/qtr (2026-01-01); NHPI YoY -2.7% (2025-06-01); Rent CPI YoY -5.1% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 11413 units/qtr (2026-01-01); Rent CPI YoY -5.1% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -1352,7 +1352,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 10.2,
           "coreHousingNeedScore": 18,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1336 units/qtr (2026-01-01); NHPI YoY 0% (2025-06-01); Rent CPI YoY -7.1% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1336 units/qtr (2026-01-01); Rent CPI YoY -7.1% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -1564,7 +1564,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.8,
           "coreHousingNeedScore": 48,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1394 units/qtr (2026-01-01); NHPI YoY -1% (2025-06-01); Rent CPI YoY -7.3% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1394 units/qtr (2026-01-01); Rent CPI YoY -7.3% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -1776,7 +1776,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.1,
           "coreHousingNeedScore": 43,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 424 units/qtr (2026-01-01); NHPI YoY 0% (2025-06-01); Rent CPI YoY -1.5% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 424 units/qtr (2026-01-01); Rent CPI YoY -1.5% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
@@ -1988,7 +1988,7 @@
           "rentScore": 0,
           "coreHousingNeedPct": 9.8,
           "coreHousingNeedScore": 15,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 224 units/qtr (2026-01-01); NHPI YoY 0% (2025-06-01); Rent CPI YoY -4.8% (2025-06-01)",
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 224 units/qtr (2026-01-01); Rent CPI YoY -4.8% (2025-06-01)",
           "dataDate": "2026-08-12T00:00:00.000Z"
         },
         "fiscal": {
