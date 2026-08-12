@@ -13,6 +13,10 @@
  *   35-10-0026-01  Crime Severity Index (annual)
  *   35-10-0068-01  Homicide rate per 100,000 population (annual)
  *   18-10-0004-01  CPI — food index, used as a grocery cost-of-living proxy (monthly)
+ *   10-10-0017-01  Provincial government finance (GFS) — revenue, expense, net worth (annual)
+ *   34-10-0135-01  Housing starts (quarterly)
+ *   18-10-0205-01  New Housing Price Index (monthly)
+ *   18-10-0004-01  CPI — rent index (monthly)
  *
  * IMPORTANT: The WDS batch API does NOT guarantee response order matches
  * request order — responses are re-sorted by coordinate. Every fetch
@@ -173,12 +177,15 @@ async function fetchGDP() {
     const growth = computeGrowth(pts);
     if (growth === null) continue;
 
+    const latestGdp = parseFloat(pts[0]?.value);
+
     results[code] = {
       gdp_growth_pct: growth,
       gdp_growth_delta_from_national: nationalGrowth != null
         ? Math.round((growth - nationalGrowth) * 10) / 10
         : null,
       gdp_ref_per: pts[0]?.refPer,
+      gdp_value: isNaN(latestGdp) ? null : latestGdp,
     };
   }
 
@@ -196,6 +203,20 @@ function computeGrowth(pts) {
   const prev = parseFloat(pts[1]?.value);
   if (isNaN(latest) || isNaN(prev) || prev === 0) return null;
   return Math.round(((latest - prev) / prev) * 1000) / 10;
+}
+
+/**
+ * Compute year-over-year % change from a 13-period vectorDataPoint array
+ * (WDS returns points newest-first: pts[0] = latest, pts[12] = 12 periods
+ * ago — i.e. the same month/quarter one year earlier for monthly/quarterly
+ * series). Compares the first and last points in the array.
+ */
+function computeYoY(pts) {
+  if (!pts || pts.length < 2) return null;
+  const latest = parseFloat(pts[0]?.value);
+  const yearAgo = parseFloat(pts[pts.length - 1]?.value);
+  if (isNaN(latest) || isNaN(yearAgo) || yearAgo === 0) return null;
+  return Math.round(((latest - yearAgo) / yearAgo) * 1000) / 10;
 }
 
 // ─── Fetch population (quarterly) ───────────────────────────────────────────
@@ -396,6 +417,205 @@ async function fetchCPI() {
   return results;
 }
 
+// ─── Fetch provincial government finance (annual, GFS) ──────────────────────
+// Table 10-10-0017-01: dims = Geography, Public sector, Display value,
+// Statement. Geography member IDs are UNIQUE to this table — no Canada row,
+// and a different order than the other tables above.
+const FISCAL_GEO = {
+  1: 'NL', 2: 'PE', 3: 'NS', 4: 'NB', 5: 'QC',
+  6: 'ON', 7: 'MB', 8: 'SK', 9: 'AB', 10: 'BC',
+};
+
+// Statement member IDs we need, keyed by our own field name.
+// display 1 = Stocks, display 2 = Transactions.
+const FISCAL_STATEMENTS = {
+  revenue:               { display: 2, statement: 3 },
+  expense:                { display: 2, statement: 51 },
+  interest_expense:       { display: 2, statement: 55 },
+  net_operating_balance:  { display: 2, statement: 2 },
+  net_worth:              { display: 1, statement: 86 },
+};
+
+async function fetchFiscal() {
+  console.log('  Fetching provincial government finance (10-10-0017-01)...');
+
+  const requests = [];
+  for (const geo of Object.keys(FISCAL_GEO)) {
+    for (const { display, statement } of Object.values(FISCAL_STATEMENTS)) {
+      requests.push({
+        productId: 10100017,
+        coordinate: `${geo}.1.${display}.${statement}.0.0.0.0.0.0`,
+        latestN: 1,
+      });
+    }
+  }
+
+  const data = await wdsBatchFetch(requests);
+  if (!data) return {};
+
+  const results = {};
+  for (const item of data) {
+    if (item?.status !== 'SUCCESS') continue;
+    const coord = item.object?.coordinate;
+    const geo = geoFromCoordinate(coord);
+    const code = FISCAL_GEO[geo];
+    if (!code) continue;
+
+    // Identify which statement this is by re-deriving display/statement from
+    // the coordinate itself — never trust request order.
+    const parts = (coord || '').split('.');
+    const display = parseInt(parts[2], 10);
+    const statement = parseInt(parts[3], 10);
+    const field = Object.entries(FISCAL_STATEMENTS)
+      .find(([, v]) => v.display === display && v.statement === statement)?.[0];
+    if (!field) continue;
+
+    const pts = item.object?.vectorDataPoint ?? [];
+    if (!pts.length) continue;
+    const value = parseFloat(pts[0].value);
+    if (isNaN(value)) continue;
+
+    if (!results[code]) results[code] = {};
+    results[code][field] = value;
+    results[code].fiscal_ref_per = pts[0].refPer;
+  }
+
+  const count = Object.keys(results).length;
+  const sample = Object.entries(results)[0];
+  if (sample) {
+    console.log(`  ✓ Fiscal: ${count} provinces (e.g. ${sample[0]}: revenue=$${sample[1].revenue}M, ${sample[1].fiscal_ref_per})`);
+  }
+  return results;
+}
+
+// ─── Fetch housing starts (quarterly) ───────────────────────────────────────
+// Table 34-10-0135-01: dims = Geography, Housing estimates, Type of unit,
+// Seasonal adjustment. Geography 2 (Atlantic) and 9 (Prairie) are region
+// aggregates — skipped. Geography member IDs are table-specific.
+const HOUSING_STARTS_GEO = {
+  3: 'NL', 4: 'PE', 5: 'NS', 6: 'NB', 7: 'QC',
+  8: 'ON', 10: 'MB', 11: 'SK', 12: 'AB', 13: 'BC',
+};
+
+async function fetchHousingStarts() {
+  console.log('  Fetching housing starts (34-10-0135-01)...');
+
+  // Housing estimates=1 (Housing starts), Type of unit=1 (All types),
+  // Seasonal adjustment=1 (Unadjusted). latestN=2 so a QoQ figure is
+  // available alongside the level we actually use.
+  const requests = Object.keys(HOUSING_STARTS_GEO).map(geo => ({
+    productId: 34100135,
+    coordinate: `${geo}.1.1.1.0.0.0.0.0.0`,
+    latestN: 2,
+  }));
+
+  const data = await wdsBatchFetch(requests);
+  if (!data) return {};
+
+  const results = {};
+  for (const item of data) {
+    if (item?.status !== 'SUCCESS') continue;
+    const geo = geoFromCoordinate(item.object?.coordinate);
+    const code = HOUSING_STARTS_GEO[geo];
+    if (!code) continue;
+
+    const pts = item.object?.vectorDataPoint ?? [];
+    if (!pts.length) continue;
+    const starts = parseFloat(pts[0].value);
+    if (isNaN(starts)) continue;
+
+    results[code] = { housing_starts_quarterly: starts, housing_starts_ref_per: pts[0].refPer };
+  }
+
+  const count = Object.keys(results).length;
+  const sample = Object.entries(results)[0];
+  if (sample) {
+    console.log(`  ✓ Housing starts: ${count} provinces (e.g. ${sample[0]}: ${sample[1].housing_starts_quarterly} units/qtr, ${sample[1].housing_starts_ref_per})`);
+  }
+  return results;
+}
+
+// ─── Fetch New Housing Price Index (monthly) ────────────────────────────────
+// Table 18-10-0205-01: dims = Geography, NHPI type. NHPI type 1 = "Total
+// (house and land)". Geography member IDs are table-specific.
+const NHPI_GEO = {
+  1: null, 3: 'NL', 5: 'PE', 7: 'NS', 9: 'NB', 11: 'QC',
+  17: 'ON', 29: 'MB', 31: 'SK', 34: 'AB', 37: 'BC',
+};
+
+async function fetchNHPI() {
+  console.log('  Fetching New Housing Price Index (18-10-0205-01)...');
+
+  // latestN=13 so we can compute YoY (compare latest vs. 12 months prior).
+  const requests = Object.keys(NHPI_GEO).map(geo => ({
+    productId: 18100205,
+    coordinate: `${geo}.1.0.0.0.0.0.0.0.0`,
+    latestN: 13,
+  }));
+
+  const data = await wdsBatchFetch(requests);
+  if (!data) return {};
+
+  const results = {};
+  for (const item of data) {
+    if (item?.status !== 'SUCCESS') continue;
+    const geo = geoFromCoordinate(item.object?.coordinate);
+    const code = NHPI_GEO[geo];
+    if (!code) continue;
+
+    const pts = item.object?.vectorDataPoint ?? [];
+    const yoy = computeYoY(pts);
+    if (yoy === null) continue;
+
+    results[code] = { nhpi_yoy_pct: yoy, nhpi_ref_per: pts[0]?.refPer };
+  }
+
+  const count = Object.keys(results).length;
+  const sample = Object.entries(results)[0];
+  if (sample) {
+    console.log(`  ✓ NHPI: ${count} provinces (e.g. ${sample[0]}: yoy=${sample[1].nhpi_yoy_pct}%, ${sample[1].nhpi_ref_per})`);
+  }
+  return results;
+}
+
+// ─── Fetch CPI rent index (monthly) ─────────────────────────────────────────
+// Table 18-10-0004-01: same geography mapping as the food CPI fetch above.
+// Products member 81 = "Rent".
+async function fetchRentCPI() {
+  console.log('  Fetching CPI rent index (18-10-0004-01)...');
+
+  // latestN=13 so we can compute YoY.
+  const requests = Object.keys(CPI_GEO_TO_PROV).map(geo => ({
+    productId: 18100004,
+    coordinate: `${geo}.81.0.0.0.0.0.0.0.0`,
+    latestN: 13,
+  }));
+
+  const data = await wdsBatchFetch(requests);
+  if (!data) return {};
+
+  const results = {};
+  for (const item of data) {
+    if (item?.status !== 'SUCCESS') continue;
+    const geo = geoFromCoordinate(item.object?.coordinate);
+    const code = CPI_GEO_TO_PROV[geo];
+    if (!code || code === 'CANADA') continue;
+
+    const pts = item.object?.vectorDataPoint ?? [];
+    const yoy = computeYoY(pts);
+    if (yoy === null) continue;
+
+    results[code] = { rent_cpi_yoy_pct: yoy, rent_cpi_ref_per: pts[0]?.refPer };
+  }
+
+  const count = Object.keys(results).length;
+  const sample = Object.entries(results)[0];
+  if (sample) {
+    console.log(`  ✓ Rent CPI: ${count} provinces (e.g. ${sample[0]}: yoy=${sample[1].rent_cpi_yoy_pct}%, ${sample[1].rent_cpi_ref_per})`);
+  }
+  return results;
+}
+
 // ─── MySQL upsert ───────────────────────────────────────────────────────────
 async function upsertToMySQL(conn, merged) {
   let updated = 0;
@@ -574,6 +794,173 @@ async function upsertCostOfLiving(conn, cpiData) {
   return updated;
 }
 
+// ─── MySQL upsert: provinces_fiscal ─────────────────────────────────────────
+// fiscalData[code] = { revenue, expense, interest_expense, net_operating_balance, net_worth, fiscal_ref_per }
+// (all in millions CAD, from the GFS fiscal table)
+// gdpData[code].gdp_value = latest annual GDP, also in millions CAD
+// populationData[code].population = latest quarterly population estimate
+async function upsertFiscal(conn, fiscalData, gdpData, populationData) {
+  let updated = 0;
+  const today = new Date().toISOString().slice(0, 10);
+
+  for (const code of PROVINCE_CODES) {
+    const f = fiscalData[code];
+    if (!f) continue;
+
+    const gdpValue = gdpData[code]?.gdp_value;
+    const population = populationData[code]?.population;
+
+    const budgetBalancePctGdp = (f.net_operating_balance != null && gdpValue != null && gdpValue !== 0)
+      ? Math.round((f.net_operating_balance / gdpValue) * 1000) / 10
+      : null;
+    const debtInterestCentsPerDollar = (f.interest_expense != null && f.revenue != null && f.revenue !== 0)
+      ? Math.round((f.interest_expense / f.revenue) * 1000) / 10
+      : null;
+    // Net worth is negative when liabilities exceed assets — that magnitude
+    // is net debt, stored as a positive per-capita figure. A handful of
+    // provinces (e.g. AB, thanks to the Heritage Fund) carry a POSITIVE net
+    // worth — a net asset position, not debt — so those map to zero net
+    // debt rather than inflating into a huge phantom "debt" via abs().
+    const netDebtPerCapita = (f.net_worth != null && population != null && population !== 0)
+      ? Math.round((Math.max(0, -f.net_worth) * 1000000 / population) * 100) / 100
+      : null;
+
+    const sourceNotes = [
+      f.revenue != null ? `Revenue $${f.revenue}M` : null,
+      f.expense != null ? `Expense $${f.expense}M` : null,
+      f.net_worth != null ? `Net worth $${f.net_worth}M` : null,
+      f.fiscal_ref_per ? `(${f.fiscal_ref_per})` : null,
+    ].filter(Boolean).join('; ');
+    if (!sourceNotes) continue;
+
+    const [rows] = await conn.query(
+      'SELECT id FROM provinces_fiscal WHERE province_code = ?',
+      [code]
+    );
+
+    if (rows.length > 0) {
+      const sets = [];
+      const vals = [];
+
+      if (budgetBalancePctGdp != null) {
+        sets.push('budget_balance_pct_gdp = ?');
+        vals.push(budgetBalancePctGdp);
+      }
+      if (debtInterestCentsPerDollar != null) {
+        sets.push('debt_interest_cents_per_dollar = ?');
+        vals.push(debtInterestCentsPerDollar);
+      }
+      if (netDebtPerCapita != null) {
+        sets.push('net_debt_per_capita = ?');
+        vals.push(netDebtPerCapita);
+      }
+
+      if (sets.length > 0) {
+        sets.push('source_notes = ?', 'data_date = ?');
+        vals.push(`StatsCan WDS auto-refresh ${today}. ${sourceNotes}`, today);
+        vals.push(rows[0].id);
+
+        await conn.query(
+          `UPDATE provinces_fiscal SET ${sets.join(', ')} WHERE id = ?`,
+          vals
+        );
+        updated++;
+      }
+    } else {
+      await conn.query(
+        `INSERT INTO provinces_fiscal
+          (province_code, budget_balance_pct_gdp, debt_interest_cents_per_dollar, net_debt_per_capita, source_notes, data_date)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [
+          code,
+          budgetBalancePctGdp,
+          debtInterestCentsPerDollar,
+          netDebtPerCapita,
+          `StatsCan WDS auto-refresh ${today}. ${sourceNotes}`,
+          today,
+        ]
+      );
+      updated++;
+    }
+  }
+
+  return updated;
+}
+
+// ─── MySQL upsert: provinces_housing ────────────────────────────────────────
+// housingData[code] = { mls_hpi_yoy_pct, housing_starts_per_1000_growth,
+//   rent_inflation_pct, ...raw fields/ref periods used only for source notes }
+// Only touches the three auto-refreshed columns — leaves mls_hpi_benchmark
+// and core_housing_need_pct (manual sources) untouched.
+async function upsertHousing(conn, housingData) {
+  let updated = 0;
+  const today = new Date().toISOString().slice(0, 10);
+
+  for (const code of PROVINCE_CODES) {
+    const d = housingData[code];
+    if (!d) continue;
+
+    const sourceNotes = [
+      d.housing_starts_quarterly != null ? `Housing starts ${d.housing_starts_quarterly} units/qtr (${d.housing_starts_ref_per || '?'})` : null,
+      d.mls_hpi_yoy_pct != null ? `NHPI YoY ${d.mls_hpi_yoy_pct}% (${d.nhpi_ref_per || '?'})` : null,
+      d.rent_inflation_pct != null ? `Rent CPI YoY ${d.rent_inflation_pct}% (${d.rent_cpi_ref_per || '?'})` : null,
+    ].filter(Boolean).join('; ');
+    if (!sourceNotes) continue;
+
+    const [rows] = await conn.query(
+      'SELECT id FROM provinces_housing WHERE province_code = ?',
+      [code]
+    );
+
+    if (rows.length > 0) {
+      const sets = [];
+      const vals = [];
+
+      if (d.mls_hpi_yoy_pct != null) {
+        sets.push('mls_hpi_yoy_pct = ?');
+        vals.push(d.mls_hpi_yoy_pct);
+      }
+      if (d.housing_starts_per_1000_growth != null) {
+        sets.push('housing_starts_per_1000_growth = ?');
+        vals.push(d.housing_starts_per_1000_growth);
+      }
+      if (d.rent_inflation_pct != null) {
+        sets.push('rent_inflation_pct = ?');
+        vals.push(d.rent_inflation_pct);
+      }
+
+      if (sets.length > 0) {
+        sets.push('source_notes = ?', 'data_date = ?');
+        vals.push(`StatsCan WDS auto-refresh ${today}. ${sourceNotes}`, today);
+        vals.push(rows[0].id);
+
+        await conn.query(
+          `UPDATE provinces_housing SET ${sets.join(', ')} WHERE id = ?`,
+          vals
+        );
+        updated++;
+      }
+    } else {
+      await conn.query(
+        `INSERT INTO provinces_housing
+          (province_code, mls_hpi_yoy_pct, housing_starts_per_1000_growth, rent_inflation_pct, source_notes, data_date)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [
+          code,
+          d.mls_hpi_yoy_pct ?? null,
+          d.housing_starts_per_1000_growth ?? null,
+          d.rent_inflation_pct ?? null,
+          `StatsCan WDS auto-refresh ${today}. ${sourceNotes}`,
+          today,
+        ]
+      );
+      updated++;
+    }
+  }
+
+  return updated;
+}
+
 // Wrapper so a failure in one of the new fetches can never take down the
 // whole refresh — logs a warning and degrades to "no data" for that source.
 async function safeFetch(label, fn) {
@@ -591,19 +978,28 @@ async function main() {
   console.log(`Mode: ${DRY_RUN ? 'DRY RUN (no DB writes)' : 'LIVE (writing to MySQL)'}\n`);
 
   // Fetch all data in parallel
-  const [unemployment, gdp, population, csi, homicide, cpi] = await Promise.all([
+  const [
+    unemployment, gdp, population, csi, homicide, cpi,
+    fiscal, housingStarts, nhpi, rentCpi,
+  ] = await Promise.all([
     fetchUnemployment(),
     fetchGDP(),
     fetchPopulation(),
     safeFetch('CSI', fetchCSI),
     safeFetch('Homicide', fetchHomicide),
     safeFetch('CPI', fetchCPI),
+    safeFetch('Fiscal', fetchFiscal),
+    safeFetch('Housing starts', fetchHousingStarts),
+    safeFetch('NHPI', fetchNHPI),
+    safeFetch('Rent CPI', fetchRentCPI),
   ]);
 
   // Merge into per-province objects
   const merged = {};
   const safetyData = {};
   const cpiData = {};
+  const fiscalData = {};
+  const housingData = {};
   for (const code of PROVINCE_CODES) {
     merged[code] = {
       ...(unemployment[code] || {}),
@@ -615,6 +1011,27 @@ async function main() {
       ...(homicide[code] || {}),
     };
     cpiData[code] = { ...(cpi[code] || {}) };
+    fiscalData[code] = { ...(fiscal[code] || {}) };
+
+    // Housing: merge the three raw sub-fetches, then compute the derived
+    // rates the DB columns actually store.
+    const hs = housingStarts[code] || {};
+    const nh = nhpi[code] || {};
+    const rc = rentCpi[code] || {};
+    const pop = population[code]?.population;
+
+    const housingStartsPer1000Growth = (hs.housing_starts_quarterly != null && pop != null && pop !== 0)
+      ? Math.round(((hs.housing_starts_quarterly * 4) / (pop / 1000)) * 100) / 100
+      : null;
+
+    housingData[code] = {
+      ...hs,
+      ...nh,
+      ...rc,
+      mls_hpi_yoy_pct: nh.nhpi_yoy_pct ?? null,
+      housing_starts_per_1000_growth: housingStartsPer1000Growth,
+      rent_inflation_pct: rc.rent_cpi_yoy_pct ?? null,
+    };
   }
 
   // Show summary
@@ -623,6 +1040,8 @@ async function main() {
     const d = merged[code];
     const s = safetyData[code];
     const c = cpiData[code];
+    const f = fiscalData[code];
+    const h = housingData[code];
     const parts = [];
     if (d.unemployment_rate != null) parts.push(`unemp=${d.unemployment_rate}%`);
     if (d.gdp_growth_pct != null)    parts.push(`gdp=${d.gdp_growth_pct}%`);
@@ -634,6 +1053,28 @@ async function main() {
       console.log(`  ${code}: ${parts.join(', ')}`);
     } else {
       console.log(`  ${code}: (no data)`);
+    }
+
+    // Fiscal / housing printed on a second line since they depend on
+    // cross-fetch derived metrics (GDP, population) rather than raw values.
+    const fParts = [];
+    if (f.net_operating_balance != null && d.gdp_value != null && d.gdp_value !== 0) {
+      const balPct = Math.round((f.net_operating_balance / d.gdp_value) * 1000) / 10;
+      fParts.push(`budget_balance=${balPct}%GDP`);
+    }
+    if (f.interest_expense != null && f.revenue != null && f.revenue !== 0) {
+      const centsPerDollar = Math.round((f.interest_expense / f.revenue) * 1000) / 10;
+      fParts.push(`debt_interest=${centsPerDollar}c/$`);
+    }
+    if (f.net_worth != null && d.population != null && d.population !== 0) {
+      const netDebtPerCapita = Math.round((Math.max(0, -f.net_worth) * 1000000 / d.population) * 100) / 100;
+      fParts.push(`net_debt_per_capita=$${netDebtPerCapita}`);
+    }
+    if (h.mls_hpi_yoy_pct != null) fParts.push(`nhpi_yoy=${h.mls_hpi_yoy_pct}%`);
+    if (h.housing_starts_per_1000_growth != null) fParts.push(`starts_per_1k=${h.housing_starts_per_1000_growth}`);
+    if (h.rent_inflation_pct != null) fParts.push(`rent_yoy=${h.rent_inflation_pct}%`);
+    if (fParts.length) {
+      console.log(`    ${code} (fiscal/housing): ${fParts.join(', ')}`);
     }
   }
 
@@ -679,6 +1120,20 @@ async function main() {
       console.log(`✓ Updated ${cpiUpdated} province rows in provinces_cost_of_living.`);
     } catch (err) {
       console.warn(`  provinces_cost_of_living upsert failed: ${err.message}`);
+    }
+
+    try {
+      const fiscalUpdated = await upsertFiscal(conn, fiscalData, gdp, population);
+      console.log(`✓ Updated ${fiscalUpdated} province rows in provinces_fiscal.`);
+    } catch (err) {
+      console.warn(`  provinces_fiscal upsert failed: ${err.message}`);
+    }
+
+    try {
+      const housingUpdated = await upsertHousing(conn, housingData);
+      console.log(`✓ Updated ${housingUpdated} province rows in provinces_housing.`);
+    } catch (err) {
+      console.warn(`  provinces_housing upsert failed: ${err.message}`);
     }
   } finally {
     await conn.end();
