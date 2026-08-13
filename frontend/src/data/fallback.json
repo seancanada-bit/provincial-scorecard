@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-12T09:16:33.746Z",
+  "lastUpdated": "2026-08-13T09:17:41.057Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -47,8 +47,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 16.8,
           "coreHousingNeedScore": 73,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9997 units/qtr (2026-01-01); Rent CPI YoY -4.3% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 9997 units/qtr (2026-01-01); Rent CPI YoY -4.3% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 10,
@@ -220,8 +220,8 @@
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 96 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 96 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -231,11 +231,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 61,
-        "compositeDelta": 2,
-        "prevDuckScore": 65,
-        "duckDelta": 2,
-        "prevDate": "2026-08-11"
+        "prevComposite": 63,
+        "compositeDelta": 0,
+        "prevDuckScore": 67,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -270,8 +270,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 10.8,
           "coreHousingNeedScore": 23,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 9908 units/qtr (2026-01-01); Rent CPI YoY -0.8% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 9908 units/qtr (2026-01-01); Rent CPI YoY -0.8% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 77,
@@ -443,8 +443,8 @@
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 98.8 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 98.8 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -454,11 +454,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 67,
-        "compositeDelta": -6,
-        "prevDuckScore": 96,
-        "duckDelta": -9,
-        "prevDate": "2026-08-11"
+        "prevComposite": 61,
+        "compositeDelta": 0,
+        "prevDuckScore": 87,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -493,8 +493,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 11.5,
           "coreHousingNeedScore": 29,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 781 units/qtr (2026-01-01); Rent CPI YoY -4.9% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 781 units/qtr (2026-01-01); Rent CPI YoY -4.9% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 35,
@@ -655,8 +655,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 101.8 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 101.8 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -666,11 +666,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 59,
-        "compositeDelta": -7,
-        "prevDuckScore": 69,
-        "duckDelta": -8,
-        "prevDate": "2026-08-11"
+        "prevComposite": 52,
+        "compositeDelta": 0,
+        "prevDuckScore": 61,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -705,8 +705,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 14.2,
           "coreHousingNeedScore": 52,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1741 units/qtr (2026-01-01); Rent CPI YoY -2.3% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 1741 units/qtr (2026-01-01); Rent CPI YoY -2.3% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 85,
@@ -867,8 +867,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 98.9 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 98.9 (relative food CPI, 2026-05-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -878,11 +878,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 53,
-        "compositeDelta": -1,
-        "prevDuckScore": 58,
-        "duckDelta": -1,
-        "prevDate": "2026-08-11"
+        "prevComposite": 52,
+        "compositeDelta": 0,
+        "prevDuckScore": 57,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -917,8 +917,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.6,
           "coreHousingNeedScore": 47,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 13993 units/qtr (2026-01-01); Rent CPI YoY -2.2% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 13993 units/qtr (2026-01-01); Rent CPI YoY -2.2% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 60,
@@ -1090,8 +1090,8 @@
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 101.6 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 101.6 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1101,11 +1101,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 66,
-        "compositeDelta": 3,
-        "prevDuckScore": 68,
-        "duckDelta": 3,
-        "prevDate": "2026-08-11"
+        "prevComposite": 69,
+        "compositeDelta": 0,
+        "prevDuckScore": 71,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -1140,8 +1140,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 12.4,
           "coreHousingNeedScore": 37,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 11413 units/qtr (2026-01-01); Rent CPI YoY -5.1% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 11413 units/qtr (2026-01-01); Rent CPI YoY -5.1% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 50,
@@ -1302,8 +1302,8 @@
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 99.9 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 99.9 (relative food CPI, 2026-05-01); Food CPI change 0.6%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1313,11 +1313,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 74,
-        "compositeDelta": -5,
-        "prevDuckScore": 58,
-        "duckDelta": -4,
-        "prevDate": "2026-08-11"
+        "prevComposite": 69,
+        "compositeDelta": 0,
+        "prevDuckScore": 54,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -1352,8 +1352,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 10.2,
           "coreHousingNeedScore": 18,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1336 units/qtr (2026-01-01); Rent CPI YoY -7.1% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 1336 units/qtr (2026-01-01); Rent CPI YoY -7.1% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 83,
@@ -1514,8 +1514,8 @@
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 105.7 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 105.7 (relative food CPI, 2026-05-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1525,11 +1525,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 64,
-        "compositeDelta": -6,
-        "prevDuckScore": 64,
-        "duckDelta": -6,
-        "prevDate": "2026-08-11"
+        "prevComposite": 58,
+        "compositeDelta": 0,
+        "prevDuckScore": 58,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -1564,8 +1564,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.8,
           "coreHousingNeedScore": 48,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 1394 units/qtr (2026-01-01); Rent CPI YoY -7.3% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 1394 units/qtr (2026-01-01); Rent CPI YoY -7.3% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 62,
@@ -1726,8 +1726,8 @@
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 102.4 (relative food CPI, 2026-05-01); Food CPI change -0.8%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 102.4 (relative food CPI, 2026-05-01); Food CPI change -0.8%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1737,11 +1737,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 65,
-        "compositeDelta": -4,
-        "prevDuckScore": 58,
-        "duckDelta": -4,
-        "prevDate": "2026-08-11"
+        "prevComposite": 61,
+        "compositeDelta": 0,
+        "prevDuckScore": 54,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -1776,8 +1776,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 13.1,
           "coreHousingNeedScore": 43,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 424 units/qtr (2026-01-01); Rent CPI YoY -1.5% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 424 units/qtr (2026-01-01); Rent CPI YoY -1.5% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 29,
@@ -1938,8 +1938,8 @@
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 105.2 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 105.2 (relative food CPI, 2026-05-01); Food CPI change -0.7%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1949,11 +1949,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 66,
-        "compositeDelta": -7,
-        "prevDuckScore": 61,
-        "duckDelta": -7,
-        "prevDate": "2026-08-11"
+        "prevComposite": 59,
+        "compositeDelta": 0,
+        "prevDuckScore": 54,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     },
     {
@@ -1988,8 +1988,8 @@
           "rentScore": 0,
           "coreHousingNeedPct": 9.8,
           "coreHousingNeedScore": 15,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Housing starts 224 units/qtr (2026-01-01); Rent CPI YoY -4.8% (2025-06-01)",
-          "dataDate": "2026-08-12T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Housing starts 224 units/qtr (2026-01-01); Rent CPI YoY -4.8% (2025-06-01)",
+          "dataDate": "2026-08-13T00:00:00.000Z"
         },
         "fiscal": {
           "score": 87,
@@ -2150,8 +2150,8 @@
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-12. Grocery index 98 (relative food CPI, 2026-05-01); Food CPI change -1.1%",
-        "dataDate": "2026-08-12T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-13. Grocery index 98 (relative food CPI, 2026-05-01); Food CPI change -1.1%",
+        "dataDate": "2026-08-13T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2161,11 +2161,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 59,
-        "compositeDelta": -1,
-        "prevDuckScore": 54,
-        "duckDelta": -1,
-        "prevDate": "2026-08-11"
+        "prevComposite": 58,
+        "compositeDelta": 0,
+        "prevDuckScore": 53,
+        "duckDelta": 0,
+        "prevDate": "2026-08-12"
       }
     }
   ],
