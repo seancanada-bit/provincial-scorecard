@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-29T13:45:01.691Z",
+  "lastUpdated": "2026-08-30T13:42:46.168Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -220,8 +220,8 @@
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 96.4 (relative food CPI, 2026-06-01); Food CPI change -0.1%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 96.4 (relative food CPI, 2026-06-01); Food CPI change -0.1%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -235,7 +235,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 67,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -443,8 +443,8 @@
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 99.6 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.6 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -458,7 +458,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 87,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -655,8 +655,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 102.7 (relative food CPI, 2026-06-01); Food CPI change 0%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 102.7 (relative food CPI, 2026-06-01); Food CPI change 0%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -670,7 +670,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 61,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -867,8 +867,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change 0.4%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change 0.4%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -882,7 +882,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 57,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -1090,8 +1090,8 @@
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 101.2 (relative food CPI, 2026-06-01); Food CPI change 0%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 101.2 (relative food CPI, 2026-06-01); Food CPI change 0%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1105,7 +1105,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -1302,8 +1302,8 @@
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 99.5 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.5 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1317,7 +1317,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -1514,8 +1514,8 @@
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 106.4 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 106.4 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1529,7 +1529,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -1726,8 +1726,8 @@
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 103.5 (relative food CPI, 2026-06-01); Food CPI change 0.1%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 103.5 (relative food CPI, 2026-06-01); Food CPI change 0.1%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1741,7 +1741,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -1938,8 +1938,8 @@
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 106.2 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 106.2 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1953,7 +1953,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     },
     {
@@ -2150,8 +2150,8 @@
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-24. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-24T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-30T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2165,7 +2165,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 53,
         "duckDelta": 0,
-        "prevDate": "2026-08-28"
+        "prevDate": "2026-08-29"
       }
     }
   ],
