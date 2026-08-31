@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-30T13:42:46.168Z",
+  "lastUpdated": "2026-08-31T16:02:01.587Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -163,8 +163,8 @@
           "victimizationScore": 69,
           "homicideRatePer100k": 1.81,
           "homicideScore": 76,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 92.37 (2025-01-01); Homicide rate 1.81/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.81/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 87,
@@ -220,8 +220,8 @@
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 96.4 (relative food CPI, 2026-06-01); Food CPI change -0.1%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 96.4 (relative food CPI, 2026-06-01); Food CPI change -0.1%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -235,7 +235,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 67,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -386,8 +386,8 @@
           "victimizationScore": 70,
           "homicideRatePer100k": 1.77,
           "homicideScore": 76,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 90.62 (2025-01-01); Homicide rate 1.77/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.77/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 48,
@@ -443,8 +443,8 @@
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.6 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 99.6 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -458,7 +458,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 87,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -598,8 +598,8 @@
           "victimizationScore": 24,
           "homicideRatePer100k": 5.21,
           "homicideScore": 21,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 146.64 (2025-01-01); Homicide rate 5.21/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 5.21/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 40,
@@ -655,8 +655,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 102.7 (relative food CPI, 2026-06-01); Food CPI change 0%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 102.7 (relative food CPI, 2026-06-01); Food CPI change 0%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -670,7 +670,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 61,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -810,8 +810,8 @@
           "victimizationScore": 37,
           "homicideRatePer100k": 3.64,
           "homicideScore": 46,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 130.04 (2025-01-01); Homicide rate 3.64/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 3.64/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 50,
@@ -867,8 +867,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change 0.4%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change 0.4%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -882,7 +882,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 57,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -1033,8 +1033,8 @@
           "victimizationScore": 98,
           "homicideRatePer100k": 1.27,
           "homicideScore": 84,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 57.17 (2025-01-01); Homicide rate 1.27/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.27/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 39,
@@ -1090,8 +1090,8 @@
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 101.2 (relative food CPI, 2026-06-01); Food CPI change 0%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 101.2 (relative food CPI, 2026-06-01); Food CPI change 0%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1105,7 +1105,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -1245,8 +1245,8 @@
           "victimizationScore": 95,
           "homicideRatePer100k": 0.97,
           "homicideScore": 89,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 61.55 (2025-01-01); Homicide rate 0.97/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 0.97/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 71,
@@ -1302,8 +1302,8 @@
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.5 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 99.5 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1317,7 +1317,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -1457,8 +1457,8 @@
           "victimizationScore": 71,
           "homicideRatePer100k": 1.72,
           "homicideScore": 77,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 90.36 (2025-01-01); Homicide rate 1.72/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.72/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 32,
@@ -1514,8 +1514,8 @@
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 106.4 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 106.4 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1529,7 +1529,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -1669,8 +1669,8 @@
           "victimizationScore": 85,
           "homicideRatePer100k": 1.74,
           "homicideScore": 77,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 72.96 (2025-01-01); Homicide rate 1.74/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.74/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 45,
@@ -1726,8 +1726,8 @@
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 103.5 (relative food CPI, 2026-06-01); Food CPI change 0.1%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 103.5 (relative food CPI, 2026-06-01); Food CPI change 0.1%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1741,7 +1741,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -1881,8 +1881,8 @@
           "victimizationScore": 89,
           "homicideRatePer100k": 1.64,
           "homicideScore": 78,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 68.4 (2025-01-01); Homicide rate 1.64/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 1.64/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 21,
@@ -1938,8 +1938,8 @@
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 106.2 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 106.2 (relative food CPI, 2026-06-01); Food CPI change -0.2%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1953,7 +1953,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     },
     {
@@ -2093,8 +2093,8 @@
           "victimizationScore": 72,
           "homicideRatePer100k": 2.18,
           "homicideScore": 70,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-17. Crime Severity Index 88.74 (2025-01-01); Homicide rate 2.18/100k (2025-01-01)",
-          "dataDate": "2026-08-17T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Homicide rate 2.18/100k (2025-01-01)",
+          "dataDate": "2026-08-31T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 37,
@@ -2150,8 +2150,8 @@
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-30. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
-        "dataDate": "2026-08-30T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-08-31. Grocery index 99.3 (relative food CPI, 2026-06-01); Food CPI change -0.5%",
+        "dataDate": "2026-08-31T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2165,7 +2165,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 53,
         "duckDelta": 0,
-        "prevDate": "2026-08-29"
+        "prevDate": "2026-08-30"
       }
     }
   ],
