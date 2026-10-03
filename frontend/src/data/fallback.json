@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-02T14:37:13.988Z",
+  "lastUpdated": "2026-10-03T13:12:46.105Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -235,7 +235,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 67,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -458,7 +458,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 87,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -670,7 +670,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 62,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -882,7 +882,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 57,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -1105,7 +1105,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -1317,7 +1317,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -1529,7 +1529,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -1741,7 +1741,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -1953,7 +1953,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 55,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     },
     {
@@ -2165,7 +2165,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 53,
         "duckDelta": 0,
-        "prevDate": "2026-10-01"
+        "prevDate": "2026-10-02"
       }
     }
   ],
