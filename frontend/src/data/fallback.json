@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-09T15:09:24.557Z",
+  "lastUpdated": "2026-10-10T14:22:32.556Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
@@ -235,7 +235,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 67,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -458,7 +458,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 87,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -666,11 +666,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 53,
-        "compositeDelta": -1,
-        "prevDuckScore": 62,
-        "duckDelta": -1,
-        "prevDate": "2026-10-08"
+        "prevComposite": 52,
+        "compositeDelta": 0,
+        "prevDuckScore": 61,
+        "duckDelta": 0,
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -882,7 +882,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 57,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -1105,7 +1105,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -1317,7 +1317,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -1529,7 +1529,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -1741,7 +1741,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -1949,11 +1949,11 @@
         "infrastructure": "2026-01-01T00:00:00.000Z"
       },
       "trend": {
-        "prevComposite": 60,
-        "compositeDelta": -1,
-        "prevDuckScore": 55,
-        "duckDelta": -1,
-        "prevDate": "2026-10-08"
+        "prevComposite": 59,
+        "compositeDelta": 0,
+        "prevDuckScore": 54,
+        "duckDelta": 0,
+        "prevDate": "2026-10-09"
       }
     },
     {
@@ -2165,7 +2165,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 53,
         "duckDelta": 0,
-        "prevDate": "2026-10-08"
+        "prevDate": "2026-10-09"
       }
     }
   ],
