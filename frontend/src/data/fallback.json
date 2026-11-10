@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-11-09T18:35:23.910Z",
+  "lastUpdated": "2026-11-10T16:18:34.845Z",
   "national": {
     "avgComposite": 60,
     "avgHealthcare": 66,
-    "avgHousing": 42,
+    "avgHousing": 44,
     "avgFiscal": 58,
     "avgInfrastructure": 41,
-    "avgEconomy": 77,
+    "avgEconomy": 76,
     "avgSafety": 67,
     "avgMentalHealth": 47,
     "avgLtc": 77,
@@ -43,12 +43,12 @@
           "priceScore": 28,
           "housingStartsPer1000Growth": 7.08,
           "startsScore": 0,
-          "rentInflationPct": -3.2,
+          "rentInflationPct": -5,
           "rentScore": 0,
           "coreHousingNeedPct": 16.8,
           "coreHousingNeedScore": 73,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -3.2% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 11108 units/qtr (2026-04-01); Rent CPI YoY -5% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 10,
@@ -104,12 +104,12 @@
           ]
         },
         "economy": {
-          "score": 83,
+          "score": 81,
           "grade": "A-",
-          "employmentScore": 57,
-          "unemploymentRate": 6.4,
-          "unemploymentDeltaFromNational": -0.1,
-          "unemployScore": 48,
+          "employmentScore": 54,
+          "unemploymentRate": 6.3,
+          "unemploymentDeltaFromNational": -0.4,
+          "unemployScore": 43,
           "gdpGrowthPct": -1.1,
           "gdpGrowthDeltaFromNational": 0.9,
           "gdpGrowthScore": 65,
@@ -220,8 +220,8 @@
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 96.4 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 96.4 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -235,16 +235,16 @@
         "compositeDelta": 0,
         "prevDuckScore": 67,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
       "code": "AB",
       "name": "Alberta",
       "premierName": "Danielle Smith",
-      "composite": 61,
+      "composite": 64,
       "grade": "C",
-      "valueScore": 87,
+      "valueScore": 91,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -259,19 +259,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 32,
-          "grade": "F",
+          "score": 55,
+          "grade": "D",
           "mlsHpiBenchmark": 490000,
           "mlsHpiYoyPct": 0.5,
           "priceScore": 15,
           "housingStartsPer1000Growth": 7.84,
           "startsScore": 0,
-          "rentInflationPct": -0.1,
-          "rentScore": 0,
+          "rentInflationPct": 2.4,
+          "rentScore": 24,
           "coreHousingNeedPct": 10.8,
           "coreHousingNeedScore": 23,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -0.1% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 12936 units/qtr (2026-04-01); Rent CPI YoY 2.4% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 77,
@@ -327,12 +327,12 @@
           ]
         },
         "economy": {
-          "score": 86,
-          "grade": "A-",
-          "employmentScore": 42,
-          "unemploymentRate": 6.4,
-          "unemploymentDeltaFromNational": -0.1,
-          "unemployScore": 48,
+          "score": 87,
+          "grade": "A",
+          "employmentScore": 48,
+          "unemploymentRate": 7.3,
+          "unemploymentDeltaFromNational": 0.6,
+          "unemployScore": 60,
           "gdpGrowthPct": -2.9,
           "gdpGrowthDeltaFromNational": -0.9,
           "gdpGrowthScore": 35,
@@ -443,8 +443,8 @@
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 99.8 (relative food CPI, 2026-08-01); Food CPI change 0.4%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 99.8 (relative food CPI, 2026-08-01); Food CPI change 0.4%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -455,10 +455,10 @@
       },
       "trend": {
         "prevComposite": 61,
-        "compositeDelta": 0,
+        "compositeDelta": 3,
         "prevDuckScore": 87,
-        "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "duckDelta": 4,
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -489,12 +489,12 @@
           "priceScore": 2,
           "housingStartsPer1000Growth": 2.47,
           "startsScore": 0,
-          "rentInflationPct": -3.7,
+          "rentInflationPct": -2.7,
           "rentScore": 0,
           "coreHousingNeedPct": 11.5,
           "coreHousingNeedScore": 29,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -3.7% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 2302 units/qtr (2026-04-01); Rent CPI YoY -2.7% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 35,
@@ -539,12 +539,12 @@
           ]
         },
         "economy": {
-          "score": 82,
+          "score": 81,
           "grade": "A-",
-          "employmentScore": 34,
-          "unemploymentRate": 5.4,
-          "unemploymentDeltaFromNational": -1.1,
-          "unemployScore": 32,
+          "employmentScore": 36,
+          "unemploymentRate": 5.9,
+          "unemploymentDeltaFromNational": -0.8,
+          "unemployScore": 37,
           "gdpGrowthPct": -2.9,
           "gdpGrowthDeltaFromNational": -0.9,
           "gdpGrowthScore": 35,
@@ -655,8 +655,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 102.3 (relative food CPI, 2026-08-01); Food CPI change 0.5%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 102.3 (relative food CPI, 2026-08-01); Food CPI change 0.5%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -670,16 +670,16 @@
         "compositeDelta": 0,
         "prevDuckScore": 61,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 52,
+      "composite": 51,
       "grade": "D",
-      "valueScore": 57,
+      "valueScore": 55,
       "categories": {
         "healthcare": {
           "score": 57,
@@ -701,12 +701,12 @@
           "priceScore": 0,
           "housingStartsPer1000Growth": 4.63,
           "startsScore": 0,
-          "rentInflationPct": -4.2,
+          "rentInflationPct": -4.9,
           "rentScore": 0,
           "coreHousingNeedPct": 14.2,
           "coreHousingNeedScore": 52,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -4.2% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 2759 units/qtr (2026-04-01); Rent CPI YoY -4.9% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 85,
@@ -751,12 +751,12 @@
           ]
         },
         "economy": {
-          "score": 67,
-          "grade": "C+",
-          "employmentScore": 41,
+          "score": 65,
+          "grade": "C",
+          "employmentScore": 40,
           "unemploymentRate": 5,
-          "unemploymentDeltaFromNational": -1.5,
-          "unemployScore": 25,
+          "unemploymentDeltaFromNational": -1.7,
+          "unemployScore": 22,
           "gdpGrowthPct": -1.6,
           "gdpGrowthDeltaFromNational": 0.4,
           "gdpGrowthScore": 57,
@@ -867,8 +867,8 @@
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 98.8 (relative food CPI, 2026-08-01); Food CPI change -0.1%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 98.8 (relative food CPI, 2026-08-01); Food CPI change -0.1%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -879,10 +879,10 @@
       },
       "trend": {
         "prevComposite": 52,
-        "compositeDelta": 0,
+        "compositeDelta": -1,
         "prevDuckScore": 57,
-        "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "duckDelta": -2,
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -913,12 +913,12 @@
           "priceScore": 32,
           "housingStartsPer1000Growth": 3.48,
           "startsScore": 0,
-          "rentInflationPct": -2.3,
+          "rentInflationPct": -1.9,
           "rentScore": 0,
           "coreHousingNeedPct": 13.6,
           "coreHousingNeedScore": 47,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -2.3% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 17786 units/qtr (2026-04-01); Rent CPI YoY -1.9% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 60,
@@ -976,10 +976,10 @@
         "economy": {
           "score": 87,
           "grade": "A",
-          "employmentScore": 58,
-          "unemploymentRate": 7,
-          "unemploymentDeltaFromNational": 0.5,
-          "unemployScore": 58,
+          "employmentScore": 59,
+          "unemploymentRate": 7.3,
+          "unemploymentDeltaFromNational": 0.6,
+          "unemployScore": 60,
           "gdpGrowthPct": -1.6,
           "gdpGrowthDeltaFromNational": 0.4,
           "gdpGrowthScore": 57,
@@ -1090,8 +1090,8 @@
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 101.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 101.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1105,7 +1105,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -1136,12 +1136,12 @@
           "priceScore": 0,
           "housingStartsPer1000Growth": 5.06,
           "startsScore": 0,
-          "rentInflationPct": -2.9,
+          "rentInflationPct": -3.2,
           "rentScore": 0,
           "coreHousingNeedPct": 12.4,
           "coreHousingNeedScore": 37,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -2.9% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 15399 units/qtr (2026-04-01); Rent CPI YoY -3.2% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 50,
@@ -1186,12 +1186,12 @@
           ]
         },
         "economy": {
-          "score": 73,
-          "grade": "B",
-          "employmentScore": 49,
-          "unemploymentRate": 6,
-          "unemploymentDeltaFromNational": -0.5,
-          "unemployScore": 42,
+          "score": 70,
+          "grade": "B-",
+          "employmentScore": 44,
+          "unemploymentRate": 5.7,
+          "unemploymentDeltaFromNational": -1,
+          "unemployScore": 33,
           "gdpGrowthPct": -1.7,
           "gdpGrowthDeltaFromNational": 0.3,
           "gdpGrowthScore": 55,
@@ -1302,8 +1302,8 @@
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 99.7 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 99.7 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1317,7 +1317,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -1348,12 +1348,12 @@
           "priceScore": 12,
           "housingStartsPer1000Growth": 6.17,
           "startsScore": 0,
-          "rentInflationPct": -7.6,
+          "rentInflationPct": -6.4,
           "rentScore": 0,
           "coreHousingNeedPct": 10.2,
           "coreHousingNeedScore": 18,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -7.6% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 1439 units/qtr (2026-04-01); Rent CPI YoY -6.4% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 83,
@@ -1398,12 +1398,12 @@
           ]
         },
         "economy": {
-          "score": 79,
+          "score": 78,
           "grade": "B+",
-          "employmentScore": 53,
+          "employmentScore": 51,
           "unemploymentRate": 7.4,
-          "unemploymentDeltaFromNational": 0.9,
-          "unemployScore": 65,
+          "unemploymentDeltaFromNational": 0.7,
+          "unemployScore": 62,
           "gdpGrowthPct": -2.6,
           "gdpGrowthDeltaFromNational": -0.6,
           "gdpGrowthScore": 40,
@@ -1514,8 +1514,8 @@
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 106 (relative food CPI, 2026-08-01); Food CPI change 0.8%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 106 (relative food CPI, 2026-08-01); Food CPI change 0.8%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1529,7 +1529,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -1560,12 +1560,12 @@
           "priceScore": 7,
           "housingStartsPer1000Growth": 5.11,
           "startsScore": 0,
-          "rentInflationPct": -7.4,
+          "rentInflationPct": -7.9,
           "rentScore": 0,
           "coreHousingNeedPct": 13.8,
           "coreHousingNeedScore": 48,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -7.4% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 2000 units/qtr (2026-04-01); Rent CPI YoY -7.9% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 62,
@@ -1610,12 +1610,12 @@
           ]
         },
         "economy": {
-          "score": 73,
-          "grade": "B",
-          "employmentScore": 40,
-          "unemploymentRate": 6.3,
-          "unemploymentDeltaFromNational": -0.2,
-          "unemployScore": 47,
+          "score": 72,
+          "grade": "B-",
+          "employmentScore": 38,
+          "unemploymentRate": 6.2,
+          "unemploymentDeltaFromNational": -0.5,
+          "unemployScore": 42,
           "gdpGrowthPct": -3,
           "gdpGrowthDeltaFromNational": -1,
           "gdpGrowthScore": 33,
@@ -1726,8 +1726,8 @@
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 102.8 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 102.8 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1741,7 +1741,7 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
@@ -1772,12 +1772,12 @@
           "priceScore": 12,
           "housingStartsPer1000Growth": 9.33,
           "startsScore": 0,
-          "rentInflationPct": -6.1,
+          "rentInflationPct": -6.7,
           "rentScore": 0,
           "coreHousingNeedPct": 13.1,
           "coreHousingNeedScore": 43,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -6.1% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 512 units/qtr (2026-04-01); Rent CPI YoY -6.7% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 29,
@@ -1822,12 +1822,12 @@
           ]
         },
         "economy": {
-          "score": 68,
+          "score": 67,
           "grade": "C+",
           "employmentScore": 43,
-          "unemploymentRate": 7.3,
-          "unemploymentDeltaFromNational": 0.8,
-          "unemployScore": 63,
+          "unemploymentRate": 7.4,
+          "unemploymentDeltaFromNational": 0.7,
+          "unemployScore": 62,
           "gdpGrowthPct": -3.6,
           "gdpGrowthDeltaFromNational": -1.6,
           "gdpGrowthScore": 23,
@@ -1938,8 +1938,8 @@
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 105.7 (relative food CPI, 2026-08-01); Food CPI change -0.8%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 105.7 (relative food CPI, 2026-08-01); Food CPI change -0.8%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1953,16 +1953,16 @@
         "compositeDelta": 0,
         "prevDuckScore": 54,
         "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "prevDate": "2026-11-09"
       }
     },
     {
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 58,
+      "composite": 57,
       "grade": "C-",
-      "valueScore": 53,
+      "valueScore": 52,
       "categories": {
         "healthcare": {
           "score": 68,
@@ -1984,12 +1984,12 @@
           "priceScore": 12,
           "housingStartsPer1000Growth": 1.64,
           "startsScore": 0,
-          "rentInflationPct": -6.6,
+          "rentInflationPct": -6.5,
           "rentScore": 0,
           "coreHousingNeedPct": 9.8,
           "coreHousingNeedScore": 15,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-18. Rent CPI YoY -6.6% (2025-08-01)",
-          "dataDate": "2026-10-18T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Housing starts 547 units/qtr (2026-04-01); Rent CPI YoY -6.5% (2025-09-01)",
+          "dataDate": "2026-11-10T00:00:00.000Z"
         },
         "fiscal": {
           "score": 87,
@@ -2034,12 +2034,12 @@
           ]
         },
         "economy": {
-          "score": 74,
-          "grade": "B",
-          "employmentScore": 67,
-          "unemploymentRate": 9.1,
-          "unemploymentDeltaFromNational": 2.6,
-          "unemployScore": 93,
+          "score": 71,
+          "grade": "B-",
+          "employmentScore": 62,
+          "unemploymentRate": 8.7,
+          "unemploymentDeltaFromNational": 2,
+          "unemployScore": 83,
           "gdpGrowthPct": -2.6,
           "gdpGrowthDeltaFromNational": -0.6,
           "gdpGrowthScore": 40,
@@ -2150,8 +2150,8 @@
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Grocery index 99.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-10-19T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-10. Grocery index 99.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
+        "dataDate": "2026-11-10T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2162,10 +2162,10 @@
       },
       "trend": {
         "prevComposite": 58,
-        "compositeDelta": 0,
+        "compositeDelta": -1,
         "prevDuckScore": 53,
-        "duckDelta": 0,
-        "prevDate": "2026-11-08"
+        "duckDelta": -1,
+        "prevDate": "2026-11-09"
       }
     }
   ],
