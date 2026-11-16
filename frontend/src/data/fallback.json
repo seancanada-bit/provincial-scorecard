@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-11-15T15:31:08.391Z",
+  "lastUpdated": "2026-11-16T18:12:56.889Z",
   "national": {
-    "avgComposite": 60,
+    "avgComposite": 61,
     "avgHealthcare": 66,
-    "avgHousing": 44,
+    "avgHousing": 49,
     "avgFiscal": 58,
     "avgInfrastructure": 41,
     "avgEconomy": 76,
     "avgSafety": 67,
     "avgMentalHealth": 47,
     "avgLtc": 77,
-    "topProvince": "ON",
+    "topProvince": "QC",
     "bottomProvince": "MB",
     "nationalAvgHealthcareSurgical": 36
   },
@@ -19,9 +19,9 @@
       "code": "BC",
       "name": "British Columbia",
       "premierName": "David Eby",
-      "composite": 63,
+      "composite": 62,
       "grade": "C",
-      "valueScore": 67,
+      "valueScore": 66,
       "categories": {
         "healthcare": {
           "score": 51,
@@ -39,22 +39,22 @@
           "score": 87,
           "grade": "A",
           "mlsHpiBenchmark": 995000,
-          "mlsHpiYoyPct": 2.7,
-          "priceScore": 28,
-          "housingStartsPer1000Growth": 7.08,
+          "mlsHpiYoyPct": 2.4,
+          "priceScore": 26,
+          "housingStartsPer1000Growth": 7.78,
           "startsScore": 0,
-          "rentInflationPct": -5,
+          "rentInflationPct": -1.3,
           "rentScore": 0,
           "coreHousingNeedPct": 16.8,
           "coreHousingNeedScore": 73,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 11108 units/qtr (2026-04-01); Rent CPI YoY -5% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 11108 units/qtr (2026-04-01); NHPI YoY 2.4% (2025-09-01); Rent CPI YoY -1.3% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 10,
           "grade": "F",
-          "budgetBalancePctGdp": -3.9,
-          "balanceScore": 17,
+          "budgetBalancePctGdp": -3.8,
+          "balanceScore": 18,
           "debtInterestCentsPerDollar": 5.4,
           "interestScore": 13,
           "netDebtPerCapita": 0,
@@ -104,15 +104,15 @@
           ]
         },
         "economy": {
-          "score": 81,
-          "grade": "A-",
-          "employmentScore": 54,
+          "score": 78,
+          "grade": "B+",
+          "employmentScore": 43,
           "unemploymentRate": 6.3,
           "unemploymentDeltaFromNational": -0.4,
           "unemployScore": 43,
-          "gdpGrowthPct": -1.1,
-          "gdpGrowthDeltaFromNational": 0.9,
-          "gdpGrowthScore": 65,
+          "gdpGrowthPct": -2.3,
+          "gdpGrowthDeltaFromNational": -0.4,
+          "gdpGrowthScore": 43,
           "creditScore": 89,
           "credit": {
             "moodys": {
@@ -163,8 +163,8 @@
           "victimizationScore": 69,
           "homicideRatePer100k": 1.81,
           "homicideScore": 76,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.81/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 92.37 (2025-01-01); Homicide rate 1.81/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 87,
@@ -212,7 +212,7 @@
         "grade": "D",
         "rentToIncomePct": 27.5,
         "rentScore": 86,
-        "groceryIndex": 96.4,
+        "groceryIndex": 96.5,
         "groceryScore": 11,
         "annualEnergyCost": 2085,
         "energyScore": 24,
@@ -220,8 +220,8 @@
         "insuranceScore": 82,
         "childcareMonthlyAvg": 897,
         "childcareScore": 55,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 96.4 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 96.5 (relative food CPI, 2026-09-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -232,19 +232,19 @@
       },
       "trend": {
         "prevComposite": 63,
-        "compositeDelta": 0,
+        "compositeDelta": -1,
         "prevDuckScore": 67,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": -1,
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "AB",
       "name": "Alberta",
       "premierName": "Danielle Smith",
-      "composite": 64,
+      "composite": 66,
       "grade": "C",
-      "valueScore": 91,
+      "valueScore": 94,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -259,19 +259,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 55,
-          "grade": "D",
+          "score": 66,
+          "grade": "C",
           "mlsHpiBenchmark": 490000,
-          "mlsHpiYoyPct": 0.5,
-          "priceScore": 15,
-          "housingStartsPer1000Growth": 7.84,
+          "mlsHpiYoyPct": 0.4,
+          "priceScore": 14,
+          "housingStartsPer1000Growth": 10.14,
           "startsScore": 0,
-          "rentInflationPct": 2.4,
-          "rentScore": 24,
+          "rentInflationPct": 3,
+          "rentScore": 30,
           "coreHousingNeedPct": 10.8,
           "coreHousingNeedScore": 23,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 12936 units/qtr (2026-04-01); Rent CPI YoY 2.4% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 12936 units/qtr (2026-04-01); NHPI YoY 0.4% (2025-09-01); Rent CPI YoY 3% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 77,
@@ -329,13 +329,13 @@
         "economy": {
           "score": 87,
           "grade": "A",
-          "employmentScore": 48,
+          "employmentScore": 44,
           "unemploymentRate": 7.3,
           "unemploymentDeltaFromNational": 0.6,
           "unemployScore": 60,
-          "gdpGrowthPct": -2.9,
-          "gdpGrowthDeltaFromNational": -0.9,
-          "gdpGrowthScore": 35,
+          "gdpGrowthPct": -3.2,
+          "gdpGrowthDeltaFromNational": -1.3,
+          "gdpGrowthScore": 28,
           "creditScore": 93,
           "credit": {
             "moodys": {
@@ -386,8 +386,8 @@
           "victimizationScore": 70,
           "homicideRatePer100k": 1.77,
           "homicideScore": 76,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.77/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 90.62 (2025-01-01); Homicide rate 1.77/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 48,
@@ -435,7 +435,7 @@
         "grade": "D",
         "rentToIncomePct": 18.9,
         "rentScore": 38,
-        "groceryIndex": 99.8,
+        "groceryIndex": 99.7,
         "groceryScore": 26,
         "annualEnergyCost": 2552,
         "energyScore": 41,
@@ -443,8 +443,8 @@
         "insuranceScore": 90,
         "childcareMonthlyAvg": 1242,
         "childcareScore": 81,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 99.8 (relative food CPI, 2026-08-01); Food CPI change 0.4%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 99.7 (relative food CPI, 2026-09-01); Food CPI change 0.6%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -455,19 +455,19 @@
       },
       "trend": {
         "prevComposite": 64,
-        "compositeDelta": 0,
+        "compositeDelta": 2,
         "prevDuckScore": 91,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 3,
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "SK",
       "name": "Saskatchewan",
       "premierName": "Scott Moe",
-      "composite": 52,
+      "composite": 53,
       "grade": "D",
-      "valueScore": 61,
+      "valueScore": 62,
       "categories": {
         "healthcare": {
           "score": 61,
@@ -482,25 +482,25 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 24,
+          "score": 29,
           "grade": "F",
           "mlsHpiBenchmark": 325000,
-          "mlsHpiYoyPct": -1.7,
-          "priceScore": 2,
-          "housingStartsPer1000Growth": 2.47,
+          "mlsHpiYoyPct": -1.1,
+          "priceScore": 5,
+          "housingStartsPer1000Growth": 7.2,
           "startsScore": 0,
-          "rentInflationPct": -2.7,
+          "rentInflationPct": -4.2,
           "rentScore": 0,
           "coreHousingNeedPct": 11.5,
           "coreHousingNeedScore": 29,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 2302 units/qtr (2026-04-01); Rent CPI YoY -2.7% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 2302 units/qtr (2026-04-01); NHPI YoY -1.1% (2025-09-01); Rent CPI YoY -4.2% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
-          "score": 35,
+          "score": 37,
           "grade": "F",
-          "budgetBalancePctGdp": -2.4,
-          "balanceScore": 40,
+          "budgetBalancePctGdp": -2.3,
+          "balanceScore": 42,
           "debtInterestCentsPerDollar": 5.6,
           "interestScore": 15,
           "netDebtPerCapita": 0,
@@ -539,15 +539,15 @@
           ]
         },
         "economy": {
-          "score": 81,
+          "score": 82,
           "grade": "A-",
-          "employmentScore": 36,
+          "employmentScore": 35,
           "unemploymentRate": 5.9,
           "unemploymentDeltaFromNational": -0.8,
           "unemployScore": 37,
-          "gdpGrowthPct": -2.9,
-          "gdpGrowthDeltaFromNational": -0.9,
-          "gdpGrowthScore": 35,
+          "gdpGrowthPct": -3,
+          "gdpGrowthDeltaFromNational": -1.1,
+          "gdpGrowthScore": 32,
           "creditScore": 89,
           "credit": {
             "moodys": {
@@ -598,8 +598,8 @@
           "victimizationScore": 24,
           "homicideRatePer100k": 5.21,
           "homicideScore": 21,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 5.21/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 146.64 (2025-01-01); Homicide rate 5.21/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 40,
@@ -643,20 +643,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 33,
+        "score": 32,
         "grade": "F",
         "rentToIncomePct": 15.3,
         "rentScore": 18,
-        "groceryIndex": 102.3,
-        "groceryScore": 38,
+        "groceryIndex": 102,
+        "groceryScore": 36,
         "annualEnergyCost": 2702,
         "energyScore": 47,
         "autoInsuranceAnnual": 1071,
         "insuranceScore": 31,
         "childcareMonthlyAvg": 912,
         "childcareScore": 56,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 102.3 (relative food CPI, 2026-08-01); Food CPI change 0.5%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 102 (relative food CPI, 2026-09-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -667,19 +667,19 @@
       },
       "trend": {
         "prevComposite": 52,
-        "compositeDelta": 0,
+        "compositeDelta": 1,
         "prevDuckScore": 61,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 1,
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "MB",
       "name": "Manitoba",
       "premierName": "Wab Kinew",
-      "composite": 51,
+      "composite": 52,
       "grade": "D",
-      "valueScore": 55,
+      "valueScore": 57,
       "categories": {
         "healthcare": {
           "score": 57,
@@ -694,19 +694,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 40,
+          "score": 41,
           "grade": "D",
           "mlsHpiBenchmark": 355000,
-          "mlsHpiYoyPct": -2.4,
+          "mlsHpiYoyPct": -2.1,
           "priceScore": 0,
-          "housingStartsPer1000Growth": 4.63,
+          "housingStartsPer1000Growth": 7.27,
           "startsScore": 0,
-          "rentInflationPct": -4.9,
+          "rentInflationPct": -3.1,
           "rentScore": 0,
           "coreHousingNeedPct": 14.2,
           "coreHousingNeedScore": 52,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 2759 units/qtr (2026-04-01); Rent CPI YoY -4.9% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 2759 units/qtr (2026-04-01); NHPI YoY -2.1% (2025-09-01); Rent CPI YoY -3.1% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 85,
@@ -715,8 +715,8 @@
           "balanceScore": 43,
           "debtInterestCentsPerDollar": 10.8,
           "interestScore": 62,
-          "netDebtPerCapita": 9025.41,
-          "debtScore": 12,
+          "netDebtPerCapita": 8945.03,
+          "debtScore": 11,
           "fiscalTrend": "improving",
           "trendBonus": 5
         },
@@ -751,15 +751,15 @@
           ]
         },
         "economy": {
-          "score": 65,
+          "score": 66,
           "grade": "C",
-          "employmentScore": 40,
+          "employmentScore": 37,
           "unemploymentRate": 5,
           "unemploymentDeltaFromNational": -1.7,
           "unemployScore": 22,
-          "gdpGrowthPct": -1.6,
-          "gdpGrowthDeltaFromNational": 0.4,
-          "gdpGrowthScore": 57,
+          "gdpGrowthPct": -1.8,
+          "gdpGrowthDeltaFromNational": 0.1,
+          "gdpGrowthScore": 52,
           "creditScore": 79,
           "credit": {
             "moodys": {
@@ -810,8 +810,8 @@
           "victimizationScore": 37,
           "homicideRatePer100k": 3.64,
           "homicideScore": 46,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 3.64/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 130.04 (2025-01-01); Homicide rate 3.64/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 50,
@@ -859,16 +859,16 @@
         "grade": "F",
         "rentToIncomePct": 16.9,
         "rentScore": 27,
-        "groceryIndex": 98.8,
-        "groceryScore": 22,
+        "groceryIndex": 99.2,
+        "groceryScore": 24,
         "annualEnergyCost": 2013,
         "energyScore": 22,
         "autoInsuranceAnnual": 1060,
         "insuranceScore": 31,
         "childcareMonthlyAvg": 584,
         "childcareScore": 32,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 98.8 (relative food CPI, 2026-08-01); Food CPI change -0.1%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 99.2 (relative food CPI, 2026-09-01); Food CPI change 0.4%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -879,10 +879,10 @@
       },
       "trend": {
         "prevComposite": 51,
-        "compositeDelta": 0,
+        "compositeDelta": 1,
         "prevDuckScore": 55,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 2,
+        "prevDate": "2026-11-15"
       }
     },
     {
@@ -906,19 +906,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 67,
-          "grade": "C+",
+          "score": 70,
+          "grade": "B-",
           "mlsHpiBenchmark": 855000,
           "mlsHpiYoyPct": 3.5,
           "priceScore": 32,
-          "housingStartsPer1000Growth": 3.48,
+          "housingStartsPer1000Growth": 4.37,
           "startsScore": 0,
-          "rentInflationPct": -1.9,
+          "rentInflationPct": -1.1,
           "rentScore": 0,
           "coreHousingNeedPct": 13.6,
           "coreHousingNeedScore": 47,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 17786 units/qtr (2026-04-01); Rent CPI YoY -1.9% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 17786 units/qtr (2026-04-01); NHPI YoY 3.5% (2025-09-01); Rent CPI YoY -1.1% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 60,
@@ -927,7 +927,7 @@
           "balanceScore": 49,
           "debtInterestCentsPerDollar": 7.9,
           "interestScore": 35,
-          "netDebtPerCapita": 13788.47,
+          "netDebtPerCapita": 13654.31,
           "debtScore": 25,
           "fiscalTrend": "worsening",
           "trendBonus": -5
@@ -976,13 +976,13 @@
         "economy": {
           "score": 87,
           "grade": "A",
-          "employmentScore": 59,
+          "employmentScore": 56,
           "unemploymentRate": 7.3,
           "unemploymentDeltaFromNational": 0.6,
           "unemployScore": 60,
-          "gdpGrowthPct": -1.6,
-          "gdpGrowthDeltaFromNational": 0.4,
-          "gdpGrowthScore": 57,
+          "gdpGrowthPct": -1.8,
+          "gdpGrowthDeltaFromNational": 0.1,
+          "gdpGrowthScore": 52,
           "creditScore": 84,
           "credit": {
             "moodys": {
@@ -1033,8 +1033,8 @@
           "victimizationScore": 98,
           "homicideRatePer100k": 1.27,
           "homicideScore": 84,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.27/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 57.17 (2025-01-01); Homicide rate 1.27/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 39,
@@ -1082,16 +1082,16 @@
         "grade": "C-",
         "rentToIncomePct": 25.1,
         "rentScore": 73,
-        "groceryIndex": 101.2,
-        "groceryScore": 33,
+        "groceryIndex": 101.1,
+        "groceryScore": 32,
         "annualEnergyCost": 2365,
         "energyScore": 34,
         "autoInsuranceAnnual": 1754,
         "insuranceScore": 77,
         "childcareMonthlyAvg": 1456,
         "childcareScore": 97,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 101.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 101.1 (relative food CPI, 2026-09-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1105,16 +1105,16 @@
         "compositeDelta": 0,
         "prevDuckScore": 71,
         "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "QC",
       "name": "Quebec",
       "premierName": "François Legault",
-      "composite": 69,
-      "grade": "C+",
-      "valueScore": 54,
+      "composite": 70,
+      "grade": "B-",
+      "valueScore": 55,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1129,19 +1129,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 28,
+          "score": 33,
           "grade": "F",
           "mlsHpiBenchmark": 480000,
-          "mlsHpiYoyPct": -2.3,
-          "priceScore": 0,
-          "housingStartsPer1000Growth": 5.06,
+          "mlsHpiYoyPct": -1.3,
+          "priceScore": 4,
+          "housingStartsPer1000Growth": 6.79,
           "startsScore": 0,
-          "rentInflationPct": -3.2,
+          "rentInflationPct": -3,
           "rentScore": 0,
           "coreHousingNeedPct": 12.4,
           "coreHousingNeedScore": 37,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 15399 units/qtr (2026-04-01); Rent CPI YoY -3.2% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 15399 units/qtr (2026-04-01); NHPI YoY -1.3% (2025-09-01); Rent CPI YoY -3% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 50,
@@ -1150,7 +1150,7 @@
           "balanceScore": 26,
           "debtInterestCentsPerDollar": 11.3,
           "interestScore": 66,
-          "netDebtPerCapita": 4909.15,
+          "netDebtPerCapita": 4881.6,
           "debtScore": 0,
           "fiscalTrend": "worsening",
           "trendBonus": -5
@@ -1186,15 +1186,15 @@
           ]
         },
         "economy": {
-          "score": 70,
-          "grade": "B-",
-          "employmentScore": 44,
+          "score": 73,
+          "grade": "B",
+          "employmentScore": 49,
           "unemploymentRate": 5.7,
           "unemploymentDeltaFromNational": -1,
           "unemployScore": 33,
-          "gdpGrowthPct": -1.7,
-          "gdpGrowthDeltaFromNational": 0.3,
-          "gdpGrowthScore": 55,
+          "gdpGrowthPct": -1,
+          "gdpGrowthDeltaFromNational": 0.9,
+          "gdpGrowthScore": 65,
           "creditScore": 88,
           "credit": {
             "moodys": {
@@ -1245,8 +1245,8 @@
           "victimizationScore": 95,
           "homicideRatePer100k": 0.97,
           "homicideScore": 89,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 0.97/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 61.55 (2025-01-01); Homicide rate 0.97/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 71,
@@ -1294,16 +1294,16 @@
         "grade": "F",
         "rentToIncomePct": 19.5,
         "rentScore": 42,
-        "groceryIndex": 99.7,
-        "groceryScore": 26,
+        "groceryIndex": 99.6,
+        "groceryScore": 25,
         "annualEnergyCost": 1626,
         "energyScore": 8,
         "autoInsuranceAnnual": 717,
         "insuranceScore": 8,
         "childcareMonthlyAvg": 196,
         "childcareScore": 3,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 99.7 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 99.6 (relative food CPI, 2026-09-01); Food CPI change -0.4%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1314,10 +1314,10 @@
       },
       "trend": {
         "prevComposite": 69,
-        "compositeDelta": 0,
+        "compositeDelta": 1,
         "prevDuckScore": 54,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 1,
+        "prevDate": "2026-11-15"
       }
     },
     {
@@ -1341,19 +1341,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 28,
+          "score": 29,
           "grade": "F",
           "mlsHpiBenchmark": 298000,
-          "mlsHpiYoyPct": 0,
-          "priceScore": 12,
-          "housingStartsPer1000Growth": 6.17,
+          "mlsHpiYoyPct": 0.4,
+          "priceScore": 14,
+          "housingStartsPer1000Growth": 6.51,
           "startsScore": 0,
-          "rentInflationPct": -6.4,
+          "rentInflationPct": -9.6,
           "rentScore": 0,
           "coreHousingNeedPct": 10.2,
           "coreHousingNeedScore": 18,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 1439 units/qtr (2026-04-01); Rent CPI YoY -6.4% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 1439 units/qtr (2026-04-01); NHPI YoY 0.4% (2025-09-01); Rent CPI YoY -9.6% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 83,
@@ -1398,15 +1398,15 @@
           ]
         },
         "economy": {
-          "score": 78,
+          "score": 79,
           "grade": "B+",
-          "employmentScore": 51,
+          "employmentScore": 52,
           "unemploymentRate": 7.4,
           "unemploymentDeltaFromNational": 0.7,
           "unemployScore": 62,
-          "gdpGrowthPct": -2.6,
-          "gdpGrowthDeltaFromNational": -0.6,
-          "gdpGrowthScore": 40,
+          "gdpGrowthPct": -2.4,
+          "gdpGrowthDeltaFromNational": -0.5,
+          "gdpGrowthScore": 42,
           "creditScore": 79,
           "credit": {
             "moodys": {
@@ -1457,8 +1457,8 @@
           "victimizationScore": 71,
           "homicideRatePer100k": 1.72,
           "homicideScore": 77,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.72/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 90.36 (2025-01-01); Homicide rate 1.72/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 32,
@@ -1502,20 +1502,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 42,
+        "score": 41,
         "grade": "D",
         "rentToIncomePct": 18.2,
         "rentScore": 34,
-        "groceryIndex": 106,
-        "groceryScore": 55,
+        "groceryIndex": 105.5,
+        "groceryScore": 52,
         "annualEnergyCost": 3143,
         "energyScore": 62,
         "autoInsuranceAnnual": 847,
         "insuranceScore": 16,
         "childcareMonthlyAvg": 619,
         "childcareScore": 35,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 106 (relative food CPI, 2026-08-01); Food CPI change 0.8%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 105.5 (relative food CPI, 2026-09-01); Food CPI change 0%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1529,16 +1529,16 @@
         "compositeDelta": 0,
         "prevDuckScore": 58,
         "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "NS",
       "name": "Nova Scotia",
       "premierName": "Tim Houston",
-      "composite": 61,
+      "composite": 62,
       "grade": "C",
-      "valueScore": 54,
+      "valueScore": 55,
       "categories": {
         "healthcare": {
           "score": 70,
@@ -1553,19 +1553,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 44,
+          "score": 50,
           "grade": "D",
           "mlsHpiBenchmark": 415000,
-          "mlsHpiYoyPct": -0.8,
-          "priceScore": 7,
-          "housingStartsPer1000Growth": 5.11,
+          "mlsHpiYoyPct": -0.6,
+          "priceScore": 8,
+          "housingStartsPer1000Growth": 7.25,
           "startsScore": 0,
-          "rentInflationPct": -7.9,
+          "rentInflationPct": -9.4,
           "rentScore": 0,
           "coreHousingNeedPct": 13.8,
           "coreHousingNeedScore": 48,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 2000 units/qtr (2026-04-01); Rent CPI YoY -7.9% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 2000 units/qtr (2026-04-01); NHPI YoY -0.6% (2025-09-01); Rent CPI YoY -9.4% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 62,
@@ -1574,7 +1574,7 @@
           "balanceScore": 92,
           "debtInterestCentsPerDollar": 4.4,
           "interestScore": 4,
-          "netDebtPerCapita": 692.12,
+          "netDebtPerCapita": 684.24,
           "debtScore": 0,
           "fiscalTrend": "stable",
           "trendBonus": 0
@@ -1610,13 +1610,13 @@
           ]
         },
         "economy": {
-          "score": 72,
-          "grade": "B-",
+          "score": 73,
+          "grade": "B",
           "employmentScore": 38,
           "unemploymentRate": 6.2,
           "unemploymentDeltaFromNational": -0.5,
           "unemployScore": 42,
-          "gdpGrowthPct": -3,
+          "gdpGrowthPct": -2.9,
           "gdpGrowthDeltaFromNational": -1,
           "gdpGrowthScore": 33,
           "creditScore": 79,
@@ -1669,8 +1669,8 @@
           "victimizationScore": 85,
           "homicideRatePer100k": 1.74,
           "homicideScore": 77,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.74/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 72.96 (2025-01-01); Homicide rate 1.74/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 45,
@@ -1718,7 +1718,7 @@
         "grade": "D",
         "rentToIncomePct": 21.8,
         "rentScore": 54,
-        "groceryIndex": 102.8,
+        "groceryIndex": 102.9,
         "groceryScore": 40,
         "annualEnergyCost": 3926,
         "energyScore": 90,
@@ -1726,8 +1726,8 @@
         "insuranceScore": 20,
         "childcareMonthlyAvg": 631,
         "childcareScore": 36,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 102.8 (relative food CPI, 2026-08-01); Food CPI change 0.2%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 102.9 (relative food CPI, 2026-09-01); Food CPI change 0%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1738,19 +1738,19 @@
       },
       "trend": {
         "prevComposite": 61,
-        "compositeDelta": 0,
+        "compositeDelta": 1,
         "prevDuckScore": 54,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 1,
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "PE",
       "name": "Prince Edward Island",
       "premierName": "Dennis King",
-      "composite": 59,
-      "grade": "C-",
-      "valueScore": 54,
+      "composite": 60,
+      "grade": "C",
+      "valueScore": 55,
       "categories": {
         "healthcare": {
           "score": 87,
@@ -1765,28 +1765,28 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 47,
+          "score": 50,
           "grade": "D",
           "mlsHpiBenchmark": 370000,
           "mlsHpiYoyPct": 0,
           "priceScore": 12,
-          "housingStartsPer1000Growth": 9.33,
+          "housingStartsPer1000Growth": 11.19,
           "startsScore": 0,
-          "rentInflationPct": -6.7,
+          "rentInflationPct": -4.5,
           "rentScore": 0,
           "coreHousingNeedPct": 13.1,
           "coreHousingNeedScore": 43,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 512 units/qtr (2026-04-01); Rent CPI YoY -6.7% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 512 units/qtr (2026-04-01); NHPI YoY 0% (2025-09-01); Rent CPI YoY -4.5% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
-          "score": 29,
+          "score": 31,
           "grade": "F",
-          "budgetBalancePctGdp": -3,
-          "balanceScore": 31,
+          "budgetBalancePctGdp": -2.9,
+          "balanceScore": 32,
           "debtInterestCentsPerDollar": 5.6,
           "interestScore": 15,
-          "netDebtPerCapita": 1502.35,
+          "netDebtPerCapita": 1491.89,
           "debtScore": 0,
           "fiscalTrend": "stable",
           "trendBonus": 0
@@ -1822,15 +1822,15 @@
           ]
         },
         "economy": {
-          "score": 67,
+          "score": 68,
           "grade": "C+",
-          "employmentScore": 43,
+          "employmentScore": 44,
           "unemploymentRate": 7.4,
           "unemploymentDeltaFromNational": 0.7,
           "unemployScore": 62,
-          "gdpGrowthPct": -3.6,
-          "gdpGrowthDeltaFromNational": -1.6,
-          "gdpGrowthScore": 23,
+          "gdpGrowthPct": -3.4,
+          "gdpGrowthDeltaFromNational": -1.5,
+          "gdpGrowthScore": 25,
           "creditScore": 79,
           "credit": {
             "moodys": {
@@ -1881,8 +1881,8 @@
           "victimizationScore": 89,
           "homicideRatePer100k": 1.64,
           "homicideScore": 78,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 1.64/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 68.4 (2025-01-01); Homicide rate 1.64/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 21,
@@ -1926,20 +1926,20 @@
         "sourceNotes": "Fraser Institute Tax Simulator 2024; CCPA Child Care Fee Survey 2024; Stats Canada Table 14-10-0023-01"
       },
       "purchasingPower": {
-        "score": 49,
+        "score": 50,
         "grade": "D",
         "rentToIncomePct": 20.3,
         "rentScore": 46,
-        "groceryIndex": 105.7,
-        "groceryScore": 53,
+        "groceryIndex": 106.8,
+        "groceryScore": 58,
         "annualEnergyCost": 3726,
         "energyScore": 83,
         "autoInsuranceAnnual": 780,
         "insuranceScore": 12,
         "childcareMonthlyAvg": 398,
         "childcareScore": 18,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 105.7 (relative food CPI, 2026-08-01); Food CPI change -0.8%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 106.8 (relative food CPI, 2026-09-01); Food CPI change 0.2%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -1950,19 +1950,19 @@
       },
       "trend": {
         "prevComposite": 59,
-        "compositeDelta": 0,
+        "compositeDelta": 1,
         "prevDuckScore": 54,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 1,
+        "prevDate": "2026-11-15"
       }
     },
     {
       "code": "NL",
       "name": "Newfoundland and Labrador",
       "premierName": "Andrew Furey",
-      "composite": 57,
+      "composite": 59,
       "grade": "C-",
-      "valueScore": 52,
+      "valueScore": 54,
       "categories": {
         "healthcare": {
           "score": 68,
@@ -1977,19 +1977,19 @@
           "dataDate": "2025-01-01T00:00:00.000Z"
         },
         "housing": {
-          "score": 24,
+          "score": 33,
           "grade": "F",
           "mlsHpiBenchmark": 290000,
-          "mlsHpiYoyPct": 0,
-          "priceScore": 12,
-          "housingStartsPer1000Growth": 1.64,
+          "mlsHpiYoyPct": 1.2,
+          "priceScore": 19,
+          "housingStartsPer1000Growth": 3.96,
           "startsScore": 0,
-          "rentInflationPct": -6.5,
+          "rentInflationPct": -8.6,
           "rentScore": 0,
           "coreHousingNeedPct": 9.8,
           "coreHousingNeedScore": 15,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Housing starts 547 units/qtr (2026-04-01); Rent CPI YoY -6.5% (2025-09-01)",
-          "dataDate": "2026-11-15T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Housing starts 547 units/qtr (2026-04-01); NHPI YoY 1.2% (2025-09-01); Rent CPI YoY -8.6% (2025-10-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "fiscal": {
           "score": 87,
@@ -2034,15 +2034,15 @@
           ]
         },
         "economy": {
-          "score": 71,
-          "grade": "B-",
-          "employmentScore": 62,
+          "score": 68,
+          "grade": "C+",
+          "employmentScore": 48,
           "unemploymentRate": 8.7,
           "unemploymentDeltaFromNational": 2,
           "unemployScore": 83,
-          "gdpGrowthPct": -2.6,
-          "gdpGrowthDeltaFromNational": -0.6,
-          "gdpGrowthScore": 40,
+          "gdpGrowthPct": -4.2,
+          "gdpGrowthDeltaFromNational": -2.3,
+          "gdpGrowthScore": 12,
           "creditScore": 66,
           "credit": {
             "moodys": {
@@ -2093,8 +2093,8 @@
           "victimizationScore": 72,
           "homicideRatePer100k": 2.18,
           "homicideScore": 70,
-          "sourceNotes": "StatsCan WDS auto-refresh 2026-10-19. Homicide rate 2.18/100k (2025-01-01)",
-          "dataDate": "2026-10-19T00:00:00.000Z"
+          "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Crime Severity Index 88.74 (2025-01-01); Homicide rate 2.18/100k (2025-01-01)",
+          "dataDate": "2026-11-16T00:00:00.000Z"
         },
         "mentalhealth": {
           "score": 37,
@@ -2142,16 +2142,16 @@
         "grade": "F",
         "rentToIncomePct": 15.4,
         "rentScore": 19,
-        "groceryIndex": 99.2,
-        "groceryScore": 24,
+        "groceryIndex": 99.1,
+        "groceryScore": 23,
         "annualEnergyCost": 2979,
         "energyScore": 56,
         "autoInsuranceAnnual": 1128,
         "insuranceScore": 35,
         "childcareMonthlyAvg": 598,
         "childcareScore": 33,
-        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-15. Grocery index 99.2 (relative food CPI, 2026-08-01); Food CPI change 0.3%",
-        "dataDate": "2026-11-15T00:00:00.000Z"
+        "sourceNotes": "StatsCan WDS auto-refresh 2026-11-16. Grocery index 99.1 (relative food CPI, 2026-09-01); Food CPI change -0.1%",
+        "dataDate": "2026-11-16T00:00:00.000Z"
       },
       "lastUpdated": {
         "healthcare": "2025-01-01T00:00:00.000Z",
@@ -2162,10 +2162,10 @@
       },
       "trend": {
         "prevComposite": 57,
-        "compositeDelta": 0,
+        "compositeDelta": 2,
         "prevDuckScore": 52,
-        "duckDelta": 0,
-        "prevDate": "2026-11-14"
+        "duckDelta": 2,
+        "prevDate": "2026-11-15"
       }
     }
   ],
